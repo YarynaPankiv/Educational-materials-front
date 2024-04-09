@@ -4,9 +4,10 @@ import Product from "./Product";
 
 const StyledProductsGrid = styled.div`
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 20px;
-    padding: 25px;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 37px;
+    margin-bottom: 25px;
+    
 
 `
 
@@ -15,7 +16,7 @@ export default function ProductsGrid({products}){
         <Center>
             <StyledProductsGrid>
                 {products?.length > 0 && products.map(product => (
-                    <Product {...product}/>
+                    <Product key={product.id} {...product}/>
                 ))}
             </StyledProductsGrid>
         </Center>
