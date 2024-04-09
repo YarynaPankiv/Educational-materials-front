@@ -7,5 +7,6 @@ const StyledDiv = styled.div`
 export default function Center({children}){
     return (
         <StyledDiv>{children}</StyledDiv>
+        влад лохі
     )
 }
