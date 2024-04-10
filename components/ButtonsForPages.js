@@ -6,9 +6,9 @@ const StyledButton = styled.div`
     height: 35px;
     cursor: pointer;
     border-radius: 10px;
-    background: ${props => props.clicked === 'true' ? "#AD88C6" : "#FCFAFA"}; /* змінив тут */
+    background: ${props => props.clicked === 'true' ? "#AD88C6" : "#FCFAFA"};
     border: 1px solid #000000;
-    color: ${props => props.clicked === 'true' ? "white" : "black"}; /* змінив тут */
+    color: ${props => props.clicked === 'true' ? "white" : "black"}; 
     display: flex;
     justify-content: center;
     align-items: center;
@@ -20,6 +20,7 @@ const StyledLineOfButtons = styled.div`
     align-items: center;
     justify-content: center;
     margin-top: 37px;
+    margin-bottom: 25px;
 `;
 
 export default function ButtonsForPages({ totalPages, onPageChange, currentPage }) {

@@ -5,7 +5,7 @@ import Logo from "@/components/Logo";
 import ProductsGrid from "@/components/ProductsGrid";
 import ButtonsForPages from '@/components/ButtonsForPages';
 
-export default function HomePage() {
+export default function HomePage({ toggleDarkMode }) {
     const originalProducts = ([
         {
             id: 1,
@@ -92,7 +92,7 @@ export default function HomePage() {
 
     return (
         <div>
-            <Header />
+            <Header toggleDarkMode={toggleDarkMode}/>
             <Logo />
             <Buttons onRecentlyAddedClick={handleRecentlyAddedClick} onAllClick={handleAllProductsClick} />
             <ProductsGrid products={displayedProducts} />
