@@ -5,6 +5,7 @@ import Logo from "@/components/Logo";
 import ProductsGrid from "@/components/ProductsGrid";
 import ButtonsForPages from '@/components/ButtonsForPages';
 
+
 export default function HomePage({ toggleDarkMode }) {
     const originalProducts = ([
         {
@@ -90,6 +91,7 @@ export default function HomePage({ toggleDarkMode }) {
     const endIndex = startIndex + productsPerPage;
     const displayedProducts = products.slice(startIndex, endIndex);
 
+
     return (
         <div>
             <Header toggleDarkMode={toggleDarkMode}/>
@@ -97,6 +99,7 @@ export default function HomePage({ toggleDarkMode }) {
             <Buttons onRecentlyAddedClick={handleRecentlyAddedClick} onAllClick={handleAllProductsClick} />
             <ProductsGrid products={displayedProducts} />
             <ButtonsForPages totalPages={totalPages} onPageChange={handlePageChange} currentPage={currentPage} />
+           
 
         </div>
     );
