@@ -4,86 +4,87 @@ import Header from "@/components/Header";
 import Logo from "@/components/Logo";
 import ProductsGrid from "@/components/ProductsGrid";
 import ButtonsForPages from '@/components/ButtonsForPages';
+export const originalProducts = ([
+    {
+        id: 1,
+        name: "Назва продукту 1",
+        image: "/image.png",
+        images: ["/image.png", "/img2.png", "/img3.jpg"],
+        price: 100,
+        description: "Ця презентація призначена для учнів 8-го класу з предмету Українська мова. Вона створена з метою розширення знань учнів про прикметники - важливу частину мови, що допомагає у точному та виразному описі об'єктів, явищ, та людей. ",
+        category: "шкільні",
+        subcategory: "Українська мова"
+    },
+    {
+        id: 2,
+        name: "Назва продукту 2",
+        image: "/image.png",
+        price: 200,
+        description: "Опис продукту 2",
+        category: "університетські",
+        subcategory: "Дослідження операції"
+    },
+    { id: 3,
+      name: "Назва продукту 3",
+      image: "/image.png",
+      price: 200,
+      description: "Опис продукту 2",
+      category: "шкільні",
+      subcategory: "Математика"} ,
 
+      { id: 4,
+        name: "Назва продукту 4",
+        image: "/image.png",
+        price: 200,
+        description: "Опис продукту 2" ,
+        category: "університетські",
+        subcategory: "Програмування"
+    }
+        ,
 
-export default function HomePage({ toggleDarkMode }) {
-    const originalProducts = ([
-        {
-            id: 1,
-            name: "Назва продукту 1",
-            image: "/image.png",
-            price: 100,
-            description: "Опис продукту 1",
-            category: "шкільні",
-            subcategory: "Українська мова"
-        },
-        {
-            id: 2,
-            name: "Назва продукту 2",
-            image: "/image.png",
-            price: 200,
-            description: "Опис продукту 2",
-            category: "університетські",
-            subcategory: "Дослідження операції"
-        },
-        { id: 3,
-          name: "Назва продукту 3",
+      { id: 5,
+        name: "Назва продукту 5",
+        image: "/image.png",
+        price: 200,
+        description: "Опис продукту 2",
+        category: "університетські",
+        subcategory: "Програмування"},
+
+        { id: 6,
+          name: "Назва продукту 6",
           image: "/image.png",
           price: 200,
           description: "Опис продукту 2",
-          category: "шкільні",
-          subcategory: "Математика"} ,
+          category: "університетські",
+          subcategory: "Програмування"},
 
-          { id: 4,
-            name: "Назва продукту 4",
-            image: "/image.png",
-            price: 200,
-            description: "Опис продукту 2" ,
-            category: "університетські",
-            subcategory: "Програмування"
-        }
-            ,
-
-          { id: 5,
-            name: "Назва продукту 5",
+          { id: 7,
+            name: "Назва продукту 7",
             image: "/image.png",
             price: 200,
             description: "Опис продукту 2",
             category: "університетські",
             subcategory: "Програмування"},
 
-            { id: 6,
-              name: "Назва продукту 6",
+            { id: 8,
+              name: "Назва продукту 8",
               image: "/image.png",
               price: 200,
               description: "Опис продукту 2",
-              category: "університетські",
-              subcategory: "Програмування"},
+              category: "шкільні",
+              subcategory: "Математика"},
 
-              { id: 7,
-                name: "Назва продукту 7",
+              { id: 9,
+                name: "Назва продукту 9",
                 image: "/image.png",
                 price: 200,
                 description: "Опис продукту 2",
-                category: "університетські",
-                subcategory: "Програмування"},
+                category: "шкільні",
+                subcategory: "Математика"}
+]);
 
-                { id: 8,
-                  name: "Назва продукту 8",
-                  image: "/image.png",
-                  price: 200,
-                  description: "Опис продукту 2",
-                  category: "шкільні",
-                  subcategory: "Математика"},
-
-                  { id: 9,
-                    name: "Назва продукту 9",
-                    image: "/image.png",
-                    price: 200,
-                    description: "Опис продукту 2",
-                    category: "шкільні",
-                    subcategory: "Математика"}
-    ]);
+export default function HomePage({ toggleDarkMode }) {
+ 
     const [products, setProducts] = useState(originalProducts);
 
     const handleRecentlyAddedClick = () => {
@@ -114,15 +115,16 @@ export default function HomePage({ toggleDarkMode }) {
         if (!acc[product.category]) {
             acc[product.category] = [];
         }
-        // Перевірте, чи вже міститься така підкатегорія в масиві
+
         if (!acc[product.category].includes(product.subcategory)) {
             acc[product.category].push(product.subcategory);
         }
         return acc;
     }, {});
+
+
     
-      console.log(categorizedProducts);
-    ;
+    
     
 
     return (

@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import Center from "./Center";
+import Link from 'next/link';
 
 const StyledProduct = styled.div`
    width: 218px;
@@ -19,6 +20,7 @@ const StyledPNG = styled.img`
 const StyledName = styled.p`
     padding-top: 5px;
     text-align: center;
+    color: black;
 
 `
 
@@ -47,14 +49,19 @@ const StyledAddToCart = styled.div`
    margin-right: 20px;
    margin-bottom: 10px;
 `
+const StyledLink = styled(Link)`
+    text-decoration: none;
+
+` 
 
 
 export default function Product({ id, image, name, price }) {
+    const url = '/product/' + id;
     return (
         <Center>
-            <StyledProduct>
-                <StyledPNG src={image} alt="Product Image" />
-                <StyledName>{name}</StyledName>
+            <StyledProduct href={url}>
+                <Link href={url}><StyledPNG src={image} alt="Product Image" /></Link>
+                <StyledLink href={url} ><StyledName >{name}</StyledName></StyledLink>
                 <StyledCost>{price} UAH</StyledCost>
                 <StyledAddToCart>
                     <svg width="25" height="20" viewBox="0 0 25 20" fill="none" xmlns="http://www.w3.org/2000/svg">
