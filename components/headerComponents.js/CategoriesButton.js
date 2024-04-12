@@ -32,7 +32,7 @@ const StyledCloseSvg = styled.svg`
     fill: #FFFFFF;
 `
 
-export default function CategoriesButton() {
+export default function CategoriesButton({categories}) {
 
 
     const [showCategories, setCategories] = useState(false);
@@ -65,7 +65,7 @@ export default function CategoriesButton() {
 
                 Категорії
             </StyledButton>
-            {showCategories && <Categories />                
+            {showCategories && <Categories categories={categories}/>                
                 
             }
         </>

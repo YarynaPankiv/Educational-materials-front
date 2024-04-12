@@ -60,12 +60,12 @@ justify-content: space-between;
 margin-top: 5px;
  `
 
-export default function Header({ toggleDarkMode }) {
+export default function Header({ toggleDarkMode, categories }) {
   return (
     <header>
       <Center>
         <HeaderDiv>
-        <CategoriesButton />
+        <CategoriesButton categories={categories}/>
 
         <StyledSearch placeholder="Введіть текст для пошуку...">
 

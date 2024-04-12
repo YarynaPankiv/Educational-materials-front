@@ -1,7 +1,14 @@
 import {IconText, IconWithText, StyledIcon}  from "../Header";
+import styled from "styled-components";
+import Link from 'next/link';
+const StyledLink = styled.link`
+      
 
+
+`
 export default function Cart(){
     return (
+   
         <IconWithText>
         <StyledIcon
           width="22"
@@ -19,5 +26,10 @@ export default function Cart(){
         </StyledIcon>
         <IconText>Корзина</IconText>
         </IconWithText>
+        
+        
+
+        
+        
     )
 }
