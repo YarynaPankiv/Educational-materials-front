@@ -4,6 +4,7 @@ import Header from "@/components/Header";
 import Logo from "@/components/Logo";
 import ProductsGrid from "@/components/ProductsGrid";
 import ButtonsForPages from "@/components/ButtonsForPages";
+
 export const originalProducts = [
   {
     id: 1,
@@ -34,25 +35,6 @@ export const originalProducts = [
     category: "шкільні",
     subcategory: "Математика",
   },
-
-  {
-    id: 4,
-    name: "Назва продукту 4",
-    image: "/image.png",
-    price: 200,
-    description: "Опис продукту 2",
-    category: "університетські",
-    subcategory: "Програмування",
-  },
-  {
-    id: 5,
-    name: "Назва продукту 5",
-    image: "/image.png",
-    price: 200,
-    description: "Опис продукту 2",
-    category: "університетські",
-    subcategory: "Програмування",
-  },
   {
     id: 4,
     name: "Назва продукту 4",
@@ -82,16 +64,6 @@ export const originalProducts = [
     subcategory: "Програмування",
   },
   {
-    id: 6,
-    name: "Назва продукту 6",
-    image: "/image.png",
-    price: 200,
-    description: "Опис продукту 2",
-    category: "університетські",
-    subcategory: "Програмування",
-  },
-
-  {
     id: 7,
     name: "Назва продукту 7",
     image: "/image.png",
@@ -99,25 +71,6 @@ export const originalProducts = [
     description: "Опис продукту 2",
     category: "університетські",
     subcategory: "Програмування",
-  },
-  {
-    id: 7,
-    name: "Назва продукту 7",
-    image: "/image.png",
-    price: 200,
-    description: "Опис продукту 2",
-    category: "університетські",
-    subcategory: "Програмування",
-  },
-
-  {
-    id: 8,
-    name: "Назва продукту 8",
-    image: "/image.png",
-    price: 200,
-    description: "Опис продукту 2",
-    category: "шкільні",
-    subcategory: "Математика",
   },
   {
     id: 8,
@@ -128,7 +81,6 @@ export const originalProducts = [
     category: "шкільні",
     subcategory: "Математика",
   },
-
   {
     id: 9,
     name: "Назва продукту 9",
