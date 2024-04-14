@@ -11,9 +11,6 @@ export const StyledIcon = styled.svg`
 
 `;
 
-
-
-
 const StyledSearch = styled.input`
   width: 605px;
   height: 34px;
