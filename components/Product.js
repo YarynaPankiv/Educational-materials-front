@@ -55,13 +55,13 @@ const StyledLink = styled(Link)`
 ` 
 
 
-export default function Product({ id, image, name, price }) {
-    const url = '/product/' + id;
+export default function Product({ _id, images, productName, price }) {
+    const url = '/product/' + _id;
     return (
         <Center>
             <StyledProduct href={url}>
-                <Link href={url}><StyledPNG src={image} alt="Product Image" /></Link>
-                <StyledLink href={url} ><StyledName >{name}</StyledName></StyledLink>
+                <Link href={url}><StyledPNG src={images[0]} alt="Product Image" /></Link>
+                <StyledLink href={url} ><StyledName >{productName}</StyledName></StyledLink>
                 <StyledCost>{price} UAH</StyledCost>
                 <StyledAddToCart>
                     <svg width="25" height="20" viewBox="0 0 25 20" fill="none" xmlns="http://www.w3.org/2000/svg">

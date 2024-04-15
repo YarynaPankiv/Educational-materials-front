@@ -27,7 +27,7 @@ export default function ProductPage() {
                 <ColWrapper>
                 <ProductImages images={product.images}/>
                 <div>
-                <p>{product.name}</p>
+                <p>{product.productName}</p>
                 <p>{product.description}</p>
                 </div>
                 <AddFeedback />
@@ -48,6 +48,6 @@ function findProductById(id) {
         return null;
     }
     const parsedId = parseInt(id, 10);
-    const product = originalProducts.find(product => product.id === parsedId);
+    const product = originalProducts.find(product => product._id === parsedId);
     return product;
 }
