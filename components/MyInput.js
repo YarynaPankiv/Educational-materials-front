@@ -1,10 +1,16 @@
+import { useState } from "react";
 import styled from "styled-components";
 
-const MyInput = ({ text, type }) => {
+const MyInput = ({ text, type, value, setValue }) => {
+
+  const handleOnChange = (e) => {
+    setValue(e.target.value);
+  };
+
   return (
     <Label>
       <div>{text}</div>
-      <StyledInput type={type} />
+      <StyledInput onChange={handleOnChange} value={value} type={type} />
     </Label>
   );
 };
@@ -12,7 +18,6 @@ const MyInput = ({ text, type }) => {
 const Label = styled.label`
   width: 100%;
 `;
-
 
 const StyledInput = styled.input`
   border-top: none;

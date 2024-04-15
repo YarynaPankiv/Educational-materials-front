@@ -1,13 +1,21 @@
+import { useRouter } from "next/router";
 import styled from "styled-components";
 
-const LoginButton = ({ children }) => {
-  return <Button>{children}</Button>;
+const LoginButton = ({ onClick, children, href }) => {
+  
+
+  const handleOnClick = () => {
+    onClick();
+    
+  };
+
+  return <Button onClick={handleOnClick}>{children}</Button>;
 };
 
 const Button = styled.button`
   border: 2px solid #ad88c6;
   background-color: #ffffff;
-  padding: 12px 24px;
+  padding: 12px 12px;
   font-family: Rubik Mono One;
   font-size: 16px;
   color: #ad88c6;
