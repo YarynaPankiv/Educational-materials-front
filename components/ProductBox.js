@@ -10,17 +10,32 @@ const StyledProduct = styled.div`
    position: relative;
    margin-top: 25px;
 `;
+const ImgWrraper = styled.div`
+    height: 170px;
+`
 
 const StyledPNG = styled.img`
-    width: 218px;
-    height: 170.79px;
+    max-width: 100%;
+    height: 100%;
     border-radius: 10px 10px 0px 0px;
+    object-fit: cover;
+
 `;
 
 const StyledName = styled.p`
     padding-top: 5px;
     text-align: center;
     color: black;
+    margin-left: 10px;
+    margin-right: 10px;
+    word-break: break-all;
+    margin: 0; 
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin-bottom: 80px;
+
 
 `
 
@@ -34,6 +49,7 @@ const StyledCost = styled.p`
     margin-left: 20px;
     margin-bottom: 20px;
 `
+
 const StyledAddToCart = styled.div`
    width: 40px;
    height: 40px;
@@ -55,12 +71,15 @@ const StyledLink = styled(Link)`
 ` 
 
 
-export default function Product({ _id, images, productName, price }) {
+export default function ProductBox({ _id, images, productName, price }) {
     const url = '/product/' + _id;
     return (
         <Center>
             <StyledProduct href={url}>
+                <ImgWrraper>               
                 <Link href={url}><StyledPNG src={images[0]} alt="Product Image" /></Link>
+                </ImgWrraper>
+
                 <StyledLink href={url} ><StyledName >{productName}</StyledName></StyledLink>
                 <StyledCost>{price} UAH</StyledCost>
                 <StyledAddToCart>

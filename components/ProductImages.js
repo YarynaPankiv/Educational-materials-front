@@ -6,16 +6,29 @@ import styled from "styled-components";
 const BigImage = styled.img`
     max-width: 500px;
     max-height: 300px;
-    position: relative;
+    height: 100%;
+    object-fit: cover;
+
+
 `;
 
+const BigImageWrraper = styled.div`
+    height: 300px;
+    width: 500px;
+    position: relative;
+
+`
+
+
 const ImageButtons = styled.div`
+
     margin-top: 10px;
     position: absolute;
     display: flex;
     max-width: 500px;
     width: 100%;
     justify-content: space-between;
+
     
 `;
 
@@ -38,7 +51,7 @@ export default function ProductImages({images}){
     const [activeImage, setActiveImage] = useState(images[0])
     return (
         <Center>
-            <BigImage src={activeImage}></BigImage>
+            <BigImageWrraper><BigImage src={activeImage}></BigImage></BigImageWrraper>
             <ImageButtons>
             {images.map((image, index) => (
                     <ImageButton key={index} active={image === activeImage} onClick={() => setActiveImage(image)}>
@@ -46,10 +59,6 @@ export default function ProductImages({images}){
                     </ImageButton>
                 ))}
             </ImageButtons>
-
-
-
-
 
         </Center>
     )

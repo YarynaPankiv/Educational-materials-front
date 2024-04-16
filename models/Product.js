@@ -8,10 +8,7 @@ const ProductSchema = new Schema({
   images: [{type:String}],
   category: {type:mongoose.Types.ObjectId, ref:'Category'},
   pages: {type: Number},
-
   file: [{ name: String, url: String }], 
 });
 
-const Product = mongoose.models.Product || model('Product', ProductSchema);
-
-export default Product;
+export const Product = mongoose.models.Product || model('Product', ProductSchema);
