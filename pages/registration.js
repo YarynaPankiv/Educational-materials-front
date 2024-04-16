@@ -1,10 +1,31 @@
 import Header from "@/components/Header";
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import LoginButton from "@/components/LoginButton";
 import MyInput from "@/components/MyInput";
+import { useRouter } from "next/router";
 
 const RegisterPage = ({ toggleDarkMode }) => {
+  const router = useRouter();
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
+  const [surname, setSurname] = useState("");
+
+  const registerUser = () => {
+    const user = {
+      email: email,
+      password: password,
+      name: name,
+      surname: surname,
+    };
+    router.push('/');
+  };
+  const goToLogin =()=>{
+    router.push('/login');
+  }
+
   return (
     <Page>
       <Header toggleDarkMode={toggleDarkMode} />
@@ -12,23 +33,43 @@ const RegisterPage = ({ toggleDarkMode }) => {
         <SecondHalf>
           <Text>Ви користувач?</Text>
           <Wrapper>
-            <LoginButton>УВІЙТИ</LoginButton>
+            <LoginButton  onClick={goToLogin} >УВІЙТИ</LoginButton>
           </Wrapper>
         </SecondHalf>
         <FirstHalf>
           <Text>Це ваш перший візит?</Text>
           <InputWrapper>
-            <MyInput text={"Електронна пошта"} type={"email"} />
+            <MyInput
+              text={"Електронна пошта"}
+              type={"email"}
+              value={email}
+              setValue={setEmail}
+            />
           </InputWrapper>
           <NameWrap>
-            <MyInput text={"Ім'я"} type={"text"} />
-            <MyInput text={"Прізвище"} type={"text"} />
+            <MyInput
+              text={"Ім'я"}
+              type={"text"}
+              value={name}
+              setValue={setName}
+            />
+            <MyInput
+              text={"Прізвище"}
+              type={"text"}
+              value={surname}
+              setValue={setSurname}
+            />
           </NameWrap>
           <InputWrapper>
-            <MyInput text={"Пароль"} type={"password"} />
+            <MyInput
+              text={"Пароль"}
+              type={"password"}
+              value={password}
+              setValue={setPassword}
+            />
           </InputWrapper>
           <Wrapper>
-            <LoginButton>ЗАРЕЄСТРУВАТИСЬ</LoginButton>
+            <LoginButton onClick={registerUser} href={'/'} >ЗАРЕЄСТРУВАТИСЬ</LoginButton>
           </Wrapper>
         </FirstHalf>
       </Container>
