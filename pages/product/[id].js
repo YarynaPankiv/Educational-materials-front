@@ -11,7 +11,7 @@ import { mongooseConnect } from '@/lib/mongoose';
 import { Product } from '@/models/Product';
 import { Category } from "@/models/Category";
 import SubCategory from "@/models/SubCategory";
-
+import ShowFeedbacks from '@/components/ShowFeedbacks';
 const ColWrapper = styled.div`
   display: grid;
   grid-template-columns: .8fr 1.2fr;
@@ -58,7 +58,7 @@ export default function ProductPage({product, categories, subcategories}) {
                 <b>{product.productName}</b>
                 <br></br>
                 <div>
-                <p>Формат файлу: <Purple>{getFileExtension(product.file[0].name)}</Purple></p>
+                <p>Формат файлу: <Purple>{getFileExtension(product?.file[0]?.name)}</Purple></p>
                 <p>
                 Кількість сторінок/слайдів: <Purple>{product.pages}</Purple>
                 <p>{product.description}</p>
@@ -66,6 +66,7 @@ export default function ProductPage({product, categories, subcategories}) {
                 </div>
                 </div>
                 <AddFeedback />
+                <ShowFeedbacks/>
                 </ColWrapper>
                 
             </Center>

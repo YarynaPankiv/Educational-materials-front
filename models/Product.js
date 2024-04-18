@@ -7,7 +7,7 @@ const ProductSchema = new Schema({
   description: String,
   price: { type: Number, required: true },
   images: [{ type: String }],
-  category: { type: Schema.Types.ObjectId, ref: 'Category' },
+  subcategory: { type: Schema.Types.ObjectId, ref: 'SubCategory' },
   pages: { type: Number },
   file: [{ name: String, url: String }], 
 });
@@ -21,5 +21,7 @@ try {
   // Якщо модель не існує, створюємо нову модель
   Product = model('Product', ProductSchema);
 }
+
+
 
 export { Product };

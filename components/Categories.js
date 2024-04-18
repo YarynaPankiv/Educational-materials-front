@@ -6,6 +6,7 @@ import { Product } from "@/models/Product";
 import { Category } from "@/models/Category";
 import SubCategory from "@/models/SubCategory";
 import { useState } from "react";
+import Link from "next/link";
 
 
 const StyledCategories = styled.div`
@@ -63,7 +64,11 @@ const SubCategoryText = styled.p`
   text-align: center;
   margin: 5px 0;
 `;
+const StyledLink = styled(Link)`
+    text-decoration: none;
+    color: black;
 
+` 
 
 
 
@@ -79,30 +84,34 @@ export default function Categories({ categories, subcategories }) {
   const [selectedCategory, setSelectedCategory] = useState(Object.keys(categoriesWithSubcategories)[0]);
 
   const handleClick = (category) => {
-      setSelectedCategory(category);
+    setSelectedCategory(category);
   };
 
   return (
-      <StyledCategories>
-          <CategoriesDiv>
-              {Object.entries(categoriesWithSubcategories).map(([category, subcategories]) => (
-                  <div key={category}>
-                  <ColumnText
-                     selectedCategory={selectedCategory === category}
-                     onClick={() => handleClick(category)}>
-                      {category}
-                     </ColumnText>
-
-                  </div>
-              ))}
-          </CategoriesDiv>
-          {selectedCategory && (
-                  <SubCategoriesDiv>
-                      {categoriesWithSubcategories[selectedCategory].map((subcategory, index) => (
-                          <SubCategoryText key={index}>{subcategory}</SubCategoryText>
-                      ))}
-                  </SubCategoriesDiv>
-          )}
-      </StyledCategories>
+    <StyledCategories>
+      <CategoriesDiv>
+        {Object.keys(categoriesWithSubcategories).map((category, index) => (
+          <div key={index}>
+            <ColumnText
+              selectedCategory={selectedCategory === category}
+              onClick={() => handleClick(category)}
+            >
+              {category}
+            </ColumnText>
+          </div>
+        ))}
+      </CategoriesDiv>
+      {selectedCategory && (
+        <SubCategoriesDiv>
+          {categoriesWithSubcategories[selectedCategory] && categoriesWithSubcategories[selectedCategory].map((subcategory, index) => (
+            <StyledLink key={index} href={`/category/${subcategory}`}>
+              <SubCategoryText>
+                {subcategory}
+              </SubCategoryText>
+            </StyledLink>
+          ))}
+        </SubCategoriesDiv>
+      )}
+    </StyledCategories>
   );
 }

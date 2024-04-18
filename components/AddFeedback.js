@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Center from "./Center";
 import Rating from '@mui/material/Rating';
+
 const CenterButton = styled.div`
     display: flex;
     justify-content: center;
@@ -15,7 +16,7 @@ const FeedbackBox = styled.div`
     border-radius: 10px;
     padding: 10px 20px;
     margin-bottom: 25px;
-
+;
 `
 const Title = styled.p`
   font-family: 'Rubik Mono One', sans-serif;

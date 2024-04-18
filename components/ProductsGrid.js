@@ -2,6 +2,8 @@ import styled from "styled-components"
 import Center from "./Center";
 import Product from "./ProductBox";
 import ProductBox from "./ProductBox";
+import ButtonsForPages from "./ButtonsForPages";
+import { useState } from "react";
 
 const StyledProductsGrid = styled.div`
     display: grid;
@@ -13,6 +15,15 @@ const StyledProductsGrid = styled.div`
 `
 
 export default function ProductsGrid({products}){
+    const [currentPage, setCurrentPage] = useState(1);
+    const productsPerPage = 8;
+    const totalPages = Math.ceil(products.length / productsPerPage);
+    const handlePageChange = (page) => {
+      setCurrentPage(page);
+    };
+    const startIndex = (currentPage - 1) * productsPerPage;
+    const endIndex = startIndex + productsPerPage;
+    const displayedProducts = products.slice(startIndex, endIndex);
     return (
         <Center>
             <StyledProductsGrid>
@@ -20,6 +31,11 @@ export default function ProductsGrid({products}){
                     <ProductBox key={product._id} {...product}/>
                 ))}
             </StyledProductsGrid>
+            <ButtonsForPages
+        totalPages={totalPages}
+        onPageChange={handlePageChange}
+        currentPage={currentPage}
+      />
         </Center>
 
     )
