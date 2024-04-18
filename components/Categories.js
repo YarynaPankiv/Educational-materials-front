@@ -1,5 +1,12 @@
-import React, { useState } from "react";
+
 import styled from "styled-components";
+import { useEffect } from "react";
+import { mongooseConnect } from "@/lib/mongoose";
+import { Product } from "@/models/Product";
+import { Category } from "@/models/Category";
+import SubCategory from "@/models/SubCategory";
+import { useState } from "react";
+
 
 const StyledCategories = styled.div`
   box-sizing: border-box;
@@ -59,37 +66,43 @@ const SubCategoryText = styled.p`
 
 
 
-export default function Categories({ categories }) {
-    const [selectedCategory, setSelectedCategory] = useState(Object.keys(categories)[0]);
 
-    const handleClick = (category) => {
-        setSelectedCategory(category);
-    };
+export default function Categories({ categories, subcategories }) {
+  const categoriesWithSubcategories = categories.reduce((acc, category) => {
+    const subcategoriesForCategory = subcategories
+      .filter(subcategory => String(subcategory.parentCategory) === String(category._id))
+      .map(subcategory => subcategory.subCategoryName);
+    acc[category.categoryName] = subcategoriesForCategory;
+    return acc;
+  }, {});
 
-    return (
-        <StyledCategories>
-            <CategoriesDiv>
-                {Object.entries(categories).map(([category, subcategories]) => (
-                    <div key={category}>
-                    <ColumnText
-                       selectedCategory={selectedCategory === category}
-                       onClick={() => handleClick(category)}>
-                        {category}
-                       </ColumnText>
+  const [selectedCategory, setSelectedCategory] = useState(Object.keys(categoriesWithSubcategories)[0]);
 
-                    </div>
-                ))}
-            </CategoriesDiv>
-            {selectedCategory && (
-                    <SubCategoriesDiv>
-                        {categories[selectedCategory].map((subcategory, index) => (
-                            <SubCategoryText key={index}>{subcategory}</SubCategoryText>
-                        ))}
-                    </SubCategoriesDiv>
-            )}
-        </StyledCategories>
-    );
+  const handleClick = (category) => {
+      setSelectedCategory(category);
+  };
+
+  return (
+      <StyledCategories>
+          <CategoriesDiv>
+              {Object.entries(categoriesWithSubcategories).map(([category, subcategories]) => (
+                  <div key={category}>
+                  <ColumnText
+                     selectedCategory={selectedCategory === category}
+                     onClick={() => handleClick(category)}>
+                      {category}
+                     </ColumnText>
+
+                  </div>
+              ))}
+          </CategoriesDiv>
+          {selectedCategory && (
+                  <SubCategoriesDiv>
+                      {categoriesWithSubcategories[selectedCategory].map((subcategory, index) => (
+                          <SubCategoryText key={index}>{subcategory}</SubCategoryText>
+                      ))}
+                  </SubCategoriesDiv>
+          )}
+      </StyledCategories>
+  );
 }
-
-
-

@@ -7,6 +7,11 @@ import CategoriesButton from "./headerComponents.js/CategoriesButton";
 import DropDownWrap from "./DropDownWrap";
 import LoginButton from "./LoginButton";
 import { useRouter } from "next/router";
+import { Category } from "@/models/Category";
+import SubCategory from "@/models/SubCategory";
+import { mongooseConnect } from "@/lib/mongoose";
+
+
 export const StyledIcon = styled.svg`
   width: 21px;
   height: 20px;
@@ -84,7 +89,7 @@ const ButtonWrapper = styled.div`
   width: 100%;
 `;
 
-export default function Header({ toggleDarkMode, categories }) {
+export default function Header({ toggleDarkMode, categories, subcategories}) {
   const router = useRouter();
 
   const goToRegister = () => {
@@ -95,11 +100,13 @@ export default function Header({ toggleDarkMode, categories }) {
     router.push("/login");
   };
 
+
+
   return (
     <header>
       <Center>
         <HeaderDiv>
-          <CategoriesButton categories={categories} />
+          <CategoriesButton categories={categories} subcategories={subcategories}/>
 
           <StyledSearch placeholder="Введіть текст для пошуку..."></StyledSearch>
           <AllIcons>

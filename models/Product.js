@@ -1,14 +1,25 @@
-import mongoose, { model, Schema } from "mongoose";
+import mongoose from 'mongoose';
 
+const { Schema, model } = mongoose;
 
 const ProductSchema = new Schema({
   productName: { type: String, required: true },
   description: String,
   price: { type: Number, required: true },
-  images: [{type:String}],
-  category: {type:mongoose.Types.ObjectId, ref:'Category'},
-  pages: {type: Number},
+  images: [{ type: String }],
+  category: { type: Schema.Types.ObjectId, ref: 'Category' },
+  pages: { type: Number },
   file: [{ name: String, url: String }], 
 });
 
-export const Product = mongoose.models.Product || model('Product', ProductSchema);
+let Product;
+
+try {
+  // Перевіряємо, чи модель вже існує
+  Product = mongoose.model('Product');
+} catch (error) {
+  // Якщо модель не існує, створюємо нову модель
+  Product = model('Product', ProductSchema);
+}
+
+export { Product };
