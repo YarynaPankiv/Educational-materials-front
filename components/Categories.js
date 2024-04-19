@@ -63,7 +63,7 @@ const SubCategoryText = styled.p`
   text-align: center;
   margin: 5px 0;
   &:hover {
-        color: #7469B6;
+        font-weight: 900;
     }
 `;
 const StyledLink = styled(Link)`

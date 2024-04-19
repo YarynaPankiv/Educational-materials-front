@@ -35,17 +35,17 @@ const StyledCloseSvg = styled.svg`
 export default function CategoriesButton({categories, subcategories}) {
 
 
-    const [showCategories, setCategories] = useState(false);
+    const [showcategories, setCategories] = useState(false);
 
     const handleCategoriesClick = () => {
-        setCategories(!showCategories);
+        setCategories(!showcategories);
 
     }
 
     return (
         <>
-            <StyledButton onClick={handleCategoriesClick} showCategories={showCategories}>
-                {!showCategories && <StyledSVG
+            <StyledButton onClick={handleCategoriesClick} showCategories={showcategories}>
+                {!showcategories && <StyledSVG
                     width="24"
                     height="16"
                     viewBox="0 0 24 16"
@@ -58,14 +58,14 @@ export default function CategoriesButton({categories, subcategories}) {
                     />
                 </StyledSVG>}
                 
-                {showCategories && <StyledCloseSvg width="12" height="12" viewBox="0 0 12 12" fill="#FFFFFF" xmlns="http://www.w3.org/2000/svg">
+                {showcategories && <StyledCloseSvg width="12" height="12" viewBox="0 0 12 12" fill="#FFFFFF" xmlns="http://www.w3.org/2000/svg">
                 <path d="M11.6424 1.39738L10.495 0.25L5.9462 4.79882L1.39738 0.25L0.25 1.39738L4.79882 5.9462L0.25 10.495L1.39738 11.6424L5.9462 7.09358L10.495 11.6424L11.6424 10.495L7.09358 5.9462L11.6424 1.39738Z" fill="white"/>
                 </StyledCloseSvg>}
                 
 
                 Категорії
             </StyledButton>
-            {showCategories && <Categories categories={categories} subcategories={subcategories}/>                
+            {showcategories && <Categories categories={categories} subcategories={subcategories}/>                
                 
             }
         </>
