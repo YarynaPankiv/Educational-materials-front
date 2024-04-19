@@ -9,6 +9,9 @@ const ProductSchema = new Schema({
   images: [{ type: String }],
   subcategory: { type: Schema.Types.ObjectId, ref: 'SubCategory' },
   pages: { type: Number },
+  feedback: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Feedback' }],
+  schoolClass: String,
+  rate:  {type: Number},
   file: [{ name: String, url: String }], 
 });
 
