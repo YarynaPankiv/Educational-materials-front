@@ -1,4 +1,3 @@
-
 import styled from "styled-components";
 import { useEffect } from "react";
 import { mongooseConnect } from "@/lib/mongoose";
@@ -8,7 +7,6 @@ import SubCategory from "@/models/SubCategory";
 import { useState } from "react";
 import Link from "next/link";
 
-
 const StyledCategories = styled.div`
   box-sizing: border-box;
   position: absolute;
@@ -16,7 +14,7 @@ const StyledCategories = styled.div`
   height: 496px;
   left: 101px;
   top: 78px;
-  background: #FFFFFF;
+  background: #ffffff;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   overflow: scroll;
   overflow-x: hidden;
@@ -37,7 +35,7 @@ const CategoriesDiv = styled.div`
     top: 0;
     bottom: 0;
     width: 1px;
-    background-color: #A2A7AF;
+    background-color: #a2a7af;
     left: 50%;
     transform: translateX(-50%);
   }
@@ -51,7 +49,6 @@ const ColumnText = styled.p`
   font-weight: ${(props) => (props.selectedcategory ? "bold" : "normal")};
 `;
 
-
 const SubCategoriesDiv = styled.div`
   display: flex;
   flex-direction: column;
@@ -63,27 +60,29 @@ const SubCategoryText = styled.p`
   text-align: center;
   margin: 5px 0;
   &:hover {
-        font-weight: 900;
-    }
+    font-weight: 900;
+  }
 `;
 const StyledLink = styled(Link)`
-    text-decoration: none;
-    color: black;
-
-` 
-
-
+  text-decoration: none;
+  color: black;
+`;
 
 export default function Categories({ categories, subcategories }) {
   const categoriesWithSubcategories = categories.reduce((acc, category) => {
     const subcategoriesForCategory = subcategories
-      .filter(subcategory => String(subcategory.parentCategory) === String(category._id))
-      .map(subcategory => subcategory.subCategoryName);
+      .filter(
+        (subcategory) =>
+          String(subcategory.parentCategory) === String(category._id)
+      )
+      .map((subcategory) => subcategory.subCategoryName);
     acc[category.categoryName] = subcategoriesForCategory;
     return acc;
   }, {});
 
-  const [selectedcategory, setSelectedCategory] = useState(Object.keys(categoriesWithSubcategories)[0]);
+  const [selectedcategory, setSelectedCategory] = useState(
+    Object.keys(categoriesWithSubcategories)[0]
+  );
 
   const handleClick = (category) => {
     setSelectedCategory(category);
@@ -94,8 +93,12 @@ export default function Categories({ categories, subcategories }) {
       <CategoriesDiv>
         {Object.keys(categoriesWithSubcategories).map((category, index) => (
           <div key={index}>
-        <ColumnText selectedcategory={selectedcategory === category ? 'true' : 'false'} onClick={() => handleClick(category)}>
-
+            <ColumnText
+              selectedcategory={
+                selectedcategory === category ? "true" : "false"
+              }
+              onClick={() => handleClick(category)}
+            >
               {category}
             </ColumnText>
           </div>
@@ -103,13 +106,14 @@ export default function Categories({ categories, subcategories }) {
       </CategoriesDiv>
       {selectedcategory && (
         <SubCategoriesDiv>
-          {categoriesWithSubcategories[selectedcategory] && categoriesWithSubcategories[selectedcategory].map((subcategory, index) => (
-            <StyledLink key={index} href={`/category/${subcategory}`}>
-              <SubCategoryText>
-                {subcategory}
-              </SubCategoryText>
-            </StyledLink>
-          ))}
+          {categoriesWithSubcategories[selectedcategory] &&
+            categoriesWithSubcategories[selectedcategory].map(
+              (subcategory, index) => (
+                <StyledLink key={index} href={`/category/${subcategory}`}>
+                  <SubCategoryText>{subcategory}</SubCategoryText>
+                </StyledLink>
+              )
+            )}
         </SubCategoriesDiv>
       )}
     </StyledCategories>

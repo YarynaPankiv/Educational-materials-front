@@ -71,7 +71,7 @@ const FeedbackText = styled.p`
 const RatingWrapper = styled.div`
   pointer-events: none; // Заборона взаємодії з дочірніми елементами
   font-size: 3px;
-  margin-top:10px;
+  margin-top: 10px;
   margin-left: 200px;
 `;
 export default function ShowFeedbacks({ product, feedbacks }) {
@@ -79,14 +79,17 @@ export default function ShowFeedbacks({ product, feedbacks }) {
     <FeedbacksBox>
       <Feedbacks>ВІДГУКИ</Feedbacks>
       {product.feedback.map((feedbackId) => {
-        
-        const feedback = feedbacks.find((feedback) => feedback._id === feedbackId);
+        const feedback = feedbacks.find(
+          (feedback) => feedback._id === feedbackId
+        );
         if (feedback) {
           return (
             <OneFeedbackBox key={feedback._id}>
               <NameData>
                 <RatingWrapper>
-                  <Rating value={feedback.rate} size="small">{feedback.rate}</Rating>
+                  <Rating value={feedback.rate} size="small">
+                    {feedback.rate}
+                  </Rating>
                 </RatingWrapper>
                 <ShowDate>{feedback.date}</ShowDate>
               </NameData>

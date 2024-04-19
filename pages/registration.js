@@ -20,11 +20,11 @@ const RegisterPage = ({ toggleDarkMode }) => {
       name: name,
       surname: surname,
     };
-    router.push('/');
+    router.push("/");
   };
-  const goToLogin =()=>{
-    router.push('/login');
-  }
+  const goToLogin = () => {
+    router.push("/login");
+  };
 
   return (
     <Page>
@@ -33,7 +33,7 @@ const RegisterPage = ({ toggleDarkMode }) => {
         <SecondHalf>
           <Text>Ви користувач?</Text>
           <Wrapper>
-            <LoginButton  onClick={goToLogin} >УВІЙТИ</LoginButton>
+            <LoginButton onClick={goToLogin}>УВІЙТИ</LoginButton>
           </Wrapper>
         </SecondHalf>
         <FirstHalf>
@@ -69,7 +69,9 @@ const RegisterPage = ({ toggleDarkMode }) => {
             />
           </InputWrapper>
           <Wrapper>
-            <LoginButton onClick={registerUser} href={'/'} >ЗАРЕЄСТРУВАТИСЬ</LoginButton>
+            <LoginButton onClick={registerUser} href={"/"}>
+              ЗАРЕЄСТРУВАТИСЬ
+            </LoginButton>
           </Wrapper>
         </FirstHalf>
       </Container>

@@ -1,20 +1,17 @@
 import mongoose, { model, Schema } from "mongoose";
 
-
 const FeedbackSchema = new Schema({
-  feedback:  String,
+  feedback: String,
   date: String,
-  rate: {type: Number},
+  rate: { type: Number },
 });
-
-
 
 let Feedback;
 
 try {
-  Feedback = mongoose.model('Feedback');
+  Feedback = mongoose.model("Feedback");
 } catch (error) {
-  Feedback = model('Feedback', FeedbackSchema);
+  Feedback = model("Feedback", FeedbackSchema);
 }
 
 export { Feedback };

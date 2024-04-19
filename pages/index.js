@@ -11,30 +11,33 @@ import SubCategory from "@/models/SubCategory";
 import { Category } from "@/models/Category";
 import { useEffect } from "react";
 
-export async function getServerSideProps(){
+export async function getServerSideProps() {
   await mongooseConnect();
-  const allProducts = await Product.find({}, null );
-  const recentProducts = await Product.find({}, null, {sort: {'_id': -1}, limit: 10})
+  const allProducts = await Product.find({}, null);
+  const recentProducts = await Product.find({}, null, {
+    sort: { _id: -1 },
+    limit: 10,
+  });
   const categories = await Category.find({});
-  const subcategories = await SubCategory.find({})
+  const subcategories = await SubCategory.find({});
 
-  return{
-    props:{
-      recentProducts:JSON.parse(JSON.stringify(recentProducts)),
-      allProducts:JSON.parse(JSON.stringify(allProducts)),
-      categories:JSON.parse(JSON.stringify(categories)),
-      subcategories:JSON.parse(JSON.stringify(subcategories)),
+  return {
+    props: {
+      recentProducts: JSON.parse(JSON.stringify(recentProducts)),
+      allProducts: JSON.parse(JSON.stringify(allProducts)),
+      categories: JSON.parse(JSON.stringify(categories)),
+      subcategories: JSON.parse(JSON.stringify(subcategories)),
     },
   };
 }
 
-
-
-
-
-
-
-export default function HomePage({ toggleDarkMode, allProducts, recentProducts, categories, subcategories}) {
+export default function HomePage({
+  toggleDarkMode,
+  allProducts,
+  recentProducts,
+  categories,
+  subcategories,
+}) {
   console.log(categories);
   const [products, setProducts] = useState(allProducts);
   const handleRecentlyAddedClick = () => {
@@ -55,9 +58,7 @@ export default function HomePage({ toggleDarkMode, allProducts, recentProducts, 
   const endIndex = startIndex + productsPerPage;
   const displayedProducts = products.slice(startIndex, endIndex);
 
-
   return (
-  
     <div>
       <Header
         toggleDarkMode={toggleDarkMode}
@@ -70,8 +71,6 @@ export default function HomePage({ toggleDarkMode, allProducts, recentProducts, 
         onAllClick={handleAllProductsClick}
       />
       <ProductsGrid products={products} />
-
     </div>
   );
 }
-
