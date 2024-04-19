@@ -12,6 +12,7 @@ import { Product } from '@/models/Product';
 import { Category } from "@/models/Category";
 import SubCategory from "@/models/SubCategory";
 import ShowFeedbacks from '@/components/ShowFeedbacks';
+import { Feedback } from '@/models/Feedback';
 const ColWrapper = styled.div`
   display: grid;
   grid-template-columns: .8fr 1.2fr;
@@ -37,20 +38,21 @@ export async function getServerSideProps(context){
     const product = await Product.findById(id)
     const categories = await Category.find({});
     const subcategories = await SubCategory.find({})
- 
+    const feedbacks = await Feedback.find({});
     return {
        props: {
           product: JSON.parse(JSON.stringify(product)),
           categories: JSON.parse(JSON.stringify(categories)),
           subcategories: JSON.parse(JSON.stringify(subcategories)),
           id: JSON.parse(JSON.stringify(id)),
+          feedbacks: JSON.parse(JSON.stringify(feedbacks)),
        }
     }
 }
 
 
 
-export default function ProductPage({product, categories, subcategories, id}) {
+export default function ProductPage({product, categories, subcategories, id, feedbacks}) {
 
     return (
         <>
@@ -71,7 +73,7 @@ export default function ProductPage({product, categories, subcategories, id}) {
 
                 </div>
                 <AddFeedback id={id}/>
-                <ShowFeedbacks product={product}/>
+                <ShowFeedbacks product={product} feedbacks={feedbacks}/>
                 </ColWrapper>
                 
             </Center>

@@ -50,13 +50,21 @@ export default function AddFeedback({ id }) {
   const productId = id; // Replace this with the actual productId
 
   const handleSubmit = async () => {
-    const date = "date date"; // This can be replaced with the actual date logic if needed
+    const currentDate = new Date(); // Get the current date and time
 
+    // Extract day, month, and year components
+    const day = currentDate.getDate().toString().padStart(2, '0'); // Convert to string and ensure two-digit format
+    const month = (currentDate.getMonth() + 1).toString().padStart(2, '0'); // Months are zero-based, so add 1
+    const year = currentDate.getFullYear(); // Get full year (e.g., 2024)
+  
+    // Format the date as dd.mm.yyyy
+    const formattedDate = `${day}.${month}.${year}`;
+  
     // Create data object with the feedback details
     const data = {
-      productId, // Assuming productId is defined elsewhere
+      productId,
       feedback,
-      date,
+      date: formattedDate, // Assign the formatted date to the 'date' field
       rate,
     };
     console.log(id);

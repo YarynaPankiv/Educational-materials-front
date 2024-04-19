@@ -1,6 +1,8 @@
 
 import styled from "styled-components";
-
+import  Feedback  from "@/models/Feedback";
+import { mongooseConnect } from "@/lib/mongoose";
+import  Product  from "@/models/Product";
 const FeedbacksBox = styled.div`
     margin-top: 100px;
     width: 490px;
@@ -23,17 +25,23 @@ const OneFeedbackBox = styled.div`
   border: 1px solid rgba(0, 0, 0, 0.3);
   border-radius: 10px;
 
-`
+`;
 
-export default function ShowFeedbacks(product){
+
+
+export default function ShowFeedbacks({product, feedbacks}){
+    
+    console.log(feedbacks);
 
     return(
-        
-           <FeedbacksBox> 
-            <OneFeedbackBox></OneFeedbackBox>
-            
-            
-           </FeedbacksBox>
+
+      <FeedbacksBox>
+      {feedbacks.map(feedback => (
+        <OneFeedbackBox key={feedback._id}>
+          <p>{feedback.feedback}{feedback.date} {feedback.rate}</p>
+        </OneFeedbackBox>
+      ))}
+    </FeedbacksBox>
        
     )
 }
