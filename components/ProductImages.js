@@ -54,7 +54,7 @@ export default function ProductImages({images}){
             <BigImageWrraper><BigImage src={activeImage}></BigImage></BigImageWrraper>
             <ImageButtons>
             {images.map((image, index) => (
-                    <ImageButton key={index} active={image === activeImage} onClick={() => setActiveImage(image)}>
+                    <ImageButton key={index} active={image === activeImage ? 'true' : 'false'} onClick={() => setActiveImage(image)}>
                         <Image src={image} alt={`Image ${index + 1}`} />
                     </ImageButton>
                 ))}

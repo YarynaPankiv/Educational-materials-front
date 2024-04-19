@@ -3,7 +3,7 @@ import { IconWithText, StyledIcon, IconText } from "../Header"; // Імпорт�
 
 
 export default function Theme({ toggleDarkMode }) {
-    const [isClicked, setIsClicked] = useState(false);
+    const [isClicked, setIsClicked] = useState("false");
 
     const handleClick = () => {
         setIsClicked(!isClicked);

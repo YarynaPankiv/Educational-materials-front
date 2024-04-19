@@ -47,8 +47,8 @@ const ColumnText = styled.p`
   text-align: center;
   user-select: none;
   cursor: pointer;
-  color: ${(props) => (props.selectedCategory ? "#7469B6" : "black")};
-  font-weight: ${(props) => (props.selectedCategory ? "bold" : "normal")};
+  color: ${(props) => (props.selectedcategory ? "#7469B6" : "black")};
+  font-weight: ${(props) => (props.selectedcategory ? "bold" : "normal")};
 `;
 
 
@@ -83,7 +83,7 @@ export default function Categories({ categories, subcategories }) {
     return acc;
   }, {});
 
-  const [selectedCategory, setSelectedCategory] = useState(Object.keys(categoriesWithSubcategories)[0]);
+  const [selectedcategory, setSelectedCategory] = useState(Object.keys(categoriesWithSubcategories)[0]);
 
   const handleClick = (category) => {
     setSelectedCategory(category);
@@ -94,18 +94,16 @@ export default function Categories({ categories, subcategories }) {
       <CategoriesDiv>
         {Object.keys(categoriesWithSubcategories).map((category, index) => (
           <div key={index}>
-            <ColumnText
-              selectedCategory={selectedCategory === category}
-              onClick={() => handleClick(category)}
-            >
+        <ColumnText selectedcategory={selectedcategory === category ? 'true' : 'false'} onClick={() => handleClick(category)}>
+
               {category}
             </ColumnText>
           </div>
         ))}
       </CategoriesDiv>
-      {selectedCategory && (
+      {selectedcategory && (
         <SubCategoriesDiv>
-          {categoriesWithSubcategories[selectedCategory] && categoriesWithSubcategories[selectedCategory].map((subcategory, index) => (
+          {categoriesWithSubcategories[selectedcategory] && categoriesWithSubcategories[selectedcategory].map((subcategory, index) => (
             <StyledLink key={index} href={`/category/${subcategory}`}>
               <SubCategoryText>
                 {subcategory}
