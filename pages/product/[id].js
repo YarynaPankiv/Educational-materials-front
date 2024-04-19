@@ -22,7 +22,12 @@ const Purple = styled.span`
     color: #7469B6;
 `
 const getFileExtension = (fileName) => {
-    return fileName.split('.').pop();
+    if (fileName){
+        return fileName.split('.').pop();
+
+    }
+    return;
+
 }
 
 export async function getServerSideProps(context){
@@ -66,7 +71,7 @@ export default function ProductPage({product, categories, subcategories}) {
                 </div>
                 </div>
                 <AddFeedback />
-                <ShowFeedbacks/>
+                <ShowFeedbacks product={product}/>
                 </ColWrapper>
                 
             </Center>

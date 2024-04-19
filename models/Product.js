@@ -18,13 +18,9 @@ const ProductSchema = new Schema({
 let Product;
 
 try {
-  // Перевіряємо, чи модель вже існує
   Product = mongoose.model('Product');
 } catch (error) {
-  // Якщо модель не існує, створюємо нову модель
   Product = model('Product', ProductSchema);
 }
-
-
 
 export { Product };
