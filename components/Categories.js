@@ -88,9 +88,10 @@ export default function Categories({ categories, subcategories }) {
   const handleClick = (category) => {
     setSelectedCategory(category);
   };
+  
 
   return (
-    <StyledCategories>
+    <StyledCategories id="categoriesContainer">
       <CategoriesDiv>
         {Object.keys(categoriesWithSubcategories).map((category, index) => (
           <div key={index}>
