@@ -7,12 +7,12 @@ const StyledButton = styled.button`
   width: 146px;
   height: 34px;
   padding: 0; /* Змінено padding на 0 */
-  background-color: ${props => props.showCategories ? "#7469B6" : "#FFFFFF"};
+  background-color: ${props => props.showcategories ? "#7469B6" : "#FFFFFF"};
   border-radius: 10px;
-  border: ${props => props.showCategories ? "none" : "2px solid #7469b6" };
+  border: ${props => props.showcategories ? "none" : "2px solid #7469b6" };
   display: flex; /* Додано display: flex для роботи зі внутрішнім контентом */
   align-items: center; /* Вирівнювання вмісту по вертикалі */
-  color: ${props => props.showCategories ? "#FFFFFF" : "#7469b6" };
+  color: ${props => props.showcategories ? "#FFFFFF" : "#7469b6" };
   font-weight: 500;
   font-size: 16px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
@@ -35,7 +35,7 @@ const StyledCloseSvg = styled.svg`
 export default function CategoriesButton({categories, subcategories}) {
 
 
-    const [showcategories, setCategories] = useState(false);
+    const [showcategories, setCategories] = useState("false");
 
     const handleCategoriesClick = () => {
         setCategories(!showcategories);
@@ -44,7 +44,8 @@ export default function CategoriesButton({categories, subcategories}) {
 
     return (
         <>
-            <StyledButton onClick={handleCategoriesClick} showCategories={showcategories}>
+            <StyledButton onClick={handleCategoriesClick} showcategories={showcategories.toString()}>
+
                 {!showcategories && <StyledSVG
                     width="24"
                     height="16"
