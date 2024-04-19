@@ -63,12 +63,11 @@ export default function ProductPage({product, categories, subcategories}) {
                 <b>{product.productName}</b>
                 <br></br>
                 <div>
-                <p>Формат файлу: <Purple>{getFileExtension(product?.file[0]?.name)}</Purple></p>
-                <p>
-                Кількість сторінок/слайдів: <Purple>{product.pages}</Purple>
-                <p>{product.description}</p>
-                </p>
-                </div>
+  <p>Формат файлу: <Purple>{getFileExtension(product?.file[0]?.name)}</Purple></p>
+  <p>Кількість сторінок/слайдів: <Purple>{product.pages}</Purple></p>
+  <p>{product.description}</p>
+</div>
+
                 </div>
                 <AddFeedback />
                 <ShowFeedbacks product={product}/>

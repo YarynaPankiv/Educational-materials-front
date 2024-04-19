@@ -17,6 +17,7 @@ const StyledDiv = styled.div`
   border: 1px solid #000000;
   z-index: 10;
 
+
    
 `
 const Div = styled.div`
@@ -25,6 +26,7 @@ const Div = styled.div`
    flex-direction: column;
    justify-content: center;
    align-items: center;
+   font-family: 'Montserrat', sans-serif;
 `
 
 const StyledButton = styled.button`
@@ -37,29 +39,36 @@ const StyledButton = styled.button`
   color: #FDFBFB;
   border: none;
   cursor: pointer;
-
-  
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
    
 `
+const StyledRadio = styled(Radio)`
+  && {
+    font-family: 'Montserrat', sans-serif; 
+  }
+`;
 
-export default function Sort(){
-    return(
+const StyledFormControlLabel = styled(FormControlLabel)`
+  && {
+    font-family: 'Montserrat', sans-serif; 
+  }
+`;export default function Sort() {
+    return (
         <StyledDiv>
             <Div>
             <FormControl>
-            <RadioGroup>
-            <FormControlLabel value="Від найдешевших" control={<Radio />} label="Від найдешевших" />
-            <FormControlLabel value="Від найдорожчих" control={<Radio />} label="Від найдорожчих" />
-            <FormControlLabel value="Від найновіших" control={<Radio />} label="Від найновіших" />
-            </RadioGroup>
+                <RadioGroup>
+                    <StyledFormControlLabel value="Від найдешевших" control={<StyledRadio />} label="Від найдешевших" />
+                    <StyledFormControlLabel value="Від найдорожчих" control={<StyledRadio />} label="Від найдорожчих" />
+                    <StyledFormControlLabel value="Від найновіших" control={<StyledRadio />} label="Від найновіших" />
+                </RadioGroup>
             </FormControl>
             <StyledButton>Сортувати</StyledButton>
-    
 
             </Div>
-            
+           
         </StyledDiv>
-
-    )
+    );
 }
 
