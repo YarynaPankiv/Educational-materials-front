@@ -43,13 +43,14 @@ export async function getServerSideProps(context){
           product: JSON.parse(JSON.stringify(product)),
           categories: JSON.parse(JSON.stringify(categories)),
           subcategories: JSON.parse(JSON.stringify(subcategories)),
+          id: JSON.parse(JSON.stringify(id)),
        }
     }
 }
 
 
 
-export default function ProductPage({product, categories, subcategories}) {
+export default function ProductPage({product, categories, subcategories, id}) {
 
     return (
         <>
@@ -70,7 +71,7 @@ export default function ProductPage({product, categories, subcategories}) {
                 </p>
                 </div>
                 </div>
-                <AddFeedback />
+                <AddFeedback id={id}/>
                 <ShowFeedbacks product={product}/>
                 </ColWrapper>
                 

@@ -7,4 +7,14 @@ const FeedbackSchema = new Schema({
   rate: {type: Number},
 });
 
-export const Feedback = mongoose.models?.Feedback || model('Feedback', FeedbackSchema);
+
+
+let Feedback;
+
+try {
+  Feedback = mongoose.model('Feedback');
+} catch (error) {
+  Feedback = model('Feedback', FeedbackSchema);
+}
+
+export { Feedback };
