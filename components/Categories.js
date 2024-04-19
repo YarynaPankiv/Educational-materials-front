@@ -31,7 +31,6 @@ const CategoriesDiv = styled.div`
   position: relative;
   border: 1px solid black;
 
-  /* Add a vertical line between columns */
   &::after {
     content: "";
     position: absolute;
@@ -63,6 +62,9 @@ const SubCategoriesDiv = styled.div`
 const SubCategoryText = styled.p`
   text-align: center;
   margin: 5px 0;
+  &:hover {
+        color: #7469B6;
+    }
 `;
 const StyledLink = styled(Link)`
     text-decoration: none;
