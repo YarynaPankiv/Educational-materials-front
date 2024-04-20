@@ -3,15 +3,17 @@ import Center from "./Center";
 import styled from "styled-components";
 
 const BigImage = styled.img`
-  max-width: 500px;
+  width: 500px;
   max-height: 300px;
   height: 100%;
   object-fit: cover;
+ 
 `;
 
 const BigImageWrraper = styled.div`
   height: 300px;
   width: 500px;
+
   position: relative;
 `;
 

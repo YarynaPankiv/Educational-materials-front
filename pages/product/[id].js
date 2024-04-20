@@ -60,9 +60,11 @@ const PurpleButton = styled.button`
   margin-left: 140px;
   border: none;
   cursor: pointer;
-
-  :hover{
-    background-color: purple;
+  transition: background-color 0.5s ease;
+  &:hover{
+    background-color: #7469B6;
+;
+    border:none;
   } 
 `;
 
