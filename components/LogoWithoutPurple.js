@@ -26,7 +26,8 @@ const StyledLink = styled(Link)`
 export default function Logo() {
   return (
     <Center>
-      <StyledLogo>
+        <StyledLink href="/">
+        <StyledLogo>
         <StyledText>Навчальні</StyledText>
         <StyledSvg
           width="25"
@@ -44,6 +45,9 @@ export default function Logo() {
         </StyledSvg>
         <StyledText>Матеріали</StyledText>
       </StyledLogo>
+
+        </StyledLink>
+
     </Center>
   );
 }

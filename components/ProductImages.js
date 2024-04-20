@@ -21,9 +21,8 @@ const ImageButtons = styled.div`
   margin-top: 10px;
   position: absolute;
   display: flex;
-  max-width: 500px;
-  width: 100%;
-  justify-content: space-between;
+  width: 500px;
+  flex-wrap: wrap;
 `;
 
 const ImageButton = styled.div`
@@ -31,6 +30,7 @@ const ImageButton = styled.div`
   border-color: ${(props) => (props.active ? "black" : "transparent")};
   height: 100px;
   cursor: pointer;
+  margin-right: 5px;
 `;
 
 const Image = styled.img`
@@ -48,7 +48,7 @@ export default function ProductImages({ images }) {
         {images.map((image, index) => (
           <ImageButton
             key={index}
-            active={image === activeImage ? "true" : "false"}
+            active={image === activeImage ? true : false}
             onClick={() => setActiveImage(image)}
           >
             <Image src={image} alt={`Image ${index + 1}`} />

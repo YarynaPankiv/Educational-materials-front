@@ -25,11 +25,7 @@ export default function Cart(){
           
         </StyledIcon>
         <IconText>Корзина</IconText>
-        </IconWithText>
-        
-        
-
-        
+        </IconWithText>  
         
     )
 }

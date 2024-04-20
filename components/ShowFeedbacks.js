@@ -5,7 +5,7 @@ import Product from "@/models/Product";
 import Rating from "@mui/material/Rating";
 
 const FeedbacksBox = styled.div`
-  margin-top: 100px;
+  margin-top: 50px;
   width: 490px;
   height: 400px;
   background: #ffffff;
@@ -27,7 +27,6 @@ const OneFeedbackBox = styled.div`
   margin-top: 18px;
 `;
 const ShowDate = styled.div`
-  /* 02.04.24 */
   width: 88px;
   height: 17.39px;
   font-family: "Montserrat";
@@ -38,7 +37,6 @@ const ShowDate = styled.div`
   margin-left: auto;
   margin-top: 5px;
   margin-right: 5px;
-
   color: rgba(0, 0, 0, 0.41);
 `;
 
@@ -47,7 +45,6 @@ const NameData = styled.div`
   align-items: center;
 `;
 const Feedbacks = styled.p`
-  /* Відгуки */
   width: 126px;
   height: 17.39px;
   font-family: "Rubik Mono One";
@@ -69,7 +66,7 @@ const FeedbackText = styled.p`
   color: #000000;
 `;
 const RatingWrapper = styled.div`
-  pointer-events: none; // Заборона взаємодії з дочірніми елементами
+  pointer-events: none; 
   font-size: 3px;
   margin-top: 10px;
   margin-left: 200px;
