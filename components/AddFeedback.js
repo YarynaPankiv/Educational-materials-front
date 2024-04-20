@@ -10,7 +10,7 @@ const CenterButton = styled.div`
 `;
 
 const FeedbackBox = styled.div`
-  margin-top: 100px;
+  margin-top: 50px;
   width: 370px;
   height: 290px;
   background: #ffffff;

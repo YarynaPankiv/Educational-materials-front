@@ -129,6 +129,8 @@ export default function Header({ toggleDarkMode, categories, subcategories }) {
               </LoginMenu>
             </DropDownWrap>
           </AllIcons>
+
+          <DropDownWrap ></DropDownWrap>
         </HeaderDiv>
       </Center>
     </header>
