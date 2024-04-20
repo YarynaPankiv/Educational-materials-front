@@ -42,15 +42,8 @@ export default function Logo() {
             fill="#7469B6"
           />
         </StyledSvg>
-
-<<<<<<< HEAD
-    )
-}
-
-=======
         <StyledText>Матеріали</StyledText>
       </StyledLogo>
     </Center>
   );
 }
->>>>>>> 24db812e9ddf8cb7dd06148d95d7cac612fe8560

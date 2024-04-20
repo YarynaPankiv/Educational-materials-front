@@ -10,7 +10,8 @@ import { useRouter } from "next/router";
 import { Category } from "@/models/Category";
 import SubCategory from "@/models/SubCategory";
 import { mongooseConnect } from "@/lib/mongoose";
-
+import CartDropDownWrap from "@/components/CartDropDown"
+import ShoppingCart from "./ShoppingCart";
 export const StyledIcon = styled.svg`
   width: 21px;
   height: 20px;
@@ -111,7 +112,8 @@ export default function Header({ toggleDarkMode, categories, subcategories }) {
           <StyledSearch placeholder="Введіть текст для пошуку..."></StyledSearch>
           <AllIcons>
             <Theme toggleDarkMode={toggleDarkMode} />
-            <Cart />
+            
+            <ShoppingCart icon={<Cart></Cart>}/>
 
             <DropDownWrap icon={<Account />}>
               <LoginMenu>
@@ -128,6 +130,7 @@ export default function Header({ toggleDarkMode, categories, subcategories }) {
                 </ButtonWrapper>
               </LoginMenu>
             </DropDownWrap>
+          
           </AllIcons>
         </HeaderDiv>
       </Center>
