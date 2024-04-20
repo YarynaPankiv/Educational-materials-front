@@ -2,7 +2,6 @@ import { useState } from "react";
 import styled from "styled-components";
 
 const MyInput = ({ text, type, value, setValue }) => {
-
   const handleOnChange = (e) => {
     setValue(e.target.value);
   };

@@ -59,9 +59,6 @@ const LoginPage = ({ toggleDarkMode }) => {
           <Wrapper>
             <LoginButton onClick={goToRegister}>ЗАРЕЄСТРУВАТИСЬ</LoginButton>
           </Wrapper>
-
-          
-          
         </SecondHalf>
       </Container>
     </Page>
@@ -115,7 +112,5 @@ const Text = styled.div`
   font-size: 20px;
   text-align: left;
 `;
-
-
 
 export default LoginPage;

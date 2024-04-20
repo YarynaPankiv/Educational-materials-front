@@ -1,4 +1,3 @@
-
 import { Product } from "@/models/Product";
 import { Feedback } from "@/models/Feedback";
 
@@ -45,37 +44,41 @@ export default async function handle(req, res) {
       // Зберігаємо оновлений продукт у базі даних
       await product.save();
 
-      res.status(201).json({ success: true, message: "Feedback added successfully" });
+      res
+        .status(201)
+        .json({ success: true, message: "Feedback added successfully" });
     } catch (error) {
       console.error("Error adding feedback:", error);
-      res.status(500).json({ success: false, message: "Internal server error" });
+      res
+        .status(500)
+        .json({ success: false, message: "Internal server error" });
     }
   }
 
   if (method === "PUT") {
     const { productId, _id, feedback, date, rate } = req.body;
-  
+
     try {
       // Update the feedback entry based on its _id
-      await Feedback.findByIdAndUpdate(
-        _id,
-        {
-          productId,
-          feedback,
-          date,
-          rate,
-        }
-      );
+      await Feedback.findByIdAndUpdate(_id, {
+        productId,
+        feedback,
+        date,
+        rate,
+      });
       console.log(_id);
       // Send a success response
-      res.status(200).json({ success: true, message: "Feedback updated successfully" });
+      res
+        .status(200)
+        .json({ success: true, message: "Feedback updated successfully" });
     } catch (error) {
       // Handle any errors that occur during the update
       console.error("Error updating feedback:", error);
-      res.status(500).json({ success: false, message: "Internal server error" });
+      res
+        .status(500)
+        .json({ success: false, message: "Internal server error" });
     }
   }
-  
 
   if (method === "DELETE") {
     const { productId, feedbackId } = req.body;
@@ -88,15 +91,21 @@ export default async function handle(req, res) {
       const product = await Product.findById(productId);
 
       // Видаляємо посилання на видалений відгук з масиву feedback у продукта
-      product.feedback = product.feedback.filter(id => id.toString() !== feedbackId);
+      product.feedback = product.feedback.filter(
+        (id) => id.toString() !== feedbackId
+      );
 
       // Зберігаємо оновлений продукт у базі даних
       await product.save();
 
-      res.status(200).json({ success: true, message: "Feedback deleted successfully" });
+      res
+        .status(200)
+        .json({ success: true, message: "Feedback deleted successfully" });
     } catch (error) {
       console.error("Error deleting feedback:", error);
-      res.status(500).json({ success: false, message: "Internal server error" });
+      res
+        .status(500)
+        .json({ success: false, message: "Internal server error" });
     }
   }
 }

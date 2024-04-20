@@ -1,7 +1,6 @@
 import { useState } from "react";
 import styled from "styled-components";
 
-
 const DropDownWrap = ({ icon, children }) => {
   const [isShowComponent, setIsShowComponent] = useState(false);
   const isShowRec = () => {

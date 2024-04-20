@@ -2,11 +2,8 @@ import { useRouter } from "next/router";
 import styled from "styled-components";
 
 const LoginButton = ({ onClick, children, href }) => {
-  
-
   const handleOnClick = () => {
     onClick();
-    
   };
 
   return <Button onClick={handleOnClick}>{children}</Button>;
