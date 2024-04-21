@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import CartDropDownWrap from "@/components/CartDropDown";
+import CartDropDownWrap from "@/components/DropDowns/CartDropDown";
 import Cart from "./headerComponents.js/cart";
 
 const CartBox = styled.div`

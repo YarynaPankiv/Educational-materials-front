@@ -4,14 +4,15 @@ import Theme from "./headerComponents.js/theme";
 import Cart from "./headerComponents.js/cart";
 import Account from "./headerComponents.js/account";
 import CategoriesButton from "./headerComponents.js/CategoriesButton";
-import DropDownWrap from "./DropDownWrap";
+import DropDownWrap from "./DropDowns/DropDownWrap";
 import LoginButton from "./LoginButton";
 import { useRouter } from "next/router";
 import { Category } from "@/models/Category";
 import SubCategory from "@/models/SubCategory";
 import { mongooseConnect } from "@/lib/mongoose";
-import CartDropDownWrap from "@/components/CartDropDown"
-import ShoppingCart from "./ShoppingCart";import CategoriesDropDown from "@/components/CategoriesDropDown"
+import CartDropDownWrap from "@/components/DropDowns/CartDropDown"
+import ShoppingCart from "./ShoppingCart";
+import CategoriesDropDown from "@/components/DropDowns/CategoriesDropDown"
 import Categories from "./Categories";
 
 export const StyledIcon = styled.svg`

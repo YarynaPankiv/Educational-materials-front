@@ -15,7 +15,7 @@ import ShowFeedbacks from "@/components/ShowFeedbacks";
 import { Feedback } from "@/models/Feedback";
 import { Rating } from "@mui/material";
 import ShoppingCart from "@/components/ShoppingCart";
-import CartDropDownWrap from "@/components/CartDropDown";
+import CartDropDownWrap from "@/components/DropDowns/CartDropDown";
 import Cart from "@/components/headerComponents.js/cart";
 import BuyButton from "@/components/BuyButton";
 
