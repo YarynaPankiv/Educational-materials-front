@@ -20,13 +20,16 @@ const ContentWrap = styled.div`
   position: absolute;
   //top: calc(100% + 12px);
   top: 60px;
-  right: 350px;
+  right: 15px;
+
   background-color: white;
 `;
 
 const Wrap = styled.div`
   display: flex;
   flex-direction: column;
+  z-index: 20;
+
   //position: relative;
 `;
 

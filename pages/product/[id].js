@@ -44,33 +44,11 @@ const DivInline = styled.div`
   display: flex;
   align-items: center;
 `;
-const PurpleButton = styled.button`
-  background-color: #7469b6;
-  font-family: "Rubik Mono One";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 20px;
-  border: none;
-  color: #fffcfc;
-  height: 50px;
-  width: 200px;
-  background: #ad88c6;
-  border-radius: 10px;
-  margin-left: 140px;
-  border: none;
-  cursor: pointer;
-  transition: background-color 0.5s ease;
-  &:hover {
-    background-color: #7469b6;
-    border: none;
-  }
-`;
 
 const TextLeft = styled.div`
   margin-left: 10px;
 `;
-const getFileExtension = (fileName) => {
+export const getFileExtension = (fileName) => {
   if (fileName) {
     return fileName.split(".").pop();
   }
@@ -157,6 +135,7 @@ export default function ProductPage({
                 
                 icon={<BuyButton></BuyButton>}
                 product={product}
+                subcategories = {subcategories}
               ></ShoppingCart>
             </DivInline>
           </div>
