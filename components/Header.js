@@ -7,10 +7,9 @@ import CategoriesButton from "./headerComponents.js/CategoriesButton";
 import DropDownWrap from "./DropDowns/DropDownWrap";
 import LoginButton from "./LoginButton";
 import { useRouter } from "next/router";
-import ShoppingCart from "./ShoppingCart";import CategoriesDropDown from "@/components/CategoriesDropDown"
+import ShoppingCart from "./ShoppingCart";
 import Categories from "./Categories";
-
-
+import CategoriesDropDown from "./DropDowns/CategoriesDropDown";
 
 
 export const StyledIcon = styled.svg`
@@ -41,7 +40,7 @@ const StyledSearch = styled.input`
 export const IconWithText = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center; /* Вирівнювання вмісту по вертикалі */
+  align-items: center; 
   cursor: pointer;
   :hover{
     background-color:7469B6;

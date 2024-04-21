@@ -57,6 +57,7 @@ const SortP = styled.p`
     user-select: none;
     color: ${props => (props.showSort ? "#7469B6" : "black")};
     font-weight: ${props => (props.showSort ? "900" : "0")};
+    z-index: 0;
 
 
 `
@@ -87,7 +88,7 @@ const ClassesDiv = styled.div`
 export async function getServerSideProps(context) {
     await mongooseConnect();
     const {subcategory} = context.query;
-    const allProducts = await Product.find({ 'subcategory.subCategoryName': subcategory });
+    const allProducts = await Product.find({});
     const categories = await Category.find({});
     const subcategories = await SubCategory.find({});
 
@@ -101,9 +102,11 @@ export async function getServerSideProps(context) {
     };
 }
 export default function ProductsInSubcategory({ categories, subcategories, subcategory, allProducts }) {
-    const [products, setProducts] = useState(allProducts);
+
+
     const [selectedClass, setSelectedClass] = useState(null);
     const [selectedSortType, setSelectedSortType] = useState(null);
+
     let id;
     let choosenSubC;
     subcategories.forEach(Subcategory =>{
@@ -112,7 +115,17 @@ export default function ProductsInSubcategory({ categories, subcategories, subca
          choosenSubC = Subcategory;
      }
     });
+
+    const filteredProducts = allProducts.reduce((accumulator, product) => {
+        if (product.subcategory && product.subcategory === id) {
+            const subcategoryName = product.subcategory.subCategoryName;
+            accumulator.push({ ...product, subcategoryName });
+        }
+        return accumulator;
+    }, []);
  
+    
+    const [products, setProducts] = useState(filteredProducts);
  
      const [showSort, setShowSort] = useState(false);
      const handleOnSortClick = () =>{
@@ -229,4 +242,3 @@ export default function ProductsInSubcategory({ categories, subcategories, subca
          </>
      );
  }
- 

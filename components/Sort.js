@@ -13,7 +13,7 @@ const StyledDiv = styled.div`
   background-color: #ffffff;
   background: linear-gradient(0deg, #ffffff, #ffffff), #fcfafa;
   border: 1px solid #000000;
-  z-index: 10;
+  z-index: 20;
 `;
 const Div = styled.div`
   margin-top: 20px;

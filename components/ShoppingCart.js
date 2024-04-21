@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import CartDropDownWrap from "@/components/CartDropDown";
 import { useContext } from "react";
 import { CartContext } from "@/Contexts/CartContext";
 import { useEffect, useState } from "react";
+import CartDropDownWrap from "./DropDowns/CartDropDown";
 
 const ProductBox = styled.div`
   box-sizing: border-box;
