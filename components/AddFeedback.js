@@ -47,32 +47,27 @@ const Button = styled.button`
 export default function AddFeedback({ id }) {
   const [feedback, setFeedback] = useState("");
   const [rate, setRate] = useState(0);
-  const productId = id; // Replace this with the actual productId
+  const productId = id; 
 
   const handleSubmit = async () => {
-    const currentDate = new Date(); // Get the current date and time
-
-    // Extract day, month, and year components
-    const day = currentDate.getDate().toString().padStart(2, "0"); // Convert to string and ensure two-digit format
-    const month = (currentDate.getMonth() + 1).toString().padStart(2, "0"); // Months are zero-based, so add 1
-    const year = currentDate.getFullYear(); // Get full year (e.g., 2024)
-
-    // Format the date as dd.mm.yyyy
+    const currentDate = new Date();
+    const day = currentDate.getDate().toString().padStart(2, "0");
+    const month = (currentDate.getMonth() + 1).toString().padStart(2, "0");
+    const year = currentDate.getFullYear();
     const formattedDate = `${day}.${month}.${year}`;
 
-    // Create data object with the feedback details
     const data = {
       productId,
       feedback,
-      date: formattedDate, // Assign the formatted date to the 'date' field
+      date: formattedDate,
       rate,
     };
-    console.log(id);
 
     if (productId) {
       await axios.post("/api/feedback", data);
       setFeedback("");
       setRate(0);
+   
     }
   };
 

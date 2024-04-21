@@ -1,4 +1,3 @@
-
 import Center from "@/components/Center";
 import Header from "@/components/Header";
 import LogoWithoutPurple from "@/components/LogoWithoutPurple";
@@ -14,8 +13,8 @@ import { Feedback } from "@/models/Feedback";
 import { Rating } from "@mui/material";
 import ShoppingCart from "@/components/ShoppingCart";
 import BuyButton from "@/components/BuyButton";
-
-
+import { useState } from "react";
+import axios from "axios";
 const ColWrapper = styled.div`
   display: grid;
   grid-template-columns: 0.8fr 1.2fr;
@@ -63,7 +62,7 @@ export async function getServerSideProps(context) {
   const categories = await Category.find({});
   const subcategories = await SubCategory.find({});
   const feedbacks = await Feedback.find({ _id: { $in: product.feedback } });
-  
+
   return {
     props: {
       product: JSON.parse(JSON.stringify(product)),
@@ -75,14 +74,13 @@ export async function getServerSideProps(context) {
   };
 }
 
-export default  function ProductPage({
+export default function ProductPage({
   product,
   categories,
   subcategories,
   id,
   feedbacks,
 }) {
-
   const totalRating = feedbacks.reduce(
     (total, feedback) => total + feedback.rate,
     0
@@ -90,7 +88,6 @@ export default  function ProductPage({
 
   const averageRating =
     feedbacks.length > 0 ? totalRating / feedbacks.length : 0.0;
-
   return (
     <>
       <Center>
@@ -126,16 +123,15 @@ export default  function ProductPage({
                 Кількість сторінок/слайдів: <Purple>{product.pages}</Purple>
               </div>
               <p>{product.description}</p>
-               {console.log(product.description)}
+              {console.log(product.description)}
               <GreenPrice>{product.price} ГРН</GreenPrice>
             </div>
             {console.log(product)}
             <DivInline>
               <ShoppingCart
-                
                 icon={<BuyButton></BuyButton>}
                 product={product}
-                subcategories = {subcategories}
+                subcategories={subcategories}
               ></ShoppingCart>
             </DivInline>
           </div>

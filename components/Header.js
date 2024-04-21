@@ -12,6 +12,7 @@ import Categories from "./Categories";
 import CategoriesDropDown from "./DropDowns/CategoriesDropDown";
 
 
+
 export const StyledIcon = styled.svg`
   width: 21px;
   height: 20px;
@@ -113,6 +114,7 @@ export default function Header({ toggleDarkMode, categories, subcategories }) {
     <header>
       <Center>
         <HeaderDiv>
+       
           <CategoriesDropDown icon= {<CategoriesButton
             categories={categories}
             subcategories={subcategories}
@@ -122,6 +124,7 @@ export default function Header({ toggleDarkMode, categories, subcategories }) {
           </CategoriesDropDown>
           <StyledSearch placeholder="Введіть текст для пошуку..."></StyledSearch>
           <AllIcons>
+            
             <Theme toggleDarkMode={toggleDarkMode} />
             
             <ShoppingCart icon={<Cart></Cart>}/>
