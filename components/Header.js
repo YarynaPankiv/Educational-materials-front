@@ -12,9 +12,15 @@ import SubCategory from "@/models/SubCategory";
 import { mongooseConnect } from "@/lib/mongoose";
 import CartDropDownWrap from "@/components/CartDropDown"
 import ShoppingCart from "./ShoppingCart";
+
+
+
 export const StyledIcon = styled.svg`
   width: 21px;
   height: 20px;
+  :hover{
+    fill:7469B6;
+  }
 `;
 
 const StyledSearch = styled.input`
@@ -39,6 +45,9 @@ export const IconWithText = styled.div`
   flex-direction: column;
   align-items: center; /* Вирівнювання вмісту по вертикалі */
   cursor: pointer;
+  :hover{
+    background-color:7469B6;
+  }
 `;
 
 export const IconText = styled.p`
@@ -47,6 +56,9 @@ export const IconText = styled.p`
   font-family: "Rubik Mono One", sans-serif;
   font-size: 11px;
   user-select: none;
+  ${IconWithText}:hover & {
+    color: #7469B6;
+  }
 `;
 
 const AllIcons = styled.div`

@@ -69,6 +69,7 @@ const StyledLink = styled(Link)`
 `;
 
 export default function Categories({ categories, subcategories }) {
+
   const categoriesWithSubcategories = categories.reduce((acc, category) => {
     const subcategoriesForCategory = subcategories
       .filter(

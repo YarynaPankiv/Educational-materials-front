@@ -7,30 +7,26 @@ const BigImage = styled.img`
   max-height: 300px;
   height: 100%;
   object-fit: cover;
- 
 `;
 
 const BigImageWrraper = styled.div`
   height: 300px;
   width: 500px;
-
   position: relative;
 `;
 
 const ImageButtons = styled.div`
   margin-top: 10px;
-  position: absolute;
   display: flex;
-  width: 500px;
-  flex-wrap: wrap;
+  overflow-x: auto; /* Додано прокрутку у разі переповнення */
 `;
 
 const ImageButton = styled.div`
   border: 2px solid black;
   border-color: ${(props) => (props.active ? "black" : "transparent")};
-  height: 100px;
   cursor: pointer;
   margin-right: 5px;
+  flex-grow: 1; /* Додаємо flex-grow для автоматичного розтягування */
 `;
 
 const Image = styled.img`
@@ -48,7 +44,7 @@ export default function ProductImages({ images }) {
         {images.map((image, index) => (
           <ImageButton
             key={index}
-            active={image === activeImage ? true : false}
+            active={image === activeImage}
             onClick={() => setActiveImage(image)}
           >
             <Image src={image} alt={`Image ${index + 1}`} />
