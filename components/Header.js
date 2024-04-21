@@ -7,10 +7,6 @@ import CategoriesButton from "./headerComponents.js/CategoriesButton";
 import DropDownWrap from "./DropDownWrap";
 import LoginButton from "./LoginButton";
 import { useRouter } from "next/router";
-import { Category } from "@/models/Category";
-import SubCategory from "@/models/SubCategory";
-import { mongooseConnect } from "@/lib/mongoose";
-import CartDropDownWrap from "@/components/CartDropDown"
 import ShoppingCart from "./ShoppingCart";import CategoriesDropDown from "@/components/CategoriesDropDown"
 import Categories from "./Categories";
 

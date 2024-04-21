@@ -1,7 +1,4 @@
 import styled from "styled-components";
-import Feedback from "@/models/Feedback";
-import { mongooseConnect } from "@/lib/mongoose";
-import Product from "@/models/Product";
 import Rating from "@mui/material/Rating";
 
 const FeedbacksBox = styled.div`

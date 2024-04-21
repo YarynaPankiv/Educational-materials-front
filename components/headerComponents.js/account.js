@@ -1,5 +1,3 @@
-import styled from "styled-components";
-import Center from "../Center";
 import { IconText, IconWithText, StyledIcon } from "../Header";
 
 export default function Account() {

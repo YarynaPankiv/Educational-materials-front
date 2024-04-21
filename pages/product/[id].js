@@ -1,9 +1,7 @@
-import React from "react";
+
 import Center from "@/components/Center";
 import Header from "@/components/Header";
 import LogoWithoutPurple from "@/components/LogoWithoutPurple";
-import { originalProducts } from "@/pages/index";
-import { useRouter } from "next/router";
 import ProductImages from "@/components/ProductImages";
 import styled from "styled-components";
 import AddFeedback from "@/components/AddFeedback";
@@ -15,8 +13,6 @@ import ShowFeedbacks from "@/components/ShowFeedbacks";
 import { Feedback } from "@/models/Feedback";
 import { Rating } from "@mui/material";
 import ShoppingCart from "@/components/ShoppingCart";
-import CartDropDownWrap from "@/components/CartDropDown";
-import Cart from "@/components/headerComponents.js/cart";
 import BuyButton from "@/components/BuyButton";
 
 
@@ -120,8 +116,6 @@ export default function ProductPage({
   const averageRating =
     feedbacks.length > 0 ? totalRating / feedbacks.length : 0.0;
 
-
-
   return (
     <>
       <Center>
@@ -159,8 +153,10 @@ export default function ProductPage({
               <p>{product.description}</p>
               <GreenPrice>{product.price} ГРН</GreenPrice>
             </div>
+            {console.log(product)}
             <DivInline>
               <ShoppingCart
+                
                 icon={<BuyButton></BuyButton>}
                 product={product}
               ></ShoppingCart>
