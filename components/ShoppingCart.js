@@ -2,27 +2,26 @@ import styled from "styled-components";
 import CartDropDownWrap from "@/components/CartDropDown";
 import { useContext } from "react";
 import { CartContext } from "@/Contexts/CartContext";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const ProductBox = styled.div`
   box-sizing: border-box;
   position: absolute;
   width: 455px;
-`;
-export default function ShoppingCart({ icon, product }) {
+`;export default function ShoppingCart({ icon, product }) {
   const { cartProducts, setCartProducts } = useContext(CartContext);
+  const [addedToCart, setAddedToCart] = useState(false);
 
   useEffect(() => {
-    if (product) {
-      // Перевіряємо, чи вже є продукт у корзині
+    if (product && !addedToCart) {
       const productExists = cartProducts.some((pr) => pr._id === product._id);
-      // Якщо продукту ще немає у корзині, додаємо його
       if (!productExists) {
         setCartProducts((prev) => [...prev, product]);
         console.log(product);
+        setAddedToCart(true);
       }
     }
-  }, [product, cartProducts, setCartProducts]);
+  }, [product, addedToCart, cartProducts, setCartProducts]);
 
   return (
     <CartDropDownWrap icon={icon}>

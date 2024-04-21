@@ -76,13 +76,11 @@ const getFileExtension = (fileName) => {
   }
   return;
 };
-function openCart() {
-  console.log("cart");
-}
+
 export async function getServerSideProps(context) {
   await mongooseConnect();
-  const { id } = context.query;
 
+  const { id } = context.query;
   const product = await Product.findById(id);
   const categories = await Category.find({});
   const subcategories = await SubCategory.find({});
@@ -112,7 +110,6 @@ export default function ProductPage({
     0
   );
 
-  // Обчислюємо середній рейтинг
   const averageRating =
     feedbacks.length > 0 ? totalRating / feedbacks.length : 0.0;
 
@@ -151,6 +148,7 @@ export default function ProductPage({
                 Кількість сторінок/слайдів: <Purple>{product.pages}</Purple>
               </div>
               <p>{product.description}</p>
+               {console.log(product.description)}
               <GreenPrice>{product.price} ГРН</GreenPrice>
             </div>
             {console.log(product)}
