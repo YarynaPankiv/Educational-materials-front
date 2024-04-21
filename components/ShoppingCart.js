@@ -1,36 +1,33 @@
 import styled from "styled-components";
-import CartDropDownWrap from "@/components/DropDowns/CartDropDown";
-import Cart from "./headerComponents.js/cart";
+import CartDropDownWrap from "@/components/CartDropDown";
+import { useContext } from "react";
+import { CartContext } from "@/Contexts/CartContext";
+import { useEffect, useState } from "react";
 
-const CartBox = styled.div`
-  /* Rectangle 12 */
-
-  box-sizing: border-box;
-  /* Group 26 */
-  position: absolute;
-  width: 455px;
-
- 
-`;
 const ProductBox = styled.div`
   box-sizing: border-box;
-  /* Group 26 */
   position: absolute;
   width: 455px;
-`
-export default function ShoppingCart({icon, product}) {
-  console.log("soso");
-  
-  const cart = [];
-  if(product){
-   cart.push(product);
-  }
-  console.log(cart);
+`;export default function ShoppingCart({ icon, product }) {
+  const { cartProducts, setCartProducts } = useContext(CartContext);
+  const [addedToCart, setAddedToCart] = useState(false);
+
+  useEffect(() => {
+    if (product && !addedToCart) {
+      const productExists = cartProducts.some((pr) => pr._id === product._id);
+      if (!productExists) {
+        setCartProducts((prev) => [...prev, product]);
+        console.log(product);
+        setAddedToCart(true);
+      }
+    }
+  }, [product, addedToCart, cartProducts, setCartProducts]);
+
   return (
     <CartDropDownWrap icon={icon}>
       <ProductBox>
-        {cart.map((pr) => (
-          <p key={pr.productId}> {pr.productName}</p>
+        {cartProducts.map((pr) => (
+          <p key={pr._id}>{pr.productName}</p>
         ))}
       </ProductBox>
     </CartDropDownWrap>

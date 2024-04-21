@@ -9,18 +9,23 @@ const StyledProduct = styled.div`
   border-radius: 10px;
   position: relative;
   margin-top: 25px;
+
 `;
 const ImgWrraper = styled.div`
   height: 170px;
+  display: flex;
+  align-items: center;
+/* Видаляємо відступи */
 `;
 
 const StyledPNG = styled.img`
-  max-width: 100%;
+  margin-top: 0; 
+  flex-grow: 1;
+  width: 100%;
   height: 100%;
   border-radius: 10px 10px 0px 0px;
   object-fit: cover;
 `;
-
 const StyledName = styled.p`
   padding-top: 5px;
   text-align: center;

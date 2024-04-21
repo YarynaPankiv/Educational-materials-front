@@ -1,9 +1,4 @@
 import styled from "styled-components";
-import { useEffect } from "react";
-import { mongooseConnect } from "@/lib/mongoose";
-import { Product } from "@/models/Product";
-import { Category } from "@/models/Category";
-import SubCategory from "@/models/SubCategory";
 import { useState } from "react";
 import Link from "next/link";
 import { useCategories } from "@/Contexts/CategoriesContext";

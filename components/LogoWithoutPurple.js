@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import Center from "./Center";
 import Link from "next/link";
+
+
 const StyledLogo = styled.div`
   margin-top: 0px;
   display: flex;

@@ -7,17 +7,18 @@ import CategoriesButton from "./headerComponents.js/CategoriesButton";
 import DropDownWrap from "./DropDowns/DropDownWrap";
 import LoginButton from "./LoginButton";
 import { useRouter } from "next/router";
-import { Category } from "@/models/Category";
-import SubCategory from "@/models/SubCategory";
-import { mongooseConnect } from "@/lib/mongoose";
-import CartDropDownWrap from "@/components/DropDowns/CartDropDown"
-import ShoppingCart from "./ShoppingCart";
-import CategoriesDropDown from "@/components/DropDowns/CategoriesDropDown"
+import ShoppingCart from "./ShoppingCart";import CategoriesDropDown from "@/components/CategoriesDropDown"
 import Categories from "./Categories";
+
+
+
 
 export const StyledIcon = styled.svg`
   width: 21px;
   height: 20px;
+  :hover{
+    fill:7469B6;
+  }
 `;
 
 const StyledSearch = styled.input`
@@ -42,6 +43,9 @@ export const IconWithText = styled.div`
   flex-direction: column;
   align-items: center; /* Вирівнювання вмісту по вертикалі */
   cursor: pointer;
+  :hover{
+    background-color:7469B6;
+  }
 `;
 
 export const IconText = styled.p`
@@ -50,6 +54,9 @@ export const IconText = styled.p`
   font-family: "Rubik Mono One", sans-serif;
   font-size: 11px;
   user-select: none;
+  ${IconWithText}:hover & {
+    color: #7469B6;
+  }
 `;
 
 const AllIcons = styled.div`

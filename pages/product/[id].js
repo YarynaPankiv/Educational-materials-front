@@ -1,9 +1,7 @@
-import React from "react";
+
 import Center from "@/components/Center";
 import Header from "@/components/Header";
 import LogoWithoutPurple from "@/components/LogoWithoutPurple";
-import { originalProducts } from "@/pages/index";
-import { useRouter } from "next/router";
 import ProductImages from "@/components/ProductImages";
 import styled from "styled-components";
 import AddFeedback from "@/components/AddFeedback";
@@ -15,9 +13,8 @@ import ShowFeedbacks from "@/components/ShowFeedbacks";
 import { Feedback } from "@/models/Feedback";
 import { Rating } from "@mui/material";
 import ShoppingCart from "@/components/ShoppingCart";
-import CartDropDownWrap from "@/components/DropDowns/CartDropDown";
-import Cart from "@/components/headerComponents.js/cart";
 import BuyButton from "@/components/BuyButton";
+
 
 const ColWrapper = styled.div`
   display: grid;
@@ -79,13 +76,11 @@ const getFileExtension = (fileName) => {
   }
   return;
 };
-function openCart() {
-  console.log("cart");
-}
+
 export async function getServerSideProps(context) {
   await mongooseConnect();
-  const { id } = context.query;
 
+  const { id } = context.query;
   const product = await Product.findById(id);
   const categories = await Category.find({});
   const subcategories = await SubCategory.find({});
@@ -115,11 +110,8 @@ export default function ProductPage({
     0
   );
 
-  // Обчислюємо середній рейтинг
   const averageRating =
     feedbacks.length > 0 ? totalRating / feedbacks.length : 0.0;
-
-
 
   return (
     <>
@@ -141,14 +133,11 @@ export default function ProductPage({
               return null;
             })}
 
-
-{feedbacks.length >= 0 && (
-              <DivInline>
-                <Rating value={averageRating} size="small" readOnly />{" "}
-                <TextLeft>{product.feedback.length}</TextLeft>{" "}
-                <Purple>відгуків</Purple>
-              </DivInline>
-            )}
+            <DivInline>
+              <Rating value={averageRating} size="small" readOnly />{" "}
+              <TextLeft>{product.feedback.length}</TextLeft>{" "}
+              <Purple>відгуків</Purple>
+            </DivInline>
             <br />
             <div>
               <div>
@@ -159,10 +148,13 @@ export default function ProductPage({
                 Кількість сторінок/слайдів: <Purple>{product.pages}</Purple>
               </div>
               <p>{product.description}</p>
+               {console.log(product.description)}
               <GreenPrice>{product.price} ГРН</GreenPrice>
             </div>
+            {console.log(product)}
             <DivInline>
               <ShoppingCart
+                
                 icon={<BuyButton></BuyButton>}
                 product={product}
               ></ShoppingCart>
