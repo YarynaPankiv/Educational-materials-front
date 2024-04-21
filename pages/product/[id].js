@@ -14,6 +14,7 @@ import SubCategory from "@/models/SubCategory";
 import ShowFeedbacks from "@/components/ShowFeedbacks";
 import { Feedback } from "@/models/Feedback";
 import { Rating } from "@mui/material";
+import { useCategories } from "@/Contexts/CategoriesContext";
 
 const ColWrapper = styled.div`
   display: grid;
@@ -29,7 +30,6 @@ const Purple = styled.span`
 `;
 
 const GreenPrice = styled.p`
-  /* 100 UAH */
   font-family: "Montserrat";
   font-style: normal;
   font-weight: bolder;
@@ -114,7 +114,7 @@ export default function ProductPage({
     0
   );
 
-  // Обчислюємо середній рейтинг
+
   const averageRating =
     feedbacks.length > 0 ? totalRating / feedbacks.length : 0;
   return (

@@ -10,6 +10,8 @@ import { useRouter } from "next/router";
 import { Category } from "@/models/Category";
 import SubCategory from "@/models/SubCategory";
 import { mongooseConnect } from "@/lib/mongoose";
+import CategoriesDropDown from "@/components/CategoriesDropDown"
+import Categories from "./Categories";
 
 export const StyledIcon = styled.svg`
   width: 21px;
@@ -103,11 +105,13 @@ export default function Header({ toggleDarkMode, categories, subcategories }) {
     <header>
       <Center>
         <HeaderDiv>
-          <CategoriesButton
+          <CategoriesDropDown icon= {<CategoriesButton
             categories={categories}
             subcategories={subcategories}
-          />
+          />}>
+            <Categories categories={categories} subcategories={subcategories} />
 
+          </CategoriesDropDown>
           <StyledSearch placeholder="Введіть текст для пошуку..."></StyledSearch>
           <AllIcons>
             <Theme toggleDarkMode={toggleDarkMode} />

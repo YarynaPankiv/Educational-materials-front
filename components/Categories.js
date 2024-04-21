@@ -6,19 +6,17 @@ import { Category } from "@/models/Category";
 import SubCategory from "@/models/SubCategory";
 import { useState } from "react";
 import Link from "next/link";
+import { useCategories } from "@/Contexts/CategoriesContext";
 
 const StyledCategories = styled.div`
   box-sizing: border-box;
-  position: absolute;
   width: 385px;
   height: 496px;
-  left: 101px;
-  top: 78px;
   background: #ffffff;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   overflow: scroll;
   overflow-x: hidden;
-  z-index: 10;
+  z-index: 12;
 `;
 
 const CategoriesDiv = styled.div`
@@ -68,7 +66,8 @@ const StyledLink = styled(Link)`
   color: black;
 `;
 
-export default function Categories({ categories, subcategories }) {
+export default function Categories({ categories, subcategories}) {
+
   const categoriesWithSubcategories = categories.reduce((acc, category) => {
     const subcategoriesForCategory = subcategories
       .filter(
@@ -88,6 +87,7 @@ export default function Categories({ categories, subcategories }) {
     setSelectedCategory(category);
   };
   
+  const { showCategories, setShowCategories } = useCategories();
 
   return (
     <StyledCategories id="categoriesContainer">
@@ -96,7 +96,7 @@ export default function Categories({ categories, subcategories }) {
           <div key={index}>
             <ColumnText
               selectedcategory={
-                selectedcategory === category ? "true" : "false"
+                selectedcategory === category ? true : false
               }
               onClick={() => handleClick(category)}
             >
@@ -110,7 +110,7 @@ export default function Categories({ categories, subcategories }) {
           {categoriesWithSubcategories[selectedcategory] &&
             categoriesWithSubcategories[selectedcategory].map(
               (subcategory, index) => (
-                <StyledLink key={index} href={`/category/${subcategory}`}>
+                <StyledLink key={index} href={`/category/${subcategory}`} >
                   <SubCategoryText>{subcategory}</SubCategoryText>
                 </StyledLink>
               )
