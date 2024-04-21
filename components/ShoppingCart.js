@@ -2,7 +2,8 @@ import styled from "styled-components";
 import { useContext } from "react";
 import { CartContext } from "@/Contexts/CartContext";
 import { useEffect, useState } from "react";
-
+import BuyButton from "./BuyButton";
+import CartDropDownWrap from "./DropDowns/CartDropDown";
 const ProductBox = styled.div`
   box-sizing: border-box;
 
@@ -151,7 +152,11 @@ export default function ShoppingCart({ icon, product, subcategories }) {
                   })}
                 <p key={pr._id}>
                   Формат:{" "}
-                  <PurpleText>{getFileExtension(pr?.file[0]?.name)}</PurpleText>
+                  <PurpleText>
+                    {pr.file && pr.file[0] && pr.file[0].name
+                      ? getFileExtension(pr.file[0].name)
+                      : ""}
+                  </PurpleText>
                 </p>
                 <p key={pr._id}>
                   <StyledCost>{pr.price} ГРН</StyledCost>

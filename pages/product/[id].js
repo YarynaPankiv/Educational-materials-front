@@ -63,7 +63,7 @@ export async function getServerSideProps(context) {
   const categories = await Category.find({});
   const subcategories = await SubCategory.find({});
   const feedbacks = await Feedback.find({ _id: { $in: product.feedback } });
-
+  
   return {
     props: {
       product: JSON.parse(JSON.stringify(product)),
@@ -75,7 +75,7 @@ export async function getServerSideProps(context) {
   };
 }
 
-export default function ProductPage({
+export default  function ProductPage({
   product,
   categories,
   subcategories,

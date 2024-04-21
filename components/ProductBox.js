@@ -1,6 +1,11 @@
 import styled from "styled-components";
 import Center from "./Center";
 import Link from "next/link";
+import { CartContext } from "@/Contexts/CartContext";
+import { useContext } from "react";
+import { useState } from "react";
+import CartDropDownWrap from "./DropDowns/CartDropDown";
+import Cart from "./headerComponents.js/cart";
 
 const StyledProduct = styled.div`
   width: 218px;
@@ -9,17 +14,16 @@ const StyledProduct = styled.div`
   border-radius: 10px;
   position: relative;
   margin-top: 25px;
-
 `;
 const ImgWrraper = styled.div`
   height: 170px;
   display: flex;
   align-items: center;
-/* Видаляємо відступи */
+  /* Видаляємо відступи */
 `;
 
 const StyledPNG = styled.img`
-  margin-top: 0; 
+  margin-top: 0;
   flex-grow: 1;
   width: 100%;
   height: 100%;
@@ -66,13 +70,30 @@ const StyledAddToCart = styled.div`
   right: 0;
   margin-right: 20px;
   margin-bottom: 10px;
+  cursor: pointer;
 `;
 const StyledLink = styled(Link)`
   text-decoration: none;
 `;
 
 export default function ProductBox({ _id, images, productName, price }) {
+  const [addedToCart, setAddedToCart] = useState(false);
+
   const url = "/product/" + _id;
+
+  const { setCartProducts } = useContext(CartContext);
+
+  const addToCart = () => {
+    const productToAdd = {
+      _id,
+      images,
+      productName,
+      price,
+    };
+
+    setCartProducts((prev) => [...prev, productToAdd]);
+    setAddedToCart(true);
+  };
   return (
     <Center>
       <StyledProduct href={url}>
@@ -86,7 +107,7 @@ export default function ProductBox({ _id, images, productName, price }) {
           <StyledName>{productName}</StyledName>
         </StyledLink>
         <StyledCost>{price} UAH</StyledCost>
-        <StyledAddToCart>
+        <StyledAddToCart onClick={addToCart}>
           <svg
             width="25"
             height="20"
