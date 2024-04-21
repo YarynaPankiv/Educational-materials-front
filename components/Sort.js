@@ -5,17 +5,15 @@ import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
+import { useState } from "react";
 
 const StyledDiv = styled.div`
   width: 250px;
   height: 225px;
   background-color: #ffffff;
-  position: absolute;
-  left: 166px;
-  top: 190px;
   background: linear-gradient(0deg, #ffffff, #ffffff), #fcfafa;
   border: 1px solid #000000;
-  z-index: 10;
+  z-index: 20;
 `;
 const Div = styled.div`
   margin-top: 20px;
@@ -50,31 +48,42 @@ const StyledFormControlLabel = styled(FormControlLabel)`
     font-family: "Montserrat", sans-serif;
   }
 `;
-export default function Sort() {
-  return (
-    <StyledDiv>
-      <Div>
-        <FormControl>
-          <RadioGroup>
-            <StyledFormControlLabel
-              value="Від найдешевших"
-              control={<StyledRadio />}
-              label="Від найдешевших"
-            />
-            <StyledFormControlLabel
-              value="Від найдорожчих"
-              control={<StyledRadio />}
-              label="Від найдорожчих"
-            />
-            <StyledFormControlLabel
-              value="Від найновіших"
-              control={<StyledRadio />}
-              label="Від найновіших"
-            />
-          </RadioGroup>
-        </FormControl>
-        <StyledButton>Сортувати</StyledButton>
-      </Div>
-    </StyledDiv>
-  );
-}
+
+export default function Sort({ chooseType, sortProducts }) {
+    const [chosenSortType, setChosenSortType] = useState(null);
+  
+    const handleClick = (type) => {
+      setChosenSortType(type);
+    };
+  
+    return (
+      <StyledDiv>
+        <Div>
+          <FormControl>
+            <RadioGroup>
+              <StyledFormControlLabel
+                value="Від найдешевших"
+                control={<StyledRadio />}
+                label="Від найдешевших"
+                onClick={() => handleClick("priceAsc")} 
+              />
+              <StyledFormControlLabel
+                value="Від найдорожчих"
+                control={<StyledRadio />}
+                label="Від найдорожчих"
+                onClick={() => handleClick("priceDesc")} 
+              />
+              <StyledFormControlLabel
+                value="Від найновіших"
+                control={<StyledRadio />}
+                label="Від найновіших"
+                onClick={() => handleClick("new")} 
+              />
+            </RadioGroup>
+          </FormControl>
+          <StyledButton onClick={() => { chooseType(chosenSortType); sortProducts(chosenSortType); }}>Сортувати</StyledButton>
+        </Div>
+      </StyledDiv>
+    );
+  }
+  

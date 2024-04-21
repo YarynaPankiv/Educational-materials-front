@@ -4,7 +4,7 @@ import styled from "styled-components";
 import LoginButton from "@/components/LoginButton";
 import MyInput from "@/components/MyInput";
 import { useRouter } from "next/router";
-import DropDownWrap from "@/components/DropDownWrap";
+import DropDownWrap from "@/components/DropDowns/DropDownWrap";
 
 const LoginPage = ({ toggleDarkMode }) => {
   const router = useRouter();
