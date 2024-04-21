@@ -9,7 +9,7 @@ const StyledLink = styled.link`
 export default function Cart(){
     return (
    
-        <IconWithText>
+        <IconWithText >
         <StyledIcon
           width="22"
           height="20"
