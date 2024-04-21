@@ -19,6 +19,7 @@ import CartDropDownWrap from "@/components/CartDropDown";
 import Cart from "@/components/headerComponents.js/cart";
 import BuyButton from "@/components/BuyButton";
 
+
 const ColWrapper = styled.div`
   display: grid;
   grid-template-columns: 0.8fr 1.2fr;
@@ -141,13 +142,11 @@ export default function ProductPage({
               return null;
             })}
 
-            {feedbacks.length >= 0 && (
-              <DivInline>
-                <Rating value={averageRating} size="small" readOnly />{" "}
-                <TextLeft>{product.feedback.length}</TextLeft>{" "}
-                <Purple>відгуків</Purple>
-              </DivInline>
-            )}
+            <DivInline>
+              <Rating value={averageRating} size="small" readOnly />{" "}
+              <TextLeft>{product.feedback.length}</TextLeft>{" "}
+              <Purple>відгуків</Purple>
+            </DivInline>
             <br />
             <div>
               <div>

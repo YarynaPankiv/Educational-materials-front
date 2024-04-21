@@ -11,7 +11,9 @@ import { Category } from "@/models/Category";
 import SubCategory from "@/models/SubCategory";
 import { mongooseConnect } from "@/lib/mongoose";
 import CartDropDownWrap from "@/components/CartDropDown"
-import ShoppingCart from "./ShoppingCart";
+import ShoppingCart from "./ShoppingCart";import CategoriesDropDown from "@/components/CategoriesDropDown"
+import Categories from "./Categories";
+
 
 
 
@@ -116,11 +118,13 @@ export default function Header({ toggleDarkMode, categories, subcategories }) {
     <header>
       <Center>
         <HeaderDiv>
-          <CategoriesButton
+          <CategoriesDropDown icon= {<CategoriesButton
             categories={categories}
             subcategories={subcategories}
-          />
+          />}>
+            <Categories categories={categories} subcategories={subcategories} />
 
+          </CategoriesDropDown>
           <StyledSearch placeholder="Введіть текст для пошуку..."></StyledSearch>
           <AllIcons>
             <Theme toggleDarkMode={toggleDarkMode} />
