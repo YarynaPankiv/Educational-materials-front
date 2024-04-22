@@ -20,7 +20,7 @@ const RegisterPage = ({ toggleDarkMode }) => {
       name: name,
       surname: surname,
     };
-    router.push("/");
+    router.push("/user-profile/user-info");
   };
   const goToLogin = () => {
     router.push("/login");
@@ -44,6 +44,7 @@ const RegisterPage = ({ toggleDarkMode }) => {
               type={"email"}
               value={email}
               setValue={setEmail}
+              theme="auth"
             />
           </InputWrapper>
           <NameWrap>
@@ -52,12 +53,14 @@ const RegisterPage = ({ toggleDarkMode }) => {
               type={"text"}
               value={name}
               setValue={setName}
+              theme="auth"
             />
             <MyInput
               text={"Прізвище"}
               type={"text"}
               value={surname}
               setValue={setSurname}
+              theme="auth"
             />
           </NameWrap>
           <InputWrapper>
@@ -66,6 +69,7 @@ const RegisterPage = ({ toggleDarkMode }) => {
               type={"password"}
               value={password}
               setValue={setPassword}
+              theme="auth"
             />
           </InputWrapper>
           <Wrapper>

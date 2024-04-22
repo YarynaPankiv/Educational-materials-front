@@ -4,7 +4,6 @@ import styled from "styled-components";
 import LoginButton from "@/components/LoginButton";
 import MyInput from "@/components/MyInput";
 import { useRouter } from "next/router";
-import DropDownWrap from "@/components/DropDowns/DropDownWrap";
 
 const LoginPage = ({ toggleDarkMode }) => {
   const router = useRouter();
@@ -17,14 +16,12 @@ const LoginPage = ({ toggleDarkMode }) => {
       email: email,
       password: password,
     };
-    router.push("/");
+    router.push("/user-profile/user-info");
   };
   const goToRegister = () => {
     router.push("/registration");
   };
-  const goToLogin = () => {
-    router.push("/login");
-  };
+  
 
   return (
     <Page>
@@ -38,6 +35,7 @@ const LoginPage = ({ toggleDarkMode }) => {
               type={"email"}
               value={email}
               setValue={setEmail}
+              theme="auth"
             />
           </InputWrapper>
           <InputWrapper>
@@ -46,6 +44,7 @@ const LoginPage = ({ toggleDarkMode }) => {
               type={"password"}
               value={password}
               setValue={setPassword}
+              theme="auth"
             />
           </InputWrapper>
           <Wrapper>
