@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styled from "styled-components";
 
-const CartDropDownWrap = ({ icon, children }) => {
+const CartIconDropDownWrap = ({ icon, children }) => {
   const [isShowComponent, setIsShowComponent] = useState(false);
   const isShowRec = () => {
     setIsShowComponent(!isShowComponent);
@@ -36,4 +36,4 @@ const Wrap = styled.div`
 
 const Icon = styled.div``;
 
-export default CartDropDownWrap;
+export default CartIconDropDownWrap;
