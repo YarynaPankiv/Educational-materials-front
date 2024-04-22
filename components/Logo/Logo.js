@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Center from "./Center";
+import Center from "../Center";
 
 const StyledLogo = styled.div`
   margin-top: 25px;

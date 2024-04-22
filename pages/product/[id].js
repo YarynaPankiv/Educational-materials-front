@@ -1,18 +1,18 @@
 import Center from "@/components/Center";
 import Header from "@/components/Header";
-import LogoWithoutPurple from "@/components/LogoWithoutPurple";
-import ProductImages from "@/components/ProductImages";
+import LogoWithoutPurple from "@/components/Logo/LogoWithoutPurple";
+import ProductImages from "@/components/Product/ProductImages";
 import styled from "styled-components";
-import AddFeedback from "@/components/AddFeedback";
+import AddFeedback from "@/components/Feedbacks/AddFeedback";
 import { mongooseConnect } from "@/lib/mongoose";
 import { Product } from "@/models/Product";
 import { Category } from "@/models/Category";
 import SubCategory from "@/models/SubCategory";
-import ShowFeedbacks from "@/components/ShowFeedbacks";
+import ShowFeedbacks from "@/components/Feedbacks/ShowFeedbacks";
 import { Feedback } from "@/models/Feedback";
 import { Rating } from "@mui/material";
 import ShoppingCart from "@/components/ShoppingCart";
-import BuyButton from "@/components/BuyButton";
+import BuyButton from "@/components/Buttons/BuyButton";
 import { useState } from "react";
 import axios from "axios";
 const ColWrapper = styled.div`

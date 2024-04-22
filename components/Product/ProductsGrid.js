@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import Center from "./Center";
+import Center from "../Center";
 import Product from "./ProductBox";
 import ProductBox from "./ProductBox";
-import ButtonsForPages from "./ButtonsForPages";
+import ButtonsForPages from "../Buttons/ButtonsForPages";
 import { useState } from "react";
 
 const StyledProductsGrid = styled.div`

@@ -1,11 +1,11 @@
 import styled from "styled-components";
-import Center from "./Center";
+import Center from "../Center";
 import Link from "next/link";
 import { CartContext } from "@/Contexts/CartContext";
 import { useContext } from "react";
 import { useState } from "react";
-import CartDropDownWrap from "./DropDowns/CartDropDown";
-import Cart from "./headerComponents.js/cart";
+import CartDropDownWrap from "../DropDowns/CartDropDown";
+import Cart from "../headerComponents.js/cart";
 
 const StyledProduct = styled.div`
   width: 218px;

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Center from "./Center";
+import Center from "../Center";
 import styled from "styled-components";
 
 const BigImage = styled.img`
