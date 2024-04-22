@@ -1,7 +1,6 @@
-import { useRouter } from "next/router";
 import styled from "styled-components";
 
-const LoginButton = ({ onClick, children, href }) => {
+const LoginButton = ({ onClick, children }) => {
   const handleOnClick = () => {
     onClick();
   };
@@ -18,6 +17,7 @@ const Button = styled.button`
   color: #ad88c6;
   cursor: pointer;
   width: 100%;
+  max-width: 400px;
 
   &:hover {
     background: #7469b6;
