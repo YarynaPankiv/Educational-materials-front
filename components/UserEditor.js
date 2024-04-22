@@ -1,8 +1,10 @@
 import { useState } from "react";
 import styled from "styled-components";
-import MyInput from "./MyInput";
-import LoginButton from "./LoginButton";
+
+
 import { useRouter } from "next/router";
+import MyInput from "./Login/MyInput";
+import LoginButton from "./Login/LoginButton";
 
 const UserEditor = () => {
   const router = useRouter();
