@@ -1,6 +1,6 @@
 import { useState } from "react";
 import styled from "styled-components";
-import Center from "./Center";
+import Center from "../Center";
 
 const StyledButton = styled.button`
   margin-top: 25px;

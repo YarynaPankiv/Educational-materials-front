@@ -2,26 +2,32 @@ import styled from "styled-components";
 import { useContext } from "react";
 import { CartContext } from "@/Contexts/CartContext";
 import { useEffect, useState } from "react";
-import BuyButton from "./BuyButton";
+import BuyButton from "./Buttons/BuyButton";
 import CartDropDownWrap from "./DropDowns/CartDropDown";
+
 const ProductBox = styled.div`
   box-sizing: border-box;
-
+  position:absolute;
   width: 455px;
-  height: 271px;
+  height: 281px;
+  top:60px;
+  right:50px;
+  background-color:white;
   overflow-y: auto;
   overflow-x: hidden;
+  border: 1px solid black;
 `;
 
 const ProductOrder = styled.div`
+
   display: flex;
   flex-direction: column;
   //  align-items: flex-start;
   position: relative;
-  width: 450px;
+  width: 455px;
   height: 150px;
 
-  border: 1px solid black;
+  border: 0.5px solid black;
   background-color: white;
   z-index: 33;
 `;
@@ -72,7 +78,7 @@ const IconTrash = styled.div`
 `;
 const TotalCost = styled.div`
   text-align: right;
-  margin-top: 25px;
+  margin-top: 16px;
   margin-bottom: 15px;
   font-family: "Montserrat";
   font-style: normal;
@@ -81,7 +87,9 @@ const TotalCost = styled.div`
 const GreenPrice = styled.span`
   color: #327a4c;
   margin-left: 12px;
+  margin-right:8px;
 `;
+
 const getFileExtension = (fileName) => {
   if (fileName) {
     return fileName.split(".").pop();
@@ -89,33 +97,15 @@ const getFileExtension = (fileName) => {
   return;
 };
 
-export default function ShoppingCart({ icon, product, subcategories }) {
-  const { cartProducts, setCartProducts } = useContext(CartContext);
-  const [addedToCart, setAddedToCart] = useState(false);
-
-  useEffect(() => {
-    if (product && !addedToCart) {
-      const productExists = cartProducts.some((pr) => pr._id === product._id);
-      if (!productExists) {
-        setCartProducts((prev) => [...prev, product]);
-        console.log(product);
-        setAddedToCart(true);
-      }
-    }
-  }, [product, addedToCart, cartProducts, setCartProducts]);
-
-  const deleteProductFromCart = (productId) => {
-    const updatedCart = cartProducts.filter(
-      (product) => product._id !== productId
-    );
-    setCartProducts(updatedCart);
-  };
+export default function ShowShoppingCart({ subcategories }) {
+  const { cartProducts, setCartProducts, deleteProductFromCart } = useContext(CartContext);
 
   const totalCost = cartProducts.reduce((acc, curr) => acc + curr.price, 0);
+
   return (
-    <CartDropDownWrap icon={icon}>
-      <ProductBox>
-        {cartProducts.map((pr) => (
+    <>
+       <ProductBox>
+        {cartProducts && cartProducts.map((pr) => (
           <ProductOrder key={pr._id}>
             <IconTrash onClick={() => deleteProductFromCart(pr._id)}>
               <svg
@@ -170,8 +160,8 @@ export default function ShoppingCart({ icon, product, subcategories }) {
             Загальна вартість: <GreenPrice>{totalCost} ГРН</GreenPrice>
           </TotalCost>
         )}
-        <BuyButton>КУПИТИ</BuyButton>
+       <BuyButton></BuyButton>
       </ProductBox>
-    </CartDropDownWrap>
+    </>
   );
 }

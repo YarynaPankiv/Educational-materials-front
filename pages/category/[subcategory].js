@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import Center from "@/components/Center";
 import Header from "@/components/Header";
-import LogoWithoutPurple from "@/components/LogoWithoutPurple";
+import LogoWithoutPurple from "@/components/Logo/LogoWithoutPurple";
 import styled from "styled-components"
 
 import { mongooseConnect } from '@/lib/mongoose';
 import { Product } from "@/models/Product";
 import { Category } from "@/models/Category";
 import SubCategory from "@/models/SubCategory.js";
-import ProductsGrid from '@/components/ProductsGrid';
+import ProductsGrid from '@/components/Product/ProductsGrid';
 import Link from 'next/link';
 import Sort from '@/components/Sort';
 import SortDropDown from "@/components/DropDowns/SortDropDown"

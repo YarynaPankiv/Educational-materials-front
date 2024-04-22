@@ -3,21 +3,21 @@ import Center from "./Center";
 import Theme from "./headerComponents.js/theme";
 import Cart from "./headerComponents.js/cart";
 import Account from "./headerComponents.js/account";
-import CategoriesButton from "./headerComponents.js/CategoriesButton";
+import CategoriesButton from "./Buttons/CategoriesButton";
 import DropDownWrap from "./DropDowns/DropDownWrap";
-import LoginButton from "./LoginButton";
+import LoginButton from "./Login/LoginButton";
 import { useRouter } from "next/router";
-import ShoppingCart from "./ShoppingCart";
+import ShowShoppingCart from "./ShoppingCart";
 import Categories from "./Categories";
 import CategoriesDropDown from "./DropDowns/CategoriesDropDown";
-
-
-
+import BuyButton from "./Buttons/BuyButton";
+import { useState } from "react";
+import { useCart } from "@/Contexts/ShowCart";
 export const StyledIcon = styled.svg`
   width: 21px;
   height: 20px;
-  :hover{
-    fill:7469B6;
+  :hover {
+    fill: 7469B6;
   }
 `;
 
@@ -41,10 +41,10 @@ const StyledSearch = styled.input`
 export const IconWithText = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center; 
+  align-items: center;
   cursor: pointer;
-  :hover{
-    background-color:7469B6;
+  :hover {
+    background-color: 7469B6;
   }
 `;
 
@@ -55,7 +55,7 @@ export const IconText = styled.p`
   font-size: 11px;
   user-select: none;
   ${IconWithText}:hover & {
-    color: #7469B6;
+    color: #7469b6;
   }
 `;
 
@@ -100,6 +100,12 @@ const ButtonWrapper = styled.div`
 `;
 
 export default function Header({ toggleDarkMode, categories, subcategories }) {
+  
+  const { showCart, handleShowCartClick } = useCart(); 
+    const handleClick = () => {
+      addToCart(product);
+      handleShowCartClick(); // Додаємо виклик функції handleShowCartClick при натисканні на кнопку
+    };
   const router = useRouter();
 
   const goToRegister = () => {
@@ -114,20 +120,27 @@ export default function Header({ toggleDarkMode, categories, subcategories }) {
     <header>
       <Center>
         <HeaderDiv>
-       
-          <CategoriesDropDown icon= {<CategoriesButton
-            categories={categories}
-            subcategories={subcategories}
-          />}>
+          <CategoriesDropDown
+            icon={
+              <CategoriesButton
+                categories={categories}
+                subcategories={subcategories}
+              />
+            }
+          >
             <Categories categories={categories} subcategories={subcategories} />
-
           </CategoriesDropDown>
           <StyledSearch placeholder="Введіть текст для пошуку..."></StyledSearch>
           <AllIcons>
-            
             <Theme toggleDarkMode={toggleDarkMode} />
-            
-            <ShoppingCart icon={<Cart></Cart>}/>
+
+            <Cart click={handleShowCartClick}></Cart>
+            {console.log(showCart)}
+            {showCart && (
+              <ShowShoppingCart
+                subcategories={subcategories}
+              ></ShowShoppingCart>
+            )}
 
             <DropDownWrap icon={<Account />}>
               <LoginMenu>
@@ -144,10 +157,7 @@ export default function Header({ toggleDarkMode, categories, subcategories }) {
                 </ButtonWrapper>
               </LoginMenu>
             </DropDownWrap>
-          
           </AllIcons>
-
-          <DropDownWrap ></DropDownWrap>
         </HeaderDiv>
       </Center>
     </header>

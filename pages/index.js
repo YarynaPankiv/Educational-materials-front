@@ -1,10 +1,10 @@
-import Logo from "@/components/Logo";
-import ProductsGrid from "@/components/ProductsGrid";
-import ButtonsForPages from "@/components/ButtonsForPages";
+import Logo from "@/components/Logo/Logo";
+import ProductsGrid from "@/components/Product/ProductsGrid";
+import ButtonsForPages from "@/components/Buttons/ButtonsForPages";
 import { mongooseConnect } from "@/lib/mongoose";
-import ProductBox from "@/components/ProductBox";
+import ProductBox from "@/components/Product/ProductBox";
 import Header from "@/components/Header";
-import Buttons from "@/components/Buttons";
+import Buttons from "@/components/Buttons/Buttons";
 import { useState } from "react";
 import { Product } from "@/models/Product";
 import SubCategory from "@/models/SubCategory";

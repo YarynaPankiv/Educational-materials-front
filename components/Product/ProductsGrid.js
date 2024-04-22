@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import Center from "./Center";
+import Center from "../Center";
 import Product from "./ProductBox";
 import ProductBox from "./ProductBox";
-import ButtonsForPages from "./ButtonsForPages";
+import ButtonsForPages from "../Buttons/ButtonsForPages";
 import { useState } from "react";
 
 const StyledProductsGrid = styled.div`
@@ -27,7 +27,7 @@ export default function ProductsGrid({ products }) {
       <StyledProductsGrid>
         {products?.length > 0 &&
           products.map((product) => (
-            <ProductBox key={product._id} {...product} />
+            <ProductBox key={product._id} product={product} />
           ))}
       </StyledProductsGrid>
       <ButtonsForPages

@@ -1,8 +1,8 @@
 import Header from "@/components/Header";
 import React, { useState } from "react";
 import styled from "styled-components";
-import LoginButton from "@/components/LoginButton";
-import MyInput from "@/components/MyInput";
+import LoginButton from "@/components/Login/LoginButton";
+import MyInput from "@/components/Login/MyInput";
 import { useRouter } from "next/router";
 
 const LoginPage = ({ toggleDarkMode }) => {

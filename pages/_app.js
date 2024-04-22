@@ -3,6 +3,7 @@ import Head from "next/head";
 import  { useState } from "react";
 import { CartContextProvider } from "@/Contexts/CartContext";
 import { CategoriesProvider } from "@/Contexts/CategoriesContext";
+import { ShowCartProvider } from "@/Contexts/ShowCart";
 
 const GlobalStyles = createGlobalStyle`
   * {
@@ -33,13 +34,16 @@ export default function App({ Component, pageProps }) {
 
   return (
     <>
-      <CartContextProvider>
+    <ShowCartProvider>
+    <CartContextProvider>
         <CategoriesProvider>
           <GlobalStyles darkMode={darkMode} />
           <Component {...pageProps} toggleDarkMode={toggleDarkMode} />
           <Head />
         </CategoriesProvider>
       </CartContextProvider>
+    </ShowCartProvider>
+     
     </>
   );
 }

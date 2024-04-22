@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Center from "./Center";
+import Center from "../Center";
 
 const StyledButton = styled.div`
   width: 35px;
