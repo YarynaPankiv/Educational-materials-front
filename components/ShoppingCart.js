@@ -117,7 +117,7 @@ export default function ShoppingCart({ icon, product, subcategories }) {
   return (
     <CartDropDownWrap icon={icon}>
       <ProductBox>
-        {cartProducts.map((pr) => (
+        {cartProducts && cartProducts.map((pr) => (
           <ProductOrder key={pr._id}>
             <IconTrash onClick={() => deleteProductFromCart(pr._id)}>
               <svg
