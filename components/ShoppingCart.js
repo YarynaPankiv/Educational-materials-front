@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import BuyButton from "./Buttons/BuyButton";
 import CartDropDownWrap from "./DropDowns/CartDropDown";
 import { useCart } from "@/Contexts/ShowCart";
+import PayButton from "./Buttons/PayButton";
 
 const ProductBox = styled.div`
   box-sizing: border-box;
@@ -32,12 +33,12 @@ const ProductOrder = styled.div`
   z-index: 33;
 `;
 
-const ProductImageWrapper = styled.div`
+export const ProductImageWrapper = styled.div`
   display: flex;
   align-items: center;
 `;
 
-const StyledImage = styled.img`
+export const StyledImage = styled.img`
   width: 140px;
   height: auto;
 
@@ -48,7 +49,7 @@ const ProductInfo = styled.div`
   width: 300px;
 `;
 
-const PurpleText = styled.span`
+export const PurpleText = styled.span`
   color: #7469b6;
   font-weight: bold;
   margin-left: 15px;
@@ -64,7 +65,7 @@ const StyledCost = styled.p`
   color: #327a4c;
 `;
 
-const IconTrash = styled.div`
+export const IconTrash = styled.div`
   border-radius: 50%;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   position: absolute;
@@ -76,7 +77,7 @@ const IconTrash = styled.div`
   align-items: center;
   cursor: pointer;
 `;
-const TotalCost = styled.div`
+ const TotalCost = styled.div`
   text-align: right;
   margin-top: 16px;
   margin-bottom: 15px;
@@ -84,7 +85,7 @@ const TotalCost = styled.div`
   font-style: normal;
   font-weight: bolder;
 `;
-const GreenPrice = styled.span`
+ const GreenPrice = styled.span`
   color: #327a4c;
   margin-left: 12px;
   margin-right:8px;
@@ -180,7 +181,7 @@ export default function ShowShoppingCart({ subcategories }) {
           <TotalCost>
             Загальна вартість: <GreenPrice>{totalCost} ГРН</GreenPrice>
           </TotalCost>
-          <BuyButton></BuyButton>
+          <PayButton></PayButton>
           </>
         )}
 
