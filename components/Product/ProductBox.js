@@ -31,18 +31,14 @@ const StyledPNG = styled.img`
   object-fit: cover;
 `;
 const StyledName = styled.p`
-  padding-top: 5px;
-  text-align: center;
+  padding: 5px 10px; 
+  text-align: center; 
   color: black;
-  margin-left: 10px;
-  margin-right: 10px;
-  word-break: break-all;
-  margin: 0;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin-bottom: 80px;
+  margin: 0; 
+  font-size: 16px; 
+  overflow: hidden; 
+  text-overflow: ellipsis; 
+  white-space: nowrap; 
 `;
 
 const StyledCost = styled.p`
