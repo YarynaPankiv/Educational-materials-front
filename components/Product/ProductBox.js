@@ -78,10 +78,10 @@ export default function ProductBox({ product }) {
   const url = "/product/" + product._id;
   const { cartProducts, setCartProducts, deleteProductFromCart,addToCart } = useContext(CartContext);
 
-  const { showCart, handleShowCartClick } = useCart(); 
+  const { showCart, handleShowCartClick , showCartClick} = useCart(); 
   const handleClick = () => {
     addToCart(product);
-    handleShowCartClick(); // Додаємо виклик функції handleShowCartClick при натисканні на кнопку
+    showCartClick(); // Додаємо виклик функції handleShowCartClick при натисканні на кнопку
   };
 
   return (

@@ -99,12 +99,16 @@ const ButtonWrapper = styled.div`
   width: 100%;
 `;
 
+const Container = styled.div`
+  position: relative;
+`;
+
 export default function Header({ toggleDarkMode, categories, subcategories }) {
   
-  const { showCart, handleShowCartClick } = useCart(); 
+  const { showCart, handleShowCartClick, showCartClick } = useCart(); 
     const handleClick = () => {
       addToCart(product);
-      handleShowCartClick(); // Додаємо виклик функції handleShowCartClick при натисканні на кнопку
+      handleShowCartClick(); 
     };
   const router = useRouter();
 
@@ -133,14 +137,17 @@ export default function Header({ toggleDarkMode, categories, subcategories }) {
           <StyledSearch placeholder="Введіть текст для пошуку..."></StyledSearch>
           <AllIcons>
             <Theme toggleDarkMode={toggleDarkMode} />
+            <Container>
+            <Cart click={showCartClick}></Cart>
 
-            <Cart click={handleShowCartClick}></Cart>
-            {console.log(showCart)}
+
+
             {showCart && (
               <ShowShoppingCart
                 subcategories={subcategories}
               ></ShowShoppingCart>
             )}
+             </Container>
 
             <DropDownWrap icon={<Account />}>
               <LoginMenu>
