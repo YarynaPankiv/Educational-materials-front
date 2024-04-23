@@ -13,12 +13,18 @@ export const ShowCartProvider = ({ children }) => {
     console.log("Cart clicked");
   };
 
+  const showCartClick = () => {
+    setShowCart(true);
+
+  };
+
   // Передаємо стан та функцію через контекст
   return (
-    <CartContext.Provider value={{ showCart, handleShowCartClick }}>
+    <CartContext.Provider value={{ showCart, handleShowCartClick , showCartClick}}>
       {children}
     </CartContext.Provider>
   );
+
 };
 
 // Створюємо власний хук для спрощеного доступу до контексту

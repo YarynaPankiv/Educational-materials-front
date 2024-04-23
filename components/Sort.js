@@ -7,7 +7,7 @@ import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
 import { useState } from "react";
 
-const StyledDiv = styled.div`
+export const StyledDiv = styled.div`
   width: 250px;
   height: 225px;
   background-color: #ffffff;
@@ -15,7 +15,7 @@ const StyledDiv = styled.div`
   border: 1px solid #000000;
   z-index: 20;
 `;
-const Div = styled.div`
+export const Div = styled.div`
   margin-top: 20px;
   display: flex;
   flex-direction: column;

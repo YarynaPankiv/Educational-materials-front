@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { useContext } from "react";
 import { CartContext } from "@/Contexts/CartContext";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import BuyButton from "./Buttons/BuyButton";
 import CartDropDownWrap from "./DropDowns/CartDropDown";
 import { useCart } from "@/Contexts/ShowCart";
@@ -13,7 +13,7 @@ const ProductBox = styled.div`
   width: 455px;
   height: 300px;
   top:60px;
-  right:50px;
+  right:-195px;
   background-color:white;
   overflow-y: auto;
   overflow-x: hidden;
@@ -118,13 +118,27 @@ const getFileExtension = (fileName) => {
 
 export default function ShowShoppingCart({ subcategories }) {
   const { cartProducts, setCartProducts, deleteProductFromCart } = useContext(CartContext);
-  const { showCart, handleShowCartClick } = useCart(); 
+  const { showCart, handleShowCartClick } = useCart();
+  const ref = useRef();
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (ref.current && !ref.current.contains(event.target)) {
+        handleShowCartClick();
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [ref, handleShowCartClick]); 
 
   const totalCost = cartProducts.reduce((acc, curr) => acc + curr.price, 0);
 
   return (
     <>
-      <ProductBox>
+      <ProductBox ref={ref}>
         {cartProducts.length > 0 &&
           cartProducts.map((pr) => (
             <ProductOrder key={pr._id}>
