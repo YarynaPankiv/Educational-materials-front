@@ -8,6 +8,9 @@ import { IconTrash } from "@/components/ShoppingCart";
 import { PurpleText } from "@/components/ShoppingCart";
 import PayButton from "@/components/Buttons/PayButton";
 import { getFileExtension } from "./product/[id]";
+import PaymentButton from "@/components/Buttons/PaymentButton";
+import Header from "@/components/Header";
+import { useRouter } from 'next/router';
 
 // Створюємо стилі для контейнера замовлення
 const OrderContainer = styled.div`
@@ -42,7 +45,7 @@ const TotalCost = styled.div`
 const GreenPrice = styled.span`
   color: #327a4c;
   margin-left: 18px;
-  `
+`;
 const ProductOrder = styled.div`
   margin-top: 7px;
   display: flex;
@@ -66,7 +69,17 @@ const StyledH2 = styled.h2`
   font-size: 18px;
   margin-bottom: 25px;
 `;
+const PaymentMessage = styled.h1`
+  text-align: center;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: bolder;
+  margin-top:90px;
+  font-size: 32px;
+
+`
 export default function Checkout() {
+    const router = useRouter();
   const { cartProducts, setCartProducts, deleteProductFromCart } =
     useContext(CartContext);
 
@@ -84,7 +97,26 @@ export default function Checkout() {
     // Реалізуйте логіку для оформлення замовлення тут
     console.log("Order placed!");
   };
-
+  if (router.query.success === 'true') {
+    return(
+        <>
+        <Header>
+        </Header>
+        <PaymentMessage>Оплата пройшла успішно!</PaymentMessage>      
+        </>
+        );
+    
+  }
+  if (router.query.success === 'false') {
+    return(
+        <>
+        <Header>
+        <PaymentMessage>Оплата не пройшла успішно!</PaymentMessage>
+        </Header>
+        </>
+        );
+    
+  }
   return (
     <OrderContainer>
       <StyledH2>Оформлення замовлення</StyledH2>
@@ -132,7 +164,7 @@ export default function Checkout() {
           Загальна вартість: <GreenPrice>{totalCost} ГРН</GreenPrice>
         </TotalCost>
       )}
-      <PayButton></PayButton>
+      <PaymentButton></PaymentButton>
     </OrderContainer>
   );
 }
