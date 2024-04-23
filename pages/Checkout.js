@@ -9,31 +9,23 @@ import { PurpleText } from "@/components/ShoppingCart";
 import PayButton from "@/components/Buttons/PayButton";
 import { getFileExtension } from "./product/[id]";
 
-
 // Створюємо стилі для контейнера замовлення
 const OrderContainer = styled.div`
   margin: 20px auto;
   max-width: 600px;
-  padding: 20px;
-  border: 0.5 solid #ccc;
+  // padding: 2px;
+  border: 2px solid #ccc;
+  //border: 0.3px solid black;
+  border-radius: 10px;
 `;
 
-// Створюємо стилі для кнопки оформлення замовлення
-const CheckoutButton = styled.button`
-  background-color: #7469b6;
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
-`;
 const StyledCost = styled.p`
-  text-align: right;
+  //text-align: right;
   font-family: "Montserrat";
   font-style: normal;
   font-weight: bolder;
   font-size: 18px;
-  margin-right: 25px;
+  margin-left: 300px;
   color: #327a4c;
 `;
 const TotalCost = styled.div`
@@ -42,28 +34,37 @@ const TotalCost = styled.div`
   margin-top: 16px;
   margin-bottom: 15px;
   margin-right: 18px;
-  margin-left:10px;
+  margin-left: 10px;
   font-family: "Montserrat";
   font-style: normal;
   font-weight: bolder;
 `;
 const GreenPrice = styled.span`
   color: #327a4c;
-  
-  margin-right: 8px;
-`;
+  margin-left: 18px;
+  `
 const ProductOrder = styled.div`
-
+  margin-top: 7px;
   display: flex;
   flex-direction: column;
-  //  align-items: flex-start;
   position: relative;
-  width: 570px;
+  margin-left: 10px;
+  margin-right: 15px;
+  width: 580px;
   height: 150px;
-
+  border-radius: 20px;
   border: 0.2px solid #ccc;
   background-color: white;
-  z-index: 33;
+`;
+const StyledH2 = styled.h2`
+  text-align: left;
+  margin-left: 15px;
+
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: bolder;
+  font-size: 18px;
+  margin-bottom: 25px;
 `;
 export default function Checkout() {
   const { cartProducts, setCartProducts, deleteProductFromCart } =
@@ -86,8 +87,9 @@ export default function Checkout() {
 
   return (
     <OrderContainer>
-      <h2>Оформлення замовлення</h2>
-      {cartProducts && cartProducts.map((pr) => (
+      <StyledH2>Оформлення замовлення</StyledH2>
+      {cartProducts &&
+        cartProducts.map((pr) => (
           <ProductOrder key={pr._id}>
             <IconTrash onClick={() => deleteProductFromCart(pr._id)}>
               <svg
@@ -110,18 +112,6 @@ export default function Checkout() {
                 <p key={pr._id}>
                   <b>{pr.productName}</b>
                 </p>
-                {/* {subcategories &&
-                  subcategories.map((subcat) => {
-                    if (subcat._id === pr.subcategory) {
-                      return (
-                        <p key={subcat._id}>
-                          Категорія:
-                          <PurpleText>{subcat.subCategoryName}</PurpleText>{" "}
-                        </p>
-                      );
-                    }
-                    return null;
-                  })} */}
                 <p key={pr._id}>
                   Формат:{" "}
                   <PurpleText>
@@ -137,13 +127,12 @@ export default function Checkout() {
             </ProductImageWrapper>
           </ProductOrder>
         ))}
-        {totalCost > 0 && (
-          <TotalCost>
-            Загальна вартість: <GreenPrice>{totalCost} ГРН</GreenPrice>
-          </TotalCost>
-        )}
-       <PayButton></PayButton>
+      {totalCost > 0 && (
+        <TotalCost>
+          Загальна вартість: <GreenPrice>{totalCost} ГРН</GreenPrice>
+        </TotalCost>
+      )}
+      <PayButton></PayButton>
     </OrderContainer>
-    
   );
 }

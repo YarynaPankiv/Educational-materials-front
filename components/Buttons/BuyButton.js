@@ -4,29 +4,6 @@
   import { useCart } from "@/Contexts/ShowCart";
 
 
-  // const PurpleButton = styled.button`
-  //   background-color: #7469b6;
-  //   font-family: "Rubik Mono One";
-  //   font-style: normal;
-  //   font-weight: 400;
-  //   font-size: 16px;
-  //   line-height: 20px;
-  //   border: none;
-  //   color: #fffcfc;
-  //   height: 40px;
-  //   width: 170px; 
-  //   background: #ad88c6;
-  //   border-radius: 10px;
-  //   margin-left: 140px;
-  //   border: none;
-  //   cursor: pointer;
-  //   transition: background-color 0.5s ease;
-  //   &:hover{
-  //     background-color: #7469B6;
-  // ;
-  //     border:none;
-  //   } 
-  // `;
 
   const PurpleButton = styled.button`
   background-color: #7469b6;
@@ -43,6 +20,7 @@
   border-radius: 10px;
   margin-left: 140px;
   border: none;
+  margin-right: 10px;
   cursor: pointer;
 
 `;
