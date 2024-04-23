@@ -1,60 +1,32 @@
-import styled from "styled-components";
-import { useContext } from "react";
 import { CartContext } from "@/Contexts/CartContext";
-import { useEffect, useState } from "react";
-import BuyButton from "./Buttons/BuyButton";
-import CartDropDownWrap from "./DropDowns/CartDropDown";
-import PayButton from "./Buttons/PayButton";
+import BuyButton from "@/components/Buttons/BuyButton";
+import { useContext } from "react";
+import styled from "styled-components";
+import { ProductImageWrapper } from "@/components/ShoppingCart";
+import { StyledImage } from "@/components/ShoppingCart";
+import { IconTrash } from "@/components/ShoppingCart";
+import { PurpleText } from "@/components/ShoppingCart";
+import PayButton from "@/components/Buttons/PayButton";
+import { getFileExtension } from "./product/[id]";
 
-const ProductBox = styled.div`
-  box-sizing: border-box;
-  position:absolute;
-  width: 455px;
-  height: 281px;
-  top:60px;
-  right:50px;
-  background-color:white;
-  overflow-y: auto;
-  overflow-x: hidden;
-  border: 1px solid black;
+
+// Створюємо стилі для контейнера замовлення
+const OrderContainer = styled.div`
+  margin: 20px auto;
+  max-width: 600px;
+  padding: 20px;
+  border: 0.5 solid #ccc;
 `;
 
-const ProductOrder = styled.div`
-
-  display: flex;
-  flex-direction: column;
-  //  align-items: flex-start;
-  position: relative;
-  width: 455px;
-  height: 150px;
-
-  border: 0.5px solid black;
-  background-color: white;
-  z-index: 33;
+// Створюємо стилі для кнопки оформлення замовлення
+const CheckoutButton = styled.button`
+  background-color: #7469b6;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
 `;
-
-export const ProductImageWrapper = styled.div`
-  display: flex;
-  align-items: center;
-`;
-
-export const StyledImage = styled.img`
-  width: 140px;
-  height: auto;
-
-  margin-right: 15px;
-`;
-
-const ProductInfo = styled.div`
-  width: 300px;
-`;
-
-export const PurpleText = styled.span`
-  color: #7469b6;
-  font-weight: bold;
-  margin-left: 15px;
-`;
-
 const StyledCost = styled.p`
   text-align: right;
   font-family: "Montserrat";
@@ -64,49 +36,58 @@ const StyledCost = styled.p`
   margin-right: 25px;
   color: #327a4c;
 `;
+const TotalCost = styled.div`
+  text-align: left;
 
-export const IconTrash = styled.div`
-  border-radius: 50%;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  position: absolute;
-  margin-right: 17px;
-  margin-top: 7px;
-  right: 0;
-  top: 0;
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-`;
- const TotalCost = styled.div`
-  text-align: right;
   margin-top: 16px;
   margin-bottom: 15px;
+  margin-right: 18px;
+  margin-left:10px;
   font-family: "Montserrat";
   font-style: normal;
   font-weight: bolder;
 `;
- const GreenPrice = styled.span`
+const GreenPrice = styled.span`
   color: #327a4c;
-  margin-left: 12px;
-  margin-right:8px;
+  
+  margin-right: 8px;
 `;
+const ProductOrder = styled.div`
 
-const getFileExtension = (fileName) => {
-  if (fileName) {
-    return fileName.split(".").pop();
-  }
-  return;
-};
+  display: flex;
+  flex-direction: column;
+  //  align-items: flex-start;
+  position: relative;
+  width: 570px;
+  height: 150px;
 
-export default function ShowShoppingCart({ subcategories }) {
-  const { cartProducts, setCartProducts, deleteProductFromCart } = useContext(CartContext);
+  border: 0.2px solid #ccc;
+  background-color: white;
+  z-index: 33;
+`;
+export default function Checkout() {
+  const { cartProducts, setCartProducts, deleteProductFromCart } =
+    useContext(CartContext);
 
-  const totalCost = cartProducts.reduce((acc, curr) => acc + curr.price, 0);
+  // Функція для розрахунку загальної суми замовлення
+  const calculateTotal = () => {
+    let total = 0;
+    cartProducts.forEach((product) => {
+      total += product.price;
+    });
+    return total;
+  };
+  const totalCost = calculateTotal();
+  // Функція для оформлення замовлення
+  const handleCheckout = () => {
+    // Реалізуйте логіку для оформлення замовлення тут
+    console.log("Order placed!");
+  };
 
   return (
-    <>
-       <ProductBox>
-        {cartProducts && cartProducts.map((pr) => (
+    <OrderContainer>
+      <h2>Оформлення замовлення</h2>
+      {cartProducts && cartProducts.map((pr) => (
           <ProductOrder key={pr._id}>
             <IconTrash onClick={() => deleteProductFromCart(pr._id)}>
               <svg
@@ -125,11 +106,11 @@ export default function ShowShoppingCart({ subcategories }) {
 
             <ProductImageWrapper>
               <StyledImage src={pr.images[0]} />
-              <ProductInfo>
+              <ul>
                 <p key={pr._id}>
                   <b>{pr.productName}</b>
                 </p>
-                {subcategories &&
+                {/* {subcategories &&
                   subcategories.map((subcat) => {
                     if (subcat._id === pr.subcategory) {
                       return (
@@ -140,7 +121,7 @@ export default function ShowShoppingCart({ subcategories }) {
                       );
                     }
                     return null;
-                  })}
+                  })} */}
                 <p key={pr._id}>
                   Формат:{" "}
                   <PurpleText>
@@ -152,7 +133,7 @@ export default function ShowShoppingCart({ subcategories }) {
                 <p key={pr._id}>
                   <StyledCost>{pr.price} ГРН</StyledCost>
                 </p>
-              </ProductInfo>
+              </ul>
             </ProductImageWrapper>
           </ProductOrder>
         ))}
@@ -162,7 +143,7 @@ export default function ShowShoppingCart({ subcategories }) {
           </TotalCost>
         )}
        <PayButton></PayButton>
-      </ProductBox>
-    </>
+    </OrderContainer>
+    
   );
 }
