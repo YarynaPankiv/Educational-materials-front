@@ -11,10 +11,17 @@ import SubCategory from "@/models/SubCategory";
 import ShowFeedbacks from "@/components/Feedbacks/ShowFeedbacks";
 import { Feedback } from "@/models/Feedback";
 import { Rating } from "@mui/material";
-import ShoppingCart from "@/components/ShoppingCart";
+import ShowShoppingCart from "@/components/ShoppingCart";
 import BuyButton from "@/components/Buttons/BuyButton";
 import { useState } from "react";
 import axios from "axios";
+import { CartContext } from "@/Contexts/CartContext";
+import { useContext } from "react";
+import CartDropDownWrap from "@/components/DropDowns/CartDropDown";
+import { ShowCartProvider } from "@/Contexts/ShowCart";
+import { useCart } from "@/Contexts/ShowCart";
+
+
 const ColWrapper = styled.div`
   display: grid;
   grid-template-columns: 0.8fr 1.2fr;
@@ -74,6 +81,7 @@ export async function getServerSideProps(context) {
   };
 }
 
+
 export default function ProductPage({
   product,
   categories,
@@ -81,6 +89,9 @@ export default function ProductPage({
   id,
   feedbacks,
 }) {
+  const { addToCart } = useContext(CartContext);
+  const { showCart, handleShowCartClick } = useCart(); 
+
   const totalRating = feedbacks.reduce(
     (total, feedback) => total + feedback.rate,
     0
@@ -88,6 +99,10 @@ export default function ProductPage({
 
   const averageRating =
     feedbacks.length > 0 ? totalRating / feedbacks.length : 0.0;
+
+
+
+    
   return (
     <>
       <Center>
@@ -128,13 +143,12 @@ export default function ProductPage({
             </div>
             {console.log(product)}
             <DivInline>
-              <ShoppingCart
-                icon={<BuyButton></BuyButton>}
-                product={product}
-                subcategories={subcategories}
-              ></ShoppingCart>
+              
+            <BuyButton product={product}></BuyButton>
+            
             </DivInline>
           </div>
+          
           <AddFeedback id={id} />
           <ShowFeedbacks product={product} feedbacks={feedbacks} />
         </ColWrapper>

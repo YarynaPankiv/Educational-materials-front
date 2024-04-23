@@ -6,7 +6,7 @@ import { useContext } from "react";
 import { useState } from "react";
 import CartDropDownWrap from "../DropDowns/CartDropDown";
 import Cart from "../headerComponents.js/cart";
-
+import { useCart } from "@/Contexts/ShowCart";
 const StyledProduct = styled.div`
   width: 218px;
   height: 287px;
@@ -72,38 +72,32 @@ const StyledLink = styled(Link)`
   text-decoration: none;
 `;
 
-export default function ProductBox({ _id, images, productName, price }) {
+export default function ProductBox({ product }) {
   const [addedToCart, setAddedToCart] = useState(false);
 
-  const url = "/product/" + _id;
+  const url = "/product/" + product._id;
+  const { cartProducts, setCartProducts, deleteProductFromCart,addToCart } = useContext(CartContext);
 
-  const { setCartProducts } = useContext(CartContext);
-
-  const addToCart = () => {
-    const productToAdd = {
-      _id,
-      images,
-      productName,
-      price,
-    };
-
-    setCartProducts((prev) => [...prev, productToAdd]);
-    setAddedToCart(true);
+  const { showCart, handleShowCartClick } = useCart(); 
+  const handleClick = () => {
+    addToCart(product);
+    handleShowCartClick(); // Додаємо виклик функції handleShowCartClick при натисканні на кнопку
   };
+
   return (
     <Center>
       <StyledProduct href={url}>
         <ImgWrraper>
           <Link href={url}>
-            <StyledPNG src={images[0]} alt="Product Image" />
+            <StyledPNG src={product.images[0]} alt="Product Image" />
           </Link>
         </ImgWrraper>
 
         <StyledLink href={url}>
-          <StyledName>{productName}</StyledName>
+          <StyledName>{product.productName}</StyledName>
         </StyledLink>
-        <StyledCost>{price} UAH</StyledCost>
-        <StyledAddToCart onClick={addToCart}>
+        <StyledCost>{product.price} UAH</StyledCost>
+        <StyledAddToCart onClick={() => handleClick()}>
           <svg
             width="25"
             height="20"

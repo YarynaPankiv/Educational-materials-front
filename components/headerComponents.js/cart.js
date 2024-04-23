@@ -7,10 +7,10 @@ const StyledLink = styled.link`
 `
 
 
-export default function Cart(){
+export default function Cart({click}){
     return (
    
-        <IconWithText >
+        <IconWithText onClick={click}>
         <StyledIcon
           width="22"
           height="20"
