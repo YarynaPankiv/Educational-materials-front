@@ -1,40 +1,62 @@
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-
-
-import { useRouter } from "next/router";
+import axios from "axios";
 import MyInput from "./Login/MyInput";
 import LoginButton from "./Login/LoginButton";
-
+import { useParams } from "react-router-dom";
+import { useAuth } from "@/Contexts/AccountContext";
 const UserEditor = () => {
-  const router = useRouter();
+  const { user } = useAuth(); // Отримання поточного користувача з контексту
 
-  const saveData = () => {
-    const user = {
-      email: email,
-      name: name,
-      surname: surname,
-    };
-    router.push("/");
-  };
-
-  const savePassword = () => {
-    if(newPassword === checkPassword){
-    const user = {
-      password: password,
-      newPassword: newPassword,
-    };
-    router.push("/");
-  }else
-  alert("пароль не співпадає з новим паролем")
-  };
-
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
+  const [password, setPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [checkPassword, setCheckPassword] = useState("");
+  const [emailField, setEmailField] = useState("");
+  const [userId, setUserId] = useState("");
+  useEffect(() => {
+    if (user) {
+      console.log(user);
+      setName(user.data.name);
+      setSurname(user.data.surname);
+      setPassword(user.data.password);
+      setEmailField(user.data.email);
+      setUserId(user.data._id);
+    }
+  
+  }, [user]);
+
+  
+  const saveData = async () => {
+    try {
+      const response = await axios.put(`/api/loginUser?_id=${userId}`, {
+        _id: userId,
+        email: emailField,
+        name,
+        surname,
+        password,
+      });
+      console.log("User data updated:", response.data);
+    } catch (error) {
+      console.error("Error updating user data:", error);
+    }
+  };
+
+  const savePassword = async () => {
+    try {
+      const response = await axios.put(`/api/loginUser?_id=${userId}`, {
+        _id:userId,
+        email:emailField,
+        name,
+        surname,
+        password:newPassword,
+      });
+      console.log("Password updated:", response.data);
+    } catch (error) {
+      console.error("Error updating password:", error);
+    }
+  };
 
   return (
     <Page>
@@ -44,8 +66,8 @@ const UserEditor = () => {
           <MyInput
             text={"Адреса електронної пошти"}
             type={"email"}
-            value={email}
-            setValue={setEmail}
+            value={emailField}
+            setValue={setEmailField}
             theme="common"
           />
         </InputContainer>
@@ -75,7 +97,7 @@ const UserEditor = () => {
           <Text>Пароль</Text>
           <MyInput
             text={"Поточний пароль"}
-            type={"password"}
+            type={"text"}
             value={password}
             setValue={setPassword}
             theme="common"
@@ -135,4 +157,9 @@ const Text = styled.div`
 const InputContainer = styled.div`
   padding: 10px 0;
 `;
+
+const ButtonWrapper = styled.div`
+  padding-top: 20px;
+`;
+
 export default UserEditor;

@@ -9,20 +9,19 @@ import PayButton from "./Buttons/PayButton";
 
 const ProductBox = styled.div`
   box-sizing: border-box;
-  position:absolute;
+  position: absolute;
   width: 455px;
   height: 300px;
-  top:60px;
-  right:-195px;
-  background-color:white;
+  top: 53px;
+  right: -195px;
+  background-color: white;
   overflow-y: auto;
   overflow-x: hidden;
   border: 1px solid black;
-  z-index: 30;
+  z-index: 33;
 `;
 
 const ProductOrder = styled.div`
-
   display: flex;
   flex-direction: column;
   position: relative;
@@ -77,7 +76,7 @@ export const IconTrash = styled.div`
   align-items: center;
   cursor: pointer;
 `;
- const TotalCost = styled.div`
+const TotalCost = styled.div`
   text-align: right;
   margin-top: 16px;
   margin-bottom: 15px;
@@ -85,29 +84,27 @@ export const IconTrash = styled.div`
   font-style: normal;
   font-weight: bolder;
 `;
- const GreenPrice = styled.span`
+const GreenPrice = styled.span`
   color: #327a4c;
   margin-left: 12px;
-  margin-right:8px;
+  margin-right: 8px;
 `;
 
 const StyledEmptyCart = styled.p`
-     font-family: "Rubik Mono One", sans-serif;
-     font-size: 20px;
-     margin-left: 70px;
-     margin-top: 100px;
-`
+  font-family: "Rubik Mono One", sans-serif;
+  font-size: 20px;
+  margin-left: 70px;
+  margin-top: 100px;
+`;
 const ContinueBuying = styled.p`
- margin-left: 170px;
+  margin-left: 170px;
   color: gray;
   cursor: pointer;
- &:hover {
-   text-decoration: underline;
-   color: #AD88C6;
- }
- 
-
-`
+  &:hover {
+    text-decoration: underline;
+    color: #ad88c6;
+  }
+`;
 
 const getFileExtension = (fileName) => {
   if (fileName) {
@@ -117,7 +114,8 @@ const getFileExtension = (fileName) => {
 };
 
 export default function ShowShoppingCart({ subcategories }) {
-  const { cartProducts, setCartProducts, deleteProductFromCart } = useContext(CartContext);
+  const { cartProducts, setCartProducts, deleteProductFromCart } =
+    useContext(CartContext);
   const { showCart, handleShowCartClick } = useCart();
   const ref = useRef();
 
@@ -128,11 +126,11 @@ export default function ShowShoppingCart({ subcategories }) {
       }
     };
 
-    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [ref, handleShowCartClick]); 
+  }, [ref, handleShowCartClick]);
 
   const totalCost = cartProducts.reduce((acc, curr) => acc + curr.price, 0);
 
@@ -169,7 +167,9 @@ export default function ShowShoppingCart({ subcategories }) {
                         return (
                           <p key={subcat._id}>
                             Категорія:
-                            <PurpleText>{subcat.subCategoryName}</PurpleText>{" "}
+                            <PurpleText>
+                              {subcat.subCategoryName}
+                            </PurpleText>{" "}
                           </p>
                         );
                       }
@@ -192,23 +192,22 @@ export default function ShowShoppingCart({ subcategories }) {
           ))}
         {cartProducts.length > 0 && totalCost > 0 && (
           <>
-          <TotalCost>
-            Загальна вартість: <GreenPrice>{totalCost} ГРН</GreenPrice>
-          </TotalCost>
-          <PayButton></PayButton>
+            <TotalCost>
+              Загальна вартість: <GreenPrice>{totalCost} ГРН</GreenPrice>
+            </TotalCost>
+            <PayButton></PayButton>
           </>
         )}
 
         {cartProducts.length == 0 && (
           <>
-          <StyledEmptyCart>Ваша корзина пуста</StyledEmptyCart>
-          <ContinueBuying onClick={handleShowCartClick}>Продовжити</ContinueBuying>
+            <StyledEmptyCart>Ваша корзина пуста</StyledEmptyCart>
+            <ContinueBuying onClick={handleShowCartClick}>
+              Продовжити
+            </ContinueBuying>
           </>
-        )
-        }
-
+        )}
       </ProductBox>
     </>
   );
 }
-

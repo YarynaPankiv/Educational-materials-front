@@ -20,10 +20,13 @@ width: 170px;
 background: #ad88c6;
 border-radius: 10px;
 margin-top:25px;
-margin-left: 224px;
+margin-left: 160px;
 margin-bottom:25px;
 border: none;
 cursor: pointer;
+:hover{
+    background: #7469b6;
+}
 
 `;
 const SvgCart = styled.svg`

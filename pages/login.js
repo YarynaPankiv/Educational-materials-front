@@ -4,6 +4,8 @@ import styled from "styled-components";
 import LoginButton from "@/components/Login/LoginButton";
 import MyInput from "@/components/Login/MyInput";
 import { useRouter } from "next/router";
+import axios from "axios";
+import { useAuth } from "@/Contexts/AccountContext";
 
 const LoginPage = ({ toggleDarkMode }) => {
   const router = useRouter();
@@ -11,17 +13,37 @@ const LoginPage = ({ toggleDarkMode }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const loginUser = () => {
-    const user = {
-      email: email,
-      password: password,
-    };
-    router.push("/user-profile/user-info");
+  const { login } = useAuth();
+
+  const loginUser = async () => {
+    if (!email || !password) {
+      console.error("Please fill in all fields.");
+      return;
+    }
+    try {
+      // Здійснюємо запит до вашого API для перевірки користувача
+      const response = await axios.post("/api/loginUser", {
+        email: email,
+        password: password,
+      });
+
+      if (response.data.success) {
+        console.log("User logged in successfully.");
+        login(response.data);
+        router.push({
+          pathname: "/user-profile/user-info",
+          query: { email: email },
+        });
+      } else {
+        console.error("Invalid email or password.");
+      }
+    } catch (error) {
+      console.error("Error during login:", error);
+    }
   };
   const goToRegister = () => {
     router.push("/registration");
   };
-  
 
   return (
     <Page>

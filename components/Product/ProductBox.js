@@ -67,6 +67,7 @@ const StyledAddToCart = styled.div`
   margin-right: 20px;
   margin-bottom: 10px;
   cursor: pointer;
+  
 `;
 const StyledLink = styled(Link)`
   text-decoration: none;

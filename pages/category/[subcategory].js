@@ -10,10 +10,10 @@ import { Category } from "@/models/Category";
 import SubCategory from "@/models/SubCategory.js";
 import ProductsGrid from '@/components/Product/ProductsGrid';
 import Link from 'next/link';
-import Sort from '@/components/Sort';
+import Sort from '@/components/Sort/Sort';
 import SortDropDown from "@/components/DropDowns/SortDropDown"
 import PriceSortDropDown from "@/components/DropDowns/PriceSortDropDown"
-import PriceSort from '@/components/PriceSort';
+import PriceSort from '@/components/Sort/PriceSort';
 
 export const StyledLink = styled(Link)`
     text-decoration: none;

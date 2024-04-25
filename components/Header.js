@@ -13,6 +13,9 @@ import CategoriesDropDown from "./DropDowns/CategoriesDropDown";
 import BuyButton from "./Buttons/BuyButton";
 import { useState } from "react";
 import { useCart } from "@/Contexts/ShowCart";
+import { useAuth } from "@/Contexts/AccountContext";
+
+import UserProfilePage from "@/pages/user-profile/[...path]";
 export const StyledIcon = styled.svg`
   width: 21px;
   height: 20px;
@@ -104,12 +107,13 @@ const Container = styled.div`
 `;
 
 export default function Header({ toggleDarkMode, categories, subcategories }) {
-  
-  const { showCart, handleShowCartClick, showCartClick } = useCart(); 
-    const handleClick = () => {
-      addToCart(product);
-      handleShowCartClick(); 
-    };
+  const { isLogin } = useAuth();
+
+  const { showCart, handleShowCartClick, showCartClick } = useCart();
+  const handleClick = () => {
+    addToCart(product);
+    handleShowCartClick();
+  };
   const router = useRouter();
 
   const goToRegister = () => {
@@ -138,31 +142,37 @@ export default function Header({ toggleDarkMode, categories, subcategories }) {
           <AllIcons>
             <Theme toggleDarkMode={toggleDarkMode} />
             <Container>
-            <Cart click={showCartClick}></Cart>
+              <Cart click={showCartClick}></Cart>
 
-
-
-            {showCart && (
-              <ShowShoppingCart
-                subcategories={subcategories}
-              ></ShowShoppingCart>
-            )}
-             </Container>
+              {showCart && (
+                <ShowShoppingCart
+                  subcategories={subcategories}
+                ></ShowShoppingCart>
+              )}
+            </Container>
 
             <DropDownWrap icon={<Account />}>
-              <LoginMenu>
-                <Text2>Ви користувач?</Text2>
-                <ButtonWrapper>
-                  <LoginButton onClick={goToLogin}>УВІЙТИ</LoginButton>
-                </ButtonWrapper>
-                <Line />
-                <Text2>Це ваш перший візит?</Text2>
-                <ButtonWrapper>
-                  <LoginButton onClick={goToRegister}>
-                    ЗАРЕЄСТРУВАТИСЬ
-                  </LoginButton>
-                </ButtonWrapper>
-              </LoginMenu>
+              {!isLogin && (
+                <LoginMenu>
+                  <Text2>Ви користувач?</Text2>
+                  <ButtonWrapper>
+                    <LoginButton onClick={goToLogin}>УВІЙТИ</LoginButton>
+                  </ButtonWrapper>
+                  <Line />
+                  <Text2>Це ваш перший візит?</Text2>
+                  <ButtonWrapper>
+                    <LoginButton onClick={goToRegister}>
+                      ЗАРЕЄСТРУВАТИСЬ
+                    </LoginButton>
+                  </ButtonWrapper>
+                </LoginMenu>
+              )}
+              {isLogin &&
+              <UserProfilePage 
+              toggleDarkMode={toggleDarkMode}
+             
+              />
+              }
             </DropDownWrap>
           </AllIcons>
         </HeaderDiv>

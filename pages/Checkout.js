@@ -83,7 +83,6 @@ export default function Checkout() {
   const { cartProducts, setCartProducts, deleteProductFromCart } =
     useContext(CartContext);
 
-  // Функція для розрахунку загальної суми замовлення
   const calculateTotal = () => {
     let total = 0;
     cartProducts.forEach((product) => {
@@ -92,12 +91,33 @@ export default function Checkout() {
     return total;
   };
   const totalCost = calculateTotal();
-  // Функція для оформлення замовлення
-  const handleCheckout = () => {
-    // Реалізуйте логіку для оформлення замовлення тут
-    console.log("Order placed!");
-  };
+
   if (router.query.success === 'true') {
+    let fileInCart;
+  
+    cartProducts.map((pr) => {
+        if (pr.file && pr.file.length > 0) {
+            fileInCart = pr?.file[0]?.url;
+            //console.log(pr);
+        }
+    });
+    console.log(cartProducts);
+    console.log("FILEEEEEEEE", fileInCart);
+    const handleFileDownload = () => {
+        const fileURL = fileInCart;
+        const link = document.createElement('a');
+
+        link.href = fileURL;
+
+        document.body.appendChild(link);
+       
+        link.click();
+      
+        document.body.removeChild(link);
+    };
+   
+    handleFileDownload();
+
     return(
         <>
         <Header>
@@ -107,6 +127,7 @@ export default function Checkout() {
         );
     
   }
+
   if (router.query.success === 'false') {
     return(
         <>
