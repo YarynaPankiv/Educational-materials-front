@@ -115,6 +115,7 @@ export async function getServerSideProps(context) {
     };
 }
 export default function ProductsInSubcategory({ categories, subcategories, subcategory, allProducts }) {
+
     const [selectedClass, setSelectedClass] = useState(null);
     const [selectedSortType, setSelectedSortType] = useState(null);
 
@@ -136,6 +137,7 @@ export default function ProductsInSubcategory({ categories, subcategories, subca
     });
 
     useEffect(() => {
+
         const filtered = allProducts.reduce((accumulator, product) => {
             if (product.subcategory && product.subcategory === id) {
                 const subcategoryName = product.subcategory.subCategoryName;

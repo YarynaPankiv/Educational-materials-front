@@ -55,6 +55,8 @@ export default function CategoriesButton({ categories, subcategories }) {
           </StyledSVG>
         )}
 
+        {console.log(showCategories)}
+
         {showCategories && (
           <StyledCloseSvg
             width="12"
