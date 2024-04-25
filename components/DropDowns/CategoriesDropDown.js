@@ -40,7 +40,7 @@ const ContentWrap = styled.div`
   left: 100px;
   top: 78px;
   background-color: white;
-  z-index: 13;
+  z-index: 32;
 `;
 
 const Wrap = styled.div`

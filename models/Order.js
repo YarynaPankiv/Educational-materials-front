@@ -10,10 +10,8 @@ const OrderSchema = new Schema({
 let Order;
 
 try {
-  // Перевіряємо, чи існує модель Order
   Order = model("Order");
 } catch (error) {
-  // Якщо модель не існує, створюємо нову модель Order
   Order = model("Order", OrderSchema);
 }
 

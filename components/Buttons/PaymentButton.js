@@ -21,9 +21,9 @@
   width: 170px; 
   background: #ad88c6;
   border-radius: 10px;
-  margin-top:25px;
-  margin-left: 224px;
-  margin-bottom:25px;
+  margin-top:10px;
+  margin-bottom: 10px;
+
   border: none;
   cursor: pointer;
 

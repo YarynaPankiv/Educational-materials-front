@@ -47,7 +47,9 @@ const RegisterPage = ({ toggleDarkMode }) => {
 
   return (
     <Page>
-      <Header toggleDarkMode={toggleDarkMode} />
+    <Header toggleDarkMode={toggleDarkMode} />
+    <LogoWithoutPurple></LogoWithoutPurple>
+
       <Container>
         <SecondHalf>
           <Text>Ви користувач?</Text>
@@ -98,6 +100,7 @@ const RegisterPage = ({ toggleDarkMode }) => {
         </FirstHalf>
       </Container>
     </Page>
+
   );
 };
 

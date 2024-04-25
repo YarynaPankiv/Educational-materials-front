@@ -62,6 +62,7 @@ const StyledLink = styled(Link)`
 `;
 
 export default function Categories({ categories, subcategories}) {
+  const {showCategories, setShowCategories} = useCategories();
 
   const categoriesWithSubcategories = categories.reduce((acc, category) => {
     const subcategoriesForCategory = subcategories
@@ -82,7 +83,6 @@ export default function Categories({ categories, subcategories}) {
     setSelectedCategory(category);
   };
   
-  const { showCategories, setShowCategories } = useCategories();
 
   return (
     <StyledCategories id="categoriesContainer">
@@ -106,7 +106,7 @@ export default function Categories({ categories, subcategories}) {
             categoriesWithSubcategories[selectedcategory].map(
               (subcategory, index) => (
                 <StyledLink key={index} href={`/category/${subcategory}`} >
-                  <SubCategoryText>{subcategory}</SubCategoryText>
+                  <SubCategoryText onClick={setShowCategories(false)}>{subcategory}</SubCategoryText>
                 </StyledLink>
               )
             )}

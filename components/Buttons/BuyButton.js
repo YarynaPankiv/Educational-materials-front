@@ -3,8 +3,6 @@
   import { CartContext } from "@/Contexts/CartContext";
   import { useCart } from "@/Contexts/ShowCart";
 
-
-
   const PurpleButton = styled.button`
   background-color: #7469b6;
   font-family: "Rubik Mono One";

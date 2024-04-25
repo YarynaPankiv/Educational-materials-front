@@ -47,7 +47,8 @@ const LoginPage = ({ toggleDarkMode }) => {
 
   return (
     <Page>
-      <Header toggleDarkMode={toggleDarkMode} />
+    <Header toggleDarkMode={toggleDarkMode} />
+      <LogoWithoutPurple / >
       <Container>
         <FirstHalf>
           <Text>Ви користувач?</Text>
