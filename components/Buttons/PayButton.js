@@ -24,6 +24,9 @@ margin-left: 150px;
 margin-bottom:25px;
 border: none;
 cursor: pointer;
+:hover{
+    background: #7469b6;
+}
 
 `;
 const SvgCart = styled.svg`

@@ -16,10 +16,12 @@
     "axios": "^1.6.8",
     "babel": "^6.23.0",
     "default": "^0.1.1",
+    "liqpay": "^0.0.1",
     "mongoose": "^8.3.2",
     "next": "^14.2.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-router-dom": "^6.23.0",
     "stripe": "^15.3.0",
     "styled-components": "^6.1.8"
   },

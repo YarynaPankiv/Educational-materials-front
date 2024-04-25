@@ -4,7 +4,7 @@ import styled from "styled-components";
 import LoginButton from "@/components/Login/LoginButton";
 import MyInput from "@/components/Login/MyInput";
 import { useRouter } from "next/router";
-import LogoWithoutPurple from "@/components/Logo/LogoWithoutPurple";
+import axios from "axios";
 
 const RegisterPage = ({ toggleDarkMode }) => {
   const router = useRouter();
@@ -14,15 +14,33 @@ const RegisterPage = ({ toggleDarkMode }) => {
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
 
-  const registerUser = () => {
-    const user = {
-      email: email,
-      password: password,
-      name: name,
-      surname: surname,
-    };
-    router.push("/user-profile/user-info");
-  };
+  async function registerUser() {
+    if (!name || !surname || !email || !password) {
+      console.error("Please fill in all fields.");
+      return;
+    }
+    try {
+      const checkUser = await axios.get(`/api/registerUser?email=${email}`);
+      if (checkUser.data.success) {
+        alert("User with this email already exists.");
+        return;
+      }
+
+      const newUser = await axios.post("/api/registerUser", {
+        name: name,
+        surname: surname,
+        email: email,
+        password: password,
+      });
+
+      console.log(newUser);
+      router.push("/user-profile/user-info");
+    } catch (error) {
+      console.error("Error during registration:", error);
+     
+    }
+  }
+
   const goToLogin = () => {
     router.push("/login");
   };
@@ -48,6 +66,7 @@ const RegisterPage = ({ toggleDarkMode }) => {
               value={email}
               setValue={setEmail}
               theme="auth"
+              required
             />
           </InputWrapper>
           <NameWrap>
@@ -76,9 +95,7 @@ const RegisterPage = ({ toggleDarkMode }) => {
             />
           </InputWrapper>
           <Wrapper>
-            <LoginButton onClick={registerUser} href={"/"}>
-              ЗАРЕЄСТРУВАТИСЬ
-            </LoginButton>
+            <LoginButton onClick={registerUser}>ЗАРЕЄСТРУВАТИСЬ</LoginButton>
           </Wrapper>
         </FirstHalf>
       </Container>

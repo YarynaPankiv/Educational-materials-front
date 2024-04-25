@@ -1,9 +1,10 @@
 import { createGlobalStyle } from "styled-components";
 import Head from "next/head";
-import  { useState } from "react";
+import { useState } from "react";
 import { CartContextProvider } from "@/Contexts/CartContext";
 import { CategoriesProvider } from "@/Contexts/CategoriesContext";
 import { ShowCartProvider } from "@/Contexts/ShowCart";
+import { AuthProvider } from "@/Contexts/AccountContext";
 
 const GlobalStyles = createGlobalStyle`
   * {
@@ -34,16 +35,17 @@ export default function App({ Component, pageProps }) {
 
   return (
     <>
-    <ShowCartProvider>
-    <CartContextProvider>
-        <CategoriesProvider>
-          <GlobalStyles darkMode={darkMode} />
-          <Component {...pageProps} toggleDarkMode={toggleDarkMode} />
-          <Head />
-        </CategoriesProvider>
-      </CartContextProvider>
-    </ShowCartProvider>
-     
+      <AuthProvider>
+        <ShowCartProvider>
+          <CartContextProvider>
+            <CategoriesProvider>
+              <GlobalStyles darkMode={darkMode} />
+              <Component {...pageProps} toggleDarkMode={toggleDarkMode} />
+              <Head />
+            </CategoriesProvider>
+          </CartContextProvider>
+        </ShowCartProvider>
+      </AuthProvider>
     </>
   );
 }

@@ -33,7 +33,7 @@ const UserProfilePage = ({ toggleDarkMode, path }) => {
 
   return (
     <>
-    <Header toggleDarkMode={toggleDarkMode} />
+    {/* <Header toggleDarkMode={toggleDarkMode} /> */}
     <LogoWithoutPurple />
 
     <Page>
@@ -66,7 +66,9 @@ const Point = styled(Link)`
     text-decoration: underline;
   }
 
-  ${({ isActive }) => isActive && css`
+  ${({ isActive }) =>
+    isActive &&
+    css`
       text-decoration: underline;
     `}
 `;
