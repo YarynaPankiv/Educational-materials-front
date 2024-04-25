@@ -8,36 +8,29 @@ import { useCart } from "@/Contexts/ShowCart";
 import PayButton from "./Buttons/PayButton";
 
 const ProductBox = styled.div`
-  position: relative;
-  width: 465px;
-  height: auto;
-  background-color: white;
+  box-sizing: border-box;
+  position:absolute;
+  width: 455px;
+  height: 300px;
+  top:60px;
+  right:-195px;
+  background-color:white;
   overflow-y: auto;
   overflow-x: hidden;
-  display: flex;
-  flex-direction: column;
-`;
-
-const Wrapper = styled.div`
-  position: absolute;
-  top: 60px;
-  right: -195px;
-  border: 1px solid #a2a7af;
+  border: 1px solid black;
   z-index: 30;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  background-color: white;
-
 `;
 
 const ProductOrder = styled.div`
+
   display: flex;
   flex-direction: column;
   position: relative;
-  width: 100%;
-  height: 170px;
-  border: 0.5px solid #a2a7af;
+  width: 455px;
+  height: 150px;
+  border: 0.5px solid black;
   background-color: white;
-  padding: 5px;
+  z-index: 33;
 `;
 
 export const ProductImageWrapper = styled.div`
@@ -48,8 +41,8 @@ export const ProductImageWrapper = styled.div`
 export const StyledImage = styled.img`
   width: 140px;
   height: auto;
-  margin-left: 10px;
-  margin-right: 10px;
+
+  margin-right: 15px;
 `;
 
 const ProductInfo = styled.div`
@@ -59,7 +52,7 @@ const ProductInfo = styled.div`
 export const PurpleText = styled.span`
   color: #7469b6;
   font-weight: bold;
-  margin-left: 10px;
+  margin-left: 15px;
 `;
 
 const StyledCost = styled.p`
@@ -67,7 +60,7 @@ const StyledCost = styled.p`
   font-family: "Montserrat";
   font-style: normal;
   font-weight: bolder;
-  font-size: 16px;
+  font-size: 18px;
   margin-right: 25px;
   color: #327a4c;
 `;
@@ -76,60 +69,43 @@ export const IconTrash = styled.div`
   border-radius: 50%;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   position: absolute;
-  margin-right: 10px;
-  margin-top: 10px;
+  margin-right: 17px;
+  margin-top: 7px;
   right: 0;
   top: 0;
   display: flex;
   align-items: center;
   cursor: pointer;
 `;
-
-const TotalCost = styled.div`
+ const TotalCost = styled.div`
   text-align: right;
+  margin-top: 16px;
+  margin-bottom: 15px;
   font-family: "Montserrat";
   font-style: normal;
   font-weight: bolder;
-  font-size: 18px;
-  margin-top: auto; 
-  margin-right: 25px;
-  background-color: white;
-
-
 `;
-
-const GreenPrice = styled.span`
+ const GreenPrice = styled.span`
   color: #327a4c;
   margin-left: 12px;
-  margin-right: 8px;
-  font-size: 18px;
+  margin-right:8px;
 `;
 
 const StyledEmptyCart = styled.p`
-  font-family: "Rubik Mono One", sans-serif;
-  font-size: 20px;
-  margin-left: 70px;
-  margin-top: 100px;
-`;
-
+     font-family: "Rubik Mono One", sans-serif;
+     font-size: 20px;
+     margin-left: 70px;
+     margin-top: 100px;
+`
 const ContinueBuying = styled.p`
-  margin-left: 170px;
+ margin-left: 170px;
   color: gray;
   cursor: pointer;
-  &:hover {
-    text-decoration: underline;
-    color: #ad88c6;
-  }
-`;
-
-const StyledName = styled.b`
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-`;
-
-const TotalCostP = styled.p`
- margin-top: 20px;
+ &:hover {
+   text-decoration: underline;
+   color: #AD88C6;
+ }
+ 
 
 `
 
@@ -141,9 +117,7 @@ const getFileExtension = (fileName) => {
 };
 
 export default function ShowShoppingCart({ subcategories }) {
-  const { cartProducts, setCartProducts, deleteProductFromCart } = useContext(
-    CartContext
-  );
+  const { cartProducts, setCartProducts, deleteProductFromCart } = useContext(CartContext);
   const { showCart, handleShowCartClick } = useCart();
   const ref = useRef();
 
@@ -154,17 +128,17 @@ export default function ShowShoppingCart({ subcategories }) {
       }
     };
 
-    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener('mousedown', handleClickOutside);
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, [ref, handleShowCartClick]);
+  }, [ref, handleShowCartClick]); 
 
   const totalCost = cartProducts.reduce((acc, curr) => acc + curr.price, 0);
 
   return (
-    <Wrapper>
-      <ProductBox ref={ref} >
+    <>
+      <ProductBox ref={ref}>
         {cartProducts.length > 0 &&
           cartProducts.map((pr) => (
             <ProductOrder key={pr._id}>
@@ -187,7 +161,7 @@ export default function ShowShoppingCart({ subcategories }) {
                 <StyledImage src={pr.images[0]} />
                 <ProductInfo>
                   <p key={pr._id}>
-                    <StyledName>{pr.productName}</StyledName>
+                    <b>{pr.productName}</b>
                   </p>
                   {subcategories &&
                     subcategories.map((subcat) => {
@@ -195,9 +169,7 @@ export default function ShowShoppingCart({ subcategories }) {
                         return (
                           <p key={subcat._id}>
                             Категорія:
-                            <PurpleText>
-                              {subcat.subCategoryName}
-                            </PurpleText>{" "}
+                            <PurpleText>{subcat.subCategoryName}</PurpleText>{" "}
                           </p>
                         );
                       }
@@ -218,27 +190,24 @@ export default function ShowShoppingCart({ subcategories }) {
               </ProductImageWrapper>
             </ProductOrder>
           ))}
-        {cartProducts.length === 0 && (
-          <>
-            <StyledEmptyCart>Ваша корзина пуста</StyledEmptyCart>
-            <ContinueBuying onClick={handleShowCartClick}>
-              Продовжити
-            </ContinueBuying>
-          </>
-        )}
-      </ProductBox>
-      <TotalCost>
         {cartProducts.length > 0 && totalCost > 0 && (
           <>
-          <TotalCostP>
-          Загальна вартість: <GreenPrice>{totalCost} ГРН</GreenPrice>
-
-          </TotalCostP>
-            
-            <PayButton />
+          <TotalCost>
+            Загальна вартість: <GreenPrice>{totalCost} ГРН</GreenPrice>
+          </TotalCost>
+          <PayButton></PayButton>
           </>
         )}
-      </TotalCost>
-    </Wrapper>
+
+        {cartProducts.length == 0 && (
+          <>
+          <StyledEmptyCart>Ваша корзина пуста</StyledEmptyCart>
+          <ContinueBuying onClick={handleShowCartClick}>Продовжити</ContinueBuying>
+          </>
+        )
+        }
+
+      </ProductBox>
+    </>
   );
 }

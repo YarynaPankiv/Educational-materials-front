@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import Link from "next/link";
 import { red } from "@mui/material/colors";
 import MyShopping from "@/components/MyShopping";
+import LogoWithoutPurple from "@/components/Logo/LogoWithoutPurple";
 
 const UserProfilePage = ({ toggleDarkMode, path }) => {
   const router = useRouter();
@@ -31,8 +32,12 @@ const UserProfilePage = ({ toggleDarkMode, path }) => {
   };
 
   return (
+    <>
+    <Header toggleDarkMode={toggleDarkMode} />
+    <LogoWithoutPurple />
+
     <Page>
-      <Header toggleDarkMode={toggleDarkMode} />
+
       <Container>
         <Menu>
           <Text>МІЙ АКАУНТ</Text>
@@ -49,6 +54,7 @@ const UserProfilePage = ({ toggleDarkMode, path }) => {
         {renderInfo()}
       </Container>
     </Page>
+    </>
   );
 };
 

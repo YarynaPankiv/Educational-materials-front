@@ -4,6 +4,7 @@ import styled from "styled-components";
 import LoginButton from "@/components/Login/LoginButton";
 import MyInput from "@/components/Login/MyInput";
 import { useRouter } from "next/router";
+import LogoWithoutPurple from "@/components/Logo/LogoWithoutPurple";
 
 const RegisterPage = ({ toggleDarkMode }) => {
   const router = useRouter();
@@ -28,7 +29,9 @@ const RegisterPage = ({ toggleDarkMode }) => {
 
   return (
     <Page>
-      <Header toggleDarkMode={toggleDarkMode} />
+    <Header toggleDarkMode={toggleDarkMode} />
+    <LogoWithoutPurple></LogoWithoutPurple>
+
       <Container>
         <SecondHalf>
           <Text>Ви користувач?</Text>
@@ -80,6 +83,7 @@ const RegisterPage = ({ toggleDarkMode }) => {
         </FirstHalf>
       </Container>
     </Page>
+
   );
 };
 

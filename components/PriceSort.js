@@ -54,7 +54,7 @@ const StyledButton = styled.button`
   margin-top: 20px;
 `
 
-export default function PriceSort({ onSort }) {
+export default function PriceSort({ onSort, filter }) {
     const [minPrice, setMinPrice] = useState('');
     const [maxPrice, setMaxPrice] = useState('');
 
@@ -62,6 +62,7 @@ export default function PriceSort({ onSort }) {
         if (!isNaN(parseFloat(minPrice)) && !isNaN(parseFloat(maxPrice))) {
             onSort(parseFloat(minPrice), parseFloat(maxPrice));
         }
+        filter();
     };
 
     return (

@@ -4,6 +4,7 @@ import styled from "styled-components";
 import LoginButton from "@/components/Login/LoginButton";
 import MyInput from "@/components/Login/MyInput";
 import { useRouter } from "next/router";
+import LogoWithoutPurple from "@/components/Logo/LogoWithoutPurple";
 
 const LoginPage = ({ toggleDarkMode }) => {
   const router = useRouter();
@@ -25,7 +26,8 @@ const LoginPage = ({ toggleDarkMode }) => {
 
   return (
     <Page>
-      <Header toggleDarkMode={toggleDarkMode} />
+    <Header toggleDarkMode={toggleDarkMode} />
+      <LogoWithoutPurple / >
       <Container>
         <FirstHalf>
           <Text>Ви користувач?</Text>

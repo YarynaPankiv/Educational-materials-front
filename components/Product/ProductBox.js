@@ -14,6 +14,7 @@ const StyledProduct = styled.div`
   border-radius: 10px;
   position: relative;
   margin-top: 25px;
+
 `;
 const ImgWrraper = styled.div`
   height: 170px;

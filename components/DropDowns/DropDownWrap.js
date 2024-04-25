@@ -34,6 +34,7 @@ const Wrap = styled.div`
   display: flex;
   flex-direction: column;
   position: relative;
+  z-index: 30;
 `;
 
 const Icon = styled.div``;

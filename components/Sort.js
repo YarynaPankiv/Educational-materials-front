@@ -49,11 +49,12 @@ const StyledFormControlLabel = styled(FormControlLabel)`
   }
 `;
 
-export default function Sort({ chooseType, sortProducts }) {
+export default function Sort({ chooseType, sortProducts, filter }) {
     const [chosenSortType, setChosenSortType] = useState(null);
   
     const handleClick = (type) => {
       setChosenSortType(type);
+
     };
   
     return (
@@ -81,7 +82,7 @@ export default function Sort({ chooseType, sortProducts }) {
               />
             </RadioGroup>
           </FormControl>
-          <StyledButton onClick={() => { chooseType(chosenSortType); sortProducts(chosenSortType); }}>Сортувати</StyledButton>
+          <StyledButton onClick={() => { chooseType(chosenSortType); sortProducts(chosenSortType); filter();}}>Сортувати</StyledButton>
         </Div>
       </StyledDiv>
     );
