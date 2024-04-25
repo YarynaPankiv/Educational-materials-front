@@ -33,7 +33,7 @@ const UserProfilePage = ({ toggleDarkMode, path }) => {
 
   return (
     <>
-    <Header toggleDarkMode={toggleDarkMode} />
+    {/* <Header toggleDarkMode={toggleDarkMode} /> */}
     <LogoWithoutPurple />
 
     <Page>

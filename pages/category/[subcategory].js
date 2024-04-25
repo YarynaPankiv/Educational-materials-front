@@ -13,7 +13,7 @@ import Link from 'next/link';
 import Sort from '@/components/Sort/Sort';
 import SortDropDown from "@/components/DropDowns/SortDropDown"
 import PriceSortDropDown from "@/components/DropDowns/PriceSortDropDown"
-import PriceSort from '@/components/PriceSort';
+import PriceSort from '@/components/Sort/PriceSort';
 import { useCategories } from '@/Contexts/CategoriesContext';
 
 export const StyledLink = styled(Link)`
