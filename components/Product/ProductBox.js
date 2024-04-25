@@ -19,6 +19,8 @@ const ImgWrraper = styled.div`
   height: 170px;
   display: flex;
   align-items: center;
+  
+
   /* Видаляємо відступи */
 `;
 

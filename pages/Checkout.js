@@ -11,24 +11,27 @@ import { getFileExtension } from "./product/[id]";
 import PaymentButton from "@/components/Buttons/PaymentButton";
 import Header from "@/components/Header";
 import { useRouter } from 'next/router';
+import Center from "@/components/Center";
+import LogoWithoutPurple from "@/components/Logo/LogoWithoutPurple";
 
 // Створюємо стилі для контейнера замовлення
 const OrderContainer = styled.div`
   margin: 20px auto;
-  max-width: 600px;
-  // padding: 2px;
-  border: 2px solid #ccc;
-  //border: 0.3px solid black;
+  width: 650px;
+  border: 1px solid #ccc;
   border-radius: 10px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 `;
 
 const StyledCost = styled.p`
-  //text-align: right;
   font-family: "Montserrat";
   font-style: normal;
   font-weight: bolder;
   font-size: 18px;
-  margin-left: 300px;
+  margin-left: 280px;
   color: #327a4c;
 `;
 const TotalCost = styled.div`
@@ -41,10 +44,11 @@ const TotalCost = styled.div`
   font-family: "Montserrat";
   font-style: normal;
   font-weight: bolder;
+  font-size: 18px;
 `;
 const GreenPrice = styled.span`
   color: #327a4c;
-  margin-left: 18px;
+  margin-left: 10px;
 `;
 const ProductOrder = styled.div`
   margin-top: 7px;
@@ -55,19 +59,18 @@ const ProductOrder = styled.div`
   margin-right: 15px;
   width: 580px;
   height: 150px;
-  border-radius: 20px;
+  border-radius: 15px;
   border: 0.2px solid #ccc;
   background-color: white;
+  margin-bottom: 10px;
 `;
 const StyledH2 = styled.h2`
-  text-align: left;
-  margin-left: 15px;
-
   font-family: "Montserrat";
   font-style: normal;
   font-weight: bolder;
   font-size: 18px;
   margin-bottom: 25px;
+  margin-right: 330px;
 `;
 const PaymentMessage = styled.h1`
   text-align: center;
@@ -78,6 +81,11 @@ const PaymentMessage = styled.h1`
   font-size: 32px;
 
 `
+const SideAlignedWrapper = styled.div`
+  display: flex;
+  justify-content: center; 
+`;
+
 export default function Checkout() {
     const router = useRouter();
   const { cartProducts, setCartProducts, deleteProductFromCart } =
@@ -118,7 +126,11 @@ export default function Checkout() {
     
   }
   return (
-    <OrderContainer>
+    <Center>
+      <Header></Header>
+      <LogoWithoutPurple></LogoWithoutPurple>
+      <SideAlignedWrapper>
+      <OrderContainer>
       <StyledH2>Оформлення замовлення</StyledH2>
       {cartProducts &&
         cartProducts.map((pr) => (
@@ -166,5 +178,11 @@ export default function Checkout() {
       )}
       <PaymentButton></PaymentButton>
     </OrderContainer>
+
+      </SideAlignedWrapper>
+      
+
+    </Center>
+ 
   );
 }
