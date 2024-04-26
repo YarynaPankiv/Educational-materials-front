@@ -12,9 +12,7 @@ export const IconWithText = styled.div`
   align-items: center;
   cursor: pointer;
   position: relative; /* Ensure the relative positioning for proper placement */
-  :hover {
-    background-color: #7469b6;
-  }
+
 `;
 
 export const IconText = styled.p`
