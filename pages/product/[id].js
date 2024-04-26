@@ -20,7 +20,7 @@ import { useContext } from "react";
 import CartDropDownWrap from "@/components/DropDowns/CartDropDown";
 import { ShowCartProvider } from "@/Contexts/ShowCart";
 import { useCart } from "@/Contexts/ShowCart";
-import { StyledLink, StyledSvg, StyledP, Urls } from "../category/[subcategory]";
+import Urls from "@/components/Urls";
 
 
 const ColWrapper = styled.div`
@@ -112,13 +112,8 @@ export default function ProductPage({
       <Center>
         <Header categories={categories} subcategories={subcategories} />
         <LogoWithoutPurple />
-        <Urls>
-        <StyledLink href="/">Головна</StyledLink>
-        <StyledSvg width="8" height="13" viewBox="0 0 8 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M1.46875 0L0 1.46875L4.77083 6.25L0 11.0312L1.46875 12.5L7.71875 6.25L1.46875 0Z" fill="black" fill-opacity="0.61"/>
-        </StyledSvg>
-        <StyledP>{product.productName}</StyledP>
-        </Urls>
+        <Urls page={product.productName}/>
+
         <ColWrapper>
           <ProductImages images={product.images} />
           <div>
