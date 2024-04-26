@@ -6,6 +6,7 @@ import MyInput from "@/components/Login/MyInput";
 import { useRouter } from "next/router";
 import axios from "axios";
 import { useAuth } from "@/Contexts/AccountContext";
+import LogoWithoutPurple from "@/components/Logo/LogoWithoutPurple";
 
 const LoginPage = ({ toggleDarkMode }) => {
   const router = useRouter();

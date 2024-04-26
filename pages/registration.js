@@ -5,6 +5,8 @@ import LoginButton from "@/components/Login/LoginButton";
 import MyInput from "@/components/Login/MyInput";
 import { useRouter } from "next/router";
 import axios from "axios";
+import LogoWithoutPurple from "@/components/Logo/LogoWithoutPurple";
+import { useAuth } from "@/Contexts/AccountContext";
 
 const RegisterPage = ({ toggleDarkMode }) => {
   const router = useRouter();
@@ -13,6 +15,7 @@ const RegisterPage = ({ toggleDarkMode }) => {
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
+  const {login, is} = useAuth();
 
   async function registerUser() {
     if (!name || !surname || !email || !password) {
@@ -20,19 +23,21 @@ const RegisterPage = ({ toggleDarkMode }) => {
       return;
     }
     try {
-      const checkUser = await axios.get(`/api/registerUser?email=${email}`);
-      if (checkUser.data.success) {
+      const checkUser = await axios.get(`/api/registerUser`, {
+        email: email,
+      });
+      if (!checkUser.data.success) {
         alert("User with this email already exists.");
         return;
       }
-
       const newUser = await axios.post("/api/registerUser", {
         name: name,
         surname: surname,
-        email: email,
+        email: email, 
         password: password,
+        
       });
-
+      login(newUser.data);
       console.log(newUser);
       router.push("/user-profile/user-info");
     } catch (error) {

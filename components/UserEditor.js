@@ -15,6 +15,7 @@ const UserEditor = () => {
   const [checkPassword, setCheckPassword] = useState("");
   const [emailField, setEmailField] = useState("");
   const [userId, setUserId] = useState("");
+
   useEffect(() => {
     if (user) {
       console.log(user);
