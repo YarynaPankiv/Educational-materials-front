@@ -1,7 +1,8 @@
-import  { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import styled from "styled-components";
 import Rating from "@mui/material/Rating";
 import axios from "axios";
+import { useAuth } from "@/Contexts/AccountContext";
 
 const CenterButton = styled.div`
   display: flex;
@@ -47,7 +48,8 @@ const Button = styled.button`
 export default function AddFeedback({ id }) {
   const [feedback, setFeedback] = useState("");
   const [rate, setRate] = useState(0);
-  const productId = id; 
+  const productId = id;
+  const { user } = useAuth();
 
   const handleSubmit = async () => {
     const currentDate = new Date();
@@ -56,18 +58,20 @@ export default function AddFeedback({ id }) {
     const year = currentDate.getFullYear();
     const formattedDate = `${day}.${month}.${year}`;
 
-    const data = {
-      productId,
-      feedback,
-      date: formattedDate,
-      rate,
-    };
+    if (user) {
+      const data = {
+        productId,
+        feedback,
+        date: formattedDate,
+        rate,
+        user,
+      };
 
-    if (productId) {
-      await axios.post("/api/feedback", data);
-      setFeedback("");
-      setRate(0);
-   
+      if (productId) {
+        await axios.post("/api/feedback", data);
+        setFeedback("");
+        setRate(0);
+      }
     }
   };
 
