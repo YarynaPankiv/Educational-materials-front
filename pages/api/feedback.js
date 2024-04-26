@@ -24,7 +24,7 @@ export default async function handle(req, res) {
   }
 
   if (method === "POST") {
-    const { productId, feedback, date, rate } = req.body;
+    const { productId, feedback, date, rate,user } = req.body;
 
     try {
       // Створюємо новий відгук
@@ -33,6 +33,7 @@ export default async function handle(req, res) {
         feedback,
         date,
         rate,
+        user,
       });
 
       // Отримуємо продукт, до якого ми хочемо додати відгук
@@ -56,7 +57,7 @@ export default async function handle(req, res) {
   }
 
   if (method === "PUT") {
-    const { productId, _id, feedback, date, rate } = req.body;
+    const { productId, _id, feedback, date, rate ,user} = req.body;
 
     try {
       // Update the feedback entry based on its _id
@@ -65,6 +66,7 @@ export default async function handle(req, res) {
         feedback,
         date,
         rate,
+        user,
       });
       console.log(_id);
       // Send a success response

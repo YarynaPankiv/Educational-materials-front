@@ -4,6 +4,7 @@ const FeedbackSchema = new Schema({
   feedback: String,
   date: String,
   rate: { type: Number },
+  user: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
 });
 
 let Feedback;
