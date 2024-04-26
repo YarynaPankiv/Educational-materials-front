@@ -5,6 +5,7 @@ const userSchema = new Schema({
   surname: String,
   email: String,
   password: String,
+  cart: { type: Schema.Types.ObjectId, ref: "Cart" },
 });
 
 let User;
