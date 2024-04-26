@@ -7,6 +7,7 @@ import { useState } from "react";
 import CartDropDownWrap from "../DropDowns/CartDropDown";
 import Cart from "../headerComponents.js/cart";
 import { useCart } from "@/Contexts/ShowCart";
+
 const StyledProduct = styled.div`
   width: 218px;
   height: 287px;
@@ -14,7 +15,10 @@ const StyledProduct = styled.div`
   border-radius: 10px;
   position: relative;
   margin-top: 25px;
-
+  @media only screen and (max-width: 600px) {
+    width:170px;
+    height: 220px;
+  }
 `;
 const ImgWrraper = styled.div`
   height: 170px;
@@ -39,8 +43,8 @@ const StyledName = styled.p`
   font-size: 16px; 
   overflow: hidden; 
   text-overflow: ellipsis; 
-  white-space: nowrap; 
-`;
+    white-space: nowrap; 
+  `;
 
 const StyledCost = styled.p`
   font-weight: 900;

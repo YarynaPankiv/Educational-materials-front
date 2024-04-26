@@ -16,6 +16,7 @@ import { useCart } from "@/Contexts/ShowCart";
 import { useAuth } from "@/Contexts/AccountContext";
 
 import UserProfilePage from "@/pages/user-profile/[...path]";
+
 export const StyledIcon = styled.svg`
   width: 21px;
   height: 20px;
@@ -72,6 +73,10 @@ const HeaderDiv = styled.header`
   align-items: center;
   justify-content: space-between;
   margin-top: 5px;
+  @media only screen and (max-width: 600px) {
+    flex-direction: row;
+    align-items: stretch;
+  }
 `;
 
 const LoginMenu = styled.div`
@@ -126,8 +131,8 @@ export default function Header({ toggleDarkMode, categories, subcategories }) {
 
   const handleAccountClick = () => {
     if (isLogin) {
-      router.push('/user-profile/user-info');
-    } 
+      router.push("/user-profile/user-info");
+    }
   };
 
   return (
@@ -157,7 +162,9 @@ export default function Header({ toggleDarkMode, categories, subcategories }) {
               )}
             </Container>
 
-            <DropDownWrap icon={<Account click={handleAccountClick} isLogin={isLogin}/>}>
+            <DropDownWrap
+              icon={<Account click={handleAccountClick} isLogin={isLogin} />}
+            >
               {!isLogin && (
                 <LoginMenu>
                   <Text2>Ви користувач?</Text2>
@@ -173,9 +180,7 @@ export default function Header({ toggleDarkMode, categories, subcategories }) {
                   </ButtonWrapper>
                 </LoginMenu>
               )}
-
             </DropDownWrap>
-
           </AllIcons>
         </HeaderDiv>
       </Center>

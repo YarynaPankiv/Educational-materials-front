@@ -14,8 +14,17 @@ const StyledButton = styled.button`
   font-family: "Montserrat", sans-serif;
   transition: background 0.3s ease;
   cursor: pointer;
+  @media only screen and (max-width: 605px) {
+    width: 100%;
+    height: auto;
+    padding: 15px;
+    margin-top: 15px;
+  }
 `;
-
+const Div = styled.div`
+  display: flex;
+  align-items:center;
+`
 export default function Buttons({ onRecentlyAddedClick, onAllClick }) {
   const [isClicked, setIsClicked] = useState(false);
   const [isClickedAll, setIsClickedAll] = useState(true);
@@ -34,12 +43,16 @@ export default function Buttons({ onRecentlyAddedClick, onAllClick }) {
 
   return (
     <Center>
+    <Div>
+
+
       <StyledButton clicked={isClickedAll} onClick={handleClickAll}>
         Всі матеріали
       </StyledButton>
       <StyledButton clicked={isClicked} onClick={handleClick}>
         Недавно додані
       </StyledButton>
+      </Div>
     </Center>
   );
 }

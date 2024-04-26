@@ -10,12 +10,22 @@ const StyledLogo = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  @media only screen and (max-width: 605px) {
+    width: 100%;
+    height: auto;
+    padding: 15px;
+    margin-top: 15px;
+  }
 `;
 
 const StyledText = styled.p`
   font-family: "Rubik Mono One", sans-serif;
   font-size: 40px;
   color: #ffffff;
+  @media only screen and (max-width: 605px) {
+    font-size: 20px;
+  }
 `;
 
 const StyledSvg = styled.svg`
