@@ -49,11 +49,11 @@ export default function HomePage({
 
   return (
     <div>
-      <Header
+      {/* <Header
         toggleDarkMode={toggleDarkMode}
         categories={categories}
         subcategories={subcategories}
-      />
+      /> */}
       <Logo />
       <Buttons
         onRecentlyAddedClick={handleRecentlyAddedClick}
