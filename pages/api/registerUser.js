@@ -7,14 +7,14 @@ export default async function handle(req, res) {
   await mongooseConnect();
 
   if (method === "POST") {
-    const { name, surname, email, password, cart } = req.body;
+    const { name, surname, email, password } = req.body;
 
     const newUser = await User.create({
       name,
       surname,
       email,
       password,
-      cart,
+    
     });
     res.status(201).json({ success: true, data: newUser });
   } else if (method === "GET") {
@@ -29,12 +29,12 @@ export default async function handle(req, res) {
   } else if (method === "PUT") {
     try {
       const { email } = req.query;
-      const { name, surname, password,cart } = req.body;
+      const { name, surname, password } = req.body;
 
       // Оновити дані користувача, включаючи пароль
       const user = await User.findOneAndUpdate(
         { email },
-        { name, surname, password,cart },
+        { name, surname, password },
         { new: true }
       );
 
