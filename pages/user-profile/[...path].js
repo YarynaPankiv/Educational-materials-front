@@ -9,6 +9,7 @@ import { red } from "@mui/material/colors";
 import MyShopping from "@/components/MyShopping";
 import LogoWithoutPurple from "@/components/Logo/LogoWithoutPurple";
 import { useAuth } from "@/Contexts/AccountContext";
+import Center from "@/components/Center";
 
 const UserProfilePage = ({ toggleDarkMode, path }) => {
   const router = useRouter();
@@ -35,9 +36,17 @@ const UserProfilePage = ({ toggleDarkMode, path }) => {
 
   return (
     <>
-    {/* <Header toggleDarkMode={toggleDarkMode} /> */}
-    <LogoWithoutPurple />
-
+    <Header toggleDarkMode={toggleDarkMode} />
+    <Center>
+    <Urls>
+      <StyledLink href="/">Головна</StyledLink>
+      <StyledSvg width="8" height="13" viewBox="0 0 8 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M1.46875 0L0 1.46875L4.77083 6.25L0 11.0312L1.46875 12.5L7.71875 6.25L1.46875 0Z" fill="black" fill-opacity="0.61"/>
+      </StyledSvg>
+      <StyledP>Мій акаунт</StyledP>
+    </Urls>
+    </Center>
+   
     <Page>
 
       <Container>
@@ -100,6 +109,34 @@ const Text = styled.div`
   text-align: left;
   padding-bottom: 10px;
 `;
+
+export const StyledLink = styled(Link)`
+    text-decoration: none;
+    color: black;
+    opacity: 60%;
+    margin-right: 10px;
+
+`
+
+export const StyledSvg = styled.svg`
+  margin-left: 10px;
+  fill: ${props => (props.showSort ? "#AD88C6" : "black")};
+
+`
+
+export const Urls = styled.div`
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+
+
+`
+export const StyledP = styled.span`
+  color: black;
+  opacity: 60%;
+  margin-left: 15px;
+
+`
 
 export async function getServerSideProps(context) {
   return {

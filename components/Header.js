@@ -124,6 +124,12 @@ export default function Header({ toggleDarkMode, categories, subcategories }) {
     router.push("/login");
   };
 
+  const handleAccountClick = () => {
+    if (isLogin) {
+      router.push('/user-profile/user-info');
+    } 
+  };
+
   return (
     <header>
       <Center>
@@ -151,7 +157,7 @@ export default function Header({ toggleDarkMode, categories, subcategories }) {
               )}
             </Container>
 
-            <DropDownWrap icon={<Account />}>
+            <DropDownWrap icon={<Account click={handleAccountClick} isLogin={isLogin}/>}>
               {!isLogin && (
                 <LoginMenu>
                   <Text2>Ви користувач?</Text2>
@@ -167,13 +173,9 @@ export default function Header({ toggleDarkMode, categories, subcategories }) {
                   </ButtonWrapper>
                 </LoginMenu>
               )}
-              {isLogin &&
-              <UserProfilePage 
-              toggleDarkMode={toggleDarkMode}
-             
-              />
-              }
+
             </DropDownWrap>
+
           </AllIcons>
         </HeaderDiv>
       </Center>
