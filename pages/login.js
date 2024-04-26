@@ -7,8 +7,11 @@ import { useRouter } from "next/router";
 import axios from "axios";
 import { useAuth } from "@/Contexts/AccountContext";
 import LogoWithoutPurple from "@/components/Logo/LogoWithoutPurple";
+import { Category } from "@/models/Category";
+import SubCategory from "@/models/SubCategory";
+import Urls from "@/components/Urls";
 
-const LoginPage = ({ toggleDarkMode }) => {
+const LoginPage = ({ toggleDarkMode, categories, subcategories }) => {
   const router = useRouter();
 
   const [email, setEmail] = useState("");
@@ -47,8 +50,11 @@ const LoginPage = ({ toggleDarkMode }) => {
   };
 
   return (
+    <>
+    <Header toggleDarkMode={toggleDarkMode} categories={categories} subcategories={subcategories}/>
+    <Urls page={"Увійти"}/>
     <Page>
-    <Header toggleDarkMode={toggleDarkMode} />
+  
       <LogoWithoutPurple / >
       <Container>
         <FirstHalf>
@@ -85,6 +91,7 @@ const LoginPage = ({ toggleDarkMode }) => {
         </SecondHalf>
       </Container>
     </Page>
+    </>
   );
 };
 
@@ -135,5 +142,16 @@ const Text = styled.div`
   font-size: 20px;
   text-align: left;
 `;
+
+export async function getServerSideProps(context) {
+  const categories = await Category.find({});
+  const subcategories = await SubCategory.find({});
+  return {
+    props: {
+      categories: JSON.parse(JSON.stringify(categories)),
+      subcategories: JSON.parse(JSON.stringify(subcategories)),
+    },
+  };
+}
 
 export default LoginPage;

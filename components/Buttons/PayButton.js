@@ -4,6 +4,7 @@ import { CartContext } from "@/Contexts/CartContext";
 import { useCart } from "@/Contexts/ShowCart";
 import Checkout from "../Checkout/Checkout";
 import Link from "next/link";
+import Router from "next/router";
 
 
 const PurpleButton = styled.button`
@@ -32,14 +33,17 @@ cursor: pointer;
 const SvgCart = styled.svg`
   margin-right: 10px;
 `;
-import Router from "next/router";
 
-export default function PayButton({ product }) {
+
+export default function PayButton() {
+  const {showCart, handleShowCartClick} = useCart();
   const url = "/Checkout";
-  const handleClick = (event) => {
-    event.stopPropagation(); 
+  const handleClick = () => {
+    handleShowCartClick();
     Router.push(url);
+
   };
+
 
   return (
     <PurpleButton onClick={handleClick}>

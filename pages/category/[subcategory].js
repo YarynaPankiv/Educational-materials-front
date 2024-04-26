@@ -15,6 +15,7 @@ import SortDropDown from "@/components/DropDowns/SortDropDown"
 import PriceSortDropDown from "@/components/DropDowns/PriceSortDropDown"
 import PriceSort from '@/components/Sort/PriceSort';
 import { useCategories } from '@/Contexts/CategoriesContext';
+import Urls from '@/components/Urls';
 
 export const StyledLink = styled(Link)`
     text-decoration: none;
@@ -30,12 +31,6 @@ export const StyledSvg = styled.svg`
 
 `
 
-export const Urls = styled.div`
-     display: flex;
-     align-items: center;
-
-
-`
 export const StyledP = styled.span`
     color: black;
     opacity: 60%;
@@ -234,17 +229,12 @@ export default function ProductsInSubcategory({ categories, subcategories, subca
     
      return (
          <>
-          
              <Header categories={categories} subcategories={subcategories} />
              <Center>
                  <LogoWithoutPurple />
-                 <Urls>
-                 <StyledLink href="/">Головна</StyledLink>
-                 <StyledSvg width="8" height="13" viewBox="0 0 8 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                 <path d="M1.46875 0L0 1.46875L4.77083 6.25L0 11.0312L1.46875 12.5L7.71875 6.25L1.46875 0Z" fill="black" fill-opacity="0.61"/>
-                 </StyledSvg>
-                 <StyledP>{subcategory}</StyledP>
-                 </Urls>
+                 <Urls page={subcategory}/ >
+                 
+ 
                  {chosenSchoolMaterials && (
                      <ClassesDiv>
                      <ClassButton onClick={() => handleClassButtonClick(null)} active={!selectedClass}>Переглянути всі</ClassButton>
@@ -290,7 +280,7 @@ export default function ProductsInSubcategory({ categories, subcategories, subca
                     </PriceSortDropDown>
                     {showButton && 
                       <ClassButton onClick={() => { setProducts(filteredProducts); setShowButton(false); }}>Скинути фільтр</ClassButton>
-}
+                    }
 
                  </Container>
                  <ProductsGrid products={selectedClass ? products.filter(product => product.schoolClass === selectedClass) : products}/>

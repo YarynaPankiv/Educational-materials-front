@@ -35,6 +35,7 @@ export const AuthProvider = ({ children }) => {
     setIsLogin(false);
     
     localStorage.removeItem('user');
+    localStorage.removeItem('cart');
   };
 
   return (

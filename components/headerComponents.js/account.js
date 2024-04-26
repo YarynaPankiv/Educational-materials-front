@@ -11,7 +11,7 @@ export const IconWithText = styled.div`
   flex-direction: column;
   align-items: center;
   cursor: pointer;
-  position: relative; /* Ensure the relative positioning for proper placement */
+  position: relative; 
 
 `;
 

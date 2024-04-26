@@ -31,7 +31,7 @@
     const { showCart, handleShowCartClick } = useCart(); 
     const handleClick = () => {
       addToCart(product);
-      handleShowCartClick(); // Додаємо виклик функції handleShowCartClick при натисканні на кнопку
+      handleShowCartClick(); 
     };
 
       return(

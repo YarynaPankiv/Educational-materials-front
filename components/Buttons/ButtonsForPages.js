@@ -48,9 +48,10 @@ export default function ButtonsForPages({
     return buttons;
   };
 
-  return (
+  return totalPages > 1 ? (
     <Center>
       <StyledLineOfButtons>{renderNumberedButtons()}</StyledLineOfButtons>
     </Center>
-  );
+  ) : null;
 }
+

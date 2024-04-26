@@ -13,6 +13,9 @@ import Header from "@/components/Header";
 import { useRouter } from 'next/router';
 import Center from "@/components/Center";
 import LogoWithoutPurple from "@/components/Logo/LogoWithoutPurple";
+import Urls from "@/components/Urls";
+import { Category } from "@/models/Category";
+import SubCategory from "@/models/SubCategory";
 
 // Створюємо стилі для контейнера замовлення
 const OrderContainer = styled.div`
@@ -86,7 +89,7 @@ const SideAlignedWrapper = styled.div`
   justify-content: center; 
 `;
 
-export default function Checkout() {
+export default function Checkout({categories, subcategories}) {
     const router = useRouter();
   const { cartProducts, setCartProducts, deleteProductFromCart } =
     useContext(CartContext);
@@ -106,7 +109,6 @@ export default function Checkout() {
     cartProducts.map((pr) => {
         if (pr.file && pr.file.length > 0) {
             fileInCart = pr?.file[0]?.url;
-            //console.log(pr);
         }
     });
     console.log(cartProducts);
@@ -128,8 +130,7 @@ export default function Checkout() {
 
     return(
         <>
-        <Header>
-        </Header>
+        <Header subcategories={subcategories} categories={categories}/>
         <PaymentMessage>Оплата пройшла успішно!</PaymentMessage>      
         </>
         );
@@ -148,8 +149,8 @@ export default function Checkout() {
   }
   return (
     <Center>
-      <Header></Header>
-      <LogoWithoutPurple></LogoWithoutPurple>
+      <Header subcategories={subcategories} categories={categories} />
+      <Urls page={"Оформлення замовлення"}/>
       <SideAlignedWrapper>
       <OrderContainer>
       <StyledH2>Оформлення замовлення</StyledH2>
@@ -206,4 +207,15 @@ export default function Checkout() {
     </Center>
  
   );
+}
+
+export async function getServerSideProps(context) {
+  const categories = await Category.find({});
+  const subcategories = await SubCategory.find({});
+  return {
+    props: {
+      categories: JSON.parse(JSON.stringify(categories)),
+      subcategories: JSON.parse(JSON.stringify(subcategories)),
+    },
+  };
 }

@@ -35,13 +35,14 @@ const DropDownWrap = ({ icon, children }) => {
 
 const ContentWrap = styled.div`
   position: absolute;
-  left: 100px;
-  top: 78px;
+  top: 40px;
+  left: -100px;
   background-color: white;
   z-index: 32;
 `;
 
 const Wrap = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
 `;

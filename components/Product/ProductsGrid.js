@@ -14,7 +14,7 @@ const StyledProductsGrid = styled.div`
 
 export default function ProductsGrid({ products }) {
   const [currentPage, setCurrentPage] = useState(1);
-  const productsPerPage = 8;
+  const productsPerPage = 16;
   const totalPages = Math.ceil(products.length / productsPerPage);
   const handlePageChange = (page) => {
     setCurrentPage(page);
