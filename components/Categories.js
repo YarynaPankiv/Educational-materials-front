@@ -82,7 +82,10 @@ export default function Categories({ categories, subcategories}) {
   const handleClick = (category) => {
     setSelectedCategory(category);
   };
-  
+
+  const handleSubCategoryClick = () => {
+    setShowCategories(false);
+  };
 
   return (
     <StyledCategories id="categoriesContainer">
@@ -105,8 +108,8 @@ export default function Categories({ categories, subcategories}) {
           {categoriesWithSubcategories[selectedcategory] &&
             categoriesWithSubcategories[selectedcategory].map(
               (subcategory, index) => (
-                <StyledLink key={index} href={`/category/${subcategory}`} >
-                  <SubCategoryText onClick={setShowCategories(false)}>{subcategory}</SubCategoryText>
+                <StyledLink key={index} href={`/category/${subcategory}`} onClick={handleSubCategoryClick} >
+                  <SubCategoryText >{subcategory}</SubCategoryText>
                 </StyledLink>
               )
             )}

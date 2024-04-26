@@ -3,7 +3,6 @@ import styled from "styled-components";
 import axios from "axios";
 import MyInput from "./Login/MyInput";
 import LoginButton from "./Login/LoginButton";
-import { useParams } from "react-router-dom";
 import { useAuth } from "@/Contexts/AccountContext";
 const UserEditor = () => {
   const { user } = useAuth(); // Отримання поточного користувача з контексту

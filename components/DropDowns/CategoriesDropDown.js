@@ -10,7 +10,6 @@ const DropDownWrap = ({ icon, children }) => {
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropDownRef.current && !dropDownRef.current.contains(event.target)) {
-        setIsShowComponent(false);
         setShowCategories(false);
       }
     };
@@ -23,14 +22,13 @@ const DropDownWrap = ({ icon, children }) => {
   }, [dropDownRef]);
 
   const toggleDropDown = () => {
-    setIsShowComponent(!isShowComponent);
     setShowCategories(!showCategories);
   };
 
   return (
     <Wrap ref={dropDownRef}>
       <Icon onClick={toggleDropDown}>{icon}</Icon>
-      {isShowComponent && <ContentWrap>{children}</ContentWrap>}
+      {showCategories && <ContentWrap>{children}</ContentWrap>}
     </Wrap>
   );
 };
