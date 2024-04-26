@@ -20,9 +20,7 @@ const ImgWrraper = styled.div`
   height: 170px;
   display: flex;
   align-items: center;
-  
 
-  /* Видаляємо відступи */
 `;
 
 const StyledPNG = styled.img`
@@ -70,6 +68,9 @@ const StyledAddToCart = styled.div`
   margin-right: 20px;
   margin-bottom: 10px;
   cursor: pointer;
+  &:hover{
+    background: #AD88C6;
+  }
   
 `;
 const StyledLink = styled(Link)`
@@ -85,7 +86,7 @@ export default function ProductBox({ product }) {
   const { showCart, handleShowCartClick , showCartClick} = useCart(); 
   const handleClick = () => {
     addToCart(product);
-    showCartClick(); // Додаємо виклик функції handleShowCartClick при натисканні на кнопку
+    showCartClick(); 
   };
 
   return (
