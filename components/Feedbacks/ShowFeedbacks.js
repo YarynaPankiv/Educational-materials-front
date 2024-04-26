@@ -17,58 +17,54 @@ const FeedbacksBox = styled.div`
 const OneFeedbackBox = styled.div`
   width: 440.88px;
   height: 95px;
-
   background: #ffffff;
   border: 1px solid rgba(0, 0, 0, 0.3);
   border-radius: 10px;
   margin-top: 18px;
+  padding: 0px 10px;
 `;
+
 const ShowDate = styled.div`
-  width: 88px;
-  height: 17.39px;
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
-  line-height: 20px;
-  margin-left: auto;
-  margin-top: 5px;
-  margin-right: 5px;
   color: rgba(0, 0, 0, 0.41);
+  margin-left: auto; /* Зміна тут */
 `;
 
 const NameData = styled.div`
   display: flex;
   align-items: center;
+  justify-content: space-between; /* Зміна тут */
 `;
+
+const Name = styled.p`
+`;
+
 const Feedbacks = styled.p`
-  width: 126px;
-  height: 17.39px;
   font-family: "Rubik Mono One";
   font-style: normal;
   font-weight: 400;
   font-size: 15px;
-  line-height: 19px;
-  margin-left: 5px;
   color: #000000;
 `;
+
 const FeedbackText = styled.p`
   font-family: "Montserrat";
-  font-style: normal;
   font-weight: 400;
   font-size: 16px;
-  line-height: 20px;
-  text-align: left;
-  margin-left: 7px;
   color: #000000;
+  margin-top: 0;
 `;
+
 const RatingWrapper = styled.div`
-  pointer-events: none; 
+  pointer-events: none;
   font-size: 3px;
-  margin-top: 10px;
-  margin-left: 200px;
+  margin-left: 10px;
 `;
-export default function ShowFeedbacks({ product, feedbacks }) {
+
+export default function ShowFeedbacks({ product, feedbacks, users }) {
   return (
     <FeedbacksBox>
       <Feedbacks>ВІДГУКИ</Feedbacks>
@@ -77,15 +73,22 @@ export default function ShowFeedbacks({ product, feedbacks }) {
           (feedback) => feedback._id === feedbackId
         );
         if (feedback) {
+          const user = users.find((user) => user._id === feedback.user);
+
           return (
             <OneFeedbackBox key={feedback._id}>
               <NameData>
-                <RatingWrapper>
+              <Name>{user ? user.name : "Анонімний користувач"}</Name>
+              <RatingWrapper>
                   <Rating value={feedback.rate} size="small">
                     {feedback.rate}
                   </Rating>
-                </RatingWrapper>
-                <ShowDate>{feedback.date}</ShowDate>
+
+                  </RatingWrapper>
+                
+                <ShowDate>{feedback.date}</ShowDate> {/* Поміняли місцями */}
+
+
               </NameData>
               <FeedbackText>{feedback.feedback}</FeedbackText>
             </OneFeedbackBox>

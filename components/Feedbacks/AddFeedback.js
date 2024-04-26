@@ -64,7 +64,8 @@ export default function AddFeedback({ id }) {
         feedback,
         date: formattedDate,
         rate,
-        user,
+        user: user.data._id,
+   
       };
 
       if (productId) {

@@ -21,7 +21,8 @@ import CartDropDownWrap from "@/components/DropDowns/CartDropDown";
 import { ShowCartProvider } from "@/Contexts/ShowCart";
 import { useCart } from "@/Contexts/ShowCart";
 import Urls from "@/components/Urls";
-
+import { useAuth } from "@/Contexts/AccountContext";
+import { User } from "@/models/User";
 
 const ColWrapper = styled.div`
   display: grid;
@@ -62,9 +63,6 @@ export const getFileExtension = (fileName) => {
   return;
 };
 
-
-
-
 export async function getServerSideProps(context) {
   await mongooseConnect();
 
@@ -73,7 +71,7 @@ export async function getServerSideProps(context) {
   const categories = await Category.find({});
   const subcategories = await SubCategory.find({});
   const feedbacks = await Feedback.find({ _id: { $in: product.feedback } });
-
+  const users = await User.find({});
   return {
     props: {
       product: JSON.parse(JSON.stringify(product)),
@@ -81,10 +79,10 @@ export async function getServerSideProps(context) {
       subcategories: JSON.parse(JSON.stringify(subcategories)),
       id: JSON.parse(JSON.stringify(id)),
       feedbacks: JSON.parse(JSON.stringify(feedbacks)),
+      users: JSON.parse(JSON.stringify(users)),
     },
   };
 }
-
 
 export default function ProductPage({
   product,
@@ -92,9 +90,11 @@ export default function ProductPage({
   subcategories,
   id,
   feedbacks,
+  users,
 }) {
   const { addToCart } = useContext(CartContext);
-  const { showCart, handleShowCartClick } = useCart(); 
+  const {user} = useAuth();
+  const { showCart, handleShowCartClick } = useCart();
 
   const totalRating = feedbacks.reduce(
     (total, feedback) => total + feedback.rate,
@@ -104,15 +104,12 @@ export default function ProductPage({
   const averageRating =
     feedbacks.length > 0 ? totalRating / feedbacks.length : 0.0;
 
-
-
-    
   return (
     <>
       <Center>
         <Header categories={categories} subcategories={subcategories} />
         <LogoWithoutPurple />
-        <Urls page={product.productName}/>
+        <Urls page={product.productName} />
 
         <ColWrapper>
           <ProductImages images={product.images} />
@@ -149,14 +146,12 @@ export default function ProductPage({
             </div>
             {console.log(product)}
             <DivInline>
-              
-            <BuyButton product={product}></BuyButton>
-            
+              <BuyButton product={product}></BuyButton>
             </DivInline>
           </div>
-          
+
           <AddFeedback id={id} />
-          <ShowFeedbacks product={product} feedbacks={feedbacks} />
+          <ShowFeedbacks product={product} feedbacks={feedbacks} users={users} />
         </ColWrapper>
       </Center>
     </>
