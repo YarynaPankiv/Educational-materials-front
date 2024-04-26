@@ -8,10 +8,12 @@ import Link from "next/link";
 import { red } from "@mui/material/colors";
 import MyShopping from "@/components/MyShopping";
 import LogoWithoutPurple from "@/components/Logo/LogoWithoutPurple";
+import { useAuth } from "@/Contexts/AccountContext";
 import Center from "@/components/Center";
 
 const UserProfilePage = ({ toggleDarkMode, path }) => {
   const router = useRouter();
+  const {logout} = useAuth();
 
   useEffect(() => {
     if (!renderInfo()) {
@@ -19,7 +21,7 @@ const UserProfilePage = ({ toggleDarkMode, path }) => {
     }
   }, []);
 
-  const logOut = () => {};
+ 
 
   const renderInfo = () => {
     switch (path) {
@@ -56,7 +58,7 @@ const UserProfilePage = ({ toggleDarkMode, path }) => {
           <Point href="/user-profile/user-info" isActive={path === "user-info"}>
             Дані облікового запису
           </Point>
-          <Point isActive={false} href="/login" onClick={logOut}>
+          <Point isActive={false} href="/login" onClick={logout}>
             Вийти
           </Point>
         </Menu>

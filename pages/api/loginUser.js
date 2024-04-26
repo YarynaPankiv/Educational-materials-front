@@ -19,7 +19,8 @@ export default async function handle(req, res) {
     }
 
     res.status(200).json({ success: true, data: user });
-  } else if (method === "GET") {
+  } 
+  else if (method === "GET") {
     const { email } = req.query;
 
     // Знайти користувача за його email у базі даних

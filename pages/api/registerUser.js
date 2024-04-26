@@ -16,19 +16,18 @@ export default async function handle(req, res) {
       password,
     });
     res.status(201).json({ success: true, data: newUser });
-  } else if (method === "GET") {
-    const { email } = req.query;
+  }
+   else if (method === "GET") {
+    const { email } = req.body;
 
     // Знайти користувача за його email у базі даних
     const user = await User.findOne({ email });
-
+    console.log(user);
     if (!user) {
-      return res
-        .status(404)
-        .json({ success: false, message: "Користувача не знайдено" });
+      res.status(200).json({ success: true, data: user });
     }
 
-    res.status(200).json({ success: true, data: user });
+  
   } else if (method === "PUT") {
     try {
       const { email } = req.query;
