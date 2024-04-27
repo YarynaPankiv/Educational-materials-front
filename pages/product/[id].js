@@ -29,7 +29,7 @@ const ColWrapper = styled.div`
 
   @media only screen and (max-width: 600px) {
     grid-template-columns: 1fr;
-    padding: 5px;
+    /* padding: 5px; */
     gap: 0px;
     align-items: center;
   }
@@ -69,14 +69,19 @@ const DivInline = styled.div`
   align-items: center;
 `;
 
-const TextLeft = styled.div`
+const TextLeft = styled.span`
   margin-left: 10px;
+  @media only screen and (max-width: 600px) {
+    margin-left: 20px;
+  
+  }
 `;
 const ProductDesc = styled.div`
   @media only screen and (max-width: 600px) {
     grid-column: 1 / -1;
     width: 90%;
     margin: 0 auto;
+    margin-top:15px;
   }
 
   @media only screen and (min-width: 600px) {
@@ -84,7 +89,7 @@ const ProductDesc = styled.div`
     width: 100%;
   }
 `;
-const styledDiv = styled.div`
+const StyledDiv = styled.div`
     width: 100%;
     margin-bottom: 15px;
   @media only screen and (max-width: 600px) {
@@ -92,7 +97,7 @@ const styledDiv = styled.div`
     margin-bottom: 15px;
   
   }
-`;
+`;  
 const StyledDesc = styled.p`
   @media only screen and (max-width: 600px) {
     width: 90%;
@@ -163,18 +168,23 @@ export default function ProductPage({
             {subcategories.map((subcat) => {
               if (subcat._id == product.subcategory) {
                 return (
-                  <styledDiv key={subcat._id}>
+                  <StyledDiv key={subcat._id}>
                     {subcat.subCategoryName} , {product.schoolClass}
-                  </styledDiv>
+                  </StyledDiv>
                 );
               }
               return null;
             })}
             <>
-              <TextLeft>
+              
+                <StyledDiv>
                 <Rating value={averageRating} size="small" readOnly />{" "}
+               
+                <TextLeft>
                 {product.feedback.length} <Purple>відгуків</Purple>
               </TextLeft>
+              </StyledDiv>
+                
             </>
             Формат файлу:{" "}
             <Purple>

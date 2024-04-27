@@ -20,6 +20,11 @@
   border: none;
   margin-right: 10px;
   cursor: pointer;
+  @media only screen and (max-width: 600px) {
+    margin-left: 87px;
+
+
+  }
 
 `;
   const SvgCart = styled.svg`
