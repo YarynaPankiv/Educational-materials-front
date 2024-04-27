@@ -31,8 +31,8 @@ export default function ProductsGrid({ products }) {
   return (
     <Center>
       <StyledProductsGrid>
-        {products?.length > 0 &&
-          products.map((product) => (
+        {displayedProducts?.length > 0 &&
+          displayedProducts.map((product) => (
             <ProductBox key={product._id} product={product} />
           ))}
       </StyledProductsGrid>
