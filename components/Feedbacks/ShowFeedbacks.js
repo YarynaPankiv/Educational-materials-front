@@ -14,7 +14,7 @@ const FeedbacksBox = styled.div`
   overflow-x: hidden;
 
   @media only screen and (max-width: 600px) {
-    width:90%;
+    width:105%;
     height:auto;
     padding: 7px 5px 0px;
   }
@@ -29,7 +29,11 @@ const OneFeedbackBox = styled.div`
   margin-top: 18px;
   padding: 0px 10px;
   @media only screen and (max-width: 600px) {
-    width:99%;
+    width:100%;
+    height:auto;
+}
+@media only screen and (min-width: 600px) {
+    width:100%;
     height:auto;
 }
 `;
@@ -47,6 +51,8 @@ const NameData = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between; /* Зміна тут */
+  font-weight:700;
+  font-size: 16 px
 `;
 
 const Name = styled.p`
