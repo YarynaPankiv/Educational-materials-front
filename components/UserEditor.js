@@ -135,8 +135,8 @@ const Page = styled.div`
   height: 50px;
   margin-left: 5%;
   @media only screen and (max-width: 600px) {
-    width:99%;
-    margin-left:1%;
+    width:80%;
+    margin-left:35px;
     
   }
 `;
