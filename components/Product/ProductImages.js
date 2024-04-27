@@ -7,12 +7,20 @@ const BigImage = styled.img`
   max-height: 300px;
   height: 100%;
   object-fit: cover;
+  @media only screen and (max-width: 600px) {
+    width: 370px;
+    height: auto;
+  }
 `;
 
 const BigImageWrraper = styled.div`
   height: 300px;
   width: 500px;
   position: relative;
+  @media only screen and (max-width: 600px) {
+    width: 100%;
+    height:auto;
+  }
 `;
 
 const ImageButtons = styled.div`

@@ -29,6 +29,9 @@ const ColWrapper = styled.div`
   grid-template-columns: 0.8fr 1.2fr;
   gap: 40px;
   margin-top: 25px;
+  @media only screen and (min-width: 600px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 const Purple = styled.span`
@@ -55,6 +58,17 @@ const DivInline = styled.div`
 
 const TextLeft = styled.div`
   margin-left: 10px;
+`;
+const ProductDesc = styled.div`
+  @media only screen and (max-width: 600px) {
+    grid-column: 1 / -1; // Span the entire width of the grid
+  }
+`;
+const StyledDesc = styled.p`
+  @media only screen and (max-width: 600px) {
+    width: 90%;
+    overflow-wrap: break-word;
+  }
 `;
 export const getFileExtension = (fileName) => {
   if (fileName) {
@@ -93,7 +107,7 @@ export default function ProductPage({
   users,
 }) {
   const { addToCart } = useContext(CartContext);
-  const {user} = useAuth();
+  const { user } = useAuth();
   const { showCart, handleShowCartClick } = useCart();
 
   const totalRating = feedbacks.reduce(
@@ -113,7 +127,7 @@ export default function ProductPage({
 
         <ColWrapper>
           <ProductImages images={product.images} />
-          <div>
+          <ProductDesc>
             <b>{product.productName}</b>
             {subcategories.map((subcat) => {
               if (subcat._id == product.subcategory) {
@@ -126,11 +140,12 @@ export default function ProductPage({
               return null;
             })}
 
-            <DivInline>
+            <>
               <Rating value={averageRating} size="small" readOnly />{" "}
-              <TextLeft>{product.feedback.length}</TextLeft>{" "}
-              <Purple>відгуків</Purple>
-            </DivInline>
+              <TextLeft>
+                {product.feedback.length} <Purple>відгуків</Purple>
+              </TextLeft>
+            </>
             <br />
             <div>
               <div>
@@ -140,7 +155,7 @@ export default function ProductPage({
               <div>
                 Кількість сторінок/слайдів: <Purple>{product.pages}</Purple>
               </div>
-              <p>{product.description}</p>
+              <StyledDesc>{product.description}</StyledDesc>
               {console.log(product.description)}
               <GreenPrice>{product.price} ГРН</GreenPrice>
             </div>
@@ -148,10 +163,14 @@ export default function ProductPage({
             <DivInline>
               <BuyButton product={product}></BuyButton>
             </DivInline>
-          </div>
-
+          </ProductDesc>
+          {/* 
           <AddFeedback id={id} />
-          <ShowFeedbacks product={product} feedbacks={feedbacks} users={users} />
+          <ShowFeedbacks
+            product={product}
+            feedbacks={feedbacks}
+            users={users}
+          /> */}
         </ColWrapper>
       </Center>
     </>

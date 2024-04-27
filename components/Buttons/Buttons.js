@@ -19,6 +19,8 @@ const StyledButton = styled.button`
     height: auto;
     padding: 15px;
     margin-top: 15px;
+    font-family: "Montserrat", sans-serif;
+    color:black;  
   }
 `;
 const Div = styled.div`
