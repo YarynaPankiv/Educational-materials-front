@@ -45,55 +45,50 @@ const LoginPage = ({ toggleDarkMode, categories, subcategories }) => {
       console.error("Error during login:", error);
     }
   };
+
   const goToRegister = () => {
     router.push("/registration");
   };
 
   return (
     <>
-    <Header toggleDarkMode={toggleDarkMode} categories={categories} subcategories={subcategories}/>
-    <Urls page={"Увійти"}/>
-    <Page>
-  
-      <LogoWithoutPurple / >
-      <Container>
-        <FirstHalf>
-          <Text>Ви користувач?</Text>
-          <InputWrapper>
-            <MyInput
-              text={"Електронна пошта"}
-              type={"email"}
-              value={email}
-              setValue={setEmail}
-              theme="auth"
-            />
-          </InputWrapper>
-          <InputWrapper>
-            <MyInput
-              text={"Пароль"}
-              type={"password"}
-              value={password}
-              setValue={setPassword}
-              theme="auth"
-            />
-          </InputWrapper>
-          <Wrapper>
-            <LoginButton onClick={loginUser} href={"/"}>
-              УВІЙТИ
-            </LoginButton>
-          </Wrapper>
-        </FirstHalf>
-        <SecondHalf>
-          <Text>Це ваш перший візит?</Text>
-          <Wrapper>
-            <LoginButton onClick={goToRegister}>ЗАРЕЄСТРУВАТИСЬ</LoginButton>
-          </Wrapper>
-        </SecondHalf>
-      </Container>
-    </Page>
+      <Header toggleDarkMode={toggleDarkMode} categories={categories} subcategories={subcategories} />
+      <Urls page={"Увійти"} />
+      <Page>
+        <LogoWrapper>
+          <LogoWithoutPurple />
+        </LogoWrapper>
+        <Container>
+          <FirstHalf>
+            <Text>Ви користувач?</Text>
+            <InputWrapper>
+              <MyInput text={"Електронна пошта"} type={"email"} value={email} setValue={setEmail} theme="auth" />
+            </InputWrapper>
+            <InputWrapper>
+              <MyInput text={"Пароль"} type={"password"} value={password} setValue={setPassword} theme="auth" />
+            </InputWrapper>
+            <Wrapper>
+              <LoginButton onClick={loginUser} href={"/"}>
+                УВІЙТИ
+              </LoginButton>
+            </Wrapper>
+          </FirstHalf>
+          <SecondHalf>
+            <Text>Це ваш перший візит?</Text>
+            <Wrapper>
+              <LoginButton onClick={goToRegister}>ЗАРЕЄСТРУВАТИСЬ</LoginButton>
+            </Wrapper>
+          </SecondHalf>
+        </Container>
+      </Page>
     </>
   );
 };
+
+const LogoWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+`;
 
 const InputWrapper = styled.div`
   max-width: 500px;
@@ -113,28 +108,40 @@ const Page = styled.div`
 
 const Container = styled.div`
   display: flex;
-  height: 100vh;
+  height: 100%;
+  flex: 1;
+
+  @media only screen and (max-width: 600px) {
+    flex-direction: column;
+  }
 `;
 
 const FirstHalf = styled.div`
-  width: 50%;
-  height: 100%;
+  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 40px;
-  padding: 140px 24px;
+  padding: 40px;
+
+  @media only screen and (max-width: 600px) {
+    padding: 20px;
+  }
 `;
 
 const SecondHalf = styled.div`
-  width: 50%;
-  height: 100%;
+  flex: 1;
   background: #d9d9d93d;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 100px;
-  padding: 140px 24px;
+  gap: 40px;
+  padding: 40px;
+
+  @media only screen and (max-width: 600px) {
+    padding: 20px;
+    
+  }
 `;
 
 const Text = styled.div`

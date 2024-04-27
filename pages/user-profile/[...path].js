@@ -10,8 +10,12 @@ import SubCategory from "@/models/SubCategory";
 import { Category } from "@/models/Category";
 import MyShopping from "@/components/MyShopping";
 
-
-const UserProfilePage = ({ toggleDarkMode, path, categories, subcategories }) => {
+const UserProfilePage = ({
+  toggleDarkMode,
+  path,
+  categories,
+  subcategories,
+}) => {
   const router = useRouter();
   const { logout } = useAuth();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -39,7 +43,11 @@ const UserProfilePage = ({ toggleDarkMode, path, categories, subcategories }) =>
 
   return (
     <>
-      <Header toggleDarkMode={toggleDarkMode} categories={categories} subcategories={subcategories} />
+      <Header
+        toggleDarkMode={toggleDarkMode}
+        categories={categories}
+        subcategories={subcategories}
+      />
       <Urls page={"Мій акаунт"} />
       <MobileMenuButton onClick={toggleMenu}>Меню</MobileMenuButton>
       {isMenuOpen && (
@@ -67,7 +75,7 @@ const MobileMenuButton = styled.button`
   top: 110px;
   left: 1px;
   z-index: 999;
-  background-color: #AD88C6;
+  background-color: #ad88c6;
   color: white;
   border: none;
   padding: 10px 20px;
