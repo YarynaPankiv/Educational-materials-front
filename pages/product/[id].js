@@ -31,6 +31,8 @@ const ColWrapper = styled.div`
   margin-top: 25px;
   @media only screen and (min-width: 600px) {
     grid-template-columns: 1fr;
+    gap: 0px;
+
   }
 `;
 
@@ -64,6 +66,7 @@ const ProductDesc = styled.div`
   @media only screen and (max-width: 600px) {
     
     grid-column: 1 / -1; 
+    width:100%;
   }
 `;
 const StyledDesc = styled.p`
@@ -148,19 +151,17 @@ export default function ProductPage({
                 {product.feedback.length} <Purple>відгуків</Purple>
               </TextLeft>
             </>
-            <br />
-            <div>
-              <div>
+      
+            
                 Формат файлу:{" "}
                 <Purple>{getFileExtension(product?.file[0]?.name)}</Purple>
-              </div>
-              <div>
+              
                 Кількість сторінок/слайдів: <Purple>{product.pages}</Purple>
-              </div>
+              
               <StyledDesc>{product.description}</StyledDesc>
               {console.log(product.description)}
               <GreenPrice>{product.price} ГРН</GreenPrice>
-            </div>
+            
             {console.log(product)}
             <DivInline>
               <BuyButton product={product}></BuyButton>

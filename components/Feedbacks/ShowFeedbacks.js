@@ -29,7 +29,7 @@ const OneFeedbackBox = styled.div`
   margin-top: 18px;
   padding: 0px 10px;
   @media only screen and (max-width: 600px) {
-    width:100%;
+    width:99%;
     height:auto;
 }
 `;
