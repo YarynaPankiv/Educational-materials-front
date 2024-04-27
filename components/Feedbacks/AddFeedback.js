@@ -20,7 +20,7 @@ const FeedbackBox = styled.div`
   padding: 10px 20px;
   margin-bottom: 25px;
   @media only screen and (max-width: 600px) {
-    width:90%;
+    width:105%;
     height:auto;
     padding: 5px 0px;
   }

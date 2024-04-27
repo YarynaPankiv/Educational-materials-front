@@ -26,14 +26,17 @@ import { User } from "@/models/User";
 
 const ColWrapper = styled.div`
   display: grid;
-  grid-template-columns: 0.8fr 1.2fr;
-  gap: 40px;
-  margin-top: 25px;
-  @media only screen and (min-width: 600px) {
+
+  @media only screen and (max-width: 600px) {
     grid-template-columns: 1fr;
     padding: 5px;
     gap: 0px;
     align-items: center;
+  }
+  @media only screen and (min-width: 600px) {
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: 40px;
+    margin-top: 25px;
   }
 `;
 
@@ -67,11 +70,16 @@ const ProductDesc = styled.div`
     grid-column: 1 / -1;
     width: 90%;
   }
+
+  /* @media only screen and (min-width: 600px) {
+    grid-column: span 2;
+    width: 100%;
+  } */
 `;
 const styledDiv = styled.div`
   @media only screen and (max-width: 600px) {
     width: 100%;
-    margin-bottom:15px;
+    margin-bottom: 15px;
   }
 `;
 const StyledDesc = styled.p`
@@ -143,25 +151,25 @@ export default function ProductPage({
             {subcategories.map((subcat) => {
               if (subcat._id == product.subcategory) {
                 return (
-               
                   <styledDiv key={subcat._id}>
                     {subcat.subCategoryName} , {product.schoolClass}
                     <br></br>
                   </styledDiv>
-                  
                 );
               }
               return null;
             })}
             <>
-
-             
               <TextLeft>
-              <Rating value={averageRating} size="small" readOnly />{" "} {product.feedback.length} <Purple>відгуків</Purple>
+                <Rating value={averageRating} size="small" readOnly />{" "}
+                {product.feedback.length} <Purple>відгуків</Purple>
               </TextLeft>
             </>
             Формат файлу:{" "}
-            <Purple>{getFileExtension(product?.file[0]?.name)}<br></br></Purple>
+            <Purple>
+              {getFileExtension(product?.file[0]?.name)}
+              <br></br>
+            </Purple>
             Кількість сторінок/слайдів: <Purple>{product.pages}</Purple>
             <StyledDesc>{product.description}</StyledDesc>
             {console.log(product.description)}
@@ -170,12 +178,12 @@ export default function ProductPage({
             <DivInline>
               <BuyButton product={product}></BuyButton>
             </DivInline>
-            {/* <AddFeedback id={id} />
-          <ShowFeedbacks
-            product={product}
-            feedbacks={feedbacks}
-            users={users}
-          /> */}
+            <AddFeedback id={id} />
+            <ShowFeedbacks
+              product={product}
+              feedbacks={feedbacks}
+              users={users}
+            />
           </ProductDesc>
         </ColWrapper>
       </Center>
