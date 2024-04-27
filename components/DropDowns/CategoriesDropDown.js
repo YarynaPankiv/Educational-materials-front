@@ -40,7 +40,11 @@ const ContentWrap = styled.div`
   left: -100px;
   background-color: white;
   z-index: 32;
-  margin-left:3px
+  margin-left:3px;
+  @media only screen and (max-width: 605px) {
+    left: -5px;
+
+  }
 `;
 
 const Wrap = styled.div`

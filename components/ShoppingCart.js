@@ -11,7 +11,7 @@ const ProductBox = styled.div`
   box-sizing: border-box;
   position: absolute;
   width: 455px;
-  height: 300px;
+  height: auto;
   top: 53px;
   right: -195px;
   background-color: white;
@@ -19,6 +19,12 @@ const ProductBox = styled.div`
   overflow-x: hidden;
   border: 1px solid black;
   z-index: 33;
+  @media only screen and (max-width: 605px) {
+    right: -64px;
+    width: 380px;
+    align-items: center;
+    justify-content: center;
+  }
 `;
 
 const ProductOrder = styled.div`
@@ -30,6 +36,11 @@ const ProductOrder = styled.div`
   border: 0.5px solid black;
   background-color: white;
   z-index: 33;
+  @media only screen and (max-width: 605px) {
+     width: 100%;
+     height: auto;
+     font-size: 14px;
+  }
 `;
 
 export const ProductImageWrapper = styled.div`
@@ -40,13 +51,21 @@ export const ProductImageWrapper = styled.div`
 export const StyledImage = styled.img`
   width: 140px;
   height: auto;
-
   margin-right: 15px;
+  @media only screen and (max-width: 605px) {
+     width: 110px;
+  }
 `;
 
 const ProductInfo = styled.div`
   width: 300px;
 `;
+
+const StyledB = styled.b`
+    width: 100px;
+    overflow-wrap: break-word;
+  
+`
 
 export const PurpleText = styled.span`
   color: #7469b6;
@@ -62,6 +81,9 @@ const StyledCost = styled.p`
   font-size: 18px;
   margin-right: 25px;
   color: #327a4c;
+  @media only screen and (max-width: 605px) {
+    font-size: 16px;
+  }
 `;
 
 export const IconTrash = styled.div`
@@ -75,6 +97,9 @@ export const IconTrash = styled.div`
   display: flex;
   align-items: center;
   cursor: pointer;
+  @media only screen and (max-width: 605px) {
+    margin-right: 10px;
+  }
 `;
 const TotalCost = styled.div`
   text-align: right;
@@ -159,7 +184,7 @@ export default function ShowShoppingCart({ subcategories }) {
                 <StyledImage src={pr.images[0]} />
                 <ProductInfo>
                   <p key={pr._id}>
-                    <b>{pr.productName}</b>
+                    <StyledB>{pr.productName}</StyledB>
                   </p>
                   {subcategories &&
                     subcategories.map((subcat) => {
