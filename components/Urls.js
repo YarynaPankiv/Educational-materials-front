@@ -28,7 +28,6 @@ export const StyledP = styled.span`
   opacity: 60%;
   margin-left: 15px;
 `;
-
 export default function Urls({ page }) {
   return (
     <Center>
