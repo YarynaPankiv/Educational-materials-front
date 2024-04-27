@@ -60,8 +60,10 @@ const TextLeft = styled.div`
   margin-left: 10px;
 `;
 const ProductDesc = styled.div`
+
   @media only screen and (max-width: 600px) {
-    grid-column: 1 / -1; // Span the entire width of the grid
+    
+    grid-column: 1 / -1; 
   }
 `;
 const StyledDesc = styled.p`
@@ -163,14 +165,15 @@ export default function ProductPage({
             <DivInline>
               <BuyButton product={product}></BuyButton>
             </DivInline>
-          </ProductDesc>
-          {/* 
-          <AddFeedback id={id} />
+            <AddFeedback id={id} />
           <ShowFeedbacks
             product={product}
             feedbacks={feedbacks}
             users={users}
-          /> */}
+          />
+          </ProductDesc>
+          
+          
         </ColWrapper>
       </Center>
     </>

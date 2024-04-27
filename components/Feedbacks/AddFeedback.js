@@ -19,6 +19,11 @@ const FeedbackBox = styled.div`
   border-radius: 10px;
   padding: 10px 20px;
   margin-bottom: 25px;
+  @media only screen and (max-width: 600px) {
+    width:90%;
+    height:auto;
+    padding: 5px 0px;
+  }
 `;
 
 const Title = styled.p`
@@ -30,6 +35,10 @@ const Input = styled.textarea`
   margin-top: 20px;
   width: 330px;
   height: 90px;
+  @media only screen and (max-width: 600px) {
+    width:95%;
+    margin-right: 5px
+  }
 `;
 
 const Button = styled.button`

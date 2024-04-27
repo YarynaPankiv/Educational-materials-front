@@ -12,6 +12,12 @@ const FeedbacksBox = styled.div`
   margin-bottom: 25px;
   overflow: scroll;
   overflow-x: hidden;
+
+  @media only screen and (max-width: 600px) {
+    width:90%;
+    height:auto;
+    padding: 7px 5px 0px;
+  }
 `;
 
 const OneFeedbackBox = styled.div`
@@ -22,6 +28,10 @@ const OneFeedbackBox = styled.div`
   border-radius: 10px;
   margin-top: 18px;
   padding: 0px 10px;
+  @media only screen and (max-width: 600px) {
+    width:100%;
+    height:auto;
+}
 `;
 
 const ShowDate = styled.div`
@@ -56,6 +66,7 @@ const FeedbackText = styled.p`
   font-size: 16px;
   color: #000000;
   margin-top: 0;
+ 
 `;
 
 const RatingWrapper = styled.div`
