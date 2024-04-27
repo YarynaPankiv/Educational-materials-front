@@ -36,6 +36,14 @@ const StyledSVG = styled.svg`
   margin-left: 10px;
   margin-right: 10px;
   margin-bottom: 0px;
+  @media only screen and (max-width: 600px) {
+    margin-right: 5px;
+    margin-left: 5px;
+
+
+  }
+  
+
 `;
 const StyledCloseSvg = styled.svg`
   margin-left: 20px;
