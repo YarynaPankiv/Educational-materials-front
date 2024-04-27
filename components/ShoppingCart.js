@@ -115,14 +115,27 @@ const GreenPrice = styled.span`
   margin-right: 8px;
 `;
 
-const StyledEmptyCart = styled.p`
+const StyledEmptyCart = styled.div`
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  @media only screen and (max-width: 605px) {
+    height: 200px;
+    font-size: 16px;
+  }
+
+`;
+const EmptyCartP = styled.p`
   font-family: "Rubik Mono One", sans-serif;
   font-size: 20px;
-  margin-left: 70px;
-  margin-top: 100px;
-`;
+  @media only screen and (max-width: 605px) {
+    font-size: 16px;
+  }
+
+`
 const ContinueBuying = styled.p`
-  margin-left: 170px;
   color: gray;
   cursor: pointer;
   &:hover {
@@ -226,10 +239,12 @@ export default function ShowShoppingCart({ subcategories }) {
 
         {cartProducts.length == 0 && (
           <>
-            <StyledEmptyCart>Ваша корзина пуста</StyledEmptyCart>
+            <StyledEmptyCart>
+              <EmptyCartP>Ваша корзина пуста</EmptyCartP>
             <ContinueBuying onClick={handleShowCartClick}>
-              Продовжити
+              Продовжити покупки
             </ContinueBuying>
+            </StyledEmptyCart>
           </>
         )}
       </ProductBox>
