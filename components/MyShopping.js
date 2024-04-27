@@ -10,6 +10,7 @@ const Page = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  
 `;
 
 export default MyShopping;

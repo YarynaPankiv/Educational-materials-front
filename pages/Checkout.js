@@ -27,6 +27,10 @@ const OrderContainer = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
+  @media only screen and (max-width: 650px) {
+    width: 95%;
+    padding: 5px;
+  }
 `;
 
 const StyledCost = styled.p`
@@ -36,10 +40,13 @@ const StyledCost = styled.p`
   font-size: 18px;
   margin-left: 280px;
   color: #327a4c;
+  @media only screen and (max-width: 650px) {
+    margin-left: 0;
+    margin-right: auto;
+  }
 `;
 const TotalCost = styled.div`
   text-align: left;
-
   margin-top: 16px;
   margin-bottom: 15px;
   margin-right: 18px;
@@ -48,10 +55,16 @@ const TotalCost = styled.div`
   font-style: normal;
   font-weight: bolder;
   font-size: 18px;
+  @media only screen and (max-width: 650px) {
+    margin: 8px 0;
+  }
 `;
 const GreenPrice = styled.span`
   color: #327a4c;
   margin-left: 10px;
+  @media only screen and (max-width: 650px) {
+    margin-left: 5px;
+  }
 `;
 const ProductOrder = styled.div`
   margin-top: 7px;
@@ -66,6 +79,11 @@ const ProductOrder = styled.div`
   border: 0.2px solid #ccc;
   background-color: white;
   margin-bottom: 10px;
+  @media only screen and (max-width: 600px) {
+    width:auto;
+    height:auto
+    
+  }
 `;
 const StyledH2 = styled.h2`
   font-family: "Montserrat";
@@ -74,6 +92,9 @@ const StyledH2 = styled.h2`
   font-size: 18px;
   margin-bottom: 25px;
   margin-right: 330px;
+  @media only screen and (max-width: 650px) {
+    margin-right: auto;
+  }
 `;
 const PaymentMessage = styled.h1`
   text-align: center;
@@ -82,13 +103,18 @@ const PaymentMessage = styled.h1`
   font-weight: bolder;
   margin-top:90px;
   font-size: 32px;
-
+  @media only screen and (max-width: 650px) {
+    width: 100%;
+    margin-top: 20px;
+  }
 `
 const SideAlignedWrapper = styled.div`
   display: flex;
   justify-content: center; 
 `;
-
+const StyledP = styled.p`
+   font-size: 18px;
+`;
 export default function Checkout({categories, subcategories}) {
     const router = useRouter();
   const { cartProducts, setCartProducts, deleteProductFromCart } =
@@ -175,17 +201,17 @@ export default function Checkout({categories, subcategories}) {
             <ProductImageWrapper>
               <StyledImage src={pr.images[0]} />
               <ul>
-                <p key={pr._id}>
+                <StyledP key={pr._id}>
                   <b>{pr.productName}</b>
-                </p>
-                <p key={pr._id}>
+                </StyledP>
+                <StyledP key={pr._id}>
                   Формат:{" "}
                   <PurpleText>
                     {pr.file && pr.file[0] && pr.file[0].name
                       ? getFileExtension(pr.file[0].name)
                       : ""}
                   </PurpleText>
-                </p>
+                </StyledP>
                 <p key={pr._id}>
                   <StyledCost>{pr.price} ГРН</StyledCost>
                 </p>

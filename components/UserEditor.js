@@ -133,6 +133,9 @@ const Page = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  @media only screen and (max-width: 600px) {
+    width:100%;
+  }
 `;
 
 const NameWrap = styled.div`

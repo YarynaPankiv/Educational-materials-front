@@ -70,9 +70,7 @@ const GreenPrice = styled.p`
   @media only screen and (max-width: 600px) {
     margin-left: 130px;
     margin-top: 50px;
-
   }
-  
 `;
 const DivInline = styled.div`
   margin-top: 5px;
@@ -84,7 +82,6 @@ const TextLeft = styled.span`
   margin-left: 10px;
   @media only screen and (max-width: 600px) {
     margin-left: 20px;
-  
   }
 `;
 const ProductDesc = styled.div`
@@ -92,7 +89,7 @@ const ProductDesc = styled.div`
     grid-column: 1 / -1;
     width: 90%;
     margin: 0 auto;
-    margin-top:15px;
+    margin-top: 15px;
   }
 
   @media only screen and (min-width: 600px) {
@@ -101,19 +98,17 @@ const ProductDesc = styled.div`
   }
 `;
 const StyledDiv = styled.div`
-    width: 100%;
-    margin-bottom: 15px;
+  width: 100%;
+  margin-bottom: 15px;
   @media only screen and (max-width: 600px) {
     width: 100%;
     margin-bottom: 15px;
-  
   }
-`;  
+`;
 const StyledDesc = styled.p`
   @media only screen and (max-width: 600px) {
     width: 90%;
     overflow-wrap: break-word;
-     
   }
 `;
 export const getFileExtension = (fileName) => {
@@ -188,15 +183,12 @@ export default function ProductPage({
               return null;
             })}
             <>
-              
-                <StyledDiv>
+              <StyledDiv>
                 <Rating value={averageRating} size="small" readOnly />{" "}
-               
                 <TextLeft>
-                {product.feedback.length} <Purple>відгуків</Purple>
-              </TextLeft>
+                  {product.feedback.length} <Purple>відгуків</Purple>
+                </TextLeft>
               </StyledDiv>
-                
             </>
             Формат файлу:{" "}
             <Purple>
@@ -211,14 +203,13 @@ export default function ProductPage({
             <DivInline>
               <BuyButton product={product}></BuyButton>
             </DivInline>
-            
           </ProductDesc>
           <AddFeedback id={id} />
-            <ShowFeedbacks
-              product={product}
-              feedbacks={feedbacks}
-              users={users}
-            />
+          <ShowFeedbacks
+            product={product}
+            feedbacks={feedbacks}
+            users={users}
+          />
         </ColWrapper>
         </Container>
       </Center>

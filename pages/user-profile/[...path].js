@@ -1,22 +1,24 @@
 import Header from "@/components/Header";
-import React from "react";
-import styled, { css } from "styled-components";
+import React, { useEffect, useState } from "react";
+import styled from "styled-components";
 import UserEditor from "@/components/UserEditor";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
 import Link from "next/link";
-import { red } from "@mui/material/colors";
-import MyShopping from "@/components/MyShopping";
-import LogoWithoutPurple from "@/components/Logo/LogoWithoutPurple";
 import { useAuth } from "@/Contexts/AccountContext";
-import Center from "@/components/Center";
 import Urls from "@/components/Urls";
 import SubCategory from "@/models/SubCategory";
 import { Category } from "@/models/Category";
+import MyShopping from "@/components/MyShopping";
 
-const UserProfilePage = ({ toggleDarkMode, path, categories, subcategories }) => {
+const UserProfilePage = ({
+  toggleDarkMode,
+  path,
+  categories,
+  subcategories,
+}) => {
   const router = useRouter();
-  const {logout} = useAuth();
+  const { logout } = useAuth();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
     if (!renderInfo()) {
@@ -24,14 +26,16 @@ const UserProfilePage = ({ toggleDarkMode, path, categories, subcategories }) =>
     }
   }, []);
 
- 
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
 
   const renderInfo = () => {
     switch (path) {
       case "user-info":
         return <UserEditor />;
       case "my-shop":
-        return <MyShopping/>;
+        return <MyShopping />;
       default:
         return null;
     }
@@ -39,68 +43,78 @@ const UserProfilePage = ({ toggleDarkMode, path, categories, subcategories }) =>
 
   return (
     <>
-    <Header toggleDarkMode={toggleDarkMode} categories={categories} subcategories={subcategories}/>
-    <Urls page={"Мій акаунт"}/>
-    <Page>
-      <Container>
-        <Menu>
-          <Text>МІЙ АКАУНТ</Text>
-          <Point href="/user-profile/my-shop" isActive={path === "my-shop"}>
-            Мої покупки
-          </Point>
-          <Point href="/user-profile/user-info" isActive={path === "user-info"}>
-            Дані облікового запису
-          </Point>
-          <Point isActive={false} href="/login" onClick={logout}>
-            Вийти
-          </Point>
-        </Menu>
-        {renderInfo()}
-      </Container>
-    </Page>
+      <Header
+        toggleDarkMode={toggleDarkMode}
+        categories={categories}
+        subcategories={subcategories}
+      />
+      <Urls page={"Мій акаунт"} />
+      <MobileMenuButton onClick={toggleMenu}>Меню</MobileMenuButton>
+      {isMenuOpen && (
+        <MobileMenu>
+          <MenuItem>
+            <Link href="/user-profile/my-shop">Мої покупки</Link>
+          </MenuItem>
+          <MenuItem>
+            <Link href="/user-profile/user-info">Дані облікового запису</Link>
+          </MenuItem>
+          <MenuItem>
+            <Link href="/login" onClick={logout}>
+              Вийти
+            </Link>
+          </MenuItem>
+        </MobileMenu>
+      )}
+      <Page>{renderInfo()}</Page>
     </>
   );
 };
 
-const Point = styled(Link)`
-  text-decoration: none;
-  color: black;
+const MobileMenuButton = styled.button`
+  position: absolute;
+  top: 110px;
+  left: 1px;
+  z-index: 999;
+  background-color: #ad88c6;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
 
-  &:hover {
-    text-decoration: underline;
+  @media only screen and (min-width: 600px) {
+    display: none;
+  }
+`;
+
+const MobileMenu = styled.div`
+  position: fixed;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 70%;
+  background-color: white;
+  z-index: 998;
+`;
+
+const MenuItem = styled.div`
+  padding: 20px;
+  border-bottom: 1px solid #ccc;
+
+  &:last-child {
+    border-bottom: none;
   }
 
-  ${({ isActive }) =>
-    isActive &&
-    css`
-      text-decoration: underline;
-    `}
+  a {
+    text-decoration: none;
+    color: black;
+    font-size: 18px;
+  }
 `;
 
 const Page = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-
-const Menu = styled.div`
-  display: flex;
-  gap: 10px;
-  flex-direction: column;
-  padding: 80px 20px;
-`;
-
-const Container = styled.div`
-  display: flex;
-  justify-content: center;
-  width: 100%;
-`;
-
-const Text = styled.div`
-  font-family: Rubik Mono One;
-  font-size: 20px;
-  text-align: left;
-  padding-bottom: 10px;
+  margin-top: 60px; /* Змініть висоту заголовка, якщо потрібно */
 `;
 
 export async function getServerSideProps(context) {

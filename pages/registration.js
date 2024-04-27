@@ -18,7 +18,7 @@ const RegisterPage = ({ toggleDarkMode, categories, subcategories }) => {
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
-  const {login, is} = useAuth();
+  const { login, isAuthenticated } = useAuth();
 
   async function registerUser() {
     if (!name || !surname || !email || !password) {
@@ -36,16 +36,14 @@ const RegisterPage = ({ toggleDarkMode, categories, subcategories }) => {
       const newUser = await axios.post("/api/registerUser", {
         name: name,
         surname: surname,
-        email: email, 
+        email: email,
         password: password,
-        
       });
       login(newUser.data);
       console.log(newUser);
       router.push("/user-profile/user-info");
     } catch (error) {
       console.error("Error during registration:", error);
-     
     }
   }
 
@@ -55,69 +53,44 @@ const RegisterPage = ({ toggleDarkMode, categories, subcategories }) => {
 
   return (
     <>
-    <Header toggleDarkMode={toggleDarkMode} categories={categories} subcategories={subcategories}/>
-    <Urls  page={"Зареєструватись"}/>
-    <Page>
-      <Container>
-        <SecondHalf>
-          <Text>Ви користувач?</Text>
-          <Wrapper>
-            <LoginButton onClick={goToLogin}>УВІЙТИ</LoginButton>
-          </Wrapper>
-        </SecondHalf>
-        <FirstHalf>
-          <Text>Це ваш перший візит?</Text>
-          <InputWrapper>
-            <MyInput
-              text={"Електронна пошта"}
-              type={"email"}
-              value={email}
-              setValue={setEmail}
-              theme="auth"
-              required
-            />
-          </InputWrapper>
-          <NameWrap>
-            <MyInput
-              text={"Ім'я"}
-              type={"text"}
-              value={name}
-              setValue={setName}
-              theme="auth"
-            />
-            <MyInput
-              text={"Прізвище"}
-              type={"text"}
-              value={surname}
-              setValue={setSurname}
-              theme="auth"
-            />
-          </NameWrap>
-          <InputWrapper>
-            <MyInput
-              text={"Пароль"}
-              type={"password"}
-              value={password}
-              setValue={setPassword}
-              theme="auth"
-            />
-          </InputWrapper>
-          <Wrapper>
-            <LoginButton onClick={registerUser}>ЗАРЕЄСТРУВАТИСЬ</LoginButton>
-          </Wrapper>
-        </FirstHalf>
-      </Container>
-    </Page>
+      <Header toggleDarkMode={toggleDarkMode} categories={categories} subcategories={subcategories} />
+      <Urls page={"Зареєструватись"} />
+      <Page>
+        <LogoWrapper>
+          <LogoWithoutPurple />
+        </LogoWrapper>
+        <Container>
+          <FirstHalf>
+            <Text>Це ваш перший візит?</Text>
+            <InputWrapper>
+              <MyInput text={"Електронна пошта"} type={"email"} value={email} setValue={setEmail} theme="auth" required />
+            </InputWrapper>
+            <NameWrap>
+              <MyInput text={"Ім'я"} type={"text"} value={name} setValue={setName} theme="auth" />
+              <MyInput text={"Прізвище"} type={"text"} value={surname} setValue={setSurname} theme="auth" />
+            </NameWrap>
+            <InputWrapper>
+              <MyInput text={"Пароль"} type={"password"} value={password} setValue={setPassword} theme="auth" />
+            </InputWrapper>
+            <Wrapper>
+              <LoginButton onClick={registerUser}>ЗАРЕЄСТРУВАТИСЬ</LoginButton>
+            </Wrapper>
+          </FirstHalf>
+          <SecondHalf>
+            <Text>Ви користувач?</Text>
+            <Wrapper>
+              <LoginButton onClick={goToLogin}>УВІЙТИ</LoginButton>
+            </Wrapper>
+          </SecondHalf>
+        </Container>
+      </Page>
     </>
-
   );
 };
 
-const NameWrap = styled.div`
+const LogoWrapper = styled.div`
   display: flex;
-  justify-content: space-between;
-  gap: 40px;
-  max-width: 500px;
+  justify-content: center;
 `;
 
 const InputWrapper = styled.div`
@@ -138,34 +111,53 @@ const Page = styled.div`
 
 const Container = styled.div`
   display: flex;
-  height: 100vh;
+  height: 100%;
+  flex: 1;
+
+  @media only screen and (max-width: 600px) {
+    flex-direction: column;
+  }
 `;
 
 const FirstHalf = styled.div`
-  width: 50%;
-  height: 100%;
+  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 40px;
-  padding: 140px 24px;
+  padding: 40px;
+
+  @media only screen and (max-width: 600px) {
+    padding: 20px;
+  }
 `;
 
 const SecondHalf = styled.div`
-  width: 50%;
-  height: 100%;
+  flex: 1;
   background: #d9d9d93d;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 100px;
-  padding: 140px 24px;
+  gap: 40px;
+  padding: 40px;
+
+  @media only screen and (max-width: 600px) {
+    padding: 20px;
+    
+  }
 `;
 
 const Text = styled.div`
   font-family: Rubik Mono One;
   font-size: 20px;
   text-align: left;
+`;
+
+const NameWrap = styled.div`
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+  max-width: 500px;
 `;
 
 export async function getServerSideProps() {
