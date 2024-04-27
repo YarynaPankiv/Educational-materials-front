@@ -29,6 +29,12 @@ const ColWrapper = styled.div`
   grid-template-columns: 0.8fr 1.2fr;
   gap: 40px;
   margin-top: 25px;
+  @media only screen and (min-width: 600px) {
+    grid-template-columns: 1fr;
+    padding: 5px;
+    gap: 0px;
+    align-items: center;
+  }
 `;
 
 const Purple = styled.span`
@@ -55,6 +61,24 @@ const DivInline = styled.div`
 
 const TextLeft = styled.div`
   margin-left: 10px;
+`;
+const ProductDesc = styled.div`
+  @media only screen and (max-width: 600px) {
+    grid-column: 1 / -1;
+    width: 90%;
+  }
+`;
+const styledDiv = styled.div`
+  @media only screen and (max-width: 600px) {
+    width: 100%;
+    margin-bottom:15px;
+  }
+`;
+const StyledDesc = styled.p`
+  @media only screen and (max-width: 600px) {
+    width: 90%;
+    overflow-wrap: break-word;
+  }
 `;
 export const getFileExtension = (fileName) => {
   if (fileName) {
@@ -93,7 +117,7 @@ export default function ProductPage({
   users,
 }) {
   const { addToCart } = useContext(CartContext);
-  const {user} = useAuth();
+  const { user } = useAuth();
   const { showCart, handleShowCartClick } = useCart();
 
   const totalRating = feedbacks.reduce(
@@ -113,45 +137,46 @@ export default function ProductPage({
 
         <ColWrapper>
           <ProductImages images={product.images} />
-          <div>
+          <ProductDesc>
             <b>{product.productName}</b>
+            <br></br>
             {subcategories.map((subcat) => {
               if (subcat._id == product.subcategory) {
                 return (
-                  <div key={subcat._id}>
+               
+                  <styledDiv key={subcat._id}>
                     {subcat.subCategoryName} , {product.schoolClass}
-                  </div>
+                    <br></br>
+                  </styledDiv>
+                  
                 );
               }
               return null;
             })}
+            <>
 
-            <DivInline>
-              <Rating value={averageRating} size="small" readOnly />{" "}
-              <TextLeft>{product.feedback.length}</TextLeft>{" "}
-              <Purple>відгуків</Purple>
-            </DivInline>
-            <br />
-            <div>
-              <div>
-                Формат файлу:{" "}
-                <Purple>{getFileExtension(product?.file[0]?.name)}</Purple>
-              </div>
-              <div>
-                Кількість сторінок/слайдів: <Purple>{product.pages}</Purple>
-              </div>
-              <p>{product.description}</p>
-              {console.log(product.description)}
-              <GreenPrice>{product.price} ГРН</GreenPrice>
-            </div>
+             
+              <TextLeft>
+              <Rating value={averageRating} size="small" readOnly />{" "} {product.feedback.length} <Purple>відгуків</Purple>
+              </TextLeft>
+            </>
+            Формат файлу:{" "}
+            <Purple>{getFileExtension(product?.file[0]?.name)}<br></br></Purple>
+            Кількість сторінок/слайдів: <Purple>{product.pages}</Purple>
+            <StyledDesc>{product.description}</StyledDesc>
+            {console.log(product.description)}
+            <GreenPrice>{product.price} ГРН</GreenPrice>
             {console.log(product)}
             <DivInline>
               <BuyButton product={product}></BuyButton>
             </DivInline>
-          </div>
-
-          <AddFeedback id={id} />
-          <ShowFeedbacks product={product} feedbacks={feedbacks} users={users} />
+            {/* <AddFeedback id={id} />
+          <ShowFeedbacks
+            product={product}
+            feedbacks={feedbacks}
+            users={users}
+          /> */}
+          </ProductDesc>
         </ColWrapper>
       </Center>
     </>
