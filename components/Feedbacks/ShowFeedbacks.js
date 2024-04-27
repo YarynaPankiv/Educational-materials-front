@@ -14,7 +14,7 @@ const FeedbacksBox = styled.div`
   overflow-x: hidden;
 
   @media only screen and (max-width: 600px) {
-    width:105%;
+    width:100%;
     height:auto;
     padding: 7px 5px 0px;
   }

@@ -55,6 +55,13 @@ const GreenPrice = styled.p`
   margin-top: 50px;
   margin-left: 190px;
   color: #327a4c;
+
+  @media only screen and (max-width: 600px) {
+    margin-left: 130px;
+    margin-top: 50px;
+
+  }
+  
 `;
 const DivInline = styled.div`
   margin-top: 5px;
@@ -69,23 +76,28 @@ const ProductDesc = styled.div`
   @media only screen and (max-width: 600px) {
     grid-column: 1 / -1;
     width: 90%;
+    margin: 0 auto;
   }
 
-  /* @media only screen and (min-width: 600px) {
-    grid-column: span 2;
+  @media only screen and (min-width: 600px) {
+    grid-column: 2;
     width: 100%;
-  } */
+  }
 `;
 const styledDiv = styled.div`
+    width: 100%;
+    margin-bottom: 15px;
   @media only screen and (max-width: 600px) {
     width: 100%;
     margin-bottom: 15px;
+  
   }
 `;
 const StyledDesc = styled.p`
   @media only screen and (max-width: 600px) {
     width: 90%;
     overflow-wrap: break-word;
+     
   }
 `;
 export const getFileExtension = (fileName) => {
@@ -153,7 +165,6 @@ export default function ProductPage({
                 return (
                   <styledDiv key={subcat._id}>
                     {subcat.subCategoryName} , {product.schoolClass}
-                    <br></br>
                   </styledDiv>
                 );
               }
@@ -178,13 +189,14 @@ export default function ProductPage({
             <DivInline>
               <BuyButton product={product}></BuyButton>
             </DivInline>
-            <AddFeedback id={id} />
+            
+          </ProductDesc>
+          <AddFeedback id={id} />
             <ShowFeedbacks
               product={product}
               feedbacks={feedbacks}
               users={users}
             />
-          </ProductDesc>
         </ColWrapper>
       </Center>
     </>
