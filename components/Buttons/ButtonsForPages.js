@@ -13,6 +13,13 @@ const StyledButton = styled.div`
   justify-content: center;
   align-items: center;
   margin-right: 8px;
+  @media only screen and (max-width: 605px) {
+    width: 25px;
+    height: 25px;
+    border-radius: 5px;
+    font-size: 14px;
+      
+  }
 `;
 
 const StyledLineOfButtons = styled.div`
@@ -21,6 +28,11 @@ const StyledLineOfButtons = styled.div`
   justify-content: center;
   margin-top: 37px;
   margin-bottom: 25px;
+  @media only screen and (max-width: 605px) {
+    margin-top: 0;
+      
+  }
+
 `;
 
 export default function ButtonsForPages({

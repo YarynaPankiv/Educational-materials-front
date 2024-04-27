@@ -17,11 +17,10 @@ const StyledProduct = styled.div`
   margin-top: 25px;
   @media only screen and (max-width: 600px) {
     width:170px;
-    height: 220px;
+    height: 200px;
   }
 `;
 const ImgWrraper = styled.div`
-  height: 170px;
   display: flex;
   align-items: center;
 
@@ -55,6 +54,12 @@ const StyledCost = styled.p`
   left: 0;
   margin-left: 20px;
   margin-bottom: 20px;
+  @media only screen and (max-width: 600px) {
+    font-size: 16px;
+    margin-left: 35px;
+
+  }
+
 `;
 
 const StyledAddToCart = styled.div`
@@ -74,6 +79,12 @@ const StyledAddToCart = styled.div`
   cursor: pointer;
   &:hover{
     background: #AD88C6;
+  }
+  @media only screen and (max-width: 600px) {
+    margin-right: 10px;
+    height: 35px;
+    width: 35px;
+
   }
   
 `;

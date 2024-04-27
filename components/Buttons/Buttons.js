@@ -17,15 +17,21 @@ const StyledButton = styled.button`
   @media only screen and (max-width: 605px) {
     width: 100%;
     height: auto;
-    padding: 15px;
-    margin-top: 15px;
-    font-family: "Montserrat", sans-serif;
-    color:black;  
+    width: 170px;
+    height: 40px;
+    margin-top: 25px;
+    margin-right: 0;
+    text-align: center;
   }
 `;
 const Div = styled.div`
   display: flex;
   align-items:center;
+  @media only screen and (max-width: 605px) {
+     justify-content: center;
+     gap: 15px;
+     
+  }
 `
 export default function Buttons({ onRecentlyAddedClick, onAllClick }) {
   const [isClicked, setIsClicked] = useState(false);
