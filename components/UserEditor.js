@@ -134,7 +134,8 @@ const Page = styled.div`
   justify-content: center;
   align-items: center;
   @media only screen and (max-width: 600px) {
-    width:100%;
+    width:99%;
+    margin-left:1%;
   }
 `;
 
