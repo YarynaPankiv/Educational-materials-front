@@ -15,8 +15,8 @@ const FeedbacksBox = styled.div`
 
   @media only screen and (max-width: 600px) {
     width:100%;
-    height:auto;
-    padding: 7px 5px 0px;
+    height:400px;
+    padding: 15px 5px ;
   }
 `;
 
@@ -29,13 +29,10 @@ const OneFeedbackBox = styled.div`
   margin-top: 18px;
   padding: 0px 10px;
   @media only screen and (max-width: 600px) {
-    width:100%;
+    width:95%;
     height:auto;
-}
-@media only screen and (min-width: 600px) {
-    width:100%;
-    height:auto;
-}
+    font-size: 14px;
+  }
 `;
 
 const ShowDate = styled.div`
@@ -51,8 +48,6 @@ const NameData = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between; /* Зміна тут */
-  font-weight:700;
-  font-size: 16 px
 `;
 
 const Name = styled.p`

@@ -11,24 +11,20 @@ const CenterButton = styled.div`
 `;
 
 const FeedbackBox = styled.div`
-  display: grid;
+  margin-top: 50px;
+  width: 370px;
+  height: 290px;
   background: #ffffff;
   border: 1px solid rgba(0, 0, 0, 0.21);
   border-radius: 10px;
-
+  padding: 10px 20px;
   margin-bottom: 25px;
+
   @media only screen and (max-width: 600px) {
-    width: 100%;
-    height: auto;
-    padding: 5px 0px;
-    margin-top: 50px;
-  }
-  @media only screen and (min-width: 600px) {
-    width: 490px;
-    height: 290px;
-    padding: 10px 20px;
-    margin-top: 50px;
-    grid-column: 1;
+    width:90%;
+    height:auto;
+    padding: 10px 10px;
+    margin-left: 20px;
     
   }
 `;
@@ -43,13 +39,8 @@ const Input = styled.textarea`
   width: 330px;
   height: 90px;
   @media only screen and (max-width: 600px) {
-    width: 95%;
-    margin-right: 5px;
-    
-  }
-  @media only screen and (min-width: 600px) {
-    width: 100%;
-    margin-right: 5px;
+    width:96%;
+    margin-left: 5px;
   }
 `;
 
@@ -64,6 +55,8 @@ const Button = styled.button`
   margin-left: auto;
   margin-right: auto;
   margin-top: 25px;
+  margin-bottom: 10px;
+  
 `;
 
 export default function AddFeedback({ id }) {
@@ -86,6 +79,7 @@ export default function AddFeedback({ id }) {
         date: formattedDate,
         rate,
         user: user.data._id,
+   
       };
 
       if (productId) {

@@ -19,6 +19,9 @@ export const UrlsDiv = styled.div`
   display: flex;
   align-items: center;
   margin-top: 10px;
+  @media only screen and (max-width: 600px) {
+    margin-top: 5px;
+  }
 
 
 `

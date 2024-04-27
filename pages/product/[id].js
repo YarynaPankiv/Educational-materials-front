@@ -24,12 +24,23 @@ import Urls from "@/components/Urls";
 import { useAuth } from "@/Contexts/AccountContext";
 import { User } from "@/models/User";
 
+const Container = styled.div`
+
+@media only screen and (max-width: 600px) {
+  display: flex;
+ align-items: center;
+ flex-direction: column;
+ justify-content: center;
+     
+  }
+
+
+`
 const ColWrapper = styled.div`
   display: grid;
 
   @media only screen and (max-width: 600px) {
     grid-template-columns: 1fr;
-    /* padding: 5px; */
     gap: 0px;
     align-items: center;
   }
@@ -156,6 +167,7 @@ export default function ProductPage({
   return (
     <>
       <Center>
+      <Container>
         <Header categories={categories} subcategories={subcategories} />
         <LogoWithoutPurple />
         <Urls page={product.productName} />
@@ -208,6 +220,7 @@ export default function ProductPage({
               users={users}
             />
         </ColWrapper>
+        </Container>
       </Center>
     </>
   );

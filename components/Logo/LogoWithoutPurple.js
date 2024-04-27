@@ -7,12 +7,21 @@ const StyledLogo = styled.div`
   margin-top: 0px;
   display: flex;
   align-items: center;
+  @media only screen and (max-width: 600px) {
+    display: none;
+
+  }
 `;
 
 const StyledText = styled.p`
   font-family: "Rubik Mono One", sans-serif;
   font-size: 20px;
   color: black;
+  @media only screen and (max-width: 600px) {
+    font-size: 16px;
+    margin: 0;
+  }
+
 `;
 
 const StyledSvg = styled.svg`
