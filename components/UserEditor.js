@@ -4,9 +4,10 @@ import axios from "axios";
 import MyInput from "./Login/MyInput";
 import LoginButton from "./Login/LoginButton";
 import { useAuth } from "@/Contexts/AccountContext";
+import Center from "./Center";
 const UserEditor = () => {
   const { user } = useAuth(); // Отримання поточного користувача з контексту
-
+  const {setUser} = useAuth();
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
   const [password, setPassword] = useState("");
@@ -37,7 +38,9 @@ const UserEditor = () => {
         surname,
         password,
       });
+      setUser(response.data);
       console.log("User data updated:", response.data);
+  
     } catch (error) {
       console.error("Error updating user data:", error);
     }
@@ -52,6 +55,7 @@ const UserEditor = () => {
         surname,
         password:newPassword,
       });
+      setUser(response.data);
       console.log("Password updated:", response.data);
     } catch (error) {
       console.error("Error updating password:", error);
@@ -59,6 +63,7 @@ const UserEditor = () => {
   };
 
   return (
+    <Center>
     <Page>
       <InputWrapper>
         <Text>Дані користувача</Text>
@@ -124,6 +129,7 @@ const UserEditor = () => {
       </InputWrapper>
       <LoginButton onClick={savePassword}>Змінити пароль</LoginButton>
     </Page>
+    </Center>
   );
 };
 
@@ -135,8 +141,9 @@ const Page = styled.div`
   height: 50px;
   margin-left: 5%;
   @media only screen and (max-width: 600px) {
-    width:80%;
-    margin-left:35px;
+    width:364px;
+    margin-left:8px;
+    margin-right:5px;
     
   }
 `;
