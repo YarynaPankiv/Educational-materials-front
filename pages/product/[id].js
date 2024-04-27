@@ -65,7 +65,7 @@ const TextLeft = styled.div`
 const ProductDesc = styled.div`
   @media only screen and (max-width: 600px) {
     grid-column: 1 / -1;
-    width: 100%;
+    width: 90%;
   }
 `;
 const styledDiv = styled.div`
