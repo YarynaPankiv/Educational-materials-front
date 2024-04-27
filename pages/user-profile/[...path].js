@@ -65,14 +65,45 @@ const UserProfilePage = ({
           </MenuItem>
         </MobileMenu>
       )}
+      {!isMenuOpen && (
+        <Menu>
+          <Text>МІЙ АКАУНТ</Text>
+          <Point href="/user-profile/my-shop" isActive={path === "my-shop"}>
+            Мої покупки
+          </Point>
+          <Point href="/user-profile/user-info" isActive={path === "user-info"}>
+            Дані облікового запису
+          </Point>
+          <Point isActive={false} href="/login" onClick={logout}>
+            Вийти
+          </Point>
+        </Menu>
+      )}
       <Page>{renderInfo()}</Page>
     </>
   );
 };
+const Point = styled(Link)`
+  text-decoration: none;
+  color: black;
+`;
 
+const Text = styled.div`
+  font-family: Rubik Mono One;
+  font-size: 20px;
+  text-align: left;
+  padding-bottom: 10px;
+`;
+const Menu = styled.div`
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+  margin-left: 16%;
+  padding: 80px 20px;
+`;
 const MobileMenuButton = styled.button`
   position: absolute;
-  top: 110px;
+  top: 11 0px;
   left: 1px;
   z-index: 999;
   background-color: #ad88c6;
@@ -82,6 +113,7 @@ const MobileMenuButton = styled.button`
   font-size: 16px;
   border-radius: 5px;
   cursor: pointer;
+  margin-left: 1%;
 
   @media only screen and (min-width: 600px) {
     display: none;
@@ -96,6 +128,10 @@ const MobileMenu = styled.div`
   height: 70%;
   background-color: white;
   z-index: 998;
+
+  @media only screen and (min-width: 600px) {
+    display: none;
+  }
 `;
 
 const MenuItem = styled.div`
@@ -114,7 +150,9 @@ const MenuItem = styled.div`
 `;
 
 const Page = styled.div`
-  margin-top: 60px; /* Змініть висоту заголовка, якщо потрібно */
+  flex-direction: column;
+  align-items: center;
+  margin-top: 60px;
 `;
 
 export async function getServerSideProps(context) {
