@@ -6,12 +6,17 @@ import { useCategories } from "@/Contexts/CategoriesContext";
 const StyledCategories = styled.div`
   box-sizing: border-box;
   width: 385px;
-  height: 496px;
+  height: auto;
   background: #ffffff;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   overflow: scroll;
   overflow-x: hidden;
   z-index: 12;
+  @media only screen and (max-width: 605px) {
+    width: 385px;
+    height: auto;
+
+  }
 `;
 
 const CategoriesDiv = styled.div`

@@ -10,10 +10,7 @@ import Router from "next/router";
 const PurpleButton = styled.button`
 background-color: #7469b6;
 font-family: "Rubik Mono One";
-font-style: normal;
-font-weight: 400;
 font-size: 16px;
-line-height: 20px;
 border: none;
 color: #fffcfc;
 height: 40px;
@@ -28,6 +25,12 @@ cursor: pointer;
 :hover{
     background: #7469b6;
 }
+@media only screen and (max-width: 605px) {
+  margin-top:10px;
+  margin-left: 115px;
+
+  
+  }
 
 `;
 const SvgCart = styled.svg`
