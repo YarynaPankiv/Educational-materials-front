@@ -103,7 +103,7 @@ const Menu = styled.div`
 `;
 const MobileMenuButton = styled.button`
   position: absolute;
-  top: 110px;
+  top: 11 0px;
   left: 1px;
   z-index: 999;
   background-color: #ad88c6;
