@@ -64,7 +64,6 @@ export const IconText = styled.p`
 `;
 
 const AllIcons = styled.div`
-  margin-top: 10px;
   display: flex;
   align-items: center;
 `;
