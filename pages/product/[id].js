@@ -31,8 +31,9 @@ const ColWrapper = styled.div`
   margin-top: 25px;
   @media only screen and (min-width: 600px) {
     grid-template-columns: 1fr;
+    padding: 5px;
     gap: 0px;
-
+    align-items: center;
   }
 `;
 
@@ -62,11 +63,15 @@ const TextLeft = styled.div`
   margin-left: 10px;
 `;
 const ProductDesc = styled.div`
-
   @media only screen and (max-width: 600px) {
-    
-    grid-column: 1 / -1; 
-    width:100%;
+    grid-column: 1 / -1;
+    width: 100%;
+  }
+`;
+const styledDiv = styled.div`
+  @media only screen and (max-width: 600px) {
+    width: 100%;
+    margin-bottom:15px;
   }
 `;
 const StyledDesc = styled.p`
@@ -134,47 +139,44 @@ export default function ProductPage({
           <ProductImages images={product.images} />
           <ProductDesc>
             <b>{product.productName}</b>
+            <br></br>
             {subcategories.map((subcat) => {
               if (subcat._id == product.subcategory) {
                 return (
-                  <div key={subcat._id}>
+               
+                  <styledDiv key={subcat._id}>
                     {subcat.subCategoryName} , {product.schoolClass}
-                  </div>
+                    <br></br>
+                  </styledDiv>
+                  
                 );
               }
               return null;
             })}
-
             <>
-              <Rating value={averageRating} size="small" readOnly />{" "}
+
+             
               <TextLeft>
-                {product.feedback.length} <Purple>відгуків</Purple>
+              <Rating value={averageRating} size="small" readOnly />{" "} {product.feedback.length} <Purple>відгуків</Purple>
               </TextLeft>
             </>
-      
-            
-                Формат файлу:{" "}
-                <Purple>{getFileExtension(product?.file[0]?.name)}</Purple>
-              
-                Кількість сторінок/слайдів: <Purple>{product.pages}</Purple>
-              
-              <StyledDesc>{product.description}</StyledDesc>
-              {console.log(product.description)}
-              <GreenPrice>{product.price} ГРН</GreenPrice>
-            
+            Формат файлу:{" "}
+            <Purple>{getFileExtension(product?.file[0]?.name)}<br></br></Purple>
+            Кількість сторінок/слайдів: <Purple>{product.pages}</Purple>
+            <StyledDesc>{product.description}</StyledDesc>
+            {console.log(product.description)}
+            <GreenPrice>{product.price} ГРН</GreenPrice>
             {console.log(product)}
             <DivInline>
               <BuyButton product={product}></BuyButton>
             </DivInline>
-            <AddFeedback id={id} />
+            {/* <AddFeedback id={id} />
           <ShowFeedbacks
             product={product}
             feedbacks={feedbacks}
             users={users}
-          />
+          /> */}
           </ProductDesc>
-          
-          
         </ColWrapper>
       </Center>
     </>
