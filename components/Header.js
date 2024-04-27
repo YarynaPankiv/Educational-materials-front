@@ -48,7 +48,6 @@ const StyledSearch = styled.input`
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   ${media.mobile} {
     display:none;
-   // width: 20px; /* Змінюємо шири
   }
 `;
 const MobileSearchIconContainer = styled.div`
@@ -107,6 +106,10 @@ const LoginMenu = styled.div`
   justify-content: center;
   gap: 10px;
   padding: 10px 10px;
+  @media only screen and (max-width: 605px) {
+    max-width: 240px;
+    padding: 5px 5px;
+  }
 `;
 
 const Line = styled.div`
@@ -120,6 +123,9 @@ const Text2 = styled.div`
   font-size: 16px;
   color: black;
   font-weight: 600;
+  @media only screen and (max-width: 605px) {
+    padding-top: 5px;
+  }
 `;
 const ButtonWrapper = styled.div`
   max-width: 300px;

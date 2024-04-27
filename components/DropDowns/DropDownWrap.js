@@ -28,6 +28,9 @@ const ContentWrap = styled.div`
   top: calc(100% + 12px);
   right: -100px;
   background-color: white;
+  @media only screen and (max-width: 605px) {
+    right: 0;
+  }
 `;
 
 const Wrap = styled.div`

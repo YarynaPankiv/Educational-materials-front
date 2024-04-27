@@ -15,11 +15,10 @@ const StyledButton = styled.button`
   transition: background 0.3s ease;
   cursor: pointer;
   @media only screen and (max-width: 605px) {
-    width: 100%;
     height: auto;
     width: 170px;
     height: 40px;
-    margin-top: 25px;
+    margin-top: 20px;
     margin-right: 0;
     text-align: center;
   }
@@ -28,8 +27,9 @@ const Div = styled.div`
   display: flex;
   align-items:center;
   @media only screen and (max-width: 605px) {
-     justify-content: center;
-     gap: 15px;
+    justify-content: center;
+    justify-content: space-around;
+     
      
   }
 `
