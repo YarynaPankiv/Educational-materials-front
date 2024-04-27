@@ -11,11 +11,11 @@ const StyledLogo = styled.div`
   align-items: center;
   justify-content: center;
 
-  @media only screen and (max-width: 605px) {
+  @media only screen and (max-width: 600px) {
     width: 100%;
     height: auto;
     padding: 15px;
-    margin-top: 15px;
+    margin-top: 10px;
   }
 `;
 
@@ -24,7 +24,7 @@ const StyledText = styled.p`
   font-size: 40px;
   color: #ffffff;
   @media only screen and (max-width: 605px) {
-    font-size: 20px;
+    font-size: 18px;
   }
 `;
 

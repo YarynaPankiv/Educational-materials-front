@@ -1,6 +1,7 @@
 import { useCategories } from "@/Contexts/CategoriesContext";
 import { useState, useEffect, useRef, useContext } from "react";
 import styled from "styled-components";
+import { media } from "../Header";
 
 const DropDownWrap = ({ icon, children }) => {
   const [isShowComponent, setIsShowComponent] = useState(false);
@@ -39,12 +40,17 @@ const ContentWrap = styled.div`
   left: -100px;
   background-color: white;
   z-index: 32;
+  margin-left:3px
 `;
 
 const Wrap = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
+  media.mobile{
+    left:0;
+    top:50px;
+  }
 `;
 
 const Icon = styled.div``;

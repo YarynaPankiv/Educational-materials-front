@@ -16,6 +16,12 @@ import { useCart } from "@/Contexts/ShowCart";
 import { useAuth } from "@/Contexts/AccountContext";
 
 import UserProfilePage from "@/pages/user-profile/[...path]";
+import SeacrhIcon from "./SearchIcon";
+
+
+export const media = {
+  mobile: `@media only screen and (max-width: 600px)`,
+};
 
 export const StyledIcon = styled.svg`
   width: 21px;
@@ -40,9 +46,22 @@ const StyledSearch = styled.input`
   outline: none;
   margin-left: 10px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  ${media.mobile} {
+    display:none;
+   // width: 20px; /* Змінюємо шири
+  }
 `;
-
-export const IconWithText = styled.div`
+const MobileSearchIconContainer = styled.div`
+  display: none; /* По замовчуванню приховано для десктопних */
+  
+  /* Показуємо контейнер на мобільних пристроях */
+  ${media.mobile} {
+    display: block;
+   // margin-top:10px;
+    margin-left: 5px;
+  }
+`;
+export const IconWithText = styled.div` 
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -64,7 +83,7 @@ export const IconText = styled.p`
 `;
 
 const AllIcons = styled.div`
-  margin-top: 10px;
+  //margin-top: 10px;
   display: flex;
   align-items: center;
 `;
@@ -149,6 +168,13 @@ export default function Header({ toggleDarkMode, categories, subcategories }) {
           >
             <Categories categories={categories} subcategories={subcategories} />
           </CategoriesDropDown>
+          <MobileSearchIconContainer>
+           <SeacrhIcon>
+            
+           </SeacrhIcon>
+          </MobileSearchIconContainer>
+          
+          {/* Залишаємо StyledSearch на десктопних пристроях */}
           <StyledSearch placeholder="Введіть текст для пошуку..."></StyledSearch>
           <AllIcons>
             <Theme toggleDarkMode={toggleDarkMode} />
