@@ -27,7 +27,7 @@ const Button = styled.button`
   @media only screen and (max-width: 600px) {
     font-size: 14px;
     padding: 10px 10px;
-    width:90%;
+    width: 97%;
   }
 `;
 
