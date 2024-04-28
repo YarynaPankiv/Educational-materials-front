@@ -120,18 +120,9 @@ export default function ProductsInSubcategory({
   const [searchValue, setSearchValue] = useState('');
   const [selectedSchoolClass, setSelectedSchoolClass] = useState(null);
 
-  console.log(selectedSchoolClass, 'selectedSchoolClass');
-  console.log(categories, 'categories');
-  console.log(subcategories, 'subcategories');
-  console.log(subcategory, 'subcategory');
-  console.log(allProducts, 'allProducts');
-  console.log(products, 'products');
-
   const subCategoryId = subcategories.find(
     ({ subCategoryName }) => subCategoryName === subcategory
   )._id;
-
-  console.log(subCategoryId, 'subCategoryId');
 
   useEffect(() => {
     const filteredByCategory = allProducts.filter(
