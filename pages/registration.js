@@ -47,7 +47,7 @@ const RegisterPage = ({ toggleDarkMode, categories, subcategories }) => {
     }
   }
 
-  const goToLogin = () => {
+   const goToLogin = () => {
     router.push("/login");
   };
 

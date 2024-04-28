@@ -6,6 +6,10 @@ import BuyButton from "./Buttons/BuyButton";
 import CartDropDownWrap from "./DropDowns/CartDropDown";
 import { useCart } from "@/Contexts/ShowCart";
 import PayButton from "./Buttons/PayButton";
+import { useAuth } from "@/Contexts/AccountContext";
+import LoginButton from "./Login/LoginButton";
+import { useRouter } from "next/router";
+
 
 const ProductBox = styled.div`
   box-sizing: border-box;
@@ -37,9 +41,9 @@ const ProductOrder = styled.div`
   background-color: white;
   z-index: 33;
   @media only screen and (max-width: 605px) {
-     width: 100%;
-     height: auto;
-     font-size: 14px;
+    width: 100%;
+    height: auto;
+    font-size: 14px;
   }
 `;
 
@@ -53,7 +57,7 @@ export const StyledImage = styled.img`
   height: auto;
   margin-right: 15px;
   @media only screen and (max-width: 605px) {
-     width: 110px;
+    width: 110px;
   }
 `;
 
@@ -62,10 +66,9 @@ const ProductInfo = styled.div`
 `;
 
 const StyledB = styled.b`
-    width: 100px;
-    overflow-wrap: break-word;
-  
-`
+  width: 100px;
+  overflow-wrap: break-word;
+`;
 
 export const PurpleText = styled.span`
   color: #7469b6;
@@ -116,16 +119,15 @@ const GreenPrice = styled.span`
 `;
 
 const StyledEmptyCart = styled.div`
-    height: 200px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   @media only screen and (max-width: 605px) {
     height: 200px;
     font-size: 16px;
   }
-
 `;
 const EmptyCartP = styled.p`
   font-family: "Rubik Mono One", sans-serif;
@@ -133,11 +135,19 @@ const EmptyCartP = styled.p`
   @media only screen and (max-width: 605px) {
     font-size: 16px;
   }
-
-`
+`;
+const NotUserP = styled.span`
+  font-family: "Rubik Mono One", sans-serif;
+  font-size: 17px;
+  margin-bottom:50px;
+  @media only screen and (max-width: 600px) {
+    font-size: 16px;
+  }
+`;
 const ContinueBuying = styled.p`
   color: gray;
   cursor: pointer;
+
   &:hover {
     text-decoration: underline;
     color: #ad88c6;
@@ -152,6 +162,8 @@ const getFileExtension = (fileName) => {
 };
 
 export default function ShowShoppingCart({ subcategories }) {
+  const router = useRouter();
+  const {user} = useAuth();
   const { cartProducts, setCartProducts, deleteProductFromCart } =
     useContext(CartContext);
   const { showCart, handleShowCartClick } = useCart();
@@ -171,7 +183,9 @@ export default function ShowShoppingCart({ subcategories }) {
   }, [ref, handleShowCartClick]);
 
   const totalCost = cartProducts.reduce((acc, curr) => acc + curr.price, 0);
-
+  const goToLogin = () => {
+    router.push("/login");
+  };
   return (
     <>
       <ProductBox ref={ref}>
@@ -237,13 +251,22 @@ export default function ShowShoppingCart({ subcategories }) {
           </>
         )}
 
-        {cartProducts.length == 0 && (
+        {user && cartProducts.length == 0 && (
           <>
             <StyledEmptyCart>
               <EmptyCartP>Ваша корзина пуста</EmptyCartP>
-            <ContinueBuying onClick={handleShowCartClick}>
-              Продовжити покупки
-            </ContinueBuying>
+              <ContinueBuying onClick={handleShowCartClick}>
+                Продовжити покупки
+              </ContinueBuying>
+            </StyledEmptyCart>
+          </>
+        )}
+        {!user && (
+          <>
+           <StyledEmptyCart>
+              <NotUserP>Ви не увійшли / зареєстувались</NotUserP>
+              <LoginButton onClick={goToLogin}>УВІЙТИ / ЗАРЕЄСТРУВАТИСЬ</LoginButton>
+              
             </StyledEmptyCart>
           </>
         )}

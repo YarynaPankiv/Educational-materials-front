@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
+import { useAuth } from "./AccountContext";
 
 export const CartContext = createContext({
   cartProducts: [],
@@ -8,8 +9,10 @@ export const CartContext = createContext({
 
 export function CartContextProvider({ children }) {
   const [cartProducts, setCartProducts] = useState([]);
+  const {user} = useAuth();
 
   useEffect(() => {
+  
     const savedCart = localStorage.getItem("cart");
     if (savedCart) {
       setCartProducts(JSON.parse(savedCart));
@@ -21,13 +24,15 @@ export function CartContextProvider({ children }) {
   }, [cartProducts]);
 
   const addToCart = (product) => {
+    if(user){
     const existingProductIndex = cartProducts.findIndex(
       (item) => item._id === product._id
     );
-
     if (existingProductIndex === -1) {
       setCartProducts((prev) => [...prev, product]);
     }
+  }
+  
   };
 
   const deleteProductFromCart = (productId) => {
