@@ -141,7 +141,7 @@ const NotUserP = styled.span`
   font-size: 17px;
   margin-bottom:50px;
   @media only screen and (max-width: 600px) {
-    font-size: 16px;
+    font-size: 14px;
   }
 `;
 const ContinueBuying = styled.p`

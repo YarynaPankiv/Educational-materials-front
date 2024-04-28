@@ -24,9 +24,10 @@ const Button = styled.button`
     border: 2px solid #7469b6;
     color: #ffffff;
   }
-  @media only screen and (max-width: 605px) {
+  @media only screen and (max-width: 600px) {
     font-size: 14px;
     padding: 10px 10px;
+    width:90%;
   }
 `;
 
