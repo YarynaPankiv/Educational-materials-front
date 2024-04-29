@@ -77,6 +77,7 @@ const RatingWrapper = styled.div`
 `;
 
 export default function ShowFeedbacks({ product, feedbacks, users }) {
+  
   return (
     <FeedbacksBox>
       <Feedbacks>ВІДГУКИ</Feedbacks>
