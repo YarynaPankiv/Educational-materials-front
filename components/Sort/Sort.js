@@ -54,7 +54,6 @@ export default function Sort({ chooseType, sortProducts, filter }) {
   
     const handleClick = (type) => {
       setChosenSortType(type);
-
     };
   
     return (

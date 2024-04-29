@@ -1,23 +1,22 @@
-import styled from "styled-components";
-import Center from "./Center";
-import Theme from "./headerComponents.js/theme";
-import Cart from "./headerComponents.js/cart";
-import Account from "./headerComponents.js/account";
-import CategoriesButton from "./Buttons/CategoriesButton";
-import DropDownWrap from "./DropDowns/DropDownWrap";
-import LoginButton from "./Login/LoginButton";
-import { useRouter } from "next/router";
-import ShowShoppingCart from "./ShoppingCart";
-import Categories from "./Categories";
-import CategoriesDropDown from "./DropDowns/CategoriesDropDown";
-import BuyButton from "./Buttons/BuyButton";
-import { useState } from "react";
-import { useCart } from "@/Contexts/ShowCart";
-import { useAuth } from "@/Contexts/AccountContext";
+import styled from 'styled-components';
+import Center from './Center';
+import Theme from './headerComponents.js/theme';
+import Cart from './headerComponents.js/cart';
+import Account from './headerComponents.js/account';
+import CategoriesButton from './Buttons/CategoriesButton';
+import DropDownWrap from './DropDowns/DropDownWrap';
+import LoginButton from './Login/LoginButton';
+import { useRouter } from 'next/router';
+import ShowShoppingCart from './ShoppingCart';
+import Categories from './Categories';
+import CategoriesDropDown from './DropDowns/CategoriesDropDown';
+import BuyButton from './Buttons/BuyButton';
+import { useEffect, useState } from 'react';
+import { useCart } from '@/Contexts/ShowCart';
+import { useAuth } from '@/Contexts/AccountContext';
 
-import UserProfilePage from "@/pages/user-profile/[...path]";
-import SeacrhIcon from "./SearchIcon";
-
+import UserProfilePage from '@/pages/user-profile/[...path]';
+import SeacrhIcon from './SearchIcon';
 
 export const media = {
   mobile: `@media only screen and (max-width: 600px)`,
@@ -47,20 +46,20 @@ const StyledSearch = styled.input`
   margin-left: 10px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   ${media.mobile} {
-    display:none;
+    display: none;
   }
 `;
 const MobileSearchIconContainer = styled.div`
   display: none; /* По замовчуванню приховано для десктопних */
-  
+
   /* Показуємо контейнер на мобільних пристроях */
   ${media.mobile} {
     display: block;
-   // margin-top:10px;
+    // margin-top:10px;
     margin-left: 5px;
   }
 `;
-export const IconWithText = styled.div` 
+export const IconWithText = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -73,7 +72,7 @@ export const IconWithText = styled.div`
 export const IconText = styled.p`
   margin-top: 0px;
   margin-left: 8px; /* Додано відступ зліва */
-  font-family: "Rubik Mono One", sans-serif;
+  font-family: 'Rubik Mono One', sans-serif;
   font-size: 11px;
   user-select: none;
   ${IconWithText}:hover & {
@@ -136,7 +135,7 @@ const Container = styled.div`
   position: relative;
 `;
 
-export default function Header({ toggleDarkMode, categories, subcategories }) {
+export default function Header({ toggleDarkMode, categories, subcategories, setSearchValue, searchValue }) {
   const { isLogin } = useAuth();
 
   const { showCart, handleShowCartClick, showCartClick } = useCart();
@@ -146,17 +145,25 @@ export default function Header({ toggleDarkMode, categories, subcategories }) {
   };
   const router = useRouter();
 
+  const handleOnChange = (e) => {
+    if (!setSearchValue) {
+      router.push('/');
+      return
+    }
+    setSearchValue(e.target.value);
+  };
+
   const goToRegister = () => {
-    router.push("/registration");
+    router.push('/registration');
   };
 
   const goToLogin = () => {
-    router.push("/login");
+    router.push('/login');
   };
 
   const handleAccountClick = () => {
     if (isLogin) {
-      router.push("/user-profile/user-info");
+      router.push('/user-profile/user-info');
     }
   };
 
@@ -175,13 +182,15 @@ export default function Header({ toggleDarkMode, categories, subcategories }) {
             <Categories categories={categories} subcategories={subcategories} />
           </CategoriesDropDown>
           <MobileSearchIconContainer>
-           <SeacrhIcon>
-            
-           </SeacrhIcon>
+            <SeacrhIcon></SeacrhIcon>
           </MobileSearchIconContainer>
-          
+
           {/* Залишаємо StyledSearch на десктопних пристроях */}
-          <StyledSearch placeholder="Введіть текст для пошуку..."></StyledSearch>
+          <StyledSearch
+            value={searchValue}
+            onChange={handleOnChange}
+            placeholder="Введіть текст для пошуку..."
+          />
           <AllIcons>
             <Theme toggleDarkMode={toggleDarkMode} />
             <Container>
