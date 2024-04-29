@@ -21,10 +21,10 @@ export default async function handle(req, res) {
     res.status(200).json({ success: true, data: user });
   } 
   else if (method === "GET") {
-    const { email } = req.query;
+    const { _id } = req.body;
 
     // Знайти користувача за його email у базі даних
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ _id });
 
     if (!user) {
       return res
