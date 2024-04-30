@@ -2,32 +2,6 @@ import styled from "styled-components";
 import Center from "./Center";
 import Link from "next/link";
 
-export const StyledLink = styled(Link)`
-  text-decoration: none;
-  color: black;
-  opacity: 60%;
-  margin-right: 10px;
-`;
-export const StyledSvg = styled.svg`
-  margin-left: 10px;
-  fill: ${(props) => (props.showSort ? "#AD88C6" : "black")};
-`;
-
-export const UrlsDiv = styled.div`
-  display: flex;
-  align-items: center;
-  margin-top: 10px;
-  @media only screen and (max-width: 600px) {
-    margin-top: 5px;
-  }
-
-
-`
-export const StyledP = styled.span`
-  color: black;
-  opacity: 60%;
-  margin-left: 15px;
-`;
 export default function Urls({ page }) {
   return (
     <Center>
@@ -51,3 +25,27 @@ export default function Urls({ page }) {
     </Center>
   );
 }
+export const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: black;
+  opacity: 60%;
+  margin-right: 10px;
+`;
+export const StyledSvg = styled.svg`
+  margin-left: 10px;
+  fill: ${(props) => (props.showSort ? "#AD88C6" : "black")};
+`;
+
+export const UrlsDiv = styled.div`
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  @media only screen and (max-width: 600px) {
+    margin-top: 5px;
+  }
+`;
+export const StyledP = styled.span`
+  color: black;
+  opacity: 60%;
+  margin-left: 15px;
+`;

@@ -1,12 +1,55 @@
 import styled from "styled-components";
-import Center from "../Center";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
-import FormLabel from "@mui/material/FormLabel";
 import { useState } from "react";
 
+export default function Sort({ chooseType, sortProducts, filter }) {
+  const [chosenSortType, setChosenSortType] = useState(null);
+
+  const handleClick = (type) => {
+    setChosenSortType(type);
+  };
+
+  return (
+    <StyledDiv>
+      <Div>
+        <FormControl>
+          <RadioGroup>
+            <StyledFormControlLabel
+              value="Від найдешевших"
+              control={<StyledRadio />}
+              label="Від найдешевших"
+              onClick={() => handleClick("priceAsc")}
+            />
+            <StyledFormControlLabel
+              value="Від найдорожчих"
+              control={<StyledRadio />}
+              label="Від найдорожчих"
+              onClick={() => handleClick("priceDesc")}
+            />
+            <StyledFormControlLabel
+              value="Від найновіших"
+              control={<StyledRadio />}
+              label="Від найновіших"
+              onClick={() => handleClick("new")}
+            />
+          </RadioGroup>
+        </FormControl>
+        <StyledButton
+          onClick={() => {
+            chooseType(chosenSortType);
+            sortProducts(chosenSortType);
+            filter();
+          }}
+        >
+          Сортувати
+        </StyledButton>
+      </Div>
+    </StyledDiv>
+  );
+}
 export const StyledDiv = styled.div`
   width: 250px;
   height: 225px;
@@ -48,42 +91,3 @@ const StyledFormControlLabel = styled(FormControlLabel)`
     font-family: "Montserrat", sans-serif;
   }
 `;
-
-export default function Sort({ chooseType, sortProducts, filter }) {
-    const [chosenSortType, setChosenSortType] = useState(null);
-  
-    const handleClick = (type) => {
-      setChosenSortType(type);
-    };
-  
-    return (
-      <StyledDiv>
-        <Div>
-          <FormControl>
-            <RadioGroup>
-              <StyledFormControlLabel
-                value="Від найдешевших"
-                control={<StyledRadio />}
-                label="Від найдешевших"
-                onClick={() => handleClick("priceAsc")} 
-              />
-              <StyledFormControlLabel
-                value="Від найдорожчих"
-                control={<StyledRadio />}
-                label="Від найдорожчих"
-                onClick={() => handleClick("priceDesc")} 
-              />
-              <StyledFormControlLabel
-                value="Від найновіших"
-                control={<StyledRadio />}
-                label="Від найновіших"
-                onClick={() => handleClick("new")} 
-              />
-            </RadioGroup>
-          </FormControl>
-          <StyledButton onClick={() => { chooseType(chosenSortType); sortProducts(chosenSortType); filter();}}>Сортувати</StyledButton>
-        </Div>
-      </StyledDiv>
-    );
-  }
-  

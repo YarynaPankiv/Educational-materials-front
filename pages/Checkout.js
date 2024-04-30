@@ -1,121 +1,21 @@
 import { CartContext } from "@/Contexts/CartContext";
-import BuyButton from "@/components/Buttons/BuyButton";
 import { useContext } from "react";
 import styled from "styled-components";
 import { ProductImageWrapper } from "@/components/ShoppingCart";
 import { StyledImage } from "@/components/ShoppingCart";
 import { IconTrash } from "@/components/ShoppingCart";
 import { PurpleText } from "@/components/ShoppingCart";
-import PayButton from "@/components/Buttons/PayButton";
 import { getFileExtension } from "./product/[id]";
 import PaymentButton from "@/components/Buttons/PaymentButton";
 import Header from "@/components/Header";
 import { useRouter } from "next/router";
 import Center from "@/components/Center";
-import LogoWithoutPurple from "@/components/Logo/LogoWithoutPurple";
 import Urls from "@/components/Urls";
 import { Category } from "@/models/Category";
 import SubCategory from "@/models/SubCategory";
 import { useState } from "react";
 import { useEffect } from "react";
 
-
-const OrderContainer = styled.div`
-  margin: 20px auto;
-  width: 650px;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  padding: 10px;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  @media only screen and (max-width: 650px) {
-    width: 95%;
-    padding: 5px;
-  }
-`;
-
-const StyledCost = styled.p`
-  font-family: "Montserrat";
-  font-style: normal;
-  font-weight: bolder;
-  font-size: 18px;
-  margin-left: 280px;
-  color: #327a4c;
-  @media only screen and (max-width: 650px) {
-    margin-left: 0;
-    margin-right: auto;
-  }
-`;
-const TotalCost = styled.div`
-  text-align: left;
-  margin-top: 16px;
-  margin-bottom: 15px;
-  margin-right: 18px;
-  margin-left: 10px;
-  font-family: "Montserrat";
-  font-style: normal;
-  font-weight: bolder;
-  font-size: 18px;
-  @media only screen and (max-width: 650px) {
-    margin: 8px 0;
-  }
-`;
-const GreenPrice = styled.span`
-  color: #327a4c;
-  margin-left: 10px;
-  @media only screen and (max-width: 650px) {
-    margin-left: 5px;
-  }
-`;
-const ProductOrder = styled.div`
-  margin-top: 7px;
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  margin-left: 10px;
-  margin-right: 15px;
-  width: 580px;
-  height: 150px;
-  border-radius: 15px;
-  border: 0.2px solid #ccc;
-  background-color: white;
-  margin-bottom: 10px;
-  @media only screen and (max-width: 600px) {
-    width: auto;
-    height: auto;
-  }
-`;
-const StyledH2 = styled.h2`
-  font-family: "Montserrat";
-  font-style: normal;
-  font-weight: bolder;
-  font-size: 18px;
-  margin-bottom: 25px;
-  margin-right: 330px;
-  @media only screen and (max-width: 650px) {
-    margin-right: auto;
-  }
-`;
-const PaymentMessage = styled.h1`
-  text-align: center;
-  font-family: "Montserrat";
-  font-style: normal;
-  font-weight: bolder;
-  margin-top: 90px;
-  font-size: 32px;
-  @media only screen and (max-width: 650px) {
-    width: 100%;
-    margin-top: 20px;
-  }
-`;
-const SideAlignedWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-`;
-const StyledP = styled.p`
-  font-size: 18px;
-`;
 export default function Checkout({ categories, subcategories }) {
   const router = useRouter();
   const { cartProducts, deleteProductFromCart } = useContext(CartContext);
@@ -235,3 +135,99 @@ export async function getServerSideProps(context) {
     },
   };
 }
+const OrderContainer = styled.div`
+  margin: 20px auto;
+  width: 650px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  @media only screen and (max-width: 650px) {
+    width: 95%;
+    padding: 5px;
+  }
+`;
+
+const StyledCost = styled.p`
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: bolder;
+  font-size: 18px;
+  margin-left: 280px;
+  color: #327a4c;
+  @media only screen and (max-width: 650px) {
+    margin-left: 0;
+    margin-right: auto;
+  }
+`;
+const TotalCost = styled.div`
+  text-align: left;
+  margin-top: 16px;
+  margin-bottom: 15px;
+  margin-right: 18px;
+  margin-left: 10px;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: bolder;
+  font-size: 18px;
+  @media only screen and (max-width: 650px) {
+    margin: 8px 0;
+  }
+`;
+const GreenPrice = styled.span`
+  color: #327a4c;
+  margin-left: 10px;
+  @media only screen and (max-width: 650px) {
+    margin-left: 5px;
+  }
+`;
+const ProductOrder = styled.div`
+  margin-top: 7px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  margin-left: 10px;
+  margin-right: 15px;
+  width: 580px;
+  height: 150px;
+  border-radius: 15px;
+  border: 0.2px solid #ccc;
+  background-color: white;
+  margin-bottom: 10px;
+  @media only screen and (max-width: 600px) {
+    width: auto;
+    height: auto;
+  }
+`;
+const StyledH2 = styled.h2`
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: bolder;
+  font-size: 18px;
+  margin-bottom: 25px;
+  margin-right: 330px;
+  @media only screen and (max-width: 650px) {
+    margin-right: auto;
+  }
+`;
+const PaymentMessage = styled.h1`
+  text-align: center;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: bolder;
+  margin-top: 90px;
+  font-size: 32px;
+  @media only screen and (max-width: 650px) {
+    width: 100%;
+    margin-top: 20px;
+  }
+`;
+const SideAlignedWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+const StyledP = styled.p`
+  font-size: 18px;
+`;

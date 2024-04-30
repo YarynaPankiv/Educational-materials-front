@@ -4,61 +4,6 @@ import Rating from "@mui/material/Rating";
 import axios from "axios";
 import { useAuth } from "@/Contexts/AccountContext";
 
-const CenterButton = styled.div`
-  display: flex;
-  justify-content: center;
-  width: 100%;
-`;
-
-const FeedbackBox = styled.div`
-  margin-top: 50px;
-  width: 370px;
-  height: 290px;
-  background: #ffffff;
-  border: 1px solid rgba(0, 0, 0, 0.21);
-  border-radius: 10px;
-  padding: 10px 20px;
-  margin-bottom: 25px;
-
-  @media only screen and (max-width: 600px) {
-    width:90%;
-    height:auto;
-    padding: 10px 10px;
-    margin-left: 20px;
-    
-  }
-`;
-
-const Title = styled.p`
-  font-family: "Rubik Mono One", sans-serif;
-  font-size: 15px;
-`;
-
-const Input = styled.textarea`
-  margin-top: 20px;
-  width: 330px;
-  height: 90px;
-  @media only screen and (max-width: 600px) {
-    width:96%;
-    margin-left: 5px;
-  }
-`;
-
-const Button = styled.button`
-  width: 155.51px;
-  height: 37.13px;
-  background: #ad88c6;
-  border-radius: 10px;
-  border: none;
-  font-family: "Rubik Mono One", sans-serif;
-  color: white;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 25px;
-  margin-bottom: 10px;
-  
-`;
-
 export default function AddFeedback({ id }) {
   const [feedback, setFeedback] = useState("");
   const [rate, setRate] = useState(0);
@@ -79,7 +24,6 @@ export default function AddFeedback({ id }) {
         date: formattedDate,
         rate,
         user: user.data._id,
-   
       };
 
       if (productId) {
@@ -109,3 +53,56 @@ export default function AddFeedback({ id }) {
     </FeedbackBox>
   );
 }
+
+const CenterButton = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 100%;
+`;
+
+const FeedbackBox = styled.div`
+  margin-top: 50px;
+  width: 370px;
+  height: 290px;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.21);
+  border-radius: 10px;
+  padding: 10px 20px;
+  margin-bottom: 25px;
+
+  @media only screen and (max-width: 600px) {
+    width: 90%;
+    height: auto;
+    padding: 10px 10px;
+    margin-left: 20px;
+  }
+`;
+
+const Title = styled.p`
+  font-family: "Rubik Mono One", sans-serif;
+  font-size: 15px;
+`;
+
+const Input = styled.textarea`
+  margin-top: 20px;
+  width: 330px;
+  height: 90px;
+  @media only screen and (max-width: 600px) {
+    width: 96%;
+    margin-left: 5px;
+  }
+`;
+
+const Button = styled.button`
+  width: 155.51px;
+  height: 37.13px;
+  background: #ad88c6;
+  border-radius: 10px;
+  border: none;
+  font-family: "Rubik Mono One", sans-serif;
+  color: white;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 25px;
+  margin-bottom: 10px;
+`;

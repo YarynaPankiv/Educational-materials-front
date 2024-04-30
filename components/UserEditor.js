@@ -5,9 +5,11 @@ import MyInput from "./Login/MyInput";
 import LoginButton from "./Login/LoginButton";
 import { useAuth } from "@/Contexts/AccountContext";
 import Center from "./Center";
+
+
 const UserEditor = () => {
   const { user } = useAuth(); // Отримання поточного користувача з контексту
-  const {setUser} = useAuth();
+  const { setUser } = useAuth();
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
   const [password, setPassword] = useState("");
@@ -25,10 +27,8 @@ const UserEditor = () => {
       setEmailField(user.data.email);
       setUserId(user.data._id);
     }
-  
   }, [user]);
 
-  
   const saveData = async () => {
     try {
       const response = await axios.put(`/api/loginUser?_id=${userId}`, {
@@ -39,8 +39,8 @@ const UserEditor = () => {
         password,
       });
       setUser(response.data);
+      localStorage.setItem('user', JSON.stringify(response.data));
       console.log("User data updated:", response.data);
-  
     } catch (error) {
       console.error("Error updating user data:", error);
     }
@@ -49,13 +49,14 @@ const UserEditor = () => {
   const savePassword = async () => {
     try {
       const response = await axios.put(`/api/loginUser?_id=${userId}`, {
-        _id:userId,
-        email:emailField,
+        _id: userId,
+        email: emailField,
         name,
         surname,
-        password:newPassword,
+        password: newPassword,
       });
       setUser(response.data);
+      localStorage.setItem('user', JSON.stringify(response.data));
       console.log("Password updated:", response.data);
     } catch (error) {
       console.error("Error updating password:", error);
@@ -64,71 +65,71 @@ const UserEditor = () => {
 
   return (
     <Center>
-    <Page>
-      <InputWrapper>
-        <Text>Дані користувача</Text>
-        <InputContainer>
-          <MyInput
-            text={"Адреса електронної пошти"}
-            type={"email"}
-            value={emailField}
-            setValue={setEmailField}
-            theme="common"
-          />
-        </InputContainer>
-        <InputContainer>
-          <NameWrap>
+      <Page>
+        <InputWrapper>
+          <Text>Дані користувача</Text>
+          <InputContainer>
             <MyInput
-              text={"Ім'я"}
-              type={"text"}
-              value={name}
-              setValue={setName}
+              text={"Адреса електронної пошти"}
+              type={"email"}
+              value={emailField}
+              setValue={setEmailField}
               theme="common"
             />
+          </InputContainer>
+          <InputContainer>
+            <NameWrap>
+              <MyInput
+                text={"Ім'я"}
+                type={"text"}
+                value={name}
+                setValue={setName}
+                theme="common"
+              />
+              <MyInput
+                text={"Прізвище"}
+                type={"text"}
+                value={surname}
+                setValue={setSurname}
+                theme="common"
+                placeholder="Прізвище"
+              />
+            </NameWrap>
+          </InputContainer>
+        </InputWrapper>
+        <LoginButton onClick={saveData}>Змінити дані користувача</LoginButton>
+        <InputWrapper>
+          <InputContainer>
+            <Text>Пароль</Text>
             <MyInput
-              text={"Прізвище"}
+              text={"Поточний пароль"}
               type={"text"}
-              value={surname}
-              setValue={setSurname}
+              value={password}
+              setValue={setPassword}
               theme="common"
-              placeholder="Прізвище"
             />
-          </NameWrap>
-        </InputContainer>
-      </InputWrapper>
-      <LoginButton onClick={saveData}>Змінити дані користувача</LoginButton>
-      <InputWrapper>
-        <InputContainer>
-          <Text>Пароль</Text>
-          <MyInput
-            text={"Поточний пароль"}
-            type={"text"}
-            value={password}
-            setValue={setPassword}
-            theme="common"
-          />
-        </InputContainer>
-        <InputContainer>
-          <MyInput
-            text={"Новий пароль"}
-            type={"password"}
-            value={newPassword}
-            setValue={setNewPassword}
-            theme="common"
-          />
-        </InputContainer>
-        <InputContainer>
-          <MyInput
-            text={"Повторити новий пароль"}
-            type={"password"}
-            value={checkPassword}
-            setValue={setCheckPassword}
-            theme="common"
-          />
-        </InputContainer>
-      </InputWrapper>
-      <LoginButton onClick={savePassword}>Змінити пароль</LoginButton>
-    </Page>
+          </InputContainer>
+          <InputContainer>
+            <MyInput
+              text={"Новий пароль"}
+              type={"password"}
+              value={newPassword}
+              setValue={setNewPassword}
+              theme="common"
+            />
+          </InputContainer>
+          <InputContainer>
+            <MyInput
+              text={"Повторити новий пароль"}
+              type={"password"}
+              value={checkPassword}
+              setValue={setCheckPassword}
+              theme="common"
+            />
+          </InputContainer>
+        </InputWrapper>
+        <LoginButton onClick={savePassword}>Змінити пароль</LoginButton>
+      </Page>
     </Center>
   );
 };
@@ -141,10 +142,9 @@ const Page = styled.div`
   height: 50px;
   margin-left: 5%;
   @media only screen and (max-width: 600px) {
-    width:364px;
-    margin-left:8px;
-    margin-right:5px;
-    
+    width: 364px;
+    margin-left: 8px;
+    margin-right: 5px;
   }
 `;
 

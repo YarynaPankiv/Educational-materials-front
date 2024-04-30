@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState } from "react";
 import Center from "@/components/Center";
 import Header from "@/components/Header";
 import LogoWithoutPurple from "@/components/Logo/LogoWithoutPurple";
@@ -21,6 +21,121 @@ import Urls from "@/components/Urls";
 import { useAuth } from "@/Contexts/AccountContext";
 import { User } from "@/models/User";
 
+export const getFileExtension = (fileName) => {
+  if (fileName) {
+    return fileName.split(".").pop();
+  }
+  return;
+};
+
+export async function getServerSideProps(context) {
+  await mongooseConnect();
+
+  const { id } = context.query;
+  const product = await Product.findById(id);
+  const categories = await Category.find({});
+  const subcategories = await SubCategory.find({});
+  const feedbacks = await Feedback.find({ _id: { $in: product.feedback } });
+  const users = await User.find({});
+  return {
+    props: {
+      product: JSON.parse(JSON.stringify(product)),
+      categories: JSON.parse(JSON.stringify(categories)),
+      subcategories: JSON.parse(JSON.stringify(subcategories)),
+      id: JSON.parse(JSON.stringify(id)),
+      feedbacks: JSON.parse(JSON.stringify(feedbacks)),
+      users: JSON.parse(JSON.stringify(users)),
+    },
+  };
+}
+
+export default function ProductPage({
+  product,
+  categories,
+  subcategories,
+  id,
+  feedbacks: initialFeedbacks,
+  users,
+}) {
+  const { addToCart } = useContext(CartContext);
+  const { user } = useAuth();
+  const { showCart, handleShowCartClick } = useCart();
+
+  const [feedbacks, setFeedbacks] = useState(initialFeedbacks);
+
+  const totalRating = feedbacks.reduce(
+    (total, feedback) => total + feedback.rate,
+    0
+  );
+
+  const averageRating =
+    feedbacks.length > 0 ? totalRating / feedbacks.length : 0.0;
+
+  const addNewFeedback = async (newFeedback) => {
+    try {
+      const response = await axios.post("/api/feedback", newFeedback);
+      if (response.status === 200) {
+        // Update feedbacks state with the new feedback
+        setFeedbacks([...feedbacks, newFeedback]);
+      }
+    } catch (error) {
+      console.error("Error adding feedback:", error);
+    }
+  };
+
+  return (
+    <>
+      <Center>
+        <Container>
+          <Header categories={categories} subcategories={subcategories} />
+          <LogoWithoutPurple />
+          <Urls page={product.productName} />
+
+          <ColWrapper>
+            <ProductImages images={product.images} />
+            <ProductDesc>
+              <b>{product.productName}</b>
+              <br />
+              {subcategories.map((subcat) => {
+                if (subcat._id == product.subcategory) {
+                  return (
+                    <StyledDiv key={subcat._id}>
+                      {subcat.subCategoryName} , {product.schoolClass}
+                    </StyledDiv>
+                  );
+                }
+                return null;
+              })}
+              <>
+                <StyledDiv>
+                  <Rating value={averageRating} size="small" readOnly />{" "}
+                  <TextLeft>
+                    {product.feedback.length} <Purple>відгуків</Purple>
+                  </TextLeft>
+                </StyledDiv>
+              </>
+              Формат файлу:{" "}
+              <Purple>{getFileExtension(product?.file[0]?.name)}</Purple>
+              <br />
+              Кількість сторінок/слайдів: <Purple>{product.pages}</Purple>
+              <StyledDesc>{product.description}</StyledDesc>
+              <GreenPrice>{product.price} ГРН</GreenPrice>
+              <DivInline>
+                <BuyButton product={product} />
+              </DivInline>
+            </ProductDesc>
+            <AddFeedback id={id} addFeedback={addNewFeedback} />
+            <ShowFeedbacks
+              product={product}
+              feedbacks={feedbacks}
+              users={users}
+            />
+          </ColWrapper>
+        </Container>
+      </Center>
+    </>
+  );
+}
 const Container = styled.div`
   @media only screen and (max-width: 600px) {
     display: flex;
@@ -109,119 +224,3 @@ const StyledDesc = styled.p`
     overflow-wrap: break-word;
   }
 `;
-
-export const getFileExtension = (fileName) => {
-  if (fileName) {
-    return fileName.split(".").pop();
-  }
-  return;
-};
-
-export async function getServerSideProps(context) {
-  await mongooseConnect();
-
-  const { id } = context.query;
-  const product = await Product.findById(id);
-  const categories = await Category.find({});
-  const subcategories = await SubCategory.find({});
-  const feedbacks = await Feedback.find({ _id: { $in: product.feedback } });
-  const users = await User.find({});
-  return {
-    props: {
-      product: JSON.parse(JSON.stringify(product)),
-      categories: JSON.parse(JSON.stringify(categories)),
-      subcategories: JSON.parse(JSON.stringify(subcategories)),
-      id: JSON.parse(JSON.stringify(id)),
-      feedbacks: JSON.parse(JSON.stringify(feedbacks)),
-      users: JSON.parse(JSON.stringify(users)),
-    },
-  };
-}
-
-export default function ProductPage({
-  product,
-  categories,
-  subcategories,
-  id,
-  feedbacks: initialFeedbacks,
-  users,
-}) {
-  const { addToCart } = useContext(CartContext);
-  const { user } = useAuth();
-  const { showCart, handleShowCartClick } = useCart();
-
-  const [feedbacks, setFeedbacks] = useState(initialFeedbacks);
-
-  const totalRating = feedbacks.reduce(
-    (total, feedback) => total + feedback.rate,
-    0
-  );
-
-  const averageRating =
-    feedbacks.length > 0 ? totalRating / feedbacks.length : 0.0;
-
-  const addNewFeedback = async (newFeedback) => {
-    try {
-      const response = await axios.post('/api/feedback', newFeedback);
-      if (response.status === 200) {
-        // Update feedbacks state with the new feedback
-        setFeedbacks([...feedbacks, newFeedback]);
-      }
-    } catch (error) {
-      console.error('Error adding feedback:', error);
-    }
-  };
-
-  return (
-    <>
-      <Center>
-        <Container>
-          <Header categories={categories} subcategories={subcategories} />
-          <LogoWithoutPurple />
-          <Urls page={product.productName} />
-
-          <ColWrapper>
-            <ProductImages images={product.images} />
-            <ProductDesc>
-              <b>{product.productName}</b>
-              <br />
-              {subcategories.map((subcat) => {
-                if (subcat._id == product.subcategory) {
-                  return (
-                    <StyledDiv key={subcat._id}>
-                      {subcat.subCategoryName} , {product.schoolClass}
-                    </StyledDiv>
-                  );
-                }
-                return null;
-              })}
-              <>
-                <StyledDiv>
-                  <Rating value={averageRating} size="small" readOnly />{" "}
-                  <TextLeft>
-                    {product.feedback.length} <Purple>відгуків</Purple>
-                  </TextLeft>
-                </StyledDiv>
-              </>
-              Формат файлу:{" "}
-              <Purple>{getFileExtension(product?.file[0]?.name)}</Purple>
-              <br />
-              Кількість сторінок/слайдів: <Purple>{product.pages}</Purple>
-              <StyledDesc>{product.description}</StyledDesc>
-              <GreenPrice>{product.price} ГРН</GreenPrice>
-              <DivInline>
-                <BuyButton product={product} />
-              </DivInline>
-            </ProductDesc>
-            <AddFeedback id={id} addFeedback={addNewFeedback} />
-            <ShowFeedbacks
-              product={product}
-              feedbacks={feedbacks}
-              users={users}
-            />
-          </ColWrapper>
-        </Container>
-      </Center>
-    </>
-  );
-}

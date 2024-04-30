@@ -4,54 +4,6 @@ import styled from "styled-components";
 import Categories from "@/components/Categories";
 import { useCategories } from "@/Contexts/CategoriesContext";
 
-
-const media = {
-  mobile: `@media only screen and (max-width: 600px)`,
-};
-
-const StyledButton = styled.button`
-  width: 146px;
-  height: 34px;
-  padding: 0;
-  background-color: ${(props) =>
-    props.showCategories ? "#7469B6" : "#FFFFFF"};
-  border-radius: 10px;
-  border: ${(props) => (props.showCategories ? "none" : "2px solid #7469b6")};
-  display: flex;
-  align-items: center;
-  color: ${(props) => (props.showCategories ? "#FFFFFF" : "#7469b6")};
-  font-weight: 500;
-  font-size: 16px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  ${media.mobile} {
-    width: 127px;
-    margin-left: 5px;
-  }
-`;
-
-const StyledSVG = styled.svg`
-  margin-left: 10px;
-  margin-right: 10px;
-  margin-bottom: 0px;
-  @media only screen and (max-width: 600px) {
-    margin-right: 5px;
-    margin-left: 5px;
-
-
-  }
-  
-
-`;
-const StyledCloseSvg = styled.svg`
-  margin-left: 20px;
-  margin-right: 16px;
-  margin-bottom: 0px;
-  fill: #ffffff;
-`;
-
 export default function CategoriesButton({ categories, subcategories }) {
   const { showCategories, setShowCategories } = useCategories();
 
@@ -89,3 +41,45 @@ export default function CategoriesButton({ categories, subcategories }) {
     </>
   );
 }
+const media = {
+  mobile: `@media only screen and (max-width: 600px)`,
+};
+
+const StyledButton = styled.button`
+  width: 146px;
+  height: 34px;
+  padding: 0;
+  background-color: ${(props) =>
+    props.showCategories ? "#7469B6" : "#FFFFFF"};
+  border-radius: 10px;
+  border: ${(props) => (props.showCategories ? "none" : "2px solid #7469b6")};
+  display: flex;
+  align-items: center;
+  color: ${(props) => (props.showCategories ? "#FFFFFF" : "#7469b6")};
+  font-weight: 500;
+  font-size: 16px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  ${media.mobile} {
+    width: 127px;
+    margin-left: 5px;
+  }
+`;
+
+const StyledSVG = styled.svg`
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 0px;
+  @media only screen and (max-width: 600px) {
+    margin-right: 5px;
+    margin-left: 5px;
+  }
+`;
+const StyledCloseSvg = styled.svg`
+  margin-left: 20px;
+  margin-right: 16px;
+  margin-bottom: 0px;
+  fill: #ffffff;
+`;

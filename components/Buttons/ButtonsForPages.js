@@ -1,40 +1,6 @@
 import styled from "styled-components";
 import Center from "../Center";
 
-const StyledButton = styled.div`
-  width: 35px;
-  height: 35px;
-  cursor: pointer;
-  border-radius: 10px;
-  background: ${(props) => (props.clicked === "true" ? "#AD88C6" : "#FCFAFA")};
-  border: 1px solid #000000;
-  color: ${(props) => (props.clicked === "true" ? "white" : "black")};
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-right: 8px;
-  @media only screen and (max-width: 605px) {
-    width: 25px;
-    height: 25px;
-    border-radius: 5px;
-    font-size: 14px;
-      
-  }
-`;
-
-const StyledLineOfButtons = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 37px;
-  margin-bottom: 25px;
-  @media only screen and (max-width: 605px) {
-    margin-top: 0;
-      
-  }
-
-`;
-
 export default function ButtonsForPages({
   totalPages,
   onPageChange,
@@ -67,3 +33,33 @@ export default function ButtonsForPages({
   ) : null;
 }
 
+const StyledButton = styled.div`
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+  border-radius: 10px;
+  background: ${(props) => (props.clicked === "true" ? "#AD88C6" : "#FCFAFA")};
+  border: 1px solid #000000;
+  color: ${(props) => (props.clicked === "true" ? "white" : "black")};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 8px;
+  @media only screen and (max-width: 605px) {
+    width: 25px;
+    height: 25px;
+    border-radius: 5px;
+    font-size: 14px;
+  }
+`;
+
+const StyledLineOfButtons = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 37px;
+  margin-bottom: 25px;
+  @media only screen and (max-width: 605px) {
+    margin-top: 0;
+  }
+`;

@@ -1,6 +1,38 @@
 import styled from "styled-components";
 import Rating from "@mui/material/Rating";
 
+export default function ShowFeedbacks({ product, feedbacks, users }) {
+  return (
+    <FeedbacksBox>
+      <Feedbacks>ВІДГУКИ</Feedbacks>
+      {product.feedback.map((feedbackId) => {
+        const feedback = feedbacks.find(
+          (feedback) => feedback._id === feedbackId
+        );
+        if (feedback) {
+          const user = users.find((user) => user._id === feedback.user);
+
+          return (
+            <OneFeedbackBox key={feedback._id}>
+              <NameData>
+                <Name>{user ? user.name : "Анонімний користувач"}</Name>
+                <RatingWrapper>
+                  <Rating value={feedback.rate} size="small">
+                    {feedback.rate}
+                  </Rating>
+                </RatingWrapper>
+                <ShowDate>{feedback.date}</ShowDate> {/* Поміняли місцями */}
+              </NameData>
+              <FeedbackText>{feedback.feedback}</FeedbackText>
+            </OneFeedbackBox>
+          );
+        }
+        return null;
+      })}
+    </FeedbacksBox>
+  );
+}
+
 const FeedbacksBox = styled.div`
   margin-top: 50px;
   width: 490px;
@@ -14,9 +46,9 @@ const FeedbacksBox = styled.div`
   overflow-x: hidden;
 
   @media only screen and (max-width: 600px) {
-    width:100%;
-    height:400px;
-    padding: 15px 5px ;
+    width: 100%;
+    height: 400px;
+    padding: 15px 5px;
   }
 `;
 
@@ -29,8 +61,8 @@ const OneFeedbackBox = styled.div`
   margin-top: 18px;
   padding: 0px 10px;
   @media only screen and (max-width: 600px) {
-    width:95%;
-    height:auto;
+    width: 95%;
+    height: auto;
     font-size: 14px;
   }
 `;
@@ -50,8 +82,7 @@ const NameData = styled.div`
   justify-content: space-between; /* Зміна тут */
 `;
 
-const Name = styled.p`
-`;
+const Name = styled.p``;
 
 const Feedbacks = styled.p`
   font-family: "Rubik Mono One";
@@ -67,7 +98,6 @@ const FeedbackText = styled.p`
   font-size: 16px;
   color: #000000;
   margin-top: 0;
- 
 `;
 
 const RatingWrapper = styled.div`
@@ -75,40 +105,3 @@ const RatingWrapper = styled.div`
   font-size: 3px;
   margin-left: 10px;
 `;
-
-export default function ShowFeedbacks({ product, feedbacks, users }) {
-  
-  return (
-    <FeedbacksBox>
-      <Feedbacks>ВІДГУКИ</Feedbacks>
-      {product.feedback.map((feedbackId) => {
-        const feedback = feedbacks.find(
-          (feedback) => feedback._id === feedbackId
-        );
-        if (feedback) {
-          const user = users.find((user) => user._id === feedback.user);
-
-          return (
-            <OneFeedbackBox key={feedback._id}>
-              <NameData>
-              <Name>{user ? user.name : "Анонімний користувач"}</Name>
-              <RatingWrapper>
-                  <Rating value={feedback.rate} size="small">
-                    {feedback.rate}
-                  </Rating>
-
-                  </RatingWrapper>
-                
-                <ShowDate>{feedback.date}</ShowDate> {/* Поміняли місцями */}
-
-
-              </NameData>
-              <FeedbackText>{feedback.feedback}</FeedbackText>
-            </OneFeedbackBox>
-          );
-        }
-        return null;
-      })}
-    </FeedbacksBox>
-  );
-}

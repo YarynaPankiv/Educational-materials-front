@@ -3,6 +3,65 @@ import { useState } from "react";
 import Link from "next/link";
 import { useCategories } from "@/Contexts/CategoriesContext";
 
+export default function Categories({ categories, subcategories }) {
+  const { showCategories, setShowCategories } = useCategories();
+
+  const categoriesWithSubcategories = categories.reduce((acc, category) => {
+    const subcategoriesForCategory = subcategories
+      .filter(
+        (subcategory) =>
+          String(subcategory.parentCategory) === String(category._id)
+      )
+      .map((subcategory) => subcategory.subCategoryName);
+    acc[category.categoryName] = subcategoriesForCategory;
+    return acc;
+  }, {});
+
+  const [selectedcategory, setSelectedCategory] = useState(
+    Object.keys(categoriesWithSubcategories)[0]
+  );
+
+  const handleClick = (category) => {
+    setSelectedCategory(category);
+  };
+
+  const handleSubCategoryClick = () => {
+    setShowCategories(false);
+  };
+
+  return (
+    <StyledCategories id="categoriesContainer">
+      <CategoriesDiv>
+        {Object.keys(categoriesWithSubcategories).map((category, index) => (
+          <div key={index}>
+            <ColumnText
+              selectedcategory={selectedcategory === category ? true : false}
+              onClick={() => handleClick(category)}
+            >
+              {category}
+            </ColumnText>
+          </div>
+        ))}
+      </CategoriesDiv>
+      {selectedcategory && (
+        <SubCategoriesDiv>
+          {categoriesWithSubcategories[selectedcategory] &&
+            categoriesWithSubcategories[selectedcategory].map(
+              (subcategory, index) => (
+                <StyledLink
+                  key={index}
+                  href={`/category/${subcategory}`}
+                  onClick={handleSubCategoryClick}
+                >
+                  <SubCategoryText>{subcategory}</SubCategoryText>
+                </StyledLink>
+              )
+            )}
+        </SubCategoriesDiv>
+      )}
+    </StyledCategories>
+  );
+}
 const StyledCategories = styled.div`
   box-sizing: border-box;
   width: 385px;
@@ -15,7 +74,6 @@ const StyledCategories = styled.div`
   @media only screen and (max-width: 605px) {
     width: 385px;
     height: auto;
-
   }
 `;
 
@@ -65,61 +123,3 @@ const StyledLink = styled(Link)`
   text-decoration: none;
   color: black;
 `;
-
-export default function Categories({ categories, subcategories}) {
-  const {showCategories, setShowCategories} = useCategories();
-
-  const categoriesWithSubcategories = categories.reduce((acc, category) => {
-    const subcategoriesForCategory = subcategories
-      .filter(
-        (subcategory) =>
-          String(subcategory.parentCategory) === String(category._id)
-      )
-      .map((subcategory) => subcategory.subCategoryName);
-    acc[category.categoryName] = subcategoriesForCategory;
-    return acc;
-  }, {});
-
-  const [selectedcategory, setSelectedCategory] = useState(
-    Object.keys(categoriesWithSubcategories)[0]
-  );
-
-  const handleClick = (category) => {
-    setSelectedCategory(category);
-  };
-
-  const handleSubCategoryClick = () => {
-    setShowCategories(false);
-  };
-
-  return (
-    <StyledCategories id="categoriesContainer">
-      <CategoriesDiv>
-        {Object.keys(categoriesWithSubcategories).map((category, index) => (
-          <div key={index}>
-            <ColumnText
-              selectedcategory={
-                selectedcategory === category ? true : false
-              }
-              onClick={() => handleClick(category)}
-            >
-              {category}
-            </ColumnText>
-          </div>
-        ))}
-      </CategoriesDiv>
-      {selectedcategory && (
-        <SubCategoriesDiv>
-          {categoriesWithSubcategories[selectedcategory] &&
-            categoriesWithSubcategories[selectedcategory].map(
-              (subcategory, index) => (
-                <StyledLink key={index} href={`/category/${subcategory}`} onClick={handleSubCategoryClick} >
-                  <SubCategoryText >{subcategory}</SubCategoryText>
-                </StyledLink>
-              )
-            )}
-        </SubCategoriesDiv>
-      )}
-    </StyledCategories>
-  );
-}

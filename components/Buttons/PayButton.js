@@ -2,51 +2,16 @@ import styled from "styled-components";
 import { useContext } from "react";
 import { CartContext } from "@/Contexts/CartContext";
 import { useCart } from "@/Contexts/ShowCart";
-import Checkout from "../Checkout/Checkout";
 import Link from "next/link";
 import Router from "next/router";
 
-
-const PurpleButton = styled.button`
-background-color: #7469b6;
-font-family: "Rubik Mono One";
-font-size: 16px;
-border: none;
-color: #fffcfc;
-height: 40px;
-width: 170px; 
-background: #ad88c6;
-border-radius: 10px;
-margin-top:10px;
-margin-left: 150px;
-margin-bottom:25px;
-border: none;
-cursor: pointer;
-:hover{
-    background: #7469b6;
-}
-@media only screen and (max-width: 605px) {
-  margin-top:10px;
-  margin-left: 115px;
-
-  
-  }
-
-`;
-const SvgCart = styled.svg`
-  margin-right: 10px;
-`;
-
-
 export default function PayButton() {
-  const {showCart, handleShowCartClick} = useCart();
+  const { showCart, handleShowCartClick } = useCart();
   const url = "/Checkout";
   const handleClick = () => {
     handleShowCartClick();
     Router.push(url);
-
   };
-
 
   return (
     <PurpleButton onClick={handleClick}>
@@ -66,3 +31,29 @@ export default function PayButton() {
     </PurpleButton>
   );
 }
+const PurpleButton = styled.button`
+  background-color: #7469b6;
+  font-family: "Rubik Mono One";
+  font-size: 16px;
+  border: none;
+  color: #fffcfc;
+  height: 40px;
+  width: 170px;
+  background: #ad88c6;
+  border-radius: 10px;
+  margin-top: 10px;
+  margin-left: 150px;
+  margin-bottom: 25px;
+  border: none;
+  cursor: pointer;
+  :hover {
+    background: #7469b6;
+  }
+  @media only screen and (max-width: 605px) {
+    margin-top: 10px;
+    margin-left: 115px;
+  }
+`;
+const SvgCart = styled.svg`
+  margin-right: 10px;
+`;

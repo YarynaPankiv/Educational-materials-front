@@ -11,7 +11,7 @@ const CartDropDownWrap = ({ icon, children }) => {
   return (
     <Wrap>
       <Icon onClick={isShowRec}>{icon}</Icon>
-      
+
       {isShowComponent && <ContentWrap>{children}</ContentWrap>}
     </Wrap>
   );

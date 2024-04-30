@@ -4,104 +4,19 @@ import Link from "next/link";
 import { CartContext } from "@/Contexts/CartContext";
 import { useContext } from "react";
 import { useState } from "react";
-import CartDropDownWrap from "../DropDowns/CartDropDown";
-import Cart from "../headerComponents.js/cart";
 import { useCart } from "@/Contexts/ShowCart";
-
-const StyledProduct = styled.div`
-  width: 218px;
-  height: 287px;
-  background: #f3f3f3;
-  border-radius: 10px;
-  position: relative;
-  margin-top: 25px;
-  @media only screen and (max-width: 600px) {
-    width:170px;
-    height: 200px;
-  }
-`;
-const ImgWrraper = styled.div`
-  display: flex;
-  align-items: center;
-
-`;
-
-const StyledPNG = styled.img`
-  margin-top: 0;
-  flex-grow: 1;
-  width: 100%;
-  height: 100%;
-  border-radius: 10px 10px 0px 0px;
-  object-fit: cover;
-`;
-const StyledName = styled.p`
-  padding: 5px 10px; 
-  text-align: center; 
-  color: black;
-  margin: 0; 
-  font-size: 16px; 
-  overflow: hidden; 
-  text-overflow: ellipsis; 
-    white-space: nowrap; 
-  `;
-
-const StyledCost = styled.p`
-  font-weight: 900;
-  color: #55926c;
-  margin: 0;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  margin-left: 20px;
-  margin-bottom: 20px;
-  @media only screen and (max-width: 600px) {
-    font-size: 16px;
-    margin-left: 35px;
-
-  }
-
-`;
-
-const StyledAddToCart = styled.div`
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: #7469b6;
-  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  margin-right: 20px;
-  margin-bottom: 10px;
-  cursor: pointer;
-  &:hover{
-    background: #AD88C6;
-  }
-  @media only screen and (max-width: 600px) {
-    margin-right: 10px;
-    height: 35px;
-    width: 35px;
-
-  }
-  
-`;
-const StyledLink = styled(Link)`
-  text-decoration: none;
-`;
 
 export default function ProductBox({ product }) {
   const [addedToCart, setAddedToCart] = useState(false);
 
   const url = "/product/" + product._id;
-  const { cartProducts, setCartProducts, deleteProductFromCart,addToCart } = useContext(CartContext);
+  const { cartProducts, setCartProducts, deleteProductFromCart, addToCart } =
+    useContext(CartContext);
 
-  const { showCart, handleShowCartClick , showCartClick} = useCart(); 
+  const { showCart, handleShowCartClick, showCartClick } = useCart();
   const handleClick = () => {
     addToCart(product);
-    showCartClick(); 
+    showCartClick();
   };
 
   return (
@@ -135,3 +50,81 @@ export default function ProductBox({ product }) {
     </Center>
   );
 }
+const StyledProduct = styled.div`
+  width: 218px;
+  height: 287px;
+  background: #f3f3f3;
+  border-radius: 10px;
+  position: relative;
+  margin-top: 25px;
+  @media only screen and (max-width: 600px) {
+    width: 170px;
+    height: 200px;
+  }
+`;
+const ImgWrraper = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const StyledPNG = styled.img`
+  margin-top: 0;
+  flex-grow: 1;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px 10px 0px 0px;
+  object-fit: cover;
+`;
+const StyledName = styled.p`
+  padding: 5px 10px;
+  text-align: center;
+  color: black;
+  margin: 0;
+  font-size: 16px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+`;
+
+const StyledCost = styled.p`
+  font-weight: 900;
+  color: #55926c;
+  margin: 0;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  margin-left: 20px;
+  margin-bottom: 20px;
+  @media only screen and (max-width: 600px) {
+    font-size: 16px;
+    margin-left: 35px;
+  }
+`;
+
+const StyledAddToCart = styled.div`
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #7469b6;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin-right: 20px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  &:hover {
+    background: #ad88c6;
+  }
+  @media only screen and (max-width: 600px) {
+    margin-right: 10px;
+    height: 35px;
+    width: 35px;
+  }
+`;
+const StyledLink = styled(Link)`
+  text-decoration: none;
+`;

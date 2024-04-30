@@ -1,37 +1,5 @@
 import styled from "styled-components";
 
-export const StyledIcon = styled.svg`
-  width: 21px;
-  height: 20px;
-  position: relative;
-`;
-
-export const IconWithText = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  cursor: pointer;
-  position: relative; 
-
-`;
-
-export const IconText = styled.p`
-  margin-top: 0px;
-  margin-left: 8px; 
-  font-family: "Rubik Mono One", sans-serif;
-  font-size: 11px;
-  user-select: none;
-  ${IconWithText}:hover & {
-    color: #7469b6;
-  }
-`;
-
-export const LoggedSvg = styled.svg`
-  position: absolute;
-  top: 0;
-  right: 8px; /* Adjust the right position as needed */
-`;
-
 export default function Account({ click, isLogin }) {
   return (
     <IconWithText onClick={click}>
@@ -67,3 +35,34 @@ export default function Account({ click, isLogin }) {
     </IconWithText>
   );
 }
+
+export const StyledIcon = styled.svg`
+  width: 21px;
+  height: 20px;
+  position: relative;
+`;
+
+export const IconWithText = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+`;
+
+export const IconText = styled.p`
+  margin-top: 0px;
+  margin-left: 8px;
+  font-family: "Rubik Mono One", sans-serif;
+  font-size: 11px;
+  user-select: none;
+  ${IconWithText}:hover & {
+    color: #7469b6;
+  }
+`;
+
+export const LoggedSvg = styled.svg`
+  position: absolute;
+  top: 0;
+  right: 8px; 
+`;

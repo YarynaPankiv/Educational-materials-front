@@ -2,6 +2,37 @@ import { useState } from "react";
 import styled from "styled-components";
 import Center from "../Center";
 
+
+export default function Buttons({ onRecentlyAddedClick, onAllClick }) {
+  const [isClicked, setIsClicked] = useState(false);
+  const [isClickedAll, setIsClickedAll] = useState(true);
+
+  const handleClick = () => {
+    setIsClicked(true);
+    setIsClickedAll(false);
+    onRecentlyAddedClick();
+  };
+
+  const handleClickAll = () => {
+    setIsClickedAll(true);
+    setIsClicked(false);
+    onAllClick();
+  };
+
+  return (
+    <Center>
+      <Div>
+        <StyledButton clicked={isClickedAll} onClick={handleClickAll}>
+          Всі матеріали
+        </StyledButton>
+        <StyledButton clicked={isClicked} onClick={handleClick}>
+          Недавно додані
+        </StyledButton>
+      </Div>
+    </Center>
+  );
+}
+
 const StyledButton = styled.button`
   margin-top: 25px;
   margin-right: 30px;
@@ -25,42 +56,9 @@ const StyledButton = styled.button`
 `;
 const Div = styled.div`
   display: flex;
-  align-items:center;
+  align-items: center;
   @media only screen and (max-width: 605px) {
     justify-content: center;
     justify-content: space-around;
-     
-     
   }
-`
-export default function Buttons({ onRecentlyAddedClick, onAllClick }) {
-  const [isClicked, setIsClicked] = useState(false);
-  const [isClickedAll, setIsClickedAll] = useState(true);
-
-  const handleClick = () => {
-    setIsClicked(true);
-    setIsClickedAll(false);
-    onRecentlyAddedClick();
-  };
-
-  const handleClickAll = () => {
-    setIsClickedAll(true);
-    setIsClicked(false);
-    onAllClick();
-  };
-
-  return (
-    <Center>
-    <Div>
-
-
-      <StyledButton clicked={isClickedAll} onClick={handleClickAll}>
-        Всі матеріали
-      </StyledButton>
-      <StyledButton clicked={isClicked} onClick={handleClick}>
-        Недавно додані
-      </StyledButton>
-      </Div>
-    </Center>
-  );
-}
+`;

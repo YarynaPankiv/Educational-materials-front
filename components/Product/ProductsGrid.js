@@ -1,22 +1,8 @@
 import styled from "styled-components";
 import Center from "../Center";
-import Product from "./ProductBox";
 import ProductBox from "./ProductBox";
 import ButtonsForPages from "../Buttons/ButtonsForPages";
 import { useState } from "react";
-
-const StyledProductsGrid = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  gap: 37px;
-  margin-bottom: 25px;
-  @media only screen and (max-width: 605px) {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-
-  }
-`;
 
 export default function ProductsGrid({ products }) {
   const [currentPage, setCurrentPage] = useState(1);
@@ -44,3 +30,15 @@ export default function ProductsGrid({ products }) {
     </Center>
   );
 }
+const StyledProductsGrid = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 37px;
+  margin-bottom: 25px;
+  @media only screen and (max-width: 605px) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+
+  }
+`;

@@ -10,7 +10,6 @@ import { Product } from '@/models/Product';
 import SubCategory from '@/models/SubCategory';
 import { Category } from '@/models/Category';
 import { useEffect } from 'react';
-import { useRouter } from 'next/router';
 
 export async function getServerSideProps(context) {
   await mongooseConnect();

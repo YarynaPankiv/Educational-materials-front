@@ -1,12 +1,41 @@
 import styled from "styled-components";
-import Center from "../Center";
-import Radio from "@mui/material/Radio";
-import RadioGroup from "@mui/material/RadioGroup";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import FormControl from "@mui/material/FormControl";
-import FormLabel from "@mui/material/FormLabel";
 import { useState } from "react";
 
+export default function PriceSort({ onSort, filter }) {
+  const [minPrice, setMinPrice] = useState("");
+  const [maxPrice, setMaxPrice] = useState("");
+
+  const handleSort = () => {
+    if (!isNaN(parseFloat(minPrice)) && !isNaN(parseFloat(maxPrice))) {
+      onSort(parseFloat(minPrice), parseFloat(maxPrice));
+    }
+    filter();
+  };
+
+  return (
+    <>
+      <StyledDiv>
+        <Div>
+          <div>
+            <StyledP>Ціна від</StyledP>
+            <StyledInput
+              value={minPrice}
+              onChange={(e) => setMinPrice(e.target.value)}
+            />
+          </div>
+          <div>
+            <StyledP>Ціна до</StyledP>
+            <StyledInput
+              value={maxPrice}
+              onChange={(e) => setMaxPrice(e.target.value)}
+            />
+          </div>
+          <StyledButton onClick={handleSort}>Сортувати</StyledButton>
+        </Div>
+      </StyledDiv>
+    </>
+  );
+}
 export const StyledDiv = styled.div`
   width: 250px;
   height: 240px;
@@ -49,39 +78,3 @@ const StyledButton = styled.button`
   font-weight: 800;
   margin-top: 20px;
 `;
-
-export default function PriceSort({ onSort, filter }) {
-  const [minPrice, setMinPrice] = useState("");
-  const [maxPrice, setMaxPrice] = useState("");
-
-  const handleSort = () => {
-    if (!isNaN(parseFloat(minPrice)) && !isNaN(parseFloat(maxPrice))) {
-      onSort(parseFloat(minPrice), parseFloat(maxPrice));
-    }
-    filter();
-  };
-
-  return (
-    <>
-      <StyledDiv>
-        <Div>
-          <div>
-            <StyledP>Ціна від</StyledP>
-            <StyledInput
-              value={minPrice}
-              onChange={(e) => setMinPrice(e.target.value)}
-            />
-          </div>
-          <div>
-            <StyledP>Ціна до</StyledP>
-            <StyledInput
-              value={maxPrice}
-              onChange={(e) => setMaxPrice(e.target.value)}
-            />
-          </div>
-          <StyledButton onClick={handleSort}>Сортувати</StyledButton>
-        </Div>
-      </StyledDiv>
-    </>
-  );
-}
