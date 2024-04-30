@@ -16,8 +16,8 @@ export default function PaymentButton({ product }) {
   const [email, setEmail] = useState("");
 
   const { user } = useAuth();
-  console.log(user);
-  console.log(user.data.name);
+  // console.log(user);
+  // console.log(user.data.name);
   async function goToPayment() {
     try {
       console.log("cartProducts", cartProducts);

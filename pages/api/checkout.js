@@ -34,9 +34,9 @@ export default async function handle(req, res) {
   }
 
   const OrderDoc = await Order.create({
-    lineItems,name,email,paid:false,
+    line_items:lineItems,name,email,paid:false,
   });
-  
+
   const session = await Stripe.checkout.sessions.create({
     line_items: lineItems,
     mode: 'payment',

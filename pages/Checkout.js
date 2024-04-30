@@ -23,11 +23,11 @@ export default function Checkout({ categories, subcategories }) {
 
   useEffect(() => {
     if (router.query.success === "true" && !fileDownloaded) {
-      const fileInCart = cartProducts.find(
-        (pr) => pr.file && pr.file.length > 0
-      )?.file[0]?.url;
-      if (fileInCart) {
-        handleFileDownload(fileInCart);
+      const filesToDownload = cartProducts
+        .filter((pr) => pr.file && pr.file.length > 0)
+        .map((pr) => pr.file[0].url);
+      if (filesToDownload.length > 0) {
+        handleFileDownload(filesToDownload);
       }
     }
   }, [router.query.success, cartProducts, fileDownloaded]);
@@ -42,11 +42,14 @@ export default function Checkout({ categories, subcategories }) {
 
   const totalCost = calculateTotal();
 
-  const handleFileDownload = (fileURL) => {
-    const link = document.createElement("a");
-    link.href = fileURL;
-    link.setAttribute("download", true);
-    link.click();
+  const handleFileDownload = async (fileURLs) => {
+    for (const fileURL of fileURLs) {
+      const link = document.createElement("a");
+      link.href = fileURL;
+      link.setAttribute("download", true);
+      link.click();
+      await new Promise((resolve) => setTimeout(resolve, 100)); // Затримка між завантаженням файлів
+    }
     setFileDownloaded(true);
   };
 
@@ -101,9 +104,10 @@ export default function Checkout({ categories, subcategories }) {
                     <StyledP key={pr._id}>
                       Формат:{" "}
                       <PurpleText>
-                        {pr.file && pr.file[0] && pr.file[0].name
-                          ? getFileExtension(pr.file[0].name)
-                          : ""}
+                        {pr.file &&
+                          pr.file
+                            .map((file) => getFileExtension(file.name))
+                            .join(", ")}
                       </PurpleText>
                     </StyledP>
                     <p key={pr._id}>
