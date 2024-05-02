@@ -11,6 +11,7 @@ import { Category } from "@/models/Category";
 import MyShopping from "@/components/MyShopping";
 import MyOrder from "@/models/MyOrder";
 import { Product } from "@/models/Product";
+import Center from "@/components/Center";
 
 const UserProfilePage = ({
   toggleDarkMode,
@@ -31,11 +32,6 @@ const UserProfilePage = ({
   useEffect(() => {
     const isMobileDevice = window.innerWidth <= 600;
     setIsMobile(isMobileDevice);
-  //  const userOrders = orders.filter((order) => order.userId === userId);
-  
-    //console.log(userOrders);
-   // setUserOrders(userOrders);
-
   }, []);
 
   useEffect(() => {
@@ -48,7 +44,6 @@ const UserProfilePage = ({
     setIsMenuOpen(!isMenuOpen);
   };
 
-  // Функція, яка закриває меню
   const closeMenu = () => {
     setIsMenuOpen(false);
   };
@@ -115,6 +110,7 @@ const UserProfilePage = ({
           </MobileMenu>
         </>
       )}
+      <Center>
       {!isMobile && (
         <Menu>
           <Text>МІЙ АКАУНТ</Text>
@@ -129,6 +125,9 @@ const UserProfilePage = ({
           </Point>
         </Menu>
       )}
+
+      </Center>
+      
       <Page>{renderInfo()}</Page>
     </>
   );
@@ -151,16 +150,16 @@ const Menu = styled.div`
   display: flex;
   gap: 10px;
   flex-direction: column;
-  margin-left: 16%;
-  padding: 80px 20px;
-
-
+  padding: 80px 0px;
+  width: 300px;
 `;
+
 const MenuIcon = styled.svg`
   width: 24px;
   height: 24px;
   margin-right: 10px;
 `;
+
 const MobileMenuButton = styled.button`
   top: 160px;
   left: 1px;
@@ -191,7 +190,7 @@ const MobileMenu = styled.div`
 `;
 
 const MenuItem = styled.div`
-  padding: 20px;
+  padding: 0;
   border-bottom: 1px solid #ccc;
 
   &:last-child {

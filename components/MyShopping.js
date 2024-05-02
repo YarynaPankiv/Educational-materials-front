@@ -16,10 +16,7 @@ const MyShopping = ({ orders, products }) => {
 
   useEffect(() => {
     const isMobileDevice = window.innerWidth <= 600;
-
     const userOrders = orders.filter((order) => order.userId === userId);
-
-   // console.log(userOrders);
     setUserOrders(userOrders);
   }, []);
 
@@ -82,9 +79,10 @@ const Page = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  height: 50px;
+  margin-left: 20%;
 
-  margin-right: 950px;
-
+  
   @media only screen and (max-width: 600px) {
     width: 364px;
     margin-left: 8px;
@@ -99,7 +97,6 @@ const OrderContainer = styled.div`
   border-radius: 10px;
   padding: 10px;
   margin-top:0px;
-  margin-left:1200px;
   position: relative;
 `;
 
