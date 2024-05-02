@@ -9,21 +9,33 @@ import Urls from "@/components/Urls";
 import SubCategory from "@/models/SubCategory";
 import { Category } from "@/models/Category";
 import MyShopping from "@/components/MyShopping";
+import MyOrder from "@/models/MyOrder";
+import { Product } from "@/models/Product";
 
 const UserProfilePage = ({
   toggleDarkMode,
   path,
   categories,
   subcategories,
+  orders,
+  products
 }) => {
   const router = useRouter();
-  const { logout } = useAuth();
+  const { logout, user } = useAuth();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-
+  const [userOrders, setUserOrders] = useState([]);
+  const [product, setProduct] = useState([]);
+  const userId = user ? user.data._id : null;
+  console.log(userId);
   useEffect(() => {
     const isMobileDevice = window.innerWidth <= 600;
     setIsMobile(isMobileDevice);
+  //  const userOrders = orders.filter((order) => order.userId === userId);
+  
+    //console.log(userOrders);
+   // setUserOrders(userOrders);
+
   }, []);
 
   useEffect(() => {
@@ -46,7 +58,7 @@ const UserProfilePage = ({
       case "user-info":
         return <UserEditor />;
       case "my-shop":
-        return <MyShopping />;
+        return <MyShopping orders={orders} products={products} />;
       default:
         return null;
     }
@@ -121,9 +133,11 @@ const UserProfilePage = ({
     </>
   );
 };
+
 const Point = styled(Link)`
   text-decoration: none;
   color: black;
+
 `;
 
 const Text = styled.div`
@@ -131,6 +145,7 @@ const Text = styled.div`
   font-size: 20px;
   text-align: left;
   padding-bottom: 10px;
+
 `;
 const Menu = styled.div`
   display: flex;
@@ -138,6 +153,8 @@ const Menu = styled.div`
   flex-direction: column;
   margin-left: 16%;
   padding: 80px 20px;
+
+
 `;
 const MenuIcon = styled.svg`
   width: 24px;
@@ -198,13 +215,13 @@ const Page = styled.div`
 `;
 
 export async function getServerSideProps(context) {
-  const categories = await Category.find({});
-  const subcategories = await SubCategory.find({});
+  const orders = await MyOrder.find({}, null);
+  const products = await Product.find({}, null);
   return {
     props: {
       path: context.params.path[0],
-      categories: JSON.parse(JSON.stringify(categories)),
-      subcategories: JSON.parse(JSON.stringify(subcategories)),
+      orders: JSON.parse(JSON.stringify(orders)),
+      products: JSON.parse(JSON.stringify(products)),
     },
   };
 }
