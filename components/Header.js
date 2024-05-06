@@ -13,6 +13,7 @@ import CategoriesDropDown from "./DropDowns/CategoriesDropDown";
 import { useCart } from "@/Contexts/ShowCart";
 import { useAuth } from "@/Contexts/AccountContext";
 import SeacrhIcon from "./SearchIcon";
+import css from "styled-jsx/css";
 
 export default function Header({
   toggleDarkMode,
@@ -37,6 +38,13 @@ export default function Header({
     }
     setSearchValue(e.target.value);
   };
+
+  const handleOnFocus = (e) => {
+    if (!setSearchValue) {
+      router.push("/");
+    }
+  };
+
 
   const goToRegister = () => {
     router.push("/registration");
@@ -67,13 +75,21 @@ export default function Header({
             <Categories categories={categories} subcategories={subcategories} />
           </CategoriesDropDown>
           <MobileSearchIconContainer>
-            <SeacrhIcon></SeacrhIcon>
+            {/* <SeacrhIcon></SeacrhIcon> */}
+            <StyledSearch
+              value={searchValue}
+              onChange={handleOnChange}
+              onFocus={handleOnFocus}
+              placeholder="Введіть текст для пошуку..."
+              isShow
+            />
           </MobileSearchIconContainer>
 
           {/* Залишаємо StyledSearch на десктопних пристроях */}
           <StyledSearch
             value={searchValue}
             onChange={handleOnChange}
+            onFocus={handleOnFocus}
             placeholder="Введіть текст для пошуку..."
           />
           <AllIcons>
@@ -140,9 +156,23 @@ const StyledSearch = styled.input`
   outline: none;
   margin-left: 10px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
   ${media.mobile} {
-    display: none;
+      display: none;
   }
+
+  ${({isShow}) => isShow && css`
+    position: absolute;
+    top: 60px;
+    left: 0;
+    right: 0;
+    width: 100%;
+    margin: 0;
+   
+    ${media.mobile} {
+      display: block;
+    }
+  `}
 `;
 const MobileSearchIconContainer = styled.div`
   display: none; /* По замовчуванню приховано для десктопних */
@@ -184,7 +214,7 @@ const HeaderDiv = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 5px;
+  padding-top: 5px;
   @media only screen and (max-width: 600px) {
     flex-direction: row;
     align-items: stretch;

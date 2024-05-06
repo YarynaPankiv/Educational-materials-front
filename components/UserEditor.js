@@ -17,6 +17,7 @@ const UserEditor = () => {
   const [checkPassword, setCheckPassword] = useState("");
   const [emailField, setEmailField] = useState("");
   const [userId, setUserId] = useState("");
+  const [isError, setIsError] = useState(false);
 
   useEffect(() => {
     if (user) {
@@ -47,6 +48,9 @@ const UserEditor = () => {
   };
 
   const savePassword = async () => {
+    
+    if(checkPassword === newPassword && checkPassword!=='' ){
+      setIsError(false)
     try {
       const response = await axios.put(`/api/loginUser?_id=${userId}`, {
         _id: userId,
@@ -61,6 +65,9 @@ const UserEditor = () => {
     } catch (error) {
       console.error("Error updating password:", error);
     }
+  } else {
+     setIsError(true)
+        }
   };
 
   return (
@@ -125,7 +132,7 @@ const UserEditor = () => {
               value={checkPassword}
               setValue={setCheckPassword}
               theme="common"
-            />
+              errorMessage={isError && checkPassword!==newPassword ? "Passwords are not the same": ''} />
           </InputContainer>
         </InputWrapper>
         <LoginButton onClick={savePassword}>Змінити пароль</LoginButton>

@@ -20,9 +20,12 @@ const RegisterPage = ({ toggleDarkMode, categories, subcategories }) => {
   const [surname, setSurname] = useState("");
   const { login, isAuthenticated } = useAuth();
 
+  const [isError, setIsError] = useState(false);
+
   async function registerUser() {
     if (!name || !surname || !email || !password) {
       console.error("Please fill in all fields.");
+      setIsError(true)
       return;
     }
     try {
@@ -63,14 +66,14 @@ const RegisterPage = ({ toggleDarkMode, categories, subcategories }) => {
           <FirstHalf>
             <Text>Це ваш перший візит?</Text>
             <InputWrapper>
-              <MyInput text={"Електронна пошта"} type={"email"} value={email} setValue={setEmail} theme="auth" required />
+              <MyInput text={"Електронна пошта"} type={"email"} value={email} setValue={setEmail} theme="auth" errorMessage={isError && !email ? "Please enter your email": ''} />
             </InputWrapper>
             <NameWrap>
-              <MyInput text={"Ім'я"} type={"text"} value={name} setValue={setName} theme="auth" />
-              <MyInput text={"Прізвище"} type={"text"} value={surname} setValue={setSurname} theme="auth" />
+              <MyInput text={"Ім'я"} type={"text"} value={name} setValue={setName} theme="auth" errorMessage={isError && !name ? "Please enter your name": ''} />
+              <MyInput text={"Прізвище"} type={"text"} value={surname} setValue={setSurname} theme="auth" errorMessage={isError && !surname ? "Please enter your surname": ''}/>
             </NameWrap>
             <InputWrapper>
-              <MyInput text={"Пароль"} type={"password"} value={password} setValue={setPassword} theme="auth" />
+              <MyInput text={"Пароль"} type={"password"} value={password} setValue={setPassword} theme="auth" errorMessage={isError && !password ? "Please enter your password": ''} />
             </InputWrapper>
             <Wrapper>
               <LoginButton onClick={registerUser}>ЗАРЕЄСТРУВАТИСЬ</LoginButton>
@@ -107,6 +110,7 @@ const Page = styled.div`
   display: flex;
   flex-direction: column;
   height: 100%;
+  flex: 1;
 `;
 
 const Container = styled.div`

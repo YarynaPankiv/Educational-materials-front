@@ -33,6 +33,9 @@ const StyledLogo = styled.div`
   margin-top: 0px;
   display: flex;
   align-items: center;
+  margin: 0 auto;
+  width: fit-content;
+
   @media only screen and (max-width: 600px) {
     display: none;
   }
