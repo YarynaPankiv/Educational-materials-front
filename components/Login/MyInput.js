@@ -1,7 +1,7 @@
 import { use, useMemo, useState } from "react";
 import styled from "styled-components";
 
-const MyInput = ({ text, type, value, setValue, theme }) => {
+const MyInput = ({ text, type, value, setValue, theme, errorMessage }) => {
   const handleOnChange = (e) => {
     setValue(e.target.value);
   };
@@ -21,12 +21,23 @@ const MyInput = ({ text, type, value, setValue, theme }) => {
     <Label>
       <div>{text}</div>
       <ThemedInput onChange={handleOnChange} value={value} type={type} />
+      {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
     </Label>
   );
 };
 
+const ErrorMessage = styled.div`
+  position: absolute;
+  top: calc(100% + 16px);
+  left: 0;
+  color: red;
+  font-size: small;
+`;
+
+
 const Label = styled.label`
   width: 100%;
+  position: relative;
 `;
 
 const CommonInput = styled.input`

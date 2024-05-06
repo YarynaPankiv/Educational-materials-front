@@ -1,59 +1,67 @@
-import Header from "@/components/Header";
-import React, { useState } from "react";
-import styled from "styled-components";
-import LoginButton from "@/components/Login/LoginButton";
-import MyInput from "@/components/Login/MyInput";
-import { useRouter } from "next/router";
-import axios from "axios";
-import { useAuth } from "@/Contexts/AccountContext";
-import LogoWithoutPurple from "@/components/Logo/LogoWithoutPurple";
-import { Category } from "@/models/Category";
-import SubCategory from "@/models/SubCategory";
-import Urls from "@/components/Urls";
+import Header from '@/components/Header';
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import LoginButton from '@/components/Login/LoginButton';
+import MyInput from '@/components/Login/MyInput';
+import { useRouter } from 'next/router';
+import axios from 'axios';
+import { useAuth } from '@/Contexts/AccountContext';
+import LogoWithoutPurple from '@/components/Logo/LogoWithoutPurple';
+import { Category } from '@/models/Category';
+import SubCategory from '@/models/SubCategory';
+import Urls from '@/components/Urls';
 
 const LoginPage = ({ toggleDarkMode, categories, subcategories }) => {
   const router = useRouter();
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const [isError, setIsError] = useState(false);
 
   const { login } = useAuth();
 
   const loginUser = async () => {
     if (!email || !password) {
-      console.error("Please fill in all fields.");
+      console.error('Please fill in all fields.');
+      setIsError(true)
       return;
     }
+
     try {
       // Здійснюємо запит до вашого API для перевірки користувача
-      const response = await axios.post("/api/loginUser", {
+      const response = await axios.post('/api/loginUser', {
         email: email,
         password: password,
       });
 
       if (response.data.success) {
-        console.log("User logged in successfully.");
+        console.log('User logged in successfully.');
         login(response.data);
         router.push({
-          pathname: "/user-profile/user-info",
+          pathname: '/user-profile/user-info',
           query: { email: email },
         });
       } else {
-        console.error("Invalid email or password.");
+        console.error('Invalid email or password.');
       }
     } catch (error) {
-      console.error("Error during login:", error);
+      console.error('Error during login:', error);
     }
   };
 
   const goToRegister = () => {
-    router.push("/registration");
+    router.push('/registration');
   };
 
   return (
     <>
-      <Header toggleDarkMode={toggleDarkMode} categories={categories} subcategories={subcategories} />
-      <Urls page={"Увійти"} />
+      <Header
+        toggleDarkMode={toggleDarkMode}
+        categories={categories}
+        subcategories={subcategories}
+      />
+      <Urls page={'Увійти'} />
       <Page>
         <LogoWrapper>
           <LogoWithoutPurple />
@@ -62,13 +70,27 @@ const LoginPage = ({ toggleDarkMode, categories, subcategories }) => {
           <FirstHalf>
             <Text>Ви користувач?</Text>
             <InputWrapper>
-              <MyInput text={"Електронна пошта"} type={"email"} value={email} setValue={setEmail} theme="auth" />
+              <MyInput
+                text={'Електронна пошта'}
+                type={'email'}
+                value={email}
+                setValue={setEmail}
+                theme="auth"
+                errorMessage={isError && !email ? "Please enter your email": ''}
+              />
             </InputWrapper>
             <InputWrapper>
-              <MyInput text={"Пароль"} type={"password"} value={password} setValue={setPassword} theme="auth" />
+              <MyInput
+                text={'Пароль'}
+                type={'password'}
+                value={password}
+                setValue={setPassword}
+                theme="auth"
+                errorMessage={isError && !password ? "Please enter your password": ''}
+              />
             </InputWrapper>
             <Wrapper>
-              <LoginButton onClick={loginUser} href={"/"}>
+              <LoginButton onClick={loginUser} href={'/'}>
                 УВІЙТИ
               </LoginButton>
             </Wrapper>
@@ -104,6 +126,7 @@ const Page = styled.div`
   display: flex;
   flex-direction: column;
   height: 100%;
+  flex: 1;
 `;
 
 const Container = styled.div`
@@ -140,7 +163,6 @@ const SecondHalf = styled.div`
 
   @media only screen and (max-width: 600px) {
     padding: 20px;
-    
   }
 `;
 

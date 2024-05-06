@@ -26,7 +26,7 @@ const DropDownWrap = ({ icon, children }) => {
 const ContentWrap = styled.div`
   position: absolute;
   top: calc(100% + 12px);
-  right: -100px;
+  right: 0;
   background-color: white;
   @media only screen and (max-width: 605px) {
     right: 0;

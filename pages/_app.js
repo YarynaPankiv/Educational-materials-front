@@ -38,6 +38,7 @@ const GlobalStyles = createGlobalStyle`
     padding: 0;
     margin: 0;
     font-family: 'Montserrat', sans-serif;
+    min-height: 100vh;
     background-color: ${(props) =>
       props.darkMode
         ? "#121212"
@@ -46,5 +47,11 @@ const GlobalStyles = createGlobalStyle`
       props.darkMode
         ? "#FFFFFF"
         : "#000000"}; /* Змінити колір тексту в залежності від теми */
+  }
+
+  #__next {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
   }
 `;
