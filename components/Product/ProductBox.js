@@ -6,7 +6,7 @@ import { useContext } from "react";
 import { useState } from "react";
 import { useCart } from "@/Contexts/ShowCart";
 
-export default function ProductBox({ product }) {
+export default function ProductBox({ product,darkTheme }) {
   const [addedToCart, setAddedToCart] = useState(false);
 
   const url = "/product/" + product._id;
@@ -21,7 +21,7 @@ export default function ProductBox({ product }) {
 
   return (
     <Center>
-      <StyledProduct href={url}>
+      <StyledProduct href={url} darkTheme={darkTheme}>
         <ImgWrraper>
           <Link href={url}>
             <StyledPNG src={product.images[0]} alt="Product Image" />
@@ -29,10 +29,10 @@ export default function ProductBox({ product }) {
         </ImgWrraper>
 
         <StyledLink href={url}>
-          <StyledName>{product.productName}</StyledName>
+          <StyledName darkTheme={darkTheme}>{product.productName}</StyledName>
         </StyledLink>
-        <StyledCost>{product.price} UAH</StyledCost>
-        <StyledAddToCart onClick={() => handleClick()}>
+        <StyledCost darkTheme={darkTheme}>{product.price} UAH</StyledCost>
+        <StyledAddToCart darkTheme={darkTheme} onClick={() => handleClick()}>
           <svg
             width="25"
             height="20"
@@ -53,7 +53,8 @@ export default function ProductBox({ product }) {
 const StyledProduct = styled.div`
   width: 218px;
   height: 287px;
-  background: #f3f3f3;
+  
+  background-color: ${(props) => (props.darkTheme ? "#192734" : "white")};
   border-radius: 10px;
   position: relative;
   margin-top: 25px;
@@ -78,7 +79,7 @@ const StyledPNG = styled.img`
 const StyledName = styled.p`
   padding: 8px 12px;
   text-align: center;
-  color: #333;
+  color: ${(props) => (props.darkTheme ? "#FFFFFF" : "black")};
   margin-top: 20px;
   word-break: break-word;
   margin-left: 5px;
@@ -92,7 +93,8 @@ const StyledName = styled.p`
 
 const StyledCost = styled.p`
   font-weight: 900;
-  color: #55926c;
+
+  color: ${(props) => (props.darkTheme ? "#37EA7A" : "#55926c")};
   margin: 0;
   position: absolute;
   bottom: 0;
@@ -109,7 +111,8 @@ const StyledAddToCart = styled.div`
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: #7469b6;
+
+  background: ${(props) => (props.darkTheme ? "#405164" : "#7469b6")};
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
   display: flex;
   align-items: center;

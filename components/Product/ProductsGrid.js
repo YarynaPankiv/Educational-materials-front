@@ -4,7 +4,7 @@ import ProductBox from "./ProductBox";
 import ButtonsForPages from "../Buttons/ButtonsForPages";
 import { useState } from "react";
 
-export default function ProductsGrid({ products }) {
+export default function ProductsGrid({ products, darkTheme }) {
   const [currentPage, setCurrentPage] = useState(1);
   const productsPerPage = 16;
   const totalPages = Math.ceil(products.length / productsPerPage);
@@ -19,7 +19,11 @@ export default function ProductsGrid({ products }) {
       <StyledProductsGrid>
         {displayedProducts?.length > 0 &&
           displayedProducts.map((product) => (
-            <ProductBox key={product._id} product={product} />
+            <ProductBox
+              key={product._id}
+              product={product}
+              darkTheme={darkTheme}
+            />
           ))}
       </StyledProductsGrid>
       <ButtonsForPages
@@ -40,6 +44,5 @@ const StyledProductsGrid = styled.div`
     grid-template-columns: 1fr 1fr;
     gap: 20px;
     margin-top: 0;
-
   }
 `;

@@ -3,12 +3,12 @@ import styled from "styled-components";
 import Categories from "@/components/Categories";
 import { useCategories } from "@/Contexts/CategoriesContext";
 
-export default function CategoriesButton({ categories, subcategories }) {
+export default function CategoriesButton({ categories, subcategories, darkTheme }) {
   const { showCategories, setShowCategories } = useCategories();
 
   return (
     <>
-      <StyledButton $showCategories={showCategories}>
+      <StyledButton $showCategories={showCategories} darkTheme={darkTheme}>
         {!showCategories && (
           <StyledSVG
             width="24"
@@ -51,22 +51,34 @@ const StyledButton = styled.button`
   padding: 0;
   background-color: ${(props) =>
     props.$showCategories ? "#7469B6" : "#FFFFFF"};
+  background-color: ${(props) => (props.darkTheme ? "#1D2733" : "white")};
   border-radius: 10px;
-  border: ${(props) => (props.$showCategories ? "none" : "2px solid #7469b6")};
+  border: ${(props) =>
+    props.$showCategories ? "none" : "2px solid #7469b6"};
   display: flex;
   align-items: center;
-  color: ${(props) => (props.$showCategories ? "#FFFFFF" : "#7469b6")};
+  color: ${(props) => (props.$showCategories || props.darkTheme ? "#FFFFFF" : "#7469b6")};
   font-weight: 500;
   font-size: 16px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   cursor: pointer;
   display: flex;
   align-items: center;
+  
+
   ${media.mobile} {
     width: 127px;
     margin-left: 5px;
   }
+  
+  &:hover {
+    background-color: ${(props) =>
+      props.$showCategories || props.darkTheme ? "#7469B6" : "#FFFFFF"};
+    color: ${(props) =>
+      props.$showCategories || props.darkTheme ? "#FFFFFF" : "#7469B6"};
+  }
 `;
+
 
 const StyledSVG = styled.svg`
   margin-left: 10px;

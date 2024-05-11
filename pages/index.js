@@ -31,10 +31,11 @@ export async function getServerSideProps(context) {
 }
 
 export default function HomePage({
-  toggleDarkMode,
+  toggleTheme,
   allProducts,
   categories,
   subcategories,
+  darkTheme,
 }) {
   const [searchValue, setSearchValue] = useState('');
 
@@ -64,18 +65,19 @@ export default function HomePage({
   return (
     <Center>
       <Header
-        toggleDarkMode={toggleDarkMode}
+        toggleTheme={toggleTheme}
         categories={categories}
         subcategories={subcategories}
         setSearchValue={setSearchValue}
         searchValue={searchValue}
+        darkTheme={darkTheme}
       />
-      <Logo />
+      <Logo darkTheme={darkTheme}/>
       <Buttons
         onRecentlyAddedClick={handleRecentlyAddedClick}
         onAllClick={handleAllProductsClick}
       />
-      <ProductsGrid products={products} />
+      <ProductsGrid products={products} darkTheme={darkTheme} />
     </Center>
   );
 }

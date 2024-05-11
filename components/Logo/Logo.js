@@ -1,10 +1,10 @@
 import styled from "styled-components";
 import Center from "../Center";
 
-export default function Logo() {
+export default function Logo({darkTheme}) {
   return (
     <Center>
-      <StyledLogo>
+      <StyledLogo darkTheme={darkTheme}>
         <StyledText>Навчальні</StyledText>
         <StyledSvg
           width="39"
@@ -29,7 +29,8 @@ const StyledLogo = styled.div`
   margin-top: 25px;
   width: 1000px;
   height: 169px;
-  background-color: #ad88c6;
+
+  background-color: ${(props) => (props.darkTheme ? "#732270" : "#ad88c6")};
   border-radius: 20px;
   display: flex;
   align-items: center;

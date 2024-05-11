@@ -3,16 +3,16 @@ import { useContext } from "react";
 import { CartContext } from "@/Contexts/CartContext";
 import { useCart } from "@/Contexts/ShowCart";
 
-export default function BuyButton({ product }) {
+export default function BuyButton({ product, darkTheme }) {
   const { addToCart } = useContext(CartContext);
   const { showCart, handleShowCartClick } = useCart();
   const handleClick = () => {
     addToCart(product);
     handleShowCartClick();
   };
-
+  console.log(darkTheme);
   return (
-    <PurpleButton onClick={handleClick}>
+    <PurpleButton darkTheme={darkTheme} onClick={handleClick}>
       <SvgCart
         width="23"
         height="17"
@@ -31,7 +31,9 @@ export default function BuyButton({ product }) {
 }
 
 const PurpleButton = styled.button`
-  background-color: #7469b6;
+  background-color: ${(props) => (props.darkTheme ? "#732270" : "#ad88c6")};
+
+  //background-color: #7469b6;
   font-family: "Rubik Mono One";
   font-style: normal;
   font-weight: 400;
@@ -41,12 +43,17 @@ const PurpleButton = styled.button`
   color: #fffcfc;
   height: 40px;
   width: 170px;
-  background: #ad88c6;
+  //background: #ad88c6;
   border-radius: 10px;
   margin-left: 140px;
   border: none;
   margin-right: 10px;
   cursor: pointer;
+  transition: background-color 0.3s ease; /* Smooth transition effect */
+
+  &:hover {
+    background-color: ${(props) => (props.darkTheme ? "purple" : "purple")};
+  }
   @media only screen and (max-width: 600px) {
     margin-left: 87px;
   }

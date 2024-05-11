@@ -2,12 +2,13 @@ import styled from "styled-components";
 import Center from "../Center";
 import Link from "next/link";
 
-export default function Logo() {
+export default function Logo({darkTheme}) {
+  console.log(darkTheme);
   return (
     <Center>
       <StyledLink href="/">
         <StyledLogo>
-          <StyledText>Навчальні</StyledText>
+          <StyledText darkTheme={darkTheme}>Навчальні</StyledText>
           <StyledSvg
             width="25"
             height="26"
@@ -22,7 +23,7 @@ export default function Logo() {
               fill="#7469B6"
             />
           </StyledSvg>
-          <StyledText>Матеріали</StyledText>
+          <StyledText darkTheme={darkTheme}>Матеріали</StyledText>
         </StyledLogo>
       </StyledLink>
     </Center>
@@ -44,7 +45,8 @@ const StyledLogo = styled.div`
 const StyledText = styled.p`
   font-family: "Rubik Mono One", sans-serif;
   font-size: 20px;
-  color: black;
+ // color: black;
+  color: ${(props) => (props.darkTheme ? "white" : "black")};
   @media only screen and (max-width: 600px) {
     font-size: 16px;
     margin: 0;

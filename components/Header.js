@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import Center from "./Center";
-import Theme from "./headerComponents.js/theme";
 import Cart from "./headerComponents.js/cart";
 import Account from "./headerComponents.js/account";
 import CategoriesButton from "./Buttons/CategoriesButton";
@@ -14,13 +13,14 @@ import { useCart } from "@/Contexts/ShowCart";
 import { useAuth } from "@/Contexts/AccountContext";
 import SeacrhIcon from "./SearchIcon";
 import css from "styled-jsx/css";
-
+import Theme from "./headerComponents.js/theme";
 export default function Header({
-  toggleDarkMode,
   categories,
   subcategories,
   setSearchValue,
   searchValue,
+  toggleTheme,
+  darkTheme,
 }) {
   const { isLogin } = useAuth();
 
@@ -69,6 +69,7 @@ export default function Header({
               <CategoriesButton
                 categories={categories}
                 subcategories={subcategories}
+                darkTheme={darkTheme}
               />
             }
           >
@@ -93,7 +94,7 @@ export default function Header({
             placeholder="Введіть текст для пошуку..."
           />
           <AllIcons>
-            <Theme toggleDarkMode={toggleDarkMode} />
+            <Theme toggleTheme={toggleTheme}/>
             <Container>
               <Cart click={showCartClick}></Cart>
 

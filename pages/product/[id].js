@@ -56,6 +56,8 @@ export default function ProductPage({
   id,
   feedbacks: initialFeedbacks,
   users,
+  toggleTheme,
+  darkTheme,
 }) {
   const { addToCart } = useContext(CartContext);
   const { user } = useAuth();
@@ -87,8 +89,8 @@ export default function ProductPage({
     <>
       <Center>
         <Container>
-          <Header categories={categories} subcategories={subcategories} />
-          <LogoWithoutPurple />
+          <Header categories={categories} subcategories={subcategories} toggleTheme={toggleTheme} darkTheme={darkTheme}/>
+          <LogoWithoutPurple darkTheme={darkTheme}/>
           <Urls page={product.productName} />
 
           <ColWrapper>
@@ -121,7 +123,7 @@ export default function ProductPage({
               <StyledDesc>{product.description}</StyledDesc>
               <GreenPrice>{product.price} ГРН</GreenPrice>
               <DivInline>
-                <BuyButton product={product} />
+                <BuyButton product={product} darkTheme={darkTheme}/>
               </DivInline>
             </ProductDesc>
             <AddFeedback id={id} addFeedback={addNewFeedback} />
@@ -164,6 +166,7 @@ const Purple = styled.span`
   color: #7469b6;
   margin-left: 6px;
   font-weight: 700;
+ 
 `;
 
 const GreenPrice = styled.p`

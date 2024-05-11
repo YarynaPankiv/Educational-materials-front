@@ -1,16 +1,17 @@
 import { useState } from "react";
 import { IconWithText, StyledIcon, IconText } from "../Header"; // Імпортовано необхідні компоненти
+import { useTheme } from "@/Contexts/ThemeContext";
 
-export default function Theme({ toggleDarkMode }) {
-  const [isClicked, setIsClicked] = useState("false");
-
+export default function Theme({toggleTheme}) {
+  // const  {toggleDarkMode } = useTheme();
+  // const darkMode = useTheme();
+  
   const handleClick = () => {
-    setIsClicked(!isClicked);
-    toggleDarkMode(); // Викликати функцію, що перемикає темну тему в App.js
+    toggleTheme();
   };
 
   return (
-    <IconWithText clicked={isClicked} onClick={handleClick}>
+    <IconWithText onClick={handleClick}>
       <StyledIcon
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
