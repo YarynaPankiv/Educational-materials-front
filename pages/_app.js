@@ -25,7 +25,7 @@ const GlobalStyles = createGlobalStyle`
     color: ${(props) =>
       props.theme
         ? "#FFFFFF"
-        : "#000000"}; /* Змінити колір тексту в залежності від теми */
+        : "#000000"}; 
   
   }
 

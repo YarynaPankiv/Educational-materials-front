@@ -3,7 +3,11 @@ import styled from "styled-components";
 import Categories from "@/components/Categories";
 import { useCategories } from "@/Contexts/CategoriesContext";
 
-export default function CategoriesButton({ categories, subcategories, darkTheme }) {
+export default function CategoriesButton({
+  categories,
+  subcategories,
+  darkTheme,
+}) {
   const { showCategories, setShowCategories } = useCategories();
 
   return (
@@ -11,6 +15,7 @@ export default function CategoriesButton({ categories, subcategories, darkTheme 
       <StyledButton $showCategories={showCategories} darkTheme={darkTheme}>
         {!showCategories && (
           <StyledSVG
+            darkTheme={darkTheme}
             width="24"
             height="16"
             viewBox="0 0 24 16"
@@ -23,6 +28,7 @@ export default function CategoriesButton({ categories, subcategories, darkTheme 
         {console.log(showCategories)}
         {showCategories && (
           <StyledCloseSvg
+            darkTheme={darkTheme}
             width="12"
             height="12"
             viewBox="0 0 12 12"
@@ -53,24 +59,24 @@ const StyledButton = styled.button`
     props.$showCategories ? "#7469B6" : "#FFFFFF"};
   background-color: ${(props) => (props.darkTheme ? "#1D2733" : "white")};
   border-radius: 10px;
-  border: ${(props) =>
-    props.$showCategories ? "none" : "2px solid #7469b6"};
+  border: ${(props) => (props.$showCategories ? "none" : "2px solid #7469b6")};
+  border: ${(props) => (props.darkTheme ? "none" : "2px solid #7469b6")};
   display: flex;
   align-items: center;
-  color: ${(props) => (props.$showCategories || props.darkTheme ? "#FFFFFF" : "#7469b6")};
+  color: ${(props) =>
+    props.$showCategories || props.darkTheme ? "#FFFFFF" : "#7469b6"};
   font-weight: 500;
   font-size: 16px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   cursor: pointer;
   display: flex;
   align-items: center;
-  
 
   ${media.mobile} {
     width: 127px;
     margin-left: 5px;
   }
-  
+
   &:hover {
     background-color: ${(props) =>
       props.$showCategories || props.darkTheme ? "#7469B6" : "#FFFFFF"};
@@ -79,11 +85,12 @@ const StyledButton = styled.button`
   }
 `;
 
-
 const StyledSVG = styled.svg`
   margin-left: 10px;
   margin-right: 10px;
   margin-bottom: 0px;
+  fill: ${(props) => (props.darkTheme ? "#FFFFFF" : "#7469B6")};
+
   @media only screen and (max-width: 600px) {
     margin-right: 5px;
     margin-left: 5px;
@@ -94,5 +101,5 @@ const StyledCloseSvg = styled.svg`
   margin-left: 20px;
   margin-right: 16px;
   margin-bottom: 0px;
-  fill: #ffffff;
+  fill: ${(props) => (props.darkTheme ? "#FFFFFF" : "#7469B6")};
 `;
