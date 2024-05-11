@@ -10,6 +10,7 @@ import { Product } from '@/models/Product';
 import SubCategory from '@/models/SubCategory';
 import { Category } from '@/models/Category';
 import { useEffect } from 'react';
+import Center from '@/components/Center';
 
 export async function getServerSideProps(context) {
   await mongooseConnect();
@@ -61,7 +62,7 @@ export default function HomePage({
   };
 
   return (
-    <div>
+    <Center>
       <Header
         toggleDarkMode={toggleDarkMode}
         categories={categories}
@@ -75,6 +76,6 @@ export default function HomePage({
         onAllClick={handleAllProductsClick}
       />
       <ProductsGrid products={products} />
-    </div>
+    </Center>
   );
 }

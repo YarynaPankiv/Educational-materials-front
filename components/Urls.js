@@ -4,7 +4,6 @@ import Link from "next/link";
 
 export default function Urls({ page }) {
   return (
-    <Center>
       <UrlsDiv>
         <StyledLink href="/">Головна</StyledLink>
         <StyledSvg
@@ -22,7 +21,6 @@ export default function Urls({ page }) {
         </StyledSvg>
         <StyledP>{page}</StyledP>
       </UrlsDiv>
-    </Center>
   );
 }
 export const StyledLink = styled(Link)`

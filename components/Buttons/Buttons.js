@@ -20,7 +20,6 @@ export default function Buttons({ onRecentlyAddedClick, onAllClick }) {
   };
 
   return (
-    <Center>
       <Div>
         <StyledButton clicked={isClickedAll} onClick={handleClickAll}>
           Всі матеріали
@@ -29,7 +28,6 @@ export default function Buttons({ onRecentlyAddedClick, onAllClick }) {
           Недавно додані
         </StyledButton>
       </Div>
-    </Center>
   );
 }
 
@@ -52,6 +50,8 @@ const StyledButton = styled.button`
     margin-top: 20px;
     margin-right: 0;
     text-align: center;
+    margin-bottom: 0;
+    margin: 0;
   }
 `;
 const Div = styled.div`
@@ -60,5 +60,7 @@ const Div = styled.div`
   @media only screen and (max-width: 605px) {
     justify-content: center;
     justify-content: space-around;
+    margin: 0;
+
   }
 `;

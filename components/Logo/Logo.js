@@ -39,7 +39,8 @@ const StyledLogo = styled.div`
     width: 100%;
     height: auto;
     padding: 15px;
-    margin-top: 10px;
+    margin-top: 0px;
+    margin-bottom: 0px;
   }
 `;
 

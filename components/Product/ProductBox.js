@@ -59,7 +59,7 @@ const StyledProduct = styled.div`
   margin-top: 25px;
   @media only screen and (max-width: 600px) {
     width: 170px;
-    height: 200px;
+    height: 220px;
   }
 `;
 const ImgWrraper = styled.div`
