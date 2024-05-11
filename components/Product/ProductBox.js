@@ -76,14 +76,14 @@ const StyledPNG = styled.img`
   object-fit: cover;
 `;
 const StyledName = styled.p`
-  padding: 5px 10px;
+  padding: 8px 12px;
   text-align: center;
-  color: black;
-  margin: 0;
-  font-size: 16px;
+  color: #333;
+  margin-top: 20px;
+  word-break: break-word;
+  margin-left: 5px;
+  max-height: 3em; 
   overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 `;
 
 const StyledCost = styled.p`
