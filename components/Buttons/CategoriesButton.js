@@ -1,5 +1,4 @@
 import { useState } from "react";
-
 import styled from "styled-components";
 import Categories from "@/components/Categories";
 import { useCategories } from "@/Contexts/CategoriesContext";
@@ -9,7 +8,7 @@ export default function CategoriesButton({ categories, subcategories }) {
 
   return (
     <>
-      <StyledButton showCategories={showCategories}>
+      <StyledButton $showCategories={showCategories}>
         {!showCategories && (
           <StyledSVG
             width="24"
@@ -41,6 +40,7 @@ export default function CategoriesButton({ categories, subcategories }) {
     </>
   );
 }
+
 const media = {
   mobile: `@media only screen and (max-width: 600px)`,
 };
@@ -50,12 +50,12 @@ const StyledButton = styled.button`
   height: 34px;
   padding: 0;
   background-color: ${(props) =>
-    props.showCategories ? "#7469B6" : "#FFFFFF"};
+    props.$showCategories ? "#7469B6" : "#FFFFFF"};
   border-radius: 10px;
-  border: ${(props) => (props.showCategories ? "none" : "2px solid #7469b6")};
+  border: ${(props) => (props.$showCategories ? "none" : "2px solid #7469b6")};
   display: flex;
   align-items: center;
-  color: ${(props) => (props.showCategories ? "#FFFFFF" : "#7469b6")};
+  color: ${(props) => (props.$showCategories ? "#FFFFFF" : "#7469b6")};
   font-weight: 500;
   font-size: 16px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
@@ -77,6 +77,7 @@ const StyledSVG = styled.svg`
     margin-left: 5px;
   }
 `;
+
 const StyledCloseSvg = styled.svg`
   margin-left: 20px;
   margin-right: 16px;

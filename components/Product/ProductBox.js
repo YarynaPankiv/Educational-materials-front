@@ -84,6 +84,10 @@ const StyledName = styled.p`
   margin-left: 5px;
   max-height: 3em; 
   overflow: hidden;
+  @media only screen and (max-width: 600px) {
+    margin-top: 5px;
+    font-size: 15px;
+  }
 `;
 
 const StyledCost = styled.p`

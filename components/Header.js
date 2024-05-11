@@ -161,19 +161,22 @@ const StyledSearch = styled.input`
       display: none;
   }
 
-  ${({isShow}) => isShow && css`
-    position: absolute;
-    top: 60px;
-    left: 0;
-    right: 0;
-    width: 100%;
-    margin: 0;
-   
-    ${media.mobile} {
-      display: block;
-    }
-  `}
+  ${({ isShow }) =>
+    isShow &&
+    css`
+      position: absolute;
+      top: 60px;
+      left: 0;
+      right: 0;
+      width: 100%;
+      margin: 0;
+
+      ${media.mobile} {
+        display: block;
+      }
+    `}
 `;
+
 const MobileSearchIconContainer = styled.div`
   display: none; /* По замовчуванню приховано для десктопних */
 
