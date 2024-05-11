@@ -91,7 +91,7 @@ export default function ProductPage({
         <Container>
           <Header categories={categories} subcategories={subcategories} toggleTheme={toggleTheme} darkTheme={darkTheme}/>
           <LogoWithoutPurple darkTheme={darkTheme}/>
-          <Urls page={product.productName} />
+          <Urls page={product.productName}   darkTheme={darkTheme}/>
 
           <ColWrapper>
             <ProductImages images={product.images} />
@@ -126,11 +126,12 @@ export default function ProductPage({
                 <BuyButton product={product} darkTheme={darkTheme}/>
               </DivInline>
             </ProductDesc>
-            <AddFeedback id={id} addFeedback={addNewFeedback} />
+            <AddFeedback id={id} addFeedback={addNewFeedback} darkTheme={darkTheme}/>
             <ShowFeedbacks
               product={product}
               feedbacks={feedbacks}
               users={users}
+              darkTheme={darkTheme}
             />
           </ColWrapper>
         </Container>

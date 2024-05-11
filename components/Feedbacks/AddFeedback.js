@@ -4,7 +4,7 @@ import Rating from "@mui/material/Rating";
 import axios from "axios";
 import { useAuth } from "@/Contexts/AccountContext";
 
-export default function AddFeedback({ id }) {
+export default function AddFeedback({ id, darkTheme}) {
   const [feedback, setFeedback] = useState("");
   const [rate, setRate] = useState(0);
   const productId = id;
@@ -35,7 +35,7 @@ export default function AddFeedback({ id }) {
   };
 
   return (
-    <FeedbackBox>
+    <FeedbackBox darkTheme={darkTheme}>
       <Title>Написати відгук</Title>
       <Rating
         name="half-rating"
@@ -64,11 +64,11 @@ const FeedbackBox = styled.div`
   margin-top: 50px;
   width: 370px;
   height: 290px;
-  background: #ffffff;
   border: 1px solid rgba(0, 0, 0, 0.21);
   border-radius: 10px;
   padding: 10px 20px;
   margin-bottom: 25px;
+  background-color: ${(props) => (props.darkTheme ? "#26303B" : "black")};
 
   @media only screen and (max-width: 600px) {
     width: 90%;
