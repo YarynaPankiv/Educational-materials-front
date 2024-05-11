@@ -78,6 +78,7 @@ export default function Header({
           <MobileSearchIconContainer>
             {/* <SeacrhIcon></SeacrhIcon> */}
             <StyledSearch
+              darkTheme={darkTheme  }
               value={searchValue}
               onChange={handleOnChange}
               onFocus={handleOnFocus}
@@ -88,6 +89,7 @@ export default function Header({
 
           {/* Залишаємо StyledSearch на десктопних пристроях */}
           <StyledSearch
+            darkTheme={darkTheme}
             value={searchValue}
             onChange={handleOnChange}
             onFocus={handleOnFocus}
@@ -145,7 +147,11 @@ export const StyledIcon = styled.svg`
 const StyledSearch = styled.input`
   width: 605px;
   height: 34px;
-  background-color: #f5f5f5;
+  /* background-color: #f5f5f5; */
+  background-color: ${(props) => (props.darkTheme ? "#26303B" : "#f5f5f5")};  
+  ::placeholder {
+    color: ${(props) => (props.darkTheme ? "#FFFFFF" : "#f5f5f5")}; 
+  }
   border-radius: 30px;
   font-size: 15px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
