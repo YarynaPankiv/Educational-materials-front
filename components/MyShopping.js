@@ -1,62 +1,96 @@
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Center from "./Center";
 import { useAuth } from "@/Contexts/AccountContext";
-import { useEffect } from "react";
-import { useState } from "react";
-import Checkout from "@/pages/Checkout";
-import { TotalCost } from "@/pages/Checkout";
-import { GreenPrice } from "@/pages/Checkout";
+import Urls from "./Urls";
+import { StyledImage } from "@/components/ShoppingCart";
+import { IconTrash } from "@/components/ShoppingCart";
+import { PurpleText } from "@/components/ShoppingCart";
+const getFileExtension = (fileName) => {
+  if (fileName) {
+    return fileName.split(".").pop();
+  }
+  return;
+};
 
 const MyShopping = ({ orders, products }) => {
-  console.log(orders);
-  console.log(products);
   const { user } = useAuth();
   const [userOrders, setUserOrders] = useState([]);
   const userId = user ? user.data._id : null;
 
   useEffect(() => {
-    const isMobileDevice = window.innerWidth <= 600;
-    const userOrders = orders.filter((order) => order.userId === userId);
-    setUserOrders(userOrders);
-  }, []);
+    if (userId) {
+      const userOrders = orders.filter((order) => order.userId === userId);
+      setUserOrders(userOrders);
+    }
+  }, [userId, orders]);
 
   return (
     <Center>
-      <Page>
-        <StyledH2>Покупки</StyledH2>
-        {userOrders.map((order) => (
-          <OrderContainer key={order._id}>
-            <p>№: {order._id}</p>
-            
-            <ul>
-              {order.products.map((productId) => {
-                const product = products.find((p) => p._id === productId);
-                console.log(product);
-                return (
-                  <li key={productId}>
-                    {product ? (
-                      <>
-                        <span>{product.productName}</span>
-                        <StyledDate>{order.createdAt}</StyledDate>
-                      </>
-                    ) : (
-                      <span>Product not found</span>
-                    )}
-                  </li>
-                );
-              })}
-            </ul>
-            
-            <TotalCost>
-              Загальна вартість: <GreenPrice>{order.totalPrice} ГРН</GreenPrice>
-            </TotalCost>
-          
-          </OrderContainer>
-        ))}
-      </Page>
+      <OuterContainer>
+        <Page>
+          <StyledH2>Покупки</StyledH2>
+          <AllProducts> {/* Corrected tag name */}
+            {userOrders.map((order) => (
+              <React.Fragment key={order._id}> {/* Added key to Fragment */}
+                {order.products.map((productId) => {
+                  const product = products.find((p) => p._id === productId);
+                  return (
+                    <OrderContainer key={productId}>
+                      <IdDiv>№: {order._id}</IdDiv> {/* Is this line necessary? */}
+                      <ProductImageWrapper>
+                        <StyledImage src={product.images[0]} />
+                        <Div>
+                          <StyledP>
+                            <b>{product.productName}</b>
+                          </StyledP>
+                          <StyledP>
+                            Формат:{" "}
+                            <PurpleText>
+                              {product.file &&
+                                product.file
+                                  .map((file) => getFileExtension(file.name))
+                                  .join(", ")}
+                            </PurpleText>
+                          </StyledP>
+                          <StyledCost>{product.price} ГРН</StyledCost>
+                        </Div>
+                      </ProductImageWrapper>
+                      <LoadButton>Завантажити знову</LoadButton>
+                    </OrderContainer>
+                  );
+                })}
+              </React.Fragment>
+            ))}
+          </AllProducts>
+        </Page>
+      </OuterContainer>
     </Center>
   );
 };
+
+const IdDiv = styled.p`
+  margin-bottom: 0;
+  margin-top: 10px;
+`
+const OuterContainer = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
+const Div = styled.div`
+  margin-left: 15px;
+`
+
+const Page = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  margin-left: 15%;
+`;
+
 const StyledH2 = styled.h2`
   font-family: "Montserrat";
   font-style: normal;
@@ -64,40 +98,84 @@ const StyledH2 = styled.h2`
   font-size: 18px;
   margin-bottom: 25px;
   margin-right: 0px;
-`
-const StyledDate = styled.span`
-  font-size:16px;
-  position: absolute;
-  top: 5px;
-  right: 5px;
-  margin-right:5px;
-  margin-top:5px;
-  color:black;
-`;
-const Page = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 50px;
-  margin-left: 20%;
-
-  
-  @media only screen and (max-width: 600px) {
-    width: 364px;
-    margin-left: 8px;
-    margin-right: 5px;
-  }
 `;
 
 const OrderContainer = styled.div`
-  width: 726px;
+  width: 700px;
   margin-bottom: 20px;
   border: 1px solid #ccc;
   border-radius: 10px;
-  padding: 10px;
-  margin-top:0px;
+  padding: 15px;
   position: relative;
 `;
+
+const ProductOrder = styled.div`
+margin-top: 7px;
+display: flex;
+flex-direction: column;
+position: relative;
+margin-left: 10px;
+margin-right: 15px;
+width: 580px;
+height: 150px;
+border-radius: 15px;
+border: 0.2px solid #ccc;
+background-color: white;
+margin-bottom: 10px;
+@media only screen and (max-width: 600px) {
+  width: auto;
+  height: auto;
+}
+`;
+
+const ProductImageWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  margin-top: 0;
+`;
+
+
+
+const StyledP = styled.p`
+  /* стилі для StyledP */
+`;
+
+const StyledCost = styled.p`
+    font-family: "Montserrat";
+    font-style: normal;
+    font-weight: bolder;
+    font-size: 16px;
+    color: #327a4c;
+    @media only screen and (max-width: 650px) {
+      margin-left: 0;
+      margin-right: auto;
+    }
+  `;
+
+
+const AllProducts = styled.div`
+
+`
+
+const LoadButton = styled.button`
+  background-color: #7469b6;
+  font-family: "Montserrat" sans-serif;
+  font-size: 16px;
+  border: none;
+  color: #fffcfc;
+  height: 40px;
+  width: 170px;
+  background: #ad88c6;
+  border-radius: 10px;
+  margin-top: 10px;
+  margin-left: 150px;
+  margin-bottom: 25px;
+  border: none;
+  cursor: pointer;
+  :hover {
+    background: #7469b6;
+  }
+  
+`
 
 export default MyShopping;

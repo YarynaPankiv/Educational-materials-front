@@ -108,6 +108,7 @@ export default function Header({
             </Container>
 
             <DropDownWrap
+              darkTheme={darkTheme}
               icon={<Account click={handleAccountClick} isLogin={isLogin} />}
             >
               {!isLogin && (

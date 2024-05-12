@@ -7,7 +7,7 @@ import { useAuth } from "@/Contexts/AccountContext";
 import Center from "./Center";
 
 
-const UserEditor = () => {
+const UserEditor = ({darkTheme}) => {
   const { user } = useAuth(); // Отримання поточного користувача з контексту
   const { setUser } = useAuth();
   const [name, setName] = useState("");
@@ -74,9 +74,10 @@ const UserEditor = () => {
     <Center>
       <Page>
         <InputWrapper>
-          <Text>Дані користувача</Text>
+          <Text darkTheme={darkTheme}>Дані користувача</Text>
           <InputContainer>
             <MyInput
+              darkTheme={darkTheme}
               text={"Адреса електронної пошти"}
               type={"email"}
               value={emailField}
@@ -172,6 +173,7 @@ const Text = styled.div`
   font-weight: bold;
   font-size: 16px;
   padding-bottom: 20px;
+  color: ${(props) => (props.darkTheme ? "#FFFFFF " : "black")};
 `;
 
 const InputContainer = styled.div`

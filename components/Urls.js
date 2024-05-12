@@ -25,13 +25,13 @@ export default function Urls({ page, darkTheme}) {
 }
 export const StyledLink = styled(Link)`
   text-decoration: none;
-  color:${(props) => (props.darkTheme ? "#8B98A5" : "black")};
+  color:${(props) => (props.darkTheme ? "white" : "black")};
   opacity: 60%;
   margin-right: 10px;
 `;
 export const StyledSvg = styled.svg`
   margin-left: 10px;
-  fill: ${(props) => (props.showSort ? "#AD88C6" : "black")};
+  fill: ${(props) => (props.showSort ? "white" : "black")};
 `;
 
 export const UrlsDiv = styled.div`
@@ -45,5 +45,5 @@ export const UrlsDiv = styled.div`
 export const StyledP = styled.span`
   opacity: 60%;
   margin-left: 15px;
-  color:${(props) => (props.darkTheme ? "#8B98A5" : "black")};
+  color:${(props) => (props.darkTheme ? "white" : "black")};
 `;

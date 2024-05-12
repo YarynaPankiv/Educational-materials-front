@@ -55,14 +55,14 @@
         link.href = fileURL;
         link.setAttribute("download", true);
         link.click();
-        await new Promise((resolve) => setTimeout(resolve, 100)); // Затримка між завантаженням файлів
+        await new Promise((resolve) => setTimeout(resolve, 100)); 
       }
       setFileDownloaded(true);
     };
 
     
     async function postOrder() {
-      if (user && !orderPosted) {
+      if (user && !orderPosted && router.query.success === "true") {
         try {
           console.log(cartProducts);
           const products = cartProducts.map((product) => (product._id ));
@@ -76,7 +76,7 @@
             totalPrice: totalCost,
             status: "Успішно",
           });
-
+    
           console.log(responce);
           setOrderPosted(true); 
         } catch (error) {
@@ -85,8 +85,10 @@
       }
     }
     
-    if (router.query.success === "true") {
+    
+    if (router.query.success === "true" && !orderPosted) {
       postOrder();
+  
       return (
         <>
           <Header subcategories={subcategories} categories={categories} />

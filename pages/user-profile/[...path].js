@@ -14,12 +14,13 @@ import { Product } from "@/models/Product";
 import Center from "@/components/Center";
 
 const UserProfilePage = ({
-  toggleDarkMode,
+  toggleTheme,
   path,
   categories,
   subcategories,
   orders,
-  products
+  products,
+  darkTheme,
 }) => {
   const router = useRouter();
   const { logout, user } = useAuth();
@@ -28,7 +29,10 @@ const UserProfilePage = ({
   const [userOrders, setUserOrders] = useState([]);
   const [product, setProduct] = useState([]);
   const userId = user ? user.data._id : null;
-  console.log(userId);
+
+  console.log(orders)
+//  setUserOrders(orders.filter((order) => order.userId === userId));
+
   useEffect(() => {
     const isMobileDevice = window.innerWidth <= 600;
     setIsMobile(isMobileDevice);
@@ -51,7 +55,7 @@ const UserProfilePage = ({
   const renderInfo = () => {
     switch (path) {
       case "user-info":
-        return <UserEditor />;
+        return <UserEditor darkTheme={darkTheme} />;
       case "my-shop":
         return <MyShopping orders={orders} products={products} />;
       default:
@@ -60,13 +64,22 @@ const UserProfilePage = ({
   };
 
   return (
-    <>
+    <>  
       <Header
-        toggleDarkMode={toggleDarkMode}
+        toggleTheme={toggleTheme}
         categories={categories}
         subcategories={subcategories}
+        darkTheme={darkTheme}
       />
-      <Urls page={"Мій акаунт"} />
+
+      <Center>
+         <Urls page={"Мій акаунт"} />
+
+      </Center>
+    
+
+     
+   
       {isMobile && (
         <>
           <MobileMenuButton onClick={toggleMenu}>
@@ -150,7 +163,7 @@ const Menu = styled.div`
   display: flex;
   gap: 10px;
   flex-direction: column;
-  padding: 80px 0px;
+  padding: 50px 0px;
   width: 300px;
 `;
 

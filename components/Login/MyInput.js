@@ -1,7 +1,7 @@
 import { use, useMemo, useState } from "react";
 import styled from "styled-components";
 
-const MyInput = ({ text, type, value, setValue, theme, errorMessage }) => {
+const MyInput = ({ text, type, value, setValue, theme, errorMessage,darkTheme }) => {
   const handleOnChange = (e) => {
     setValue(e.target.value);
   };
@@ -20,7 +20,7 @@ const MyInput = ({ text, type, value, setValue, theme, errorMessage }) => {
   return (
     <Label>
       <div>{text}</div>
-      <ThemedInput onChange={handleOnChange} value={value} type={type} />
+      <ThemedInput onChange={handleOnChange} value={value} type={type} darkTheme={darkTheme}/>
       {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
     </Label>
   );
@@ -47,6 +47,7 @@ const CommonInput = styled.input`
   height: 36px;
   margin-top: 10px;
   text-align: center;
+  
 `;
 
 const AuthInput = styled.input`
@@ -58,6 +59,8 @@ const AuthInput = styled.input`
   width: 100%;
   font-family: "Times New Roman", Times, serif;
   font-size: 20px;
+  color: ${(props) => (props.darkTheme ? "#FFFFFF" : "black")};
+  opacity:${(props) => (props.darkTheme ? "60%" : "100%")};
 `;
 
 export default MyInput;

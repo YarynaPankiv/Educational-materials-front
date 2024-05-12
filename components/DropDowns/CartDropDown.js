@@ -30,7 +30,7 @@ const Wrap = styled.div`
   display: flex;
   flex-direction: column;
   z-index: 20;
-
+ 
   //position: relative;
 `;
 

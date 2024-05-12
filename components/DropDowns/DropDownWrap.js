@@ -2,7 +2,7 @@ import useClickOutside from "@/hooks/useClickOutside";
 import { useState } from "react";
 import styled from "styled-components";
 
-const DropDownWrap = ({ icon, children }) => {
+const DropDownWrap = ({ icon, children,darkTheme }) => {
   const [isShowComponent, setIsShowComponent] = useState(false);
 
   const isShowRec = () => {
@@ -16,7 +16,7 @@ const DropDownWrap = ({ icon, children }) => {
   const ref = useClickOutside(handleClose);
 
   return (
-    <Wrap ref={ref}>
+    <Wrap ref={ref} darkTheme={darkTheme}>
       <Icon onClick={isShowRec}>{icon}</Icon>
       {isShowComponent && <ContentWrap>{children}</ContentWrap>}
     </Wrap>

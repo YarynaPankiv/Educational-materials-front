@@ -110,7 +110,7 @@ export default function ProductPage({
               })}
               <>
                 <StyledDiv>
-                  <Rating value={averageRating} size="small" readOnly />{" "}
+                  <Rating value={averageRating} size="small" readOnly  />{" "}
                   <TextLeft>
                     {product.feedback.length} <Purple>відгуків</Purple>
                   </TextLeft>
@@ -121,7 +121,7 @@ export default function ProductPage({
               <br />
               Кількість сторінок/слайдів: <Purple>{product.pages}</Purple>
               <StyledDesc>{product.description}</StyledDesc>
-              <GreenPrice>{product.price} ГРН</GreenPrice>
+              <GreenPrice darkTheme={darkTheme}>{product.price} ГРН</GreenPrice>
               <DivInline>
                 <BuyButton product={product} darkTheme={darkTheme}/>
               </DivInline>
@@ -178,8 +178,8 @@ const GreenPrice = styled.p`
   line-height: 20px;
   margin-top: 50px;
   margin-left: 190px;
-  color: #327a4c;
-
+  
+  color: ${(props) => (props.darkTheme ? "#37EA7A" : "#327a4c")};
   @media only screen and (max-width: 600px) {
     margin-left: 130px;
     margin-top: 50px;
