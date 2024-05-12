@@ -20,6 +20,8 @@ import { useCart } from "@/Contexts/ShowCart";
 import Urls from "@/components/Urls";
 import { useAuth } from "@/Contexts/AccountContext";
 import { User } from "@/models/User";
+  
+import MyOrder from "@/models/MyOrder";
 
 export const getFileExtension = (fileName) => {
   if (fileName) {
@@ -37,6 +39,8 @@ export async function getServerSideProps(context) {
   const subcategories = await SubCategory.find({});
   const feedbacks = await Feedback.find({ _id: { $in: product.feedback } });
   const users = await User.find({});
+  const products = await Product.find({});
+  const orders = await MyOrder.find({});
   return {
     props: {
       product: JSON.parse(JSON.stringify(product)),
@@ -45,11 +49,14 @@ export async function getServerSideProps(context) {
       id: JSON.parse(JSON.stringify(id)),
       feedbacks: JSON.parse(JSON.stringify(feedbacks)),
       users: JSON.parse(JSON.stringify(users)),
+      products: JSON.parse(JSON.stringify(products)),
+      orders: JSON.parse(JSON.stringify(orders)),
     },
   };
 }
 
 export default function ProductPage({
+  products,
   product,
   categories,
   subcategories,
@@ -58,6 +65,7 @@ export default function ProductPage({
   users,
   toggleTheme,
   darkTheme,
+  orders
 }) {
   const { addToCart } = useContext(CartContext);
   const { user } = useAuth();
@@ -126,7 +134,7 @@ export default function ProductPage({
                 <BuyButton product={product} darkTheme={darkTheme}/>
               </DivInline>
             </ProductDesc>
-            <AddFeedback id={id} addFeedback={addNewFeedback} darkTheme={darkTheme}/>
+            <AddFeedback id={id} addFeedback={addNewFeedback} darkTheme={darkTheme} products={products} orders={orders}/>
             <ShowFeedbacks
               product={product}
               feedbacks={feedbacks}

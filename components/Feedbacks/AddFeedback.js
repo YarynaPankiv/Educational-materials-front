@@ -4,9 +4,10 @@ import Rating from "@mui/material/Rating";
 import axios from "axios";
 import { useAuth } from "@/Contexts/AccountContext";
 
-export default function AddFeedback({ id, darkTheme}) {
+export default function AddFeedback({ id, darkTheme, products, orders}) {
   const [feedback, setFeedback] = useState("");
   const [rate, setRate] = useState(0);
+  const [userBought, setUserBought] = useState(false);
   const productId = id;
   const { user } = useAuth();
 
@@ -16,6 +17,7 @@ export default function AddFeedback({ id, darkTheme}) {
     const month = (currentDate.getMonth() + 1).toString().padStart(2, "0");
     const year = currentDate.getFullYear();
     const formattedDate = `${day}.${month}.${year}`;
+
 
     if (user) {
       const data = {
@@ -34,6 +36,27 @@ export default function AddFeedback({ id, darkTheme}) {
     }
   };
 
+  useEffect(() =>{
+    if(user && orders) {
+      orders.map((order) => {
+        if (order.userId === user.data._id) {
+          order.products.map((productId) => {
+            const product = productId == id;
+            console.log(product);
+            if (product) {
+              setUserBought(true);
+            }
+          })
+
+         
+          
+        }
+      });
+    }
+  }, [orders, user, id]);
+
+
+
   return (
     <FeedbackBox darkTheme={darkTheme}>
       <Title>Написати відгук</Title>
@@ -48,9 +71,11 @@ export default function AddFeedback({ id, darkTheme}) {
         onChange={(event) => setFeedback(event.target.value)}
         darkTheme={darkTheme}
       ></Input>
+      {userBought &&
       <CenterButton>
         <Button onClick={handleSubmit} darkTheme={darkTheme}>Надіслати</Button>
       </CenterButton>
+      }
     </FeedbackBox>
   );
 }
