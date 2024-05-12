@@ -20,7 +20,7 @@
 
   export default function Checkout({ categories, subcategories, toggleTheme, darkTheme }) {
     const router = useRouter();
-    const { cartProducts, deleteProductFromCart } = useContext(CartContext);
+    let { cartProducts, deleteProductFromCart } = useContext(CartContext);
     const [fileDownloaded, setFileDownloaded] = useState(false);
     const [orderPosted, setOrderPosted] = useState(false);
     const { user } = useAuth();
@@ -28,16 +28,16 @@
 
     console.log(user);
 
-    useEffect(() => {
-      if (router.query.success === "true" && !fileDownloaded) {
-        const filesToDownload = cartProducts
-          .filter((pr) => pr.file && pr.file.length > 0)
-          .map((pr) => pr.file[0].url);
-        if (filesToDownload.length > 0) {
-          handleFileDownload(filesToDownload);
-        }
-      }
-    }, [router.query.success, cartProducts, fileDownloaded]);
+    // useEffect(() => {
+    //   if (router.query.success === "true" && !fileDownloaded) {
+    //     const filesToDownload = cartProducts
+    //       .filter((pr) => pr.file && pr.file.length > 0)
+    //       .map((pr) => pr.file[0].url);
+    //     if (filesToDownload.length > 0) {
+    //       handleFileDownload(filesToDownload);
+    //     }
+    //   }
+    // }, [router.query.success, cartProducts, fileDownloaded]);
 
     const calculateTotal = () => {
       let total = 0;
@@ -79,6 +79,7 @@
     
           console.log(responce);
           setOrderPosted(true); 
+          router.push("/user-profile/my-shop");
         } catch (error) {
           console.error("Error posting order:", error);
         }
@@ -88,13 +89,10 @@
     
     if (router.query.success === "true" && !orderPosted) {
       postOrder();
+      cartProducts = [];
+
   
-      return (
-        <>
-          <Header subcategories={subcategories} categories={categories} />
-          <PaymentMessage>Оплата пройшла успішно!</PaymentMessage>
-        </>
-      );
+
     }
 
     if (router.query.success === "false") {
@@ -223,6 +221,7 @@
       margin-left: 5px;
     }
   `;
+
   export const ProductOrder = styled.div`
     margin-top: 7px;
     display: flex;
@@ -231,7 +230,7 @@
     margin-left: 10px;
     margin-right: 15px;
     width: 580px;
-    height: 150px;
+    height: auto;
     border-radius: 15px;
     border: 0.2px solid #ccc;
     background-color: ${(props) => (props.darkTheme ? "#26303B" : "#FFFFFF")};
@@ -267,7 +266,9 @@
   export const SideAlignedWrapper = styled.div`
     display: flex;
     justify-content: center;
+    height: auto;
   `;
+
   export const StyledP = styled.p`
     font-size: 18px;
   `;

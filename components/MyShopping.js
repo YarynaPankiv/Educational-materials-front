@@ -18,12 +18,27 @@ const MyShopping = ({ orders, products }) => {
   const [userOrders, setUserOrders] = useState([]);
   const userId = user ? user.data._id : null;
 
+  const handleFileDownload = async (product) => {
+    if (product && product.file && product.file.length > 0) {
+      const link = document.createElement("a");
+      link.href = product.file[0]?.url;
+      link.setAttribute("download", true);
+      link.click();
+      await new Promise((resolve) => setTimeout(resolve, 100));
+    } else {
+      console.error("File not found for the product");
+    }
+  };
+
+
   useEffect(() => {
     if (userId) {
-      const userOrders = orders.filter((order) => order.userId === userId);
-      setUserOrders(userOrders);
+      const newUserOrders = orders.filter((order) => order.userId === userId);
+      setUserOrders(newUserOrders);
     }
   }, [userId, orders]);
+  console.log(userOrders);
+
 
   return (
     <Center>
@@ -32,9 +47,12 @@ const MyShopping = ({ orders, products }) => {
           <StyledH2>Покупки</StyledH2>
           <AllProducts> {/* Corrected tag name */}
             {userOrders.map((order) => (
+
               <React.Fragment key={order._id}> {/* Added key to Fragment */}
+
                 {order.products.map((productId) => {
                   const product = products.find((p) => p._id === productId);
+                  {console.log(product)}
                   return (
                     <OrderContainer key={productId}>
                       <IdDiv>№: {order._id}</IdDiv> {/* Is this line necessary? */}
@@ -55,9 +73,8 @@ const MyShopping = ({ orders, products }) => {
                           </StyledP>
                           <StyledCost>{product.price} ГРН</StyledCost>
                         </Div>
-                        <LoadButton>Завантажити знову</LoadButton>
+                        <LoadButton onClick={() => handleFileDownload(product)} >Завантажити</LoadButton>
                       </ProductImageWrapper>
-
                     </OrderContainer>
                   );
                 })}
@@ -81,6 +98,7 @@ const OuterContainer = styled.div`
 
 const Div = styled.div`
   margin-left: 15px;
+  width: 600px;
 `
 
 const Page = styled.div`
@@ -90,6 +108,7 @@ const Page = styled.div`
   align-items: center;
   height: 50px;
   margin-left: 25%;
+
 `;
 
 const StyledH2 = styled.h2`
@@ -155,7 +174,9 @@ const StyledCost = styled.p`
 
 
 const AllProducts = styled.div`
-
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `
 
 const LoadButton = styled.button`
@@ -168,10 +189,7 @@ const LoadButton = styled.button`
   width: 180px;
   background: #ad88c6;
   border-radius: 10px;
-  margin-top: 10px;
-  margin-bottom: 25px;
-  margin-right: 20px;
-  margin-left: 150px;
+
   border: none;
   cursor: pointer;
   :hover {

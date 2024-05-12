@@ -154,7 +154,7 @@ const ProductOrder = styled.div`
   flex-direction: column;
   position: relative;
   width: 455px;
-  height: 150px;
+  height: auto;
   border: 0.5px solid black;
   background-color: ${(props) => (props.darkTheme ? "#26303B" : "#FFFFFF")};
   z-index: 33;
@@ -202,6 +202,7 @@ const StyledCost = styled.p`
   font-weight: bolder;
   font-size: 18px;
   margin-right: 25px;
+   margin-bottom: 10px;
   color: #327a4c;
   @media only screen and (max-width: 605px) {
     font-size: 16px;
