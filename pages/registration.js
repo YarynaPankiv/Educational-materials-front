@@ -10,7 +10,6 @@ import { useAuth } from "@/Contexts/AccountContext";
 import { Category } from "@/models/Category";
 import SubCategory from "@/models/SubCategory";
 import Urls from "@/components/Urls";
-import { dark } from "@mui/material/styles/createPalette";
 import Center from "@/components/Center";
 
 const RegisterPage = ({ toggleTheme, categories, subcategories, darkTheme }) => {
