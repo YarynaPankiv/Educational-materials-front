@@ -55,8 +55,9 @@ const MyShopping = ({ orders, products }) => {
                           </StyledP>
                           <StyledCost>{product.price} ГРН</StyledCost>
                         </Div>
+                        <LoadButton>Завантажити знову</LoadButton>
                       </ProductImageWrapper>
-                      <LoadButton>Завантажити знову</LoadButton>
+
                     </OrderContainer>
                   );
                 })}
@@ -88,11 +89,11 @@ const Page = styled.div`
   justify-content: center;
   align-items: center;
   height: 50px;
-  margin-left: 15%;
+  margin-left: 25%;
 `;
 
 const StyledH2 = styled.h2`
-  font-family: "Montserrat";
+
   font-style: normal;
   font-weight: bolder;
   font-size: 18px;
@@ -101,7 +102,7 @@ const StyledH2 = styled.h2`
 `;
 
 const OrderContainer = styled.div`
-  width: 700px;
+  width: 800px;
   margin-bottom: 20px;
   border: 1px solid #ccc;
   border-radius: 10px;
@@ -159,17 +160,18 @@ const AllProducts = styled.div`
 
 const LoadButton = styled.button`
   background-color: #7469b6;
-  font-family: "Montserrat" sans-serif;
+  font-family: "Montserrat";
   font-size: 16px;
   border: none;
   color: #fffcfc;
   height: 40px;
-  width: 170px;
+  width: 180px;
   background: #ad88c6;
   border-radius: 10px;
   margin-top: 10px;
-  margin-left: 150px;
   margin-bottom: 25px;
+  margin-right: 20px;
+  margin-left: 150px;
   border: none;
   cursor: pointer;
   :hover {

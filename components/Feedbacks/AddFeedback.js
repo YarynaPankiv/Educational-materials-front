@@ -46,9 +46,10 @@ export default function AddFeedback({ id, darkTheme}) {
       <Input
         value={feedback}
         onChange={(event) => setFeedback(event.target.value)}
+        darkTheme={darkTheme}
       ></Input>
       <CenterButton>
-        <Button onClick={handleSubmit}>Надіслати</Button>
+        <Button onClick={handleSubmit} darkTheme={darkTheme}>Надіслати</Button>
       </CenterButton>
     </FeedbackBox>
   );
@@ -68,7 +69,7 @@ const FeedbackBox = styled.div`
   border-radius: 10px;
   padding: 10px 20px;
   margin-bottom: 25px;
-  background-color: ${(props) => (props.darkTheme ? "#26303B" : "black")};
+  background-color: ${(props) => (props.darkTheme ? "#26303B" : "FFFFFF")};
 
   @media only screen and (max-width: 600px) {
     width: 90%;
@@ -87,6 +88,7 @@ const Input = styled.textarea`
   margin-top: 20px;
   width: 330px;
   height: 90px;
+  background-color: ${(props) => (props.darkTheme ? "#26303B" : "FFFFFF")};
   @media only screen and (max-width: 600px) {
     width: 96%;
     margin-left: 5px;
@@ -96,7 +98,7 @@ const Input = styled.textarea`
 const Button = styled.button`
   width: 155.51px;
   height: 37.13px;
-  background: #ad88c6;
+  background-color: ${(props) => (props.darkTheme ? "#732270" : "#ad88c6")};
   border-radius: 10px;
   border: none;
   font-family: "Rubik Mono One", sans-serif;

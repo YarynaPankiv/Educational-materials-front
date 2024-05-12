@@ -3,7 +3,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { useCategories } from "@/Contexts/CategoriesContext";
 
-export default function Categories({ categories, subcategories }) {
+export default function Categories({ categories, subcategories, darkTheme }) {
   const { showCategories, setShowCategories } = useCategories();
 
   const categoriesWithSubcategories = categories.reduce((acc, category) => {
@@ -30,13 +30,14 @@ export default function Categories({ categories, subcategories }) {
   };
 
   return (
-    <StyledCategories id="categoriesContainer">
+    <StyledCategories id="categoriesContainer" darkTheme={darkTheme}>
       <CategoriesDiv>
         {Object.keys(categoriesWithSubcategories).map((category, index) => (
           <div key={index}>
             <ColumnText
               selectedcategory={selectedcategory === category ? true : false}
               onClick={() => handleClick(category)}
+              darkTheme={darkTheme}
             >
               {category}
             </ColumnText>
@@ -53,7 +54,7 @@ export default function Categories({ categories, subcategories }) {
                   href={`/category/${subcategory}`}
                   onClick={handleSubCategoryClick}
                 >
-                  <SubCategoryText>{subcategory}</SubCategoryText>
+                  <SubCategoryText darkTheme={darkTheme}>{subcategory}</SubCategoryText>
                 </StyledLink>
               )
             )}
@@ -66,7 +67,7 @@ const StyledCategories = styled.div`
   box-sizing: border-box;
   width: 385px;
   height: auto;
-  background: #ffffff;
+  background:   ${(props) => (props.darkTheme ? "#1D2733" : "#ffffff")};
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   overflow: scroll;
   overflow-x: hidden;
@@ -101,7 +102,7 @@ const ColumnText = styled.p`
   text-align: center;
   user-select: none;
   cursor: pointer;
-  color: ${(props) => (props.selectedcategory ? "#7469B6" : "black")};
+  color: ${(props) => (props.selectedcategory ? "#7469B6" : props.darkTheme ? "white" : "black")};
   font-weight: ${(props) => (props.selectedcategory ? "bold" : "normal")};
 `;
 
@@ -115,6 +116,7 @@ const SubCategoriesDiv = styled.div`
 const SubCategoryText = styled.p`
   text-align: center;
   margin: 5px 0;
+  color: ${(props) => (props.darkTheme ? "white" : "black")};
   &:hover {
     font-weight: 900;
   }

@@ -49,20 +49,20 @@ const Container = styled.div`
 const SortP = styled.p`
   cursor: pointer;
   user-select: none;
-  color: ${(props) => (props.showSort ? '#AD88C6' : 'black')};
+  color: ${(props) => (props.showSort ? '#AD88C6' : (props.darkTheme ? '#8B98A5' : 'black'))};
   z-index: 0;
 `;
 const SortPriceP = styled.p`
   cursor: pointer;
   user-select: none;
-  color: ${(props) => (props.showPriceSort ? '#AD88C6' : 'black')};
+  color: ${(props) => (props.showSort ? '#AD88C6' : (props.darkTheme ? '#8B98A5' : 'black'))};
   z-index: 0;
 `;
 
 const ClassButton = styled.button`
   font-family: 'Montserrat', sans-serif;
-  background: ${(props) => (props.active ? '#7469B6' : 'white')};
-  color: ${(props) => (props.active ? 'white' : 'black')};
+  background-color: ${(props) => (props.active ? '#732270' : (props.darkTheme ? "#26303B" : "#FFFFFF"))};
+  color: ${(props) => (props.active ? 'white' : (props.darkTheme ? "#FFFFFF" : "black"))};
   border: 1px solid black;
   font-size: 16px;
   padding: 5px 10px;
@@ -105,6 +105,8 @@ export default function ProductsInSubcategory({
   subcategories,
   subcategory,
   allProducts,
+  darkTheme,
+  toggleTheme
 }) {
 
   const [showSort, setShowSort] = useState(false);
@@ -216,6 +218,7 @@ export default function ProductsInSubcategory({
     setSelectedSortType(null)
   }
 
+
   return (
     <>
       <Header
@@ -223,13 +226,18 @@ export default function ProductsInSubcategory({
         subcategories={subcategories}
         setSearchValue={setSearchValue}
         searchValue={searchValue}
+        toggleTheme={toggleTheme}
+        darkTheme={darkTheme}
+
       />
       <Center>
-        <LogoWithoutPurple />
-        <Urls page={subcategory} />
+
+        <LogoWithoutPurple darkTheme={darkTheme}/>
+        <Urls page={subcategory} darkTheme={darkTheme}/>
 
         <ClassesDiv>
           <ClassButton
+            darkTheme={darkTheme}
             onClick={() => handleClassButtonClick(null)}
             active={!selectedSchoolClass}
           >
@@ -240,6 +248,7 @@ export default function ProductsInSubcategory({
                 onClick={() => handleClassButtonClick(schoolClass)}
                 key={index}
                 active={schoolClass === selectedSchoolClass}
+                darkTheme={darkTheme}
               >
                 {schoolClass}{' '}
               </ClassButton>
@@ -247,19 +256,21 @@ export default function ProductsInSubcategory({
         </ClassesDiv>
         <Container>
           <SortDropDown
+            darkTheme={darkTheme}
             onClose={handleSortClickOutside}
             icon={
               <Div>
-                <SortP onClick={handleOnSortClick} showSort={showSort}>
+                <SortP onClick={handleOnSortClick} showSort={showSort} darkTheme={darkTheme}>
                   Сортувати за
                 </SortP>
                 {!showSort && (
                   <StyledSvg
                     showSort={showSort}
+                    darkTheme={darkTheme}
                     width="16"
                     height="8"
                     viewBox="0 0 16 8"
-                    fillColor={showSort ? '#AD88C6' : 'black'}
+                    fillColor={showSort ? '#AD88C6' : (darkTheme ? '#8B98A5' : 'black')}
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <path
@@ -286,6 +297,7 @@ export default function ProductsInSubcategory({
             }
           >
             <Sort
+              darkTheme={darkTheme}
               chooseType={handleSortTypeChoose}
               sortProducts={() => {}}
               filter={handleFilterProducts}
@@ -293,22 +305,25 @@ export default function ProductsInSubcategory({
           </SortDropDown>
 
           <PriceSortDropDown
+            darkTheme={darkTheme}
             onClose={handlePriceSortClickOutside}
             icon={
               <Div>
                 <SortPriceP
                   onClick={handleOnSortPriceClick}
                   showPriceSort={showPriceSort}
+                  darkTheme={darkTheme}
                 >
                   Ціна
                 </SortPriceP>
                 {!showPriceSort && (
                   <StyledSvg
                     showPriceSort={showPriceSort}
+                    darkTheme={darkTheme}
                     width="16"
                     height="8"
                     viewBox="0 0 16 8"
-                    fillColor={showPriceSort ? '#AD88C6' : 'black'}
+                    fillColor={showSort ? '#AD88C6' : (darkTheme ? '#8B98A5' : 'black')}
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <path
@@ -335,6 +350,7 @@ export default function ProductsInSubcategory({
             }
           >
             <PriceSort
+              darkTheme={darkTheme}
               onSort={(minPrice, maxPrice) =>
                 handlePriceSort(minPrice, maxPrice)
               }
@@ -350,7 +366,7 @@ export default function ProductsInSubcategory({
           )}
         </Container>
         <ProductsGrid
-          products={products}
+          products={products} darkTheme={darkTheme}
         />
       </Center>
     </>

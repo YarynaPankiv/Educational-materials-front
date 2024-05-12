@@ -1,16 +1,16 @@
 import styled from "styled-components";
 
-const LoginButton = ({ onClick, children }) => {
+const LoginButton = ({ onClick, children, darkTheme }) => {
   const handleOnClick = () => {
     onClick();
   };
 
-  return <Button onClick={handleOnClick}>{children}</Button>;
+  return <Button onClick={handleOnClick} darkTheme={darkTheme}>{children}</Button>;
 };
 
 const Button = styled.button`
   border: 2px solid #ad88c6;
-  background-color: #ffffff;
+  background-color: ${(props) => (props.darkTheme ? "#732270" : "#ffffff")};
   padding: 12px 12px;
   font-family: Rubik Mono One;
   font-size: 16px;

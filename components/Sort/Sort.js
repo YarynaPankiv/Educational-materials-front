@@ -5,7 +5,7 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import { useState } from "react";
 
-export default function Sort({ chooseType, sortProducts, filter }) {
+export default function Sort({ chooseType, sortProducts, filter, darkTheme }) {
   const [chosenSortType, setChosenSortType] = useState(null);
 
   const handleClick = (type) => {
@@ -13,7 +13,7 @@ export default function Sort({ chooseType, sortProducts, filter }) {
   };
 
   return (
-    <StyledDiv>
+    <StyledDiv darkTheme={darkTheme}>
       <Div>
         <FormControl>
           <RadioGroup>
@@ -38,6 +38,7 @@ export default function Sort({ chooseType, sortProducts, filter }) {
           </RadioGroup>
         </FormControl>
         <StyledButton
+          darkTheme={darkTheme}
           onClick={() => {
             chooseType(chosenSortType);
             sortProducts(chosenSortType);
@@ -53,8 +54,7 @@ export default function Sort({ chooseType, sortProducts, filter }) {
 export const StyledDiv = styled.div`
   width: 250px;
   height: 225px;
-  background-color: #ffffff;
-  background: linear-gradient(0deg, #ffffff, #ffffff), #fcfafa;
+  background-color: ${(props) => (props.darkTheme ? "#26303B" : "#FFFFFF")};
   border: 1px solid #000000;
   z-index: 20;
 `;
@@ -71,7 +71,7 @@ const StyledButton = styled.button`
   margin-top: 15px;
   width: 112px;
   height: 36px;
-  background: #ad88c6;
+  background-color: ${(props) => (props.darkTheme ? "#732270" : "#ad88c6")};
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 10px;
   color: #fdfbfb;

@@ -10,8 +10,9 @@ import LogoWithoutPurple from '@/components/Logo/LogoWithoutPurple';
 import { Category } from '@/models/Category';
 import SubCategory from '@/models/SubCategory';
 import Urls from '@/components/Urls';
+import Center from '@/components/Center';
 
-const LoginPage = ({ toggleDarkMode, categories, subcategories }) => {
+const LoginPage = ({ toggleTheme, categories, subcategories, darkTheme }) => {
   const router = useRouter();
 
   const [email, setEmail] = useState('');
@@ -57,14 +58,18 @@ const LoginPage = ({ toggleDarkMode, categories, subcategories }) => {
   return (
     <>
       <Header
-        toggleDarkMode={toggleDarkMode}
+        toggleTheme={toggleTheme}
+        darkTheme={darkTheme}
         categories={categories}
         subcategories={subcategories}
       />
-      <Urls page={'Увійти'} />
+      <Center>
+        <Urls page={'Увійти'} darkTheme={darkTheme}/>
+      </Center>
+
       <Page>
         <LogoWrapper>
-          <LogoWithoutPurple />
+          <LogoWithoutPurple darkTheme={darkTheme}/>
         </LogoWrapper>
         <Container>
           <FirstHalf>
@@ -76,6 +81,7 @@ const LoginPage = ({ toggleDarkMode, categories, subcategories }) => {
                 value={email}
                 setValue={setEmail}
                 theme="auth"
+                darkTheme={darkTheme}
                 errorMessage={isError && !email ? "Please enter your email": ''}
               />
             </InputWrapper>
@@ -86,11 +92,12 @@ const LoginPage = ({ toggleDarkMode, categories, subcategories }) => {
                 value={password}
                 setValue={setPassword}
                 theme="auth"
+                darkTheme={darkTheme}
                 errorMessage={isError && !password ? "Please enter your password": ''}
               />
             </InputWrapper>
             <Wrapper>
-              <LoginButton onClick={loginUser} href={'/'}>
+              <LoginButton onClick={loginUser} href={'/'}  darkTheme={darkTheme}>
                 УВІЙТИ
               </LoginButton>
             </Wrapper>
@@ -98,7 +105,7 @@ const LoginPage = ({ toggleDarkMode, categories, subcategories }) => {
           <SecondHalf>
             <Text>Це ваш перший візит?</Text>
             <Wrapper>
-              <LoginButton onClick={goToRegister}>ЗАРЕЄСТРУВАТИСЬ</LoginButton>
+              <LoginButton onClick={goToRegister}  darkTheme={darkTheme}>ЗАРЕЄСТРУВАТИСЬ</LoginButton>
             </Wrapper>
           </SecondHalf>
         </Container>

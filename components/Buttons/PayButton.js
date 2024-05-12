@@ -5,7 +5,7 @@ import { useCart } from "@/Contexts/ShowCart";
 import Link from "next/link";
 import Router from "next/router";
 
-export default function PayButton() {
+export default function PayButton({darkTheme}) {
   const { showCart, handleShowCartClick } = useCart();
   const url = "/Checkout";
   const handleClick = () => {
@@ -14,7 +14,7 @@ export default function PayButton() {
   };
 
   return (
-    <PurpleButton onClick={handleClick}>
+    <PurpleButton onClick={handleClick} darkTheme={darkTheme}>
       <SvgCart
         width="23"
         height="17"
@@ -32,14 +32,13 @@ export default function PayButton() {
   );
 }
 const PurpleButton = styled.button`
-  background-color: #7469b6;
+  background-color: ${(props) => (props.darkTheme ? "#732270" : "#ad88c6")};
   font-family: "Rubik Mono One";
   font-size: 16px;
   border: none;
   color: #fffcfc;
   height: 40px;
   width: 170px;
-  background: #ad88c6;
   border-radius: 10px;
   margin-top: 10px;
   margin-left: 150px;

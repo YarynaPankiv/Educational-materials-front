@@ -40,7 +40,7 @@ export default function PaymentButton({ product }) {
   }
 
   return (
-    <PurpleButton onClick={goToPayment}>
+        <PurpleButton onClick={goToPayment}>
       <SvgCart
         width="23"
         height="17"
@@ -55,6 +55,7 @@ export default function PaymentButton({ product }) {
       </SvgCart>
       КУПИТИ
     </PurpleButton>
+
   );
 }
 

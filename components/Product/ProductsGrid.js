@@ -30,6 +30,7 @@ export default function ProductsGrid({ products, darkTheme }) {
         totalPages={totalPages}
         onPageChange={handlePageChange}
         currentPage={currentPage}
+        darkTheme={darkTheme}
       />
     </Center>
   );

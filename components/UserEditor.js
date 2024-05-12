@@ -93,6 +93,7 @@ const UserEditor = ({darkTheme}) => {
                 value={name}
                 setValue={setName}
                 theme="common"
+                darkTheme={darkTheme}
               />
               <MyInput
                 text={"Прізвище"}
@@ -101,20 +102,22 @@ const UserEditor = ({darkTheme}) => {
                 setValue={setSurname}
                 theme="common"
                 placeholder="Прізвище"
+                darkTheme={darkTheme}
               />
             </NameWrap>
           </InputContainer>
         </InputWrapper>
-        <LoginButton onClick={saveData}>Змінити дані користувача</LoginButton>
+        <LoginButton onClick={saveData} darkTheme={darkTheme}>Змінити дані користувача</LoginButton>
         <InputWrapper>
           <InputContainer>
-            <Text>Пароль</Text>
+            <Text darkTheme={darkTheme}>Пароль</Text>
             <MyInput
               text={"Поточний пароль"}
               type={"text"}
               value={password}
               setValue={setPassword}
               theme="common"
+              darkTheme={darkTheme}
             />
           </InputContainer>
           <InputContainer>
@@ -124,6 +127,7 @@ const UserEditor = ({darkTheme}) => {
               value={newPassword}
               setValue={setNewPassword}
               theme="common"
+              darkTheme={darkTheme}
             />
           </InputContainer>
           <InputContainer>
@@ -133,10 +137,11 @@ const UserEditor = ({darkTheme}) => {
               value={checkPassword}
               setValue={setCheckPassword}
               theme="common"
+              darkTheme={darkTheme}
               errorMessage={isError && checkPassword!==newPassword ? "Passwords are not the same": ''} />
           </InputContainer>
         </InputWrapper>
-        <LoginButton onClick={savePassword}>Змінити пароль</LoginButton>
+        <LoginButton onClick={savePassword} darkTheme={darkTheme}>Змінити пароль</LoginButton>
       </Page>
     </Center>
   );
@@ -149,6 +154,7 @@ const Page = styled.div`
   align-items: center;
   height: 50px;
   margin-left: 5%;
+  margin-top: 50px;
   @media only screen and (max-width: 600px) {
     width: 364px;
     margin-left: 8px;

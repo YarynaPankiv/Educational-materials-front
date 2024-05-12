@@ -15,7 +15,7 @@ const getFileExtension = (fileName) => {
   return;
 };
 
-export default function ShowShoppingCart({ subcategories }) {
+export default function ShowShoppingCart({ subcategories, darkTheme }) {
   const router = useRouter();
   const { user } = useAuth();
   const { cartProducts, setCartProducts, deleteProductFromCart } =
@@ -42,10 +42,10 @@ export default function ShowShoppingCart({ subcategories }) {
   };
   return (
     <>
-      <ProductBox ref={ref}>
+      <ProductBox ref={ref} darkTheme={darkTheme}>
         {cartProducts.length > 0 &&
           cartProducts.map((pr) => (
-            <ProductOrder key={pr._id}>
+            <ProductOrder key={pr._id} darkTheme={darkTheme}>
               <IconTrash onClick={() => deleteProductFromCart(pr._id)}>
                 <svg
                   width="15"
@@ -101,7 +101,7 @@ export default function ShowShoppingCart({ subcategories }) {
             <TotalCost>
               Загальна вартість: <GreenPrice>{totalCost} ГРН</GreenPrice>
             </TotalCost>
-            <PayButton></PayButton>
+            <PayButton darkTheme={darkTheme}></PayButton>
           </>
         )}
 
@@ -136,7 +136,7 @@ const ProductBox = styled.div`
   height: auto;
   top: 53px;
   right: -195px;
-  background-color: white;
+  background-color: ${(props) => (props.darkTheme ? "#26303B" : "#FFFFFF")};
   overflow-y: auto;
   overflow-x: hidden;
   border: 1px solid black;
@@ -156,7 +156,7 @@ const ProductOrder = styled.div`
   width: 455px;
   height: 150px;
   border: 0.5px solid black;
-  background-color: white;
+  background-color: ${(props) => (props.darkTheme ? "#26303B" : "#FFFFFF")};
   z-index: 33;
   @media only screen and (max-width: 605px) {
     width: 100%;
@@ -168,6 +168,7 @@ const ProductOrder = styled.div`
 export const ProductImageWrapper = styled.div`
   display: flex;
   align-items: center;
+  padding: 0 10px ;
 `;
 
 export const StyledImage = styled.img`

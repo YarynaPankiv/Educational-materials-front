@@ -5,6 +5,7 @@ export default function ButtonsForPages({
   totalPages,
   onPageChange,
   currentPage,
+  darkTheme
 }) {
   const handleButtonClick = (pageNumber) => {
     onPageChange(pageNumber);
@@ -38,7 +39,7 @@ const StyledButton = styled.div`
   height: 35px;
   cursor: pointer;
   border-radius: 10px;
-  background: ${(props) => (props.clicked === "true" ? "#AD88C6" : "#FCFAFA")};
+  background: ${(props) => (props.clicked === "true" ? (props.darkTheme ? "#732270" : "#AD88C6") : "#FCFAFA")};
   border: 1px solid #000000;
   color: ${(props) => (props.clicked === "true" ? "white" : "black")};
   display: flex;

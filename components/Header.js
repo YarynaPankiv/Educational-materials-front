@@ -73,7 +73,7 @@ export default function Header({
               />
             }
           >
-            <Categories categories={categories} subcategories={subcategories} />
+            <Categories categories={categories} subcategories={subcategories} darkTheme={darkTheme} />
           </CategoriesDropDown>
           <MobileSearchIconContainer>
             {/* <SeacrhIcon></SeacrhIcon> */}
@@ -98,11 +98,12 @@ export default function Header({
           <AllIcons>
             <Theme toggleTheme={toggleTheme}/>
             <Container>
-              <Cart click={showCartClick}></Cart>
+              <Cart darkTheme={darkTheme} click={showCartClick}></Cart>
 
               {showCart && (
                 <ShowShoppingCart
                   subcategories={subcategories}
+                  darkTheme={darkTheme}
                 ></ShowShoppingCart>
               )}
             </Container>
@@ -112,15 +113,15 @@ export default function Header({
               icon={<Account click={handleAccountClick} isLogin={isLogin} />}
             >
               {!isLogin && (
-                <LoginMenu>
-                  <Text2>Ви користувач?</Text2>
+                <LoginMenu darkTheme={darkTheme}>
+                  <Text2 darkTheme={darkTheme}>Ви користувач?</Text2>
                   <ButtonWrapper>
-                    <LoginButton onClick={goToLogin}>УВІЙТИ</LoginButton>
+                    <LoginButton onClick={goToLogin}  darkTheme={darkTheme}>УВІЙТИ</LoginButton>
                   </ButtonWrapper>
                   <Line />
-                  <Text2>Це ваш перший візит?</Text2>
+                  <Text2 darkTheme={darkTheme}>Це ваш перший візит?</Text2>
                   <ButtonWrapper>
-                    <LoginButton onClick={goToRegister}>
+                    <LoginButton onClick={goToRegister}  darkTheme={darkTheme}>
                       ЗАРЕЄСТРУВАТИСЬ
                     </LoginButton>
                   </ButtonWrapper>
@@ -241,6 +242,7 @@ const LoginMenu = styled.div`
   justify-content: center;
   gap: 10px;
   padding: 10px 10px;
+  background-color: ${(props) => (props.darkTheme ? "#26303B" : "FFFFFF")};
   @media only screen and (max-width: 605px) {
     max-width: 240px;
     padding: 5px 5px;
@@ -256,8 +258,8 @@ const Text2 = styled.div`
   padding-top: 15px;
   padding-bottom: 5px;
   font-size: 16px;
-  color: black;
   font-weight: 600;
+   color: ${(props) => (props.darkTheme ? "white" : "black")};
   @media only screen and (max-width: 605px) {
     padding-top: 5px;
   }

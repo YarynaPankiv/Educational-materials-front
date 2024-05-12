@@ -18,7 +18,7 @@
   import axios from "axios";
   import { useAuth } from "@/Contexts/AccountContext";
 
-  export default function Checkout({ categories, subcategories }) {
+  export default function Checkout({ categories, subcategories, toggleTheme, darkTheme }) {
     const router = useRouter();
     const { cartProducts, deleteProductFromCart } = useContext(CartContext);
     const [fileDownloaded, setFileDownloaded] = useState(false);
@@ -108,14 +108,14 @@
 
     return (
       <Center>
-        <Header subcategories={subcategories} categories={categories} />
-        <Urls page="Оформлення замовлення" />
+        <Header subcategories={subcategories} categories={categories} toggleTheme={toggleTheme} darkTheme={darkTheme}/>
+        <Urls page="Оформлення замовлення" darkTheme={darkTheme} / >
         <SideAlignedWrapper>
-          <OrderContainer>
+          <OrderContainer darkTheme={darkTheme}>
             <StyledH2>Оформлення замовлення</StyledH2>
             {cartProducts &&
               cartProducts.map((pr) => (
-                <ProductOrder key={pr._id}>
+                <ProductOrder key={pr._id} darkTheme={darkTheme}>
                   <IconTrash onClick={() => deleteProductFromCart(pr._id)}>
                     <svg
                       width="15"
@@ -183,6 +183,7 @@
     display: flex;
     align-items: center;
     flex-direction: column;
+    background-color: ${(props) => (props.darkTheme ? "#26303B" : "#FFFFFF")};
     @media only screen and (max-width: 650px) {
       width: 95%;
       padding: 5px;
@@ -233,7 +234,7 @@
     height: 150px;
     border-radius: 15px;
     border: 0.2px solid #ccc;
-    background-color: white;
+    background-color: ${(props) => (props.darkTheme ? "#26303B" : "#FFFFFF")};
     margin-bottom: 10px;
     @media only screen and (max-width: 600px) {
       width: auto;

@@ -57,7 +57,7 @@ const UserProfilePage = ({
       case "user-info":
         return <UserEditor darkTheme={darkTheme} />;
       case "my-shop":
-        return <MyShopping orders={orders} products={products} />;
+        return <MyShopping orders={orders} products={products} darkTheme={darkTheme}/>;
       default:
         return null;
     }
@@ -73,12 +73,10 @@ const UserProfilePage = ({
       />
 
       <Center>
-         <Urls page={"Мій акаунт"} />
+         <Urls page={"Мій акаунт"} darkTheme={darkTheme}/>
 
       </Center>
     
-
-     
    
       {isMobile && (
         <>
@@ -98,13 +96,13 @@ const UserProfilePage = ({
               />
             </MenuIcon>
           </MobileMenuButton>
-          <MobileMenu isOpen={isMenuOpen}>
-            <MenuItem>
-              <Link href="/user-profile/my-shop" onClick={closeMenu}>
+          <MobileMenu isOpen={isMenuOpen} darkTheme={darkTheme}>
+            <MenuItem darkTheme={darkTheme}>
+              <Link href="/user-profile/my-shop" onClick={closeMenu} darkTheme={darkTheme}>
                 Мої покупки
               </Link>
             </MenuItem>
-            <MenuItem>
+            <MenuItem darkTheme={darkTheme}>
               <Link href="/user-profile/user-info" onClick={closeMenu}>
                 Дані облікового запису
               </Link>
@@ -127,13 +125,13 @@ const UserProfilePage = ({
       {!isMobile && (
         <Menu>
           <Text>МІЙ АКАУНТ</Text>
-          <Point href="/user-profile/my-shop" isActive={path === "my-shop"}>
+          <Point href="/user-profile/my-shop" isActive={path === "my-shop"} darkTheme={darkTheme}>
             Мої покупки
           </Point>
-          <Point href="/user-profile/user-info" isActive={path === "user-info"}>
+          <Point href="/user-profile/user-info" isActive={path === "user-info"} darkTheme={darkTheme}>
             Дані облікового запису
           </Point>
-          <Point isActive={false} href="/login" onClick={logout}>
+          <Point isActive={false} href="/login" onClick={logout} darkTheme={darkTheme}>
             Вийти
           </Point>
         </Menu>
@@ -148,7 +146,7 @@ const UserProfilePage = ({
 
 const Point = styled(Link)`
   text-decoration: none;
-  color: black;
+  color: ${(props) => (props.darkTheme ? "white" : "black")};
 
 `;
 
@@ -205,6 +203,8 @@ const MobileMenu = styled.div`
 const MenuItem = styled.div`
   padding: 0;
   border-bottom: 1px solid #ccc;
+  color: ${(props) => (props.darkTheme ? "white" : "black")};
+
 
   &:last-child {
     border-bottom: none;
@@ -212,7 +212,7 @@ const MenuItem = styled.div`
 
   a {
     text-decoration: none;
-    color: black;
+    color: ${(props) => (props.darkTheme ? "white" : "black")};
     font-size: 18px;
   }
 `;
@@ -229,11 +229,15 @@ const Page = styled.div`
 export async function getServerSideProps(context) {
   const orders = await MyOrder.find({}, null);
   const products = await Product.find({}, null);
+  const categories = await Category.find({}, null);
+  const subcategories = await SubCategory.find({}, null);
   return {
     props: {
       path: context.params.path[0],
       orders: JSON.parse(JSON.stringify(orders)),
       products: JSON.parse(JSON.stringify(products)),
+      categories: JSON.parse(JSON.stringify(categories)),
+      subcategories: JSON.parse(JSON.stringify(subcategories)),
     },
   };
 }

@@ -10,8 +10,10 @@ import { useAuth } from "@/Contexts/AccountContext";
 import { Category } from "@/models/Category";
 import SubCategory from "@/models/SubCategory";
 import Urls from "@/components/Urls";
+import { dark } from "@mui/material/styles/createPalette";
+import Center from "@/components/Center";
 
-const RegisterPage = ({ toggleDarkMode, categories, subcategories }) => {
+const RegisterPage = ({ toggleTheme, categories, subcategories, darkTheme }) => {
   const router = useRouter();
 
   const [email, setEmail] = useState("");
@@ -56,33 +58,37 @@ const RegisterPage = ({ toggleDarkMode, categories, subcategories }) => {
 
   return (
     <>
-      <Header toggleDarkMode={toggleDarkMode} categories={categories} subcategories={subcategories} />
-      <Urls page={"Зареєструватись"} />
+      <Header toggleTheme={toggleTheme} darkTheme={darkTheme} categories={categories} subcategories={subcategories} />
+      <Center>
+      <Urls page={"Зареєструватись"} darkTheme={darkTheme}/>
+
+      </Center>
+
       <Page>
         <LogoWrapper>
-          <LogoWithoutPurple />
+          <LogoWithoutPurple darkTheme={darkTheme}/>
         </LogoWrapper>
         <Container>
           <FirstHalf>
             <Text>Це ваш перший візит?</Text>
             <InputWrapper>
-              <MyInput text={"Електронна пошта"} type={"email"} value={email} setValue={setEmail} theme="auth" errorMessage={isError && !email ? "Please enter your email": ''} />
+              <MyInput text={"Електронна пошта"} type={"email"} value={email} setValue={setEmail} theme="auth" errorMessage={isError && !email ? "Please enter your email": ''} darkTheme={darkTheme} />
             </InputWrapper>
             <NameWrap>
-              <MyInput text={"Ім'я"} type={"text"} value={name} setValue={setName} theme="auth" errorMessage={isError && !name ? "Please enter your name": ''} />
-              <MyInput text={"Прізвище"} type={"text"} value={surname} setValue={setSurname} theme="auth" errorMessage={isError && !surname ? "Please enter your surname": ''}/>
+              <MyInput text={"Ім'я"} type={"text"} value={name} setValue={setName} theme="auth" errorMessage={isError && !name ? "Please enter your name": ''}  darkTheme={darkTheme}/>
+              <MyInput text={"Прізвище"} type={"text"} value={surname} setValue={setSurname} theme="auth" errorMessage={isError && !surname ? "Please enter your surname": ''}  darkTheme={darkTheme}/>
             </NameWrap>
             <InputWrapper>
-              <MyInput text={"Пароль"} type={"password"} value={password} setValue={setPassword} theme="auth" errorMessage={isError && !password ? "Please enter your password": ''} />
+              <MyInput text={"Пароль"} type={"password"} value={password} setValue={setPassword} theme="auth" errorMessage={isError && !password ? "Please enter your password": ''}  darkTheme={darkTheme}/>
             </InputWrapper>
             <Wrapper>
-              <LoginButton onClick={registerUser}>ЗАРЕЄСТРУВАТИСЬ</LoginButton>
+              <LoginButton onClick={registerUser}  darkTheme={darkTheme}>ЗАРЕЄСТРУВАТИСЬ</LoginButton>
             </Wrapper>
           </FirstHalf>
           <SecondHalf>
             <Text>Ви користувач?</Text>
             <Wrapper>
-              <LoginButton onClick={goToLogin}>УВІЙТИ</LoginButton>
+              <LoginButton onClick={goToLogin}  darkTheme={darkTheme}>УВІЙТИ</LoginButton>
             </Wrapper>
           </SecondHalf>
         </Container>

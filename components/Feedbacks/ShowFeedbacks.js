@@ -1,10 +1,10 @@
 import styled from "styled-components";
 import Rating from "@mui/material/Rating";
 
-export default function ShowFeedbacks({ product, feedbacks, users }) {
+export default function ShowFeedbacks({ product, feedbacks, users, darkTheme }) {
   return (
-    <FeedbacksBox>
-      <Feedbacks>ВІДГУКИ</Feedbacks>
+    <FeedbacksBox darkTheme={darkTheme}>
+      <Feedbacks darkTheme={darkTheme}>ВІДГУКИ</Feedbacks>
       {product.feedback.map((feedbackId) => {
         const feedback = feedbacks.find(
           (feedback) => feedback._id === feedbackId
@@ -13,7 +13,7 @@ export default function ShowFeedbacks({ product, feedbacks, users }) {
           const user = users.find((user) => user._id === feedback.user);
 
           return (
-            <OneFeedbackBox key={feedback._id}>
+            <OneFeedbackBox key={feedback._id} darkTheme={darkTheme}>
               <NameData>
                 <Name>{user ? user.name : "Анонімний користувач"}</Name>
                 <RatingWrapper>
@@ -21,9 +21,9 @@ export default function ShowFeedbacks({ product, feedbacks, users }) {
                     {feedback.rate}
                   </Rating>
                 </RatingWrapper>
-                <ShowDate>{feedback.date}</ShowDate> {/* Поміняли місцями */}
+                <ShowDate darkTheme={darkTheme}>{feedback.date}</ShowDate> {/* Поміняли місцями */}
               </NameData>
-              <FeedbackText>{feedback.feedback}</FeedbackText>
+              <FeedbackText darkTheme={darkTheme}>{feedback.feedback}</FeedbackText>
             </OneFeedbackBox>
           );
         }
@@ -37,7 +37,7 @@ const FeedbacksBox = styled.div`
   margin-top: 50px;
   width: 490px;
   height: 400px;
-  background: #ffffff;
+  background-color: ${(props) => (props.darkTheme ? "#26303B" : "#FFFFFF")};
   border: 1px solid rgba(0, 0, 0, 0.21);
   border-radius: 10px;
   padding: 10px 20px;
@@ -55,7 +55,7 @@ const FeedbacksBox = styled.div`
 const OneFeedbackBox = styled.div`
   width: 440.88px;
   height: 95px;
-  background: #ffffff;
+  background-color: ${(props) => (props.darkTheme ? "#37404A" : "#FFFFFF")};
   border: 1px solid rgba(0, 0, 0, 0.3);
   border-radius: 10px;
   margin-top: 18px;
@@ -74,6 +74,7 @@ const ShowDate = styled.div`
   font-size: 16px;
   color: rgba(0, 0, 0, 0.41);
   margin-left: auto; /* Зміна тут */
+  color: ${(props) => (props.darkTheme ? "white" : "black")};
 `;
 
 const NameData = styled.div`
@@ -90,6 +91,7 @@ const Feedbacks = styled.p`
   font-weight: 400;
   font-size: 15px;
   color: #000000;
+  color: ${(props) => (props.darkTheme ? "white" : "black")};
 `;
 
 const FeedbackText = styled.p`
@@ -98,6 +100,7 @@ const FeedbackText = styled.p`
   font-size: 16px;
   color: #000000;
   margin-top: 0;
+  color: ${(props) => (props.darkTheme ? "white" : "black")};
 `;
 
 const RatingWrapper = styled.div`

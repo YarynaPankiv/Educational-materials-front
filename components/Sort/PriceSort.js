@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { useState } from "react";
 
-export default function PriceSort({ onSort, filter }) {
+export default function PriceSort({ onSort, filter, darkTheme }) {
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("");
 
@@ -14,7 +14,7 @@ export default function PriceSort({ onSort, filter }) {
 
   return (
     <>
-      <StyledDiv>
+      <StyledDiv darkTheme={darkTheme}>
         <Div>
           <div>
             <StyledP>Ціна від</StyledP>
@@ -30,7 +30,7 @@ export default function PriceSort({ onSort, filter }) {
               onChange={(e) => setMaxPrice(e.target.value)}
             />
           </div>
-          <StyledButton onClick={handleSort}>Сортувати</StyledButton>
+          <StyledButton onClick={handleSort} darkTheme={darkTheme}>Сортувати</StyledButton>
         </Div>
       </StyledDiv>
     </>
@@ -39,8 +39,7 @@ export default function PriceSort({ onSort, filter }) {
 export const StyledDiv = styled.div`
   width: 250px;
   height: 240px;
-  background-color: #ffffff;
-  background: linear-gradient(0deg, #ffffff, #ffffff), #fcfafa;
+  background-color: ${(props) => (props.darkTheme ? "#26303B" : "#FFFFFF")};
   border: 1px solid #000000;
   z-index: 20;
   padding: 5px 20px;
@@ -68,7 +67,7 @@ const StyledButton = styled.button`
   margin-top: 15px;
   width: 112px;
   height: 36px;
-  background: #ad88c6;
+  background-color: ${(props) => (props.darkTheme ? "#732270" : "#ad88c6")};
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 10px;
   color: #fdfbfb;
