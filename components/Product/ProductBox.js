@@ -54,7 +54,7 @@ const StyledProduct = styled.div`
   width: 218px;
   height: 287px;
   
-  background-color: ${(props) => (props.darkTheme ? "#192734" : "white")};
+  background-color: ${(props) => (props.darkTheme ? "#192734" : "#F3F3F3")};
   border-radius: 10px;
   position: relative;
   margin-top: 25px;
