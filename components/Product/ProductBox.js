@@ -66,13 +66,14 @@ const StyledProduct = styled.div`
 const ImgWrraper = styled.div`
   display: flex;
   align-items: center;
+ 
 `;
 
 const StyledPNG = styled.img`
   margin-top: 0;
   flex-grow: 1;
-  width: 100%;
-  height: 100%;
+  width:218px;
+  height:122px;
   border-radius: 10px 10px 0px 0px;
   object-fit: cover;
 `;

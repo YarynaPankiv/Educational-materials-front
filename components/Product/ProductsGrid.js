@@ -6,7 +6,7 @@ import { useState } from "react";
 
 export default function ProductsGrid({ products, darkTheme }) {
   const [currentPage, setCurrentPage] = useState(1);
-  const productsPerPage = 16;
+  const productsPerPage = 8;
   const totalPages = Math.ceil(products.length / productsPerPage);
   const handlePageChange = (page) => {
     setCurrentPage(page);

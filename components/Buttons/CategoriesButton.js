@@ -55,8 +55,7 @@ const StyledButton = styled.button`
   width: 146px;
   height: 34px;
   padding: 0;
-  background-color: ${(props) =>
-    props.$showCategories ? "#7469B6" : "#FFFFFF"};
+
   background-color: ${(props) => (props.darkTheme ? "#1D2733" : "white")};
   border-radius: 10px;
   border: ${(props) => (props.$showCategories ? "none" : "2px solid #7469b6")};
