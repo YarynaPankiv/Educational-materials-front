@@ -77,6 +77,9 @@ const PurpleButton = styled.button`
 
   border: none;
   cursor: pointer;
+  &:hover {
+    background-color: ${(props) => (props.darkTheme ? "purple" : "purple")};
+  }
 `;
 const SvgCart = styled.svg`
   margin-right: 10px;

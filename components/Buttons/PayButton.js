@@ -45,8 +45,8 @@ const PurpleButton = styled.button`
   margin-bottom: 25px;
   border: none;
   cursor: pointer;
-  :hover {
-    background: #7469b6;
+  &:hover {
+    background-color: ${(props) => (props.darkTheme ? "purple" : "purple")};
   }
   @media only screen and (max-width: 605px) {
     margin-top: 10px;
