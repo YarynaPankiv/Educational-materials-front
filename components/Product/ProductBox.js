@@ -6,7 +6,7 @@ import { useContext } from "react";
 import { useState } from "react";
 import { useCart } from "@/Contexts/ShowCart";
 
-export default function ProductBox({ product,darkTheme }) {
+export default function ProductBox({ product, darkTheme }) {
   const [addedToCart, setAddedToCart] = useState(false);
 
   const url = "/product/" + product._id;
@@ -53,7 +53,7 @@ export default function ProductBox({ product,darkTheme }) {
 const StyledProduct = styled.div`
   width: 218px;
   height: 287px;
-  
+
   background-color: ${(props) => (props.darkTheme ? "#192734" : "#F3F3F3")};
   border-radius: 10px;
   position: relative;
@@ -65,17 +65,23 @@ const StyledProduct = styled.div`
 `;
 const ImgWrraper = styled.div`
   display: flex;
-  align-items: center;
- 
+  width: 218px;
+  height: 122px;
+  position: relative;
+  object-fit: cover;
+  overflow: hidden
 `;
 
 const StyledPNG = styled.img`
+  position: absolute;
   margin-top: 0;
-  flex-grow: 1;
-  width:218px;
-  height:122px;
+  width: 100%;
+  height: 100%;
   border-radius: 10px 10px 0px 0px;
-  object-fit: cover;
+  @media only screen and (max-width: 600px) {
+    width: 170px;
+    height: 100px;
+  }
 `;
 const StyledName = styled.p`
   padding: 8px 12px;
@@ -84,7 +90,7 @@ const StyledName = styled.p`
   margin-top: 20px;
   word-break: break-word;
   margin-left: 5px;
-  max-height: 3em; 
+  max-height: 3em;
   overflow: hidden;
   @media only screen and (max-width: 600px) {
     margin-top: 5px;
