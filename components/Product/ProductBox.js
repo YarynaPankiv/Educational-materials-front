@@ -70,7 +70,7 @@ const StyledProduct = styled.div`
 
 const ImgWrraper = styled.div`
   display: flex;
-  width: 170px;
+  width: 218px;
   height: 122px;
   position: relative;
   object-fit: cover;

@@ -221,6 +221,7 @@ const AllIcons = styled.div`
   //margin-top: 10px;
   display: flex;
   align-items: center;
+  justify-content: center;
 `;
 const HeaderDiv = styled.header`
   display: flex;
