@@ -62,10 +62,15 @@ const StyledProduct = styled.div`
     width: 170px;
     height: 220px;
   }
+  &:hover {
+    scale: 1.05;
+
+  }
 `;
+
 const ImgWrraper = styled.div`
   display: flex;
-  width: 218px;
+  width: 170px;
   height: 122px;
   position: relative;
   object-fit: cover;
