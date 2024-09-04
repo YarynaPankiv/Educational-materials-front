@@ -206,7 +206,7 @@ export const IconWithText = styled.div`
   }
 `;
 
-export const IconText = styled.p`
+export const IconText = styled.span`
   margin-top: 0px;
   margin-left: 8px; /* Додано відступ зліва */
   font-family: "Rubik Mono One", sans-serif;
@@ -222,6 +222,7 @@ const AllIcons = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-bottom: 0px;
 `;
 const HeaderDiv = styled.header`
   display: flex;

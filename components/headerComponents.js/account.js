@@ -50,7 +50,7 @@ export const IconWithText = styled.div`
   position: relative;
 `;
 
-export const IconText = styled.p`
+export const IconText = styled.span`
   margin-top: 0px;
   margin-left: 8px;
   font-family: "Rubik Mono One", sans-serif;
