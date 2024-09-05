@@ -18,6 +18,6 @@ const StyledDiv = styled.div`
   }
 
   ${media.mobile} {
-      padding-bottom: 40px;
+      padding-bottom: 25px;
     }
 `;

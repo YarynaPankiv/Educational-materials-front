@@ -47,7 +47,7 @@ const StyledButton = styled.button`
     height: auto;
     width: 170px;
     height: 40px;
-    margin-top: 20px;
+    /* margin-top: 20px; */
     margin-right: 0;
     text-align: center;
     margin-bottom: 0;

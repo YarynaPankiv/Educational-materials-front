@@ -40,7 +40,7 @@ const StyledLogo = styled.div`
     width: 100%;
     height: auto;
     padding: 15px;
-    margin-top: 0px;
+    margin-top: 30px;
     margin-bottom: 0px;
   }
 `;

@@ -43,7 +43,8 @@ const StyledProductsGrid = styled.div`
   @media only screen and (max-width: 605px) {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 20px;
-    margin-top: 0;
+    gap: 10px;
+    margin-top: 10px;
+    margin-bottom: 0;
   }
 `;

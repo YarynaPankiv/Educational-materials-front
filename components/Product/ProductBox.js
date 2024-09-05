@@ -61,6 +61,7 @@ const StyledProduct = styled.div`
   @media only screen and (max-width: 600px) {
     width: 170px;
     height: 220px;
+    margin-top: 0px;
   }
   &:hover {
     scale: 1.05;
@@ -70,7 +71,7 @@ const StyledProduct = styled.div`
 
 const ImgWrraper = styled.div`
   display: flex;
-  width: 218px;
+  /* width: 218px; */
   height: 122px;
   position: relative;
   object-fit: cover;

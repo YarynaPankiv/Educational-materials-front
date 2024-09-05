@@ -168,6 +168,7 @@ const StyledSearch = styled.input`
 
   ${media.mobile} {
       display: none;
+      
   }
 
   ${({ isShow }) =>
@@ -179,9 +180,13 @@ const StyledSearch = styled.input`
       right: 0;
       width: 100%;
       margin: 0;
+      
 
       ${media.mobile} {
         display: block;
+        margin-left: 10px;
+        width: 95%;
+        margin: 0 auto;
       }
     `}
 `;
@@ -194,6 +199,8 @@ const MobileSearchIconContainer = styled.div`
     display: block;
     // margin-top:10px;
     margin-left: 5px;
+    
+    
   }
 `;
 export const IconWithText = styled.div`
